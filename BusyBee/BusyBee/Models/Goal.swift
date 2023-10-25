@@ -15,6 +15,7 @@ struct Goal: Identifiable, Codable, Comparable {
   var description: String?
   var dueDate: Date
   var frequency: Int
+  var user: User
   var subgoals: [String]
   
   // To conform to Codable protocol
@@ -24,6 +25,7 @@ struct Goal: Identifiable, Codable, Comparable {
     case description
     case dueDate
     case frequency
+    case user
     case subgoals
   }
   
