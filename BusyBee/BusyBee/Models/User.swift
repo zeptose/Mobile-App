@@ -25,6 +25,7 @@ struct User: Identifiable, Codable, Comparable {
     case password
     case bio
     case goals
+    case posts
     case follows
   }
   

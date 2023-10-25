@@ -17,7 +17,7 @@ struct Post: Identifiable, Codable, Comparable {
   var subgoal: String? // Optional bc post may or may not pertain to a subgoal
   var timePosted: Date
   var comments: [String]
-  var reactions: [String]
+  var reactions: Int
   
   // To conform to Codable protocol
   enum CodingKeys: String, CodingKey {
