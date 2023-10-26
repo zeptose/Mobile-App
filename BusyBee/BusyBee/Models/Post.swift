@@ -7,10 +7,11 @@
 
 import Foundation
 import SwiftUI
+import FirebaseFirestoreSwift
 
 struct Post: Identifiable, Codable, Comparable {
   
-  var id: UUID
+  @DocumentID var id: String?
   var goal: Goal
   var caption: String
   var photo: String

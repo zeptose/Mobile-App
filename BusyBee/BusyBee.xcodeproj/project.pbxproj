@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F1126BD52AE9944500A98A9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1126BD42AE9944500A98A9C /* GoogleService-Info.plist */; };
+		F1126BDD2AE9E01500A98A9C /* firebasetest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1126BDC2AE9E01400A98A9C /* firebasetest.swift */; };
 		F15DB22F2AE8B7370031FD75 /* BusyBeeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB22E2AE8B7370031FD75 /* BusyBeeApp.swift */; };
 		F15DB2312AE8B7370031FD75 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB2302AE8B7370031FD75 /* ContentView.swift */; };
 		F15DB2332AE8B73A0031FD75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F15DB2322AE8B73A0031FD75 /* Assets.xcassets */; };
@@ -17,11 +18,12 @@
 		F15DB2442AE8BB340031FD75 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB2432AE8BB340031FD75 /* Post.swift */; };
 		F15DB24A2AE8E3FD0031FD75 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F15DB2492AE8E3FD0031FD75 /* FirebaseFirestore */; };
 		F15DB24C2AE8E3FD0031FD75 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F15DB24B2AE8E3FD0031FD75 /* FirebaseFirestoreSwift */; };
-		F15DB2502AE8EE860031FD75 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB24F2AE8EE860031FD75 /* FirebaseController.swift */; };
+		F15DB2502AE8EE860031FD75 /* GoalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB24F2AE8EE860031FD75 /* GoalRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F1126BD42AE9944500A98A9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F1126BDC2AE9E01400A98A9C /* firebasetest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firebasetest.swift; sourceTree = "<group>"; };
 		F15DB22B2AE8B7370031FD75 /* BusyBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusyBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F15DB22E2AE8B7370031FD75 /* BusyBeeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusyBeeApp.swift; sourceTree = "<group>"; };
 		F15DB2302AE8B7370031FD75 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -30,7 +32,7 @@
 		F15DB23F2AE8B9B80031FD75 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F15DB2412AE8B9D10031FD75 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		F15DB2432AE8BB340031FD75 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		F15DB24F2AE8EE860031FD75 /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
+		F15DB24F2AE8EE860031FD75 /* GoalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F1126BD62AE9D0F100A98A9C /* DataRepositories */ = {
+			isa = PBXGroup;
+			children = (
+				F15DB24F2AE8EE860031FD75 /* GoalRepository.swift */,
+			);
+			path = DataRepositories;
+			sourceTree = "<group>";
+		};
+		F1126BD82AE9D38000A98A9C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		F15DB2222AE8B7370031FD75 = {
 			isa = PBXGroup;
 			children = (
@@ -65,14 +82,16 @@
 		F15DB22D2AE8B7370031FD75 /* BusyBee */ = {
 			isa = PBXGroup;
 			children = (
+				F1126BD82AE9D38000A98A9C /* ViewModels */,
+				F1126BD62AE9D0F100A98A9C /* DataRepositories */,
 				F1126BD42AE9944500A98A9C /* GoogleService-Info.plist */,
 				F15DB23E2AE8B7560031FD75 /* Controllers */,
 				F15DB23D2AE8B7500031FD75 /* Views */,
 				F15DB23C2AE8B74A0031FD75 /* Models */,
 				F15DB22E2AE8B7370031FD75 /* BusyBeeApp.swift */,
-				F15DB2302AE8B7370031FD75 /* ContentView.swift */,
 				F15DB2322AE8B73A0031FD75 /* Assets.xcassets */,
 				F15DB2342AE8B73A0031FD75 /* Preview Content */,
+				F1126BDC2AE9E01400A98A9C /* firebasetest.swift */,
 			);
 			path = BusyBee;
 			sourceTree = "<group>";
@@ -98,6 +117,7 @@
 		F15DB23D2AE8B7500031FD75 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F15DB2302AE8B7370031FD75 /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -105,7 +125,6 @@
 		F15DB23E2AE8B7560031FD75 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F15DB24F2AE8EE860031FD75 /* FirebaseController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -188,9 +207,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F15DB2502AE8EE860031FD75 /* FirebaseController.swift in Sources */,
+				F15DB2502AE8EE860031FD75 /* GoalRepository.swift in Sources */,
 				F15DB2422AE8B9D10031FD75 /* Goal.swift in Sources */,
 				F15DB2312AE8B7370031FD75 /* ContentView.swift in Sources */,
+				F1126BDD2AE9E01500A98A9C /* firebasetest.swift in Sources */,
 				F15DB2402AE8B9B80031FD75 /* User.swift in Sources */,
 				F15DB22F2AE8B7370031FD75 /* BusyBeeApp.swift in Sources */,
 				F15DB2442AE8BB340031FD75 /* Post.swift in Sources */,

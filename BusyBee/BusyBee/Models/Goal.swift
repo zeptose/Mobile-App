@@ -6,11 +6,11 @@
 //
 
 import Foundation
-import SwiftUI
+import FirebaseFirestoreSwift
 
 struct Goal: Identifiable, Codable, Comparable {
   
-  var id: UUID
+  @DocumentID var id: String?
   var name: String
   var description: String?
   var dueDate: Date

@@ -7,10 +7,11 @@
 
 import Foundation
 import SwiftUI
+import FirebaseFirestoreSwift
 
 struct User: Identifiable, Codable, Comparable {
   
-  var id: UUID
+  @DocumentID var id: String?
   var username: String
   var password: String
   var bio: String?
