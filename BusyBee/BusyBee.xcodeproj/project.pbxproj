@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5980FC3D2AF1BF14003053BB /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5980FC3C2AF1BF14003053BB /* RegistrationView.swift */; };
+		5980FC3F2AF1C047003053BB /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5980FC3E2AF1C047003053BB /* ProfileView.swift */; };
 		F1126BD52AE9944500A98A9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1126BD42AE9944500A98A9C /* GoogleService-Info.plist */; };
 		F1126BDD2AE9E01500A98A9C /* firebasetest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1126BDC2AE9E01400A98A9C /* firebasetest.swift */; };
 		F15DB22F2AE8B7370031FD75 /* BusyBeeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB22E2AE8B7370031FD75 /* BusyBeeApp.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5980FC3C2AF1BF14003053BB /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		5980FC3E2AF1C047003053BB /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		F1126BD42AE9944500A98A9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1126BDC2AE9E01400A98A9C /* firebasetest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firebasetest.swift; sourceTree = "<group>"; };
 		F15DB22B2AE8B7370031FD75 /* BusyBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusyBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				F15DB2302AE8B7370031FD75 /* ContentView.swift */,
+				5980FC3C2AF1BF14003053BB /* RegistrationView.swift */,
+				5980FC3E2AF1C047003053BB /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -208,12 +214,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F15DB2502AE8EE860031FD75 /* GoalRepository.swift in Sources */,
+				5980FC3F2AF1C047003053BB /* ProfileView.swift in Sources */,
 				F15DB2422AE8B9D10031FD75 /* Goal.swift in Sources */,
 				F15DB2312AE8B7370031FD75 /* ContentView.swift in Sources */,
 				F1126BDD2AE9E01500A98A9C /* firebasetest.swift in Sources */,
 				F15DB2402AE8B9B80031FD75 /* User.swift in Sources */,
 				F15DB22F2AE8B7370031FD75 /* BusyBeeApp.swift in Sources */,
 				F15DB2442AE8BB340031FD75 /* Post.swift in Sources */,
+				5980FC3D2AF1BF14003053BB /* RegistrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
