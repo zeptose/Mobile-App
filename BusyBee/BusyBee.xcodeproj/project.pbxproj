@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		F1126BD52AE9944500A98A9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1126BD42AE9944500A98A9C /* GoogleService-Info.plist */; };
-		F1126BDD2AE9E01500A98A9C /* firebasetest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1126BDC2AE9E01400A98A9C /* firebasetest.swift */; };
+		F1280C812AF17A4600B09570 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1280C802AF17A4600B09570 /* UserRepository.swift */; };
+		F1280C832AF1C61100B09570 /* Subgoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1280C822AF1C61100B09570 /* Subgoal.swift */; };
+		F1280C852AF1C6F400B09570 /* SubgoalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1280C842AF1C6F400B09570 /* SubgoalRepository.swift */; };
 		F15DB22F2AE8B7370031FD75 /* BusyBeeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB22E2AE8B7370031FD75 /* BusyBeeApp.swift */; };
 		F15DB2312AE8B7370031FD75 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB2302AE8B7370031FD75 /* ContentView.swift */; };
 		F15DB2332AE8B73A0031FD75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F15DB2322AE8B73A0031FD75 /* Assets.xcassets */; };
@@ -23,7 +25,9 @@
 
 /* Begin PBXFileReference section */
 		F1126BD42AE9944500A98A9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		F1126BDC2AE9E01400A98A9C /* firebasetest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firebasetest.swift; sourceTree = "<group>"; };
+		F1280C802AF17A4600B09570 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		F1280C822AF1C61100B09570 /* Subgoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subgoal.swift; sourceTree = "<group>"; };
+		F1280C842AF1C6F400B09570 /* SubgoalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubgoalRepository.swift; sourceTree = "<group>"; };
 		F15DB22B2AE8B7370031FD75 /* BusyBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusyBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F15DB22E2AE8B7370031FD75 /* BusyBeeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusyBeeApp.swift; sourceTree = "<group>"; };
 		F15DB2302AE8B7370031FD75 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +56,8 @@
 			isa = PBXGroup;
 			children = (
 				F15DB24F2AE8EE860031FD75 /* GoalRepository.swift */,
+				F1280C842AF1C6F400B09570 /* SubgoalRepository.swift */,
+				F1280C802AF17A4600B09570 /* UserRepository.swift */,
 			);
 			path = DataRepositories;
 			sourceTree = "<group>";
@@ -91,7 +97,6 @@
 				F15DB22E2AE8B7370031FD75 /* BusyBeeApp.swift */,
 				F15DB2322AE8B73A0031FD75 /* Assets.xcassets */,
 				F15DB2342AE8B73A0031FD75 /* Preview Content */,
-				F1126BDC2AE9E01400A98A9C /* firebasetest.swift */,
 			);
 			path = BusyBee;
 			sourceTree = "<group>";
@@ -109,6 +114,7 @@
 			children = (
 				F15DB23F2AE8B9B80031FD75 /* User.swift */,
 				F15DB2412AE8B9D10031FD75 /* Goal.swift */,
+				F1280C822AF1C61100B09570 /* Subgoal.swift */,
 				F15DB2432AE8BB340031FD75 /* Post.swift */,
 			);
 			path = Models;
@@ -207,11 +213,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1280C852AF1C6F400B09570 /* SubgoalRepository.swift in Sources */,
 				F15DB2502AE8EE860031FD75 /* GoalRepository.swift in Sources */,
 				F15DB2422AE8B9D10031FD75 /* Goal.swift in Sources */,
 				F15DB2312AE8B7370031FD75 /* ContentView.swift in Sources */,
-				F1126BDD2AE9E01500A98A9C /* firebasetest.swift in Sources */,
+				F1280C812AF17A4600B09570 /* UserRepository.swift in Sources */,
 				F15DB2402AE8B9B80031FD75 /* User.swift in Sources */,
+				F1280C832AF1C61100B09570 /* Subgoal.swift in Sources */,
 				F15DB22F2AE8B7370031FD75 /* BusyBeeApp.swift in Sources */,
 				F15DB2442AE8BB340031FD75 /* Post.swift in Sources */,
 			);

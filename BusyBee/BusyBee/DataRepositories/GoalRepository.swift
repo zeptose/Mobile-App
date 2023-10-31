@@ -26,7 +26,7 @@ class GoalRepository: ObservableObject {
     store.collection(path)
       .addSnapshotListener { querySnapshot, error in
         if let error = error {
-          print("Error getting goals")
+          print("Error getting goals: \(error.localizedDescription)" )
           return
         }
         querySnapshot?.documents.forEach({ document in
@@ -38,4 +38,38 @@ class GoalRepository: ObservableObject {
         } ?? []
       }
   }
+  
+  func create(_ goal: Goal) {
+    do {
+        let newGoal = goal
+        _ = try store.collection(path).addDocument(from: newGoal)
+      } catch {
+        fatalError("Unable to add goal: \(error.localizedDescription).")
+      }
+  }
+  
+  func update(_ goal: Goal) {
+    guard let goalId = goal.id else { return }
+    
+    do {
+      try store.collection(path).document(goalId).setData(from: goal)
+    } catch {
+      fatalError("Unable to update goal: \(error.localizedDescription).")
+    }
+  }
+
+  func delete(_ goal: Goal) {
+    guard let goalId = goal.id else { return }
+    
+    store.collection(path).document(goalId).delete { error in
+      if let error = error {
+        print("Unable to remove goal: \(error.localizedDescription)")
+      }
+    }
+  }
+  
+//  // MARK: Filtering methods
+//  func getGoalsFor(_ user: User) -> [Goal] {
+//    return self.goals.filter{$0.user == user}
+//  }
 }
