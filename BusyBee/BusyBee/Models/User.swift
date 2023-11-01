@@ -13,7 +13,6 @@ struct User: Identifiable, Codable, Comparable {
   
   @DocumentID var id: String?
   var username: String
-  var password: String
   var bio: String?
   var goals: [Goal]
   var posts: [Post]
@@ -23,7 +22,6 @@ struct User: Identifiable, Codable, Comparable {
   enum CodingKeys: String, CodingKey {
     case id
     case username
-    case password
     case bio
     case goals
     case posts

@@ -20,7 +20,6 @@ class UserController: ObservableObject {
     
     let newUser = User(id: id,
                        username: username,
-                       password: password,
                        bio: bio,
                        goals: goals,
                        posts: posts,
