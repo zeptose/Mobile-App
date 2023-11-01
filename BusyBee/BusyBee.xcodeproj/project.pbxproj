@@ -13,6 +13,7 @@
 		F1280C812AF17A4600B09570 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1280C802AF17A4600B09570 /* UserRepository.swift */; };
 		F1280C832AF1C61100B09570 /* Subgoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1280C822AF1C61100B09570 /* Subgoal.swift */; };
 		F1280C852AF1C6F400B09570 /* SubgoalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1280C842AF1C6F400B09570 /* SubgoalRepository.swift */; };
+		F1280C872AF1CDC200B09570 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1280C862AF1CDC200B09570 /* UserController.swift */; };
 		F15DB22F2AE8B7370031FD75 /* BusyBeeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB22E2AE8B7370031FD75 /* BusyBeeApp.swift */; };
 		F15DB2312AE8B7370031FD75 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB2302AE8B7370031FD75 /* ContentView.swift */; };
 		F15DB2332AE8B73A0031FD75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F15DB2322AE8B73A0031FD75 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 		F1280C802AF17A4600B09570 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		F1280C822AF1C61100B09570 /* Subgoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subgoal.swift; sourceTree = "<group>"; };
 		F1280C842AF1C6F400B09570 /* SubgoalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubgoalRepository.swift; sourceTree = "<group>"; };
+		F1280C862AF1CDC200B09570 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		F15DB22B2AE8B7370031FD75 /* BusyBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusyBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F15DB22E2AE8B7370031FD75 /* BusyBeeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusyBeeApp.swift; sourceTree = "<group>"; };
 		F15DB2302AE8B7370031FD75 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		F15DB23E2AE8B7560031FD75 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F1280C862AF1CDC200B09570 /* UserController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				F15DB2422AE8B9D10031FD75 /* Goal.swift in Sources */,
 				F15DB2312AE8B7370031FD75 /* ContentView.swift in Sources */,
 				F1280C812AF17A4600B09570 /* UserRepository.swift in Sources */,
+				F1280C872AF1CDC200B09570 /* UserController.swift in Sources */,
 				F15DB2402AE8B9B80031FD75 /* User.swift in Sources */,
 				F1280C832AF1C61100B09570 /* Subgoal.swift in Sources */,
 				F15DB22F2AE8B7370031FD75 /* BusyBeeApp.swift in Sources */,
