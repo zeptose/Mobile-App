@@ -15,7 +15,7 @@ struct Post: Identifiable, Codable, Comparable {
   var goal: Goal
   var caption: String
   var photo: String
-  var subgoal: String? // Optional bc post may or may not pertain to a subgoal
+  var subgoal: Subgoal? // Optional bc post may or may not pertain to a subgoal
   var timePosted: Date
   var comments: [String]
   var reactions: Int
