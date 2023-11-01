@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var goalRepository: GoalRepository
+    @EnvironmentObject var viewModel: AuthViewModel
     @State private var selectedTab = 4 
     
     var body: some View {
