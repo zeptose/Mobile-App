@@ -4,7 +4,8 @@ import SwiftUI
 struct AppView: View {
     @EnvironmentObject var goalRepository: GoalRepository
     @EnvironmentObject var viewModel: AuthViewModel
-    @State private var selectedTab = 4 
+    @State private var selectedTab = 4
+    let userController = UserController()
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -15,7 +16,7 @@ struct AppView: View {
                 }
                 .tag(0)
             
-            Text("Search")
+            SearchView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search")

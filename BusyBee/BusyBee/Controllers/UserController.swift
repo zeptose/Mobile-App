@@ -11,6 +11,13 @@ import FirebaseFirestoreSwift
 
 class UserController: ObservableObject {
   @Published var userRepository: UserRepository = UserRepository()
+  @Published var users: [User] = []
+  
+  init () {
+    self.userRepository.get({(users) -> Void in
+          self.users = users
+    })
+  }
   
   func addNewUser(username: String, password: String, bio: String?) {
     let id = UUID().uuidString

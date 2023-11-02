@@ -19,24 +19,40 @@ class UserRepository: ObservableObject {
   private var cancellables: Set<AnyCancellable> = []
   
   init() {
-    self.get()
+    self.get({ (users) -> Void in
+          self.users = users
+        })
   }
 
-  func get() {
-    store.collection(path)
-      .addSnapshotListener { querySnapshot, error in
-        if let error = error {
-          print("Error getting users: \(error.localizedDescription)")
-          return
+//  func get() {
+//    store.collection(path)
+//      .addSnapshotListener { querySnapshot, error in
+//        if let error = error {
+//          print("Error getting users: \(error.localizedDescription)")
+//          return
+//        }
+//        querySnapshot?.documents.forEach({ document in
+//          print(document.data())
+//        })
+//        self.users = querySnapshot?.documents.compactMap { document in
+//          try? document.data(as: User.self)
+//        } ?? []
+//      }
+//  }
+  func get(_ completionHandler: @escaping (_ users: [User]) -> Void) {
+      store.collection(path)
+        .addSnapshotListener { querySnapshot, error in
+          if let error = error {
+            print("Error getting users: \(error.localizedDescription)")
+            return
+          }
+          
+          let users = querySnapshot?.documents.compactMap { document in
+            try? document.data(as: User.self)
+          } ?? []
+          completionHandler(users)
         }
-        querySnapshot?.documents.forEach({ document in
-          print(document.data())
-        })
-        self.users = querySnapshot?.documents.compactMap { document in
-          try? document.data(as: User.self)
-        } ?? []
-      }
-  }
+    }
   
   func create(_ user: User) {
     do {
