@@ -29,6 +29,7 @@
 		F15DB24A2AE8E3FD0031FD75 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F15DB2492AE8E3FD0031FD75 /* FirebaseFirestore */; };
 		F15DB24C2AE8E3FD0031FD75 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F15DB24B2AE8E3FD0031FD75 /* FirebaseFirestoreSwift */; };
 		F15DB2502AE8EE860031FD75 /* GoalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB24F2AE8EE860031FD75 /* GoalRepository.swift */; };
+		F9BE505A2AF4288900FF1C16 /* HexCodeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		F15DB2412AE8B9D10031FD75 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		F15DB2432AE8BB340031FD75 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F15DB24F2AE8EE860031FD75 /* GoalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRepository.swift; sourceTree = "<group>"; };
+		F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCodeConverter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				F13650332AF3487C00950A0F /* LoginView.swift */,
 				5980FC3E2AF1C047003053BB /* AppView.swift */,
 				F13650352AF34C3200950A0F /* ProfileView.swift */,
+				F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				F13650362AF34C3200950A0F /* ProfileView.swift in Sources */,
 				F15DB2442AE8BB340031FD75 /* Post.swift in Sources */,
 				F1280C892AF2EF0D00B09570 /* AuthViewModel.swift in Sources */,
+				F9BE505A2AF4288900FF1C16 /* HexCodeConverter.swift in Sources */,
 				5980FC3D2AF1BF14003053BB /* RegistrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
