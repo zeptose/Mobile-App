@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		5980FC3D2AF1BF14003053BB /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5980FC3C2AF1BF14003053BB /* RegistrationView.swift */; };
 		5980FC3F2AF1C047003053BB /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5980FC3E2AF1C047003053BB /* AppView.swift */; };
+		59A8027A2AF402DB00F69178 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A802792AF402DB00F69178 /* CalendarView.swift */; };
+		59A8027C2AF402ED00F69178 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A8027B2AF402ED00F69178 /* HomeView.swift */; };
+		59A802802AF4030100F69178 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A8027F2AF4030100F69178 /* CameraView.swift */; };
+		59A802822AF4034100F69178 /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A802812AF4034100F69178 /* ImageController.swift */; };
+		59A802842AF41EFD00F69178 /* CameraControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A802832AF41EFD00F69178 /* CameraControlsView.swift */; };
+		59A802862AF41F0A00F69178 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A802852AF41F0A00F69178 /* CameraController.swift */; };
 		F10BDA572AF2F31B00C44070 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F10BDA562AF2F31B00C44070 /* FirebaseAuth */; };
 		F1126BD52AE9944500A98A9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1126BD42AE9944500A98A9C /* GoogleService-Info.plist */; };
 		F1280C812AF17A4600B09570 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1280C802AF17A4600B09570 /* UserRepository.swift */; };
@@ -37,6 +43,12 @@
 /* Begin PBXFileReference section */
 		5980FC3C2AF1BF14003053BB /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		5980FC3E2AF1C047003053BB /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		59A802792AF402DB00F69178 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		59A8027B2AF402ED00F69178 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		59A8027F2AF4030100F69178 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		59A802812AF4034100F69178 /* ImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
+		59A802832AF41EFD00F69178 /* CameraControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControlsView.swift; sourceTree = "<group>"; };
+		59A802852AF41F0A00F69178 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		F1126BD42AE9944500A98A9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1280C802AF17A4600B09570 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		F1280C822AF1C61100B09570 /* Subgoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subgoal.swift; sourceTree = "<group>"; };
@@ -162,6 +174,10 @@
 				F13650332AF3487C00950A0F /* LoginView.swift */,
 				5980FC3E2AF1C047003053BB /* AppView.swift */,
 				F13650352AF34C3200950A0F /* ProfileView.swift */,
+				59A802792AF402DB00F69178 /* CalendarView.swift */,
+				59A8027B2AF402ED00F69178 /* HomeView.swift */,
+				59A8027F2AF4030100F69178 /* CameraView.swift */,
+				59A802832AF41EFD00F69178 /* CameraControlsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -171,6 +187,8 @@
 			children = (
 				F1280C862AF1CDC200B09570 /* UserController.swift */,
 				F13650312AF3405500950A0F /* GoalController.swift */,
+				59A802812AF4034100F69178 /* ImageController.swift */,
+				59A802852AF41F0A00F69178 /* CameraController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -208,7 +226,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					F15DB22A2AE8B7370031FD75 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -255,8 +273,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1280C852AF1C6F400B09570 /* SubgoalRepository.swift in Sources */,
+				59A802862AF41F0A00F69178 /* CameraController.swift in Sources */,
 				F15DB2502AE8EE860031FD75 /* GoalRepository.swift in Sources */,
+				59A802802AF4030100F69178 /* CameraView.swift in Sources */,
 				F13650322AF3405500950A0F /* GoalController.swift in Sources */,
+				59A8027A2AF402DB00F69178 /* CalendarView.swift in Sources */,
 				F13650342AF3487C00950A0F /* LoginView.swift in Sources */,
 				5980FC3F2AF1C047003053BB /* AppView.swift in Sources */,
 				F15DB2422AE8B9D10031FD75 /* Goal.swift in Sources */,
@@ -264,8 +285,11 @@
 				F13650382AF4202C00950A0F /* SearchView.swift in Sources */,
 				F15DB2312AE8B7370031FD75 /* ContentView.swift in Sources */,
 				F1280C812AF17A4600B09570 /* UserRepository.swift in Sources */,
+				59A8027C2AF402ED00F69178 /* HomeView.swift in Sources */,
 				F1280C872AF1CDC200B09570 /* UserController.swift in Sources */,
 				F15DB2402AE8B9B80031FD75 /* User.swift in Sources */,
+				59A802822AF4034100F69178 /* ImageController.swift in Sources */,
+				59A802842AF41EFD00F69178 /* CameraControlsView.swift in Sources */,
 				F1280C832AF1C61100B09570 /* Subgoal.swift in Sources */,
 				F15DB22F2AE8B7370031FD75 /* BusyBeeApp.swift in Sources */,
 				F136503C2AF42AE800950A0F /* SearchRow.swift in Sources */,
@@ -315,6 +339,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -375,6 +400,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -401,8 +427,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BusyBee/Preview Content\"";
+				DEVELOPMENT_TEAM = TZD8338J4G;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "App wants to use camera";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -429,8 +457,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BusyBee/Preview Content\"";
+				DEVELOPMENT_TEAM = TZD8338J4G;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "App wants to use camera";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

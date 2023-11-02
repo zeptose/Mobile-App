@@ -6,7 +6,9 @@ struct AppView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     @State private var selectedTab = 4
     let userController = UserController()
-    
+    @State private var isShowingCamera = false
+    @StateObject private var cameraController = CameraController()
+
     var body: some View {
         TabView(selection: $selectedTab) {
             Text("Home")
@@ -15,28 +17,27 @@ struct AppView: View {
                     Text("Home")
                 }
                 .tag(0)
-            
             SearchView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
                 }
                 .tag(1)
-            
-            Text("Images")
+
+            CameraView(camera: cameraController)
                 .tabItem {
-                    Image(systemName: "photo")
-                    Text("Images")
+                    Image(systemName: "camera")
+                    Text("Camera")
                 }
                 .tag(2)
-            
+
             Text("Calendar")
                 .tabItem {
                     Image(systemName: "calendar")
                     Text("Calendar")
                 }
                 .tag(3)
-            
+
             ProfileView()
                 .tabItem {
                     Image(systemName: "person")
@@ -47,6 +48,7 @@ struct AppView: View {
         }
     }
 }
+
 
 struct AppView_Previews: PreviewProvider {
     static var previews: some View {
