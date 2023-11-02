@@ -1,19 +1,16 @@
 //
-//  RegistrationView.swift
+//  LoginView.swift
 //  BusyBee
 //
-//  Created by Ryan McGrady on 10/31/23.
+//  Created by elaine wang on 11/1/23.
 //
 
-// RegistrationFormView.swift
 import SwiftUI
 
-struct RegistrationFormView: View {
-    @Binding var isRegistering: Bool
+struct LoginFormView: View {
+    @Binding var isLoggingIn: Bool
     @State private var isEnteringCredentials = false
-    @State private var username = ""
     @State private var password = ""
-    @State private var confirmpassword = ""
     @State private var email = ""
     @Binding var selectedTab: Int
     @EnvironmentObject var viewModel: AuthViewModel
@@ -25,8 +22,8 @@ struct RegistrationFormView: View {
                 .foregroundColor(Color.yellow)
                 .padding(.top, 20)
             
-            Spacer()
-//            Button("Register") {
+//            Spacer()
+//            Button("Login") {
 //                isEnteringCredentials.toggle()
 //            }
 //            .font(.title)
@@ -36,29 +33,22 @@ struct RegistrationFormView: View {
 //                RoundedRectangle(cornerRadius: 10)
 //                    .stroke(Color.blue, lineWidth: 2)
 //            )
-//            Spacer()
+            Spacer()
             
 //            if isEnteringCredentials {
               VStack {
                     TextField("Email", text: $email)
                       .padding()
-                  
-                    TextField("Username", text: $username)
-                        .padding()
                     
                     SecureField("Password", text: $password)
                         .padding()
                   
-                    SecureField("Confirm Password", text: $confirmpassword)
-                      .padding()
-                    
                     Button("Submit") {
-                        isRegistering.toggle() // Set isRegistering to false
+                        isLoggingIn.toggle()
                         selectedTab = 4
                       Task {
-                        try await viewModel.createUser(withEmail: email,
-                                                      password: password,
-                                                      username: username)
+                        try await viewModel.signIn(withEmail: email,
+                                                   password: password)
                       }
                     }
                     .padding()
@@ -71,13 +61,11 @@ struct RegistrationFormView: View {
     }
 }
 
-extension RegistrationFormView: AuthenticationFormProtocol {
+extension LoginFormView: AuthenticationFormProtocol {
   var formIsValid: Bool {
     return !email.isEmpty
     && email.contains("@")
     && !password.isEmpty
     && password.count > 5
-    && !username.isEmpty
-    && password == confirmpassword
   }
 }

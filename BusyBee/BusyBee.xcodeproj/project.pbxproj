@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5980FC3D2AF1BF14003053BB /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5980FC3C2AF1BF14003053BB /* RegistrationView.swift */; };
-		5980FC3F2AF1C047003053BB /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5980FC3E2AF1C047003053BB /* ProfileView.swift */; };
+		5980FC3F2AF1C047003053BB /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5980FC3E2AF1C047003053BB /* AppView.swift */; };
 		F10BDA572AF2F31B00C44070 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F10BDA562AF2F31B00C44070 /* FirebaseAuth */; };
 		F1126BD52AE9944500A98A9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1126BD42AE9944500A98A9C /* GoogleService-Info.plist */; };
 		F1280C812AF17A4600B09570 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1280C802AF17A4600B09570 /* UserRepository.swift */; };
@@ -16,6 +16,9 @@
 		F1280C852AF1C6F400B09570 /* SubgoalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1280C842AF1C6F400B09570 /* SubgoalRepository.swift */; };
 		F1280C872AF1CDC200B09570 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1280C862AF1CDC200B09570 /* UserController.swift */; };
 		F1280C892AF2EF0D00B09570 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1280C882AF2EF0C00B09570 /* AuthViewModel.swift */; };
+		F13650322AF3405500950A0F /* GoalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13650312AF3405500950A0F /* GoalController.swift */; };
+		F13650342AF3487C00950A0F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13650332AF3487C00950A0F /* LoginView.swift */; };
+		F13650362AF34C3200950A0F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13650352AF34C3200950A0F /* ProfileView.swift */; };
 		F15DB22F2AE8B7370031FD75 /* BusyBeeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB22E2AE8B7370031FD75 /* BusyBeeApp.swift */; };
 		F15DB2312AE8B7370031FD75 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB2302AE8B7370031FD75 /* ContentView.swift */; };
 		F15DB2332AE8B73A0031FD75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F15DB2322AE8B73A0031FD75 /* Assets.xcassets */; };
@@ -30,13 +33,16 @@
 
 /* Begin PBXFileReference section */
 		5980FC3C2AF1BF14003053BB /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
-		5980FC3E2AF1C047003053BB /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		5980FC3E2AF1C047003053BB /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		F1126BD42AE9944500A98A9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1280C802AF17A4600B09570 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		F1280C822AF1C61100B09570 /* Subgoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subgoal.swift; sourceTree = "<group>"; };
 		F1280C842AF1C6F400B09570 /* SubgoalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubgoalRepository.swift; sourceTree = "<group>"; };
 		F1280C862AF1CDC200B09570 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		F1280C882AF2EF0C00B09570 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		F13650312AF3405500950A0F /* GoalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalController.swift; sourceTree = "<group>"; };
+		F13650332AF3487C00950A0F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		F13650352AF34C3200950A0F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		F15DB22B2AE8B7370031FD75 /* BusyBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusyBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F15DB22E2AE8B7370031FD75 /* BusyBeeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusyBeeApp.swift; sourceTree = "<group>"; };
 		F15DB2302AE8B7370031FD75 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -144,7 +150,9 @@
 			children = (
 				F15DB2302AE8B7370031FD75 /* ContentView.swift */,
 				5980FC3C2AF1BF14003053BB /* RegistrationView.swift */,
-				5980FC3E2AF1C047003053BB /* ProfileView.swift */,
+				F13650332AF3487C00950A0F /* LoginView.swift */,
+				5980FC3E2AF1C047003053BB /* AppView.swift */,
+				F13650352AF34C3200950A0F /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -153,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				F1280C862AF1CDC200B09570 /* UserController.swift */,
+				F13650312AF3405500950A0F /* GoalController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -238,7 +247,9 @@
 			files = (
 				F1280C852AF1C6F400B09570 /* SubgoalRepository.swift in Sources */,
 				F15DB2502AE8EE860031FD75 /* GoalRepository.swift in Sources */,
-				5980FC3F2AF1C047003053BB /* ProfileView.swift in Sources */,
+				F13650322AF3405500950A0F /* GoalController.swift in Sources */,
+				F13650342AF3487C00950A0F /* LoginView.swift in Sources */,
+				5980FC3F2AF1C047003053BB /* AppView.swift in Sources */,
 				F15DB2422AE8B9D10031FD75 /* Goal.swift in Sources */,
 				F15DB2312AE8B7370031FD75 /* ContentView.swift in Sources */,
 				F1280C812AF17A4600B09570 /* UserRepository.swift in Sources */,
@@ -246,6 +257,7 @@
 				F15DB2402AE8B9B80031FD75 /* User.swift in Sources */,
 				F1280C832AF1C61100B09570 /* Subgoal.swift in Sources */,
 				F15DB22F2AE8B7370031FD75 /* BusyBeeApp.swift in Sources */,
+				F13650362AF34C3200950A0F /* ProfileView.swift in Sources */,
 				F15DB2442AE8BB340031FD75 /* Post.swift in Sources */,
 				F1280C892AF2EF0D00B09570 /* AuthViewModel.swift in Sources */,
 				5980FC3D2AF1BF14003053BB /* RegistrationView.swift in Sources */,
