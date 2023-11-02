@@ -38,7 +38,8 @@ struct AppView: View {
                 }
                 .tag(3)
 
-            ProfileView()
+            ProfileView(user: viewModel.currentUser)
+//          ProfileView()
                 .tabItem {
                     Image(systemName: "person")
                     Text("Profile")

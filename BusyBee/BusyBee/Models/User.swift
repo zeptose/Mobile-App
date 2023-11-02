@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 
 struct User: Identifiable, Codable, Comparable {
   
-  @DocumentID var id: String?
+  var id: String
   var username: String
   var bio: String?
   var goals: [Goal]
