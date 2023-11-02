@@ -50,7 +50,7 @@ struct ContentView: View {
             }
           } else {
               AppView()
-                  .environmentObject(goalRepository)
+                  
           }
         }
     }
