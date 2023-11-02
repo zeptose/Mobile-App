@@ -5,6 +5,7 @@ struct AppView: View {
     @EnvironmentObject var goalRepository: GoalRepository
     @EnvironmentObject var viewModel: AuthViewModel
     @State private var selectedTab = 4
+    let userController = UserController()
     @State private var isShowingCamera = false
     @StateObject private var cameraController = CameraController()
 
@@ -16,8 +17,7 @@ struct AppView: View {
                     Text("Home")
                 }
                 .tag(0)
-
-            Text("Search")
+            SearchView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
