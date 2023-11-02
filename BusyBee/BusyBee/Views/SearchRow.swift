@@ -13,7 +13,7 @@ struct SearchRow: View {
     var body: some View {
       VStack {
         NavigationLink(
-          destination: ProfileView(),
+          destination: ProfileView(user: user),
           label: {
             Text(user.username)
               .font(.headline)

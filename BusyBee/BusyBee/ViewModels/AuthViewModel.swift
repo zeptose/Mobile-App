@@ -39,7 +39,6 @@ class AuthViewModel: ObservableObject {
     do {
       let result = try await Auth.auth().createUser(withEmail: email, password: password)
       self.userSession = result.user
-      
       let posts: [Post] = []
       let follows: [User] = []
       let goals: [Goal] = []
@@ -51,7 +50,9 @@ class AuthViewModel: ObservableObject {
                          goals: goals,
                          posts: posts,
                          follows: follows)
-      userRepository.create(newUser)
+      let encodedUser = try Firestore.Encoder().encode(newUser)
+      try await Firestore.firestore().collection("users").document(newUser.id).setData(encodedUser)
+//      userRepository.create(newUser)
       await fetchUser()
     } catch {
       print("Unable to create user: \(error.localizedDescription)")
@@ -76,5 +77,7 @@ class AuthViewModel: ObservableObject {
     guard let uid = Auth.auth().currentUser?.uid else { return }
     guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return }
     self.currentUser = try? snapshot.data(as: User.self)
+//    print("Current user: \(self.currentUser)")
+//    print("uid: \(uid)")
   }
 }

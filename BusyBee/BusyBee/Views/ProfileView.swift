@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct ProfileView: View {
+  @EnvironmentObject var viewModel: AuthViewModel
   let customYellow = Color(UIColor(hex: "#FFD111"))
+  var user: User?
     var body: some View {
+      if let profile = user {
         ZStack {
           VStack {
 
@@ -39,12 +42,22 @@ struct ProfileView: View {
               .clipShape(Circle())
               .overlay(Circle().stroke(customYellow, lineWidth: 10))
             
-            Text("Your Caption")
+            Text(profile.username)
               .font(.headline)
               .padding()
             
-            Spacer()
+            if profile.bio != nil {
+              Text(profile.bio ?? "")
+                .font(.caption)
+                .padding()
+            }
             
+            Spacer()
+            Button("Logout") {
+              Task {
+                viewModel.signOut()
+              }
+            }
             HStack {
               Spacer()
               
@@ -85,12 +98,18 @@ struct ProfileView: View {
               .frame(maxHeight: UIScreen.main.bounds.height / 3)
               .edgesIgnoringSafeArea(.top)
           })
-
+      }
+      VStack {
+        Button("Logout") {
+          Task {
+            viewModel.signOut()
+          }
+        }}
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
-    }
-}
+//struct ProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProfileView()
+//    }
+//}

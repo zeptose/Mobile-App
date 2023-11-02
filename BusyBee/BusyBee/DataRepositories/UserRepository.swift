@@ -64,8 +64,8 @@ class UserRepository: ObservableObject {
   }
   
   func update(_ user: User) {
-    guard let userId = user.id else { return }
-    
+//    guard let userId = user.id else { return }
+    let userId = user.id
     do {
       try store.collection(path).document(userId).setData(from: user)
     } catch {
@@ -74,8 +74,8 @@ class UserRepository: ObservableObject {
   }
 
   func delete(_ user: User) {
-    guard let userId = user.id else { return }
-    
+//    guard let userId = user.id else { return }
+    let userId = user.id
     store.collection(path).document(userId).delete { error in
       if let error = error {
         print("Unable to remove user: \(error.localizedDescription)")
