@@ -50,6 +50,7 @@
 		59A802812AF4034100F69178 /* ImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
 		59A802832AF41EFD00F69178 /* CameraControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControlsView.swift; sourceTree = "<group>"; };
 		59A802852AF41F0A00F69178 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		59DCD2022AF46CFD000FCC59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F1126BD42AE9944500A98A9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1280C802AF17A4600B09570 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		F1280C822AF1C61100B09570 /* Subgoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subgoal.swift; sourceTree = "<group>"; };
@@ -134,6 +135,7 @@
 		F15DB22D2AE8B7370031FD75 /* BusyBee */ = {
 			isa = PBXGroup;
 			children = (
+				59DCD2022AF46CFD000FCC59 /* Info.plist */,
 				F1126BD82AE9D38000A98A9C /* ViewModels */,
 				F1126BD62AE9D0F100A98A9C /* DataRepositories */,
 				F1126BD42AE9944500A98A9C /* GoogleService-Info.plist */,
@@ -434,7 +436,8 @@
 				DEVELOPMENT_TEAM = TZD8338J4G;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "App wants to use camera";
+				INFOPLIST_FILE = BusyBee/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "App needs camera access";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -464,7 +467,8 @@
 				DEVELOPMENT_TEAM = TZD8338J4G;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "App wants to use camera";
+				INFOPLIST_FILE = BusyBee/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "App needs camera access";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
