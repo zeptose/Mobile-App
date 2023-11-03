@@ -12,7 +12,11 @@ class CameraController: NSObject, ObservableObject, AVCapturePhotoCaptureDelegat
   @Published var session = AVCaptureSession()
   @Published var output = AVCapturePhotoOutput()
   @Published var flashMode: AVCaptureDevice.FlashMode = .off
+  @Published var capturedImage: UIImage?
   @Published var alert = false
+  @Published var photos = []
+  @Published var images : [UIImage] = []
+  
   var backCamera : AVCaptureDevice!
   var frontCamera : AVCaptureDevice!
   
@@ -134,6 +138,12 @@ class CameraController: NSObject, ObservableObject, AVCapturePhotoCaptureDelegat
     }
   }
   
+  func stop() {
+      DispatchQueue.global(qos: .userInitiated).async {
+          self.session.stopRunning()
+      }
+  }
+  
   func toggleFlash() {
     if self.flashMode == .off {
       self.flashMode = .on
@@ -181,13 +191,20 @@ class CameraController: NSObject, ObservableObject, AVCapturePhotoCaptureDelegat
   }
   
   func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-    if let error = error {
-      fatalError(error.localizedDescription)
-    }
-    
-    if let imageData = photo.fileDataRepresentation(), let image = UIImage(data: imageData) {
-      UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-    }
+      if let error = error {
+          fatalError(error.localizedDescription)
+      }
+
+      if let imageData = photo.fileDataRepresentation(), let image = UIImage(data: imageData) {
+          capturedImage = image
+
+          DispatchQueue.main.async {
+              self.photos.append(imageData)
+              self.images.append(image)
+          }
+
+          UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+      }
   }
 }
 

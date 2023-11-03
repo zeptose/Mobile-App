@@ -45,7 +45,7 @@ struct AppView: View {
                     .padding()
                 }
                 .tag(4)
-        }
+        }.navigationBarTitleDisplayMode(.inline)
     }
 }
 
