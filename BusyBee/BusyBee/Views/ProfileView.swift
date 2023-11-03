@@ -11,6 +11,7 @@ struct ProfileView: View {
   @EnvironmentObject var viewModel: AuthViewModel
   @ObservedObject var goalController = GoalController()
   let customYellow = Color(UIColor(hex: "#FFD111"))
+  @State private var showCurrentGoals = true
   var user: User?
     var body: some View {
       if let profile = user {
@@ -68,7 +69,7 @@ struct ProfileView: View {
               Spacer()
               
               Button(action: {
-                print("Current Goals button tapped")
+                showCurrentGoals = true
               }) {
                 Text("Current Goals")
                   .padding()
@@ -76,26 +77,9 @@ struct ProfileView: View {
                   .background(Color.yellow)
                   .cornerRadius(8)
               }
-              .onTapGesture {
-                                  // Access and display current goals from the repository
-                let currentGoals = goalController.getCurrentGoals(currentUser: profile)
-                                  // Use 'currentGoals' to display in the UI or perform any necessary action
-                print(currentGoals)
-                VStack {
-                    ForEach(currentGoals) { goal in
-                        Text(goal.name)
-                        .frame(width: 100, height: 100)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                        .padding()
-                }
-                }
-                
-              }
               
               Button(action: {
-                print("Past Goals button tapped")
+                showCurrentGoals = false
               }) {
                 Text("Past Goals")
                   .padding()
@@ -103,6 +87,31 @@ struct ProfileView: View {
                   .background(Color.yellow)
                   .cornerRadius(8)
               }
+              
+              VStack {
+                  if showCurrentGoals {
+                    let currentGoals = goalController.getCurrentGoals(currentUser: profile)
+                      ForEach(currentGoals) { goal in
+                          Text(goal.name)
+                              .frame(width: 100, height: 100)
+                              .background(Color.blue)
+                              .foregroundColor(.white)
+                              .cornerRadius(8)
+                              .padding()
+                      }
+                  } else {
+                    let pastGoals = goalController.getPastGoals(currentUser: profile)
+                      ForEach(pastGoals) { goal in
+                          Text(goal.name)
+                              .frame(width: 100, height: 100)
+                              .background(Color.green)
+                              .foregroundColor(.white)
+                              .cornerRadius(8)
+                              .padding()
+                      }
+                  }
+              }
+
               
               Spacer()
             }
