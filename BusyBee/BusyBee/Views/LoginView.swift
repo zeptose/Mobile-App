@@ -21,21 +21,8 @@ struct LoginFormView: View {
                 .font(.largeTitle)
                 .foregroundColor(Color.yellow)
                 .padding(.top, 20)
-            
-//            Spacer()
-//            Button("Login") {
-//                isEnteringCredentials.toggle()
-//            }
-//            .font(.title)
-//            .foregroundColor(Color.blue)
-//            .padding()
-//            .overlay(
-//                RoundedRectangle(cornerRadius: 10)
-//                    .stroke(Color.blue, lineWidth: 2)
-//            )
             Spacer()
-            
-//            if isEnteringCredentials {
+
               VStack {
                     TextField("Email", text: $email)
                       .padding()
@@ -55,7 +42,6 @@ struct LoginFormView: View {
 //                    .disabled(!formIsValid)
                     .opacity(formIsValid ? 1.0 : 0.5)
                 }
-//            }
         }
         .padding()
     }

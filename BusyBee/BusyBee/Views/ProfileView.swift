@@ -51,7 +51,6 @@ struct ProfileView: View {
                 .font(.caption)
                 .padding()
             }
-            
             Spacer()
             Button("Logout") {
               Task {
