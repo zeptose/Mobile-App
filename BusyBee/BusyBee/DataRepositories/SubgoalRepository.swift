@@ -29,9 +29,9 @@ class SubgoalRepository: ObservableObject {
           print("Error getting subgoals: \(error.localizedDescription)" )
           return
         }
-        querySnapshot?.documents.forEach({ document in
-          print(document.data())
-        })
+//        querySnapshot?.documents.forEach({ document in
+//          print(document.data())
+//        })
         self.subgoals = querySnapshot?.documents.compactMap { document in
           try? document.data(as: Subgoal.self)
         } ?? []
