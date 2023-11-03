@@ -99,12 +99,6 @@ struct ProfileView: View {
               .edgesIgnoringSafeArea(.top)
           })
       }
-      VStack {
-        Button("Logout") {
-          Task {
-            viewModel.signOut()
-          }
-        }}
     }
 }
 
