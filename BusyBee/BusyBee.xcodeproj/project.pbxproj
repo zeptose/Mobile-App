@@ -30,6 +30,7 @@
 		F15DB24C2AE8E3FD0031FD75 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F15DB24B2AE8E3FD0031FD75 /* FirebaseFirestoreSwift */; };
 		F15DB2502AE8EE860031FD75 /* GoalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB24F2AE8EE860031FD75 /* GoalRepository.swift */; };
 		F9BE505A2AF4288900FF1C16 /* HexCodeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */; };
+		F9BE505C2AF4898A00FF1C16 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = F9BE505B2AF4898A00FF1C16 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		F15DB2432AE8BB340031FD75 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F15DB24F2AE8EE860031FD75 /* GoalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRepository.swift; sourceTree = "<group>"; };
 		F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCodeConverter.swift; sourceTree = "<group>"; };
+		F9BE505B2AF4898A00FF1C16 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		F15DB2222AE8B7370031FD75 = {
 			isa = PBXGroup;
 			children = (
+				F9BE505B2AF4898A00FF1C16 /* .gitignore */,
 				F15DB22D2AE8B7370031FD75 /* BusyBee */,
 				F15DB22C2AE8B7370031FD75 /* Products */,
 				F10BDA552AF2F31B00C44070 /* Frameworks */,
@@ -235,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9BE505C2AF4898A00FF1C16 /* .gitignore in Resources */,
 				F15DB2362AE8B73A0031FD75 /* Preview Assets.xcassets in Resources */,
 				F15DB2332AE8B73A0031FD75 /* Assets.xcassets in Resources */,
 				F1126BD52AE9944500A98A9C /* GoogleService-Info.plist in Resources */,
