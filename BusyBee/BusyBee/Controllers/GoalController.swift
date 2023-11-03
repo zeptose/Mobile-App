@@ -38,13 +38,13 @@ class GoalController: ObservableObject {
         userRepository.update(user)
     }
     func getCurrentGoals(currentUser: User) -> [Goal] {
-        var goals = currentUser.goals
+        let goals = currentUser.goals
         let today = Date()
         let curr = goals.filter { today <= $0.dueDate }
         return curr.sorted { $0.dueDate >= $1.dueDate}
     }
     func getPastGoals(currentUser: User) -> [Goal] {
-        var goals = currentUser.goals
+        let goals = currentUser.goals
         let today = Date()
         let curr = goals.filter { today > $0.dueDate }
         return curr.sorted { $0.dueDate >= $1.dueDate}
