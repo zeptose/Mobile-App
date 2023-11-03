@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
   @EnvironmentObject var viewModel: AuthViewModel
+  @ObservedObject var goalController = GoalController()
   let customYellow = Color(UIColor(hex: "#FFD111"))
   var user: User?
     var body: some View {
@@ -57,6 +58,11 @@ struct ProfileView: View {
                 viewModel.signOut()
               }
             }
+            // add a goal
+            NavigationLink(destination: AddGoalView(goalController: goalController, user: profile)) {
+              Text("Add Goal")
+            }
+            .padding()
             HStack {
               Spacer()
               
@@ -68,6 +74,23 @@ struct ProfileView: View {
                   .foregroundColor(.white)
                   .background(Color.yellow)
                   .cornerRadius(8)
+              }
+              .onTapGesture {
+                                  // Access and display current goals from the repository
+                let currentGoals = goalController.getCurrentGoals(currentUser: profile)
+                                  // Use 'currentGoals' to display in the UI or perform any necessary action
+                print(currentGoals)
+                VStack {
+                    ForEach(currentGoals) { goal in
+                        Text(goal.name)
+                        .frame(width: 100, height: 100)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                        .padding()
+                }
+                }
+                
               }
               
               Button(action: {
@@ -103,6 +126,7 @@ struct ProfileView: View {
 
 //struct ProfileView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        ProfileView()
+//      ProfileView()
+//
 //    }
 //}
