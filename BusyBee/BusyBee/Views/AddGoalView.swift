@@ -19,7 +19,7 @@ struct AddGoalView: View {
               
               Button("Add Goal") {
                   // Create a new goal and add it using the GoalController, passing the 'user'
-                  goalController.addnewGoal(currentUser: user, name: newGoalName, desc: nil, dueDate: Date(), frequency: 1, subGoalStr: [])
+                goalController.addnewGoal(currentUser: user, name: newGoalName, desc: nil, dueDate: Date().addingTimeInterval(604800), frequency: 1, subGoalStr: [])
                   presentationMode.wrappedValue.dismiss()
               }
               .padding()

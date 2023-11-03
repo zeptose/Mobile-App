@@ -19,25 +19,25 @@ class GoalRepository: ObservableObject {
   private var cancellables: Set<AnyCancellable> = []
   
   init() {
-    self.get()
+    self.get({ (goals) -> Void in
+          self.goals = goals
+        })
   }
 
-  func get() {
-    store.collection(path)
-      .addSnapshotListener { querySnapshot, error in
-        if let error = error {
-          print("Error getting goals: \(error.localizedDescription)" )
-          return
+  func get(_ completionHandler: @escaping (_ goals: [Goal]) -> Void) {
+      store.collection(path)
+        .addSnapshotListener { querySnapshot, error in
+          if let error = error {
+            print("Error getting goals: \(error.localizedDescription)")
+            return
+          }
+          
+          let goals = querySnapshot?.documents.compactMap { document in
+            try? document.data(as: Goal.self)
+          } ?? []
+          completionHandler(goals)
         }
-        querySnapshot?.documents.forEach({ document in
-          print(document.data())
-        })
-        print("hi")
-        self.goals = querySnapshot?.documents.compactMap { document in
-          try? document.data(as: Goal.self)
-        } ?? []
-      }
-  }
+    }
   
   func create(_ goal: Goal) {
     do {
