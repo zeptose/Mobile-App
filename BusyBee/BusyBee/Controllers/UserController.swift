@@ -19,19 +19,11 @@ class UserController: ObservableObject {
     })
   }
   
-  func addNewUser(username: String, password: String, bio: String?) {
-    let id = UUID().uuidString
-    let posts: [Post] = []
-    let follows: [User] = []
-    let goals: [Goal] = []
+    func followFriend(currentUser: User, follow: User) {
+        var following = currentUser.follows
+        following.append(follow)
+        userRepository.update(currentUser)
+    }
     
-    let newUser = User(id: id,
-                       username: username,
-                       bio: bio,
-                       goals: goals,
-                       posts: posts,
-                       follows: follows)
-    userRepository.create(newUser)
-    
-  }
+  
 }
