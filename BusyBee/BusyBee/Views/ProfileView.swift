@@ -62,10 +62,17 @@ struct ProfileView: View {
               }
             }
             // add a goal
-            NavigationLink(destination: AddGoalView(goalController: goalController, user: profile)) {
-              Text("Add Goal")
+            if (profile == viewModel.currentUser) {
+              NavigationLink(destination: AddGoalView(goalController: goalController, user: profile)) {
+                Text("Add Goal")
+              }
+              .padding()
             }
-            .padding()
+//            } else {
+//              Button(
+//            }
+            
+            
             HStack {
               Spacer()
               
