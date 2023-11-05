@@ -16,6 +16,7 @@ struct CreatePostView: View {
     @EnvironmentObject var goalController: GoalController
     @State private var uploadedImageURL: String = ""
     @State private var selectedGoal: Goal? = nil
+    @State private var selectedSubgoal: Subgoal? = nil
 
     var body: some View {
         VStack(spacing: 20) {
@@ -70,9 +71,32 @@ struct CreatePostView: View {
                 }
                 .frame(maxHeight: 150)
 
+              
+              if let selectedGoal = selectedGoal {
+                 Text("Selected Sub goals")
+                     .font(.headline)
+                     .padding()
+
+                 ScrollView {
+                     ForEach(selectedGoal.subgoals, id: \.id) { subgoal in
+                         Button(action: {
+                             selectedSubgoal = subgoal
+                         }) {
+                             Text(subgoal.name)
+                                 .padding()
+                         }
+                         .buttonStyle(PlainButtonStyle())
+                     }
+                 }
+                 .frame(maxHeight: 150)
+             }
                 Button(action: {
                     guard let selectedGoal = selectedGoal else {
                         // Handle the case where no goal is selected
+                        return
+                    }
+                    guard let selectedSubgoal = selectedSubgoal else {
+                        // Handle the case where no subgoal is selected
                         return
                     }
 
@@ -84,7 +108,7 @@ struct CreatePostView: View {
                             goal: selectedGoal,
                             caption: caption,
                             photo: uploadedImageURL,
-                            subgoalId: nil,
+                            subgoalId: selectedSubgoal.id,
                             comments: [],
                             reactions: 0
                         )
