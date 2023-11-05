@@ -5,30 +5,42 @@
 import SwiftUI
 import AVFoundation
 
+import SwiftUI
+import AVFoundation
+
 struct CameraView: View {
     @StateObject var camera: CameraController
-    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var viewModeluser: AuthViewModel
+    @State private var isPictureTaken = false
+    @StateObject var viewModel = CameraViewModel()
+  
+  
+  
 
     var body: some View {
         ZStack {
-            CameraPreview(camera: camera)
-                .ignoresSafeArea(.all, edges: .all)
-
-            VStack {
-                HStack {
+            if let capturedImage = camera.capturedImage {
+                CreatePostView(uiImage: capturedImage, camera: camera)
+            } else {
+                CameraPreview(camera: camera)
+                    .ignoresSafeArea(.all, edges: .all)
+                VStack {
+                    HStack {
+                        NavigationLink(destination: AppView()) {
+                            Image(systemName: "xmark")
+                                .foregroundColor(.white)
+                                .padding()
+                                .font(.system(size: 30))
+                        }
+                        .padding(.leading, 10).navigationBarBackButtonHidden(true)
+                        Spacer()
+                    }
                     Spacer()
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.white)
-                            .padding()
-                            .font(.system(size: 30))
-                    })
-                    .padding(.trailing, 10)
+                    HStack {
+                        CameraControlsView(camera: camera, isPictureTaken: $isPictureTaken, viewModel: viewModel)
+                    }
+                    .frame(height: 75)
                 }
-                Spacer()
-                HStack { CameraControlsView(camera: camera) }.frame(height: 75)
             }
         }
         .onAppear {

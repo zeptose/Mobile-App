@@ -2,10 +2,13 @@
 import SwiftUI
 
 struct AppView: View {
+    @StateObject var userController = UserController()
+    @ObservedObject var goalController = GoalController()
     @EnvironmentObject var goalRepository: GoalRepository
     @EnvironmentObject var viewModel: AuthViewModel
+  
     @State private var selectedTab = 4
-    let userController = UserController()
+//    let userController = UserController()
     @State private var isShowingCamera = false
 //    @StateObject private var cameraController = CameraController()
 
@@ -45,7 +48,8 @@ struct AppView: View {
                     .padding()
                 }
                 .tag(4)
-        }
+        }.navigationBarTitleDisplayMode(.inline).environmentObject(userController).environmentObject(goalController)
+            .environmentObject(viewModel)
     }
 }
 

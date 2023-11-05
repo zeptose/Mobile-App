@@ -9,12 +9,17 @@
 /* Begin PBXBuildFile section */
 		5980FC3D2AF1BF14003053BB /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5980FC3C2AF1BF14003053BB /* RegistrationView.swift */; };
 		5980FC3F2AF1C047003053BB /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5980FC3E2AF1C047003053BB /* AppView.swift */; };
+		5995CEBE2AF56AEC004C9158 /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5995CEBD2AF56AEC004C9158 /* CreatePostView.swift */; };
+		5995CEC02AF56CBD004C9158 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5995CEBF2AF56CBD004C9158 /* CameraViewModel.swift */; };
+		5995CEC22AF58871004C9158 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5995CEC12AF58871004C9158 /* PostController.swift */; };
+		5995CEC42AF58983004C9158 /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5995CEC32AF58983004C9158 /* PostRepository.swift */; };
 		59A8027A2AF402DB00F69178 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A802792AF402DB00F69178 /* CalendarView.swift */; };
 		59A8027C2AF402ED00F69178 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A8027B2AF402ED00F69178 /* HomeView.swift */; };
 		59A802802AF4030100F69178 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A8027F2AF4030100F69178 /* CameraView.swift */; };
 		59A802822AF4034100F69178 /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A802812AF4034100F69178 /* ImageController.swift */; };
 		59A802842AF41EFD00F69178 /* CameraControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A802832AF41EFD00F69178 /* CameraControlsView.swift */; };
 		59A802862AF41F0A00F69178 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A802852AF41F0A00F69178 /* CameraController.swift */; };
+		59F546452AF591F6002C9079 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 59F546442AF591F6002C9079 /* FirebaseStorage */; };
 		F10BDA572AF2F31B00C44070 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F10BDA562AF2F31B00C44070 /* FirebaseAuth */; };
 		F1123C7B2AF7565D005C0588 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1123C7A2AF7565D005C0588 /* Lato-Regular.ttf */; };
 		F1126BD52AE9944500A98A9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1126BD42AE9944500A98A9C /* GoogleService-Info.plist */; };
@@ -45,6 +50,10 @@
 /* Begin PBXFileReference section */
 		5980FC3C2AF1BF14003053BB /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		5980FC3E2AF1C047003053BB /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		5995CEBD2AF56AEC004C9158 /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
+		5995CEBF2AF56CBD004C9158 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
+		5995CEC12AF58871004C9158 /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
+		5995CEC32AF58983004C9158 /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
 		59A802792AF402DB00F69178 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		59A8027B2AF402ED00F69178 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		59A8027F2AF4030100F69178 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
@@ -83,6 +92,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F15DB24A2AE8E3FD0031FD75 /* FirebaseFirestore in Frameworks */,
+				59F546452AF591F6002C9079 /* FirebaseStorage in Frameworks */,
 				F10BDA572AF2F31B00C44070 /* FirebaseAuth in Frameworks */,
 				F15DB24C2AE8E3FD0031FD75 /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -104,6 +114,7 @@
 				F15DB24F2AE8EE860031FD75 /* GoalRepository.swift */,
 				F1280C842AF1C6F400B09570 /* SubgoalRepository.swift */,
 				F1280C802AF17A4600B09570 /* UserRepository.swift */,
+				5995CEC32AF58983004C9158 /* PostRepository.swift */,
 			);
 			path = DataRepositories;
 			sourceTree = "<group>";
@@ -113,6 +124,7 @@
 			children = (
 				F1280C882AF2EF0C00B09570 /* AuthViewModel.swift */,
 				F13650392AF4218B00950A0F /* SearchViewModel.swift */,
+				5995CEBF2AF56CBD004C9158 /* CameraViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -185,6 +197,7 @@
 				59A8027B2AF402ED00F69178 /* HomeView.swift */,
 				59A8027F2AF4030100F69178 /* CameraView.swift */,
 				59A802832AF41EFD00F69178 /* CameraControlsView.swift */,
+				5995CEBD2AF56AEC004C9158 /* CreatePostView.swift */,
 				F9908DAF2AF4AEE000415845 /* AddGoalView.swift */,
 			);
 			path = Views;
@@ -197,6 +210,7 @@
 				F13650312AF3405500950A0F /* GoalController.swift */,
 				59A802812AF4034100F69178 /* ImageController.swift */,
 				59A802852AF41F0A00F69178 /* CameraController.swift */,
+				5995CEC12AF58871004C9158 /* PostController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -221,6 +235,7 @@
 				F15DB2492AE8E3FD0031FD75 /* FirebaseFirestore */,
 				F15DB24B2AE8E3FD0031FD75 /* FirebaseFirestoreSwift */,
 				F10BDA562AF2F31B00C44070 /* FirebaseAuth */,
+				59F546442AF591F6002C9079 /* FirebaseStorage */,
 			);
 			productName = BusyBee;
 			productReference = F15DB22B2AE8B7370031FD75 /* BusyBee.app */;
@@ -282,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1280C852AF1C6F400B09570 /* SubgoalRepository.swift in Sources */,
+				5995CEC42AF58983004C9158 /* PostRepository.swift in Sources */,
 				59A802862AF41F0A00F69178 /* CameraController.swift in Sources */,
 				F15DB2502AE8EE860031FD75 /* GoalRepository.swift in Sources */,
 				F9908DB02AF4AEE000415845 /* AddGoalView.swift in Sources */,
@@ -296,6 +312,7 @@
 				F15DB2312AE8B7370031FD75 /* ContentView.swift in Sources */,
 				F1280C812AF17A4600B09570 /* UserRepository.swift in Sources */,
 				59A8027C2AF402ED00F69178 /* HomeView.swift in Sources */,
+				5995CEBE2AF56AEC004C9158 /* CreatePostView.swift in Sources */,
 				F1280C872AF1CDC200B09570 /* UserController.swift in Sources */,
 				F15DB2402AE8B9B80031FD75 /* User.swift in Sources */,
 				59A802822AF4034100F69178 /* ImageController.swift in Sources */,
@@ -305,8 +322,10 @@
 				F13650362AF34C3200950A0F /* ProfileView.swift in Sources */,
 				F15DB2442AE8BB340031FD75 /* Post.swift in Sources */,
 				F1280C892AF2EF0D00B09570 /* AuthViewModel.swift in Sources */,
+				5995CEC02AF56CBD004C9158 /* CameraViewModel.swift in Sources */,
 				F9BE505A2AF4288900FF1C16 /* HexCodeConverter.swift in Sources */,
 				5980FC3D2AF1BF14003053BB /* RegistrationView.swift in Sources */,
+				5995CEC22AF58871004C9158 /* PostController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +461,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BusyBee/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "App needs camera access";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "App wants to allow additions to photo library";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App Requires photo library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -474,6 +495,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BusyBee/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "App needs camera access";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "App wants to allow additions to photo library";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App Requires photo library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -528,6 +551,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		59F546442AF591F6002C9079 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F15DB2482AE8E3FD0031FD75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
 		F10BDA562AF2F31B00C44070 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F15DB2482AE8E3FD0031FD75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
