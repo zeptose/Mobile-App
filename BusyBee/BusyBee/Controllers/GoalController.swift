@@ -22,12 +22,19 @@ class GoalController: ObservableObject {
     }
   
     func addnewGoal(currentUser: User, name: String, desc: String?, dueDate: Date, frequency: Int, subGoalStr: [String]) {
-
+//        let id = UUID().uuidString
+        var subgoals: [Subgoal] = []
+        for subgoal in subGoalStr {
+            let newSub = Subgoal(name: subgoal,
+                                 isCompleted: false)
+            subgoalRepository.create(newSub)
+            subgoals.append(newSub)
+        }
         let newGoal = Goal(name: name,
                            description: desc,
                            dueDate: dueDate,
                            frequency: frequency,
-                           subgoals: subGoalStr,
+                           subgoals: subgoals,
                            userId: currentUser.id,
                            progress: 0)
         goalRepository.create(newGoal)
@@ -49,7 +56,7 @@ class GoalController: ObservableObject {
         let curr = usersGoals.filter { today > $0.dueDate }
         return curr.sorted { $0.dueDate >= $1.dueDate}
     }
-    func getSubgoals(goal: Goal) -> [String] {
+    func getSubgoals(currentUser: User, goal: Goal) -> [Subgoal] {
         return goal.subgoals
     }
     
