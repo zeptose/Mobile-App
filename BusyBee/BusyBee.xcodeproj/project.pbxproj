@@ -16,6 +16,7 @@
 		59A802842AF41EFD00F69178 /* CameraControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A802832AF41EFD00F69178 /* CameraControlsView.swift */; };
 		59A802862AF41F0A00F69178 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A802852AF41F0A00F69178 /* CameraController.swift */; };
 		F10BDA572AF2F31B00C44070 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F10BDA562AF2F31B00C44070 /* FirebaseAuth */; };
+		F1123C7B2AF7565D005C0588 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1123C7A2AF7565D005C0588 /* Lato-Regular.ttf */; };
 		F1126BD52AE9944500A98A9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1126BD42AE9944500A98A9C /* GoogleService-Info.plist */; };
 		F1280C812AF17A4600B09570 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1280C802AF17A4600B09570 /* UserRepository.swift */; };
 		F1280C832AF1C61100B09570 /* Subgoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1280C822AF1C61100B09570 /* Subgoal.swift */; };
@@ -27,7 +28,6 @@
 		F13650362AF34C3200950A0F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13650352AF34C3200950A0F /* ProfileView.swift */; };
 		F13650382AF4202C00950A0F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13650372AF4202C00950A0F /* SearchView.swift */; };
 		F136503A2AF4218B00950A0F /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13650392AF4218B00950A0F /* SearchViewModel.swift */; };
-		F136503C2AF42AE800950A0F /* SearchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F136503B2AF42AE800950A0F /* SearchRow.swift */; };
 		F15DB22F2AE8B7370031FD75 /* BusyBeeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB22E2AE8B7370031FD75 /* BusyBeeApp.swift */; };
 		F15DB2312AE8B7370031FD75 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB2302AE8B7370031FD75 /* ContentView.swift */; };
 		F15DB2332AE8B73A0031FD75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F15DB2322AE8B73A0031FD75 /* Assets.xcassets */; };
@@ -52,6 +52,7 @@
 		59A802832AF41EFD00F69178 /* CameraControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControlsView.swift; sourceTree = "<group>"; };
 		59A802852AF41F0A00F69178 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		59DCD2022AF46CFD000FCC59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F1123C7A2AF7565D005C0588 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		F1126BD42AE9944500A98A9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1280C802AF17A4600B09570 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		F1280C822AF1C61100B09570 /* Subgoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subgoal.swift; sourceTree = "<group>"; };
@@ -63,7 +64,6 @@
 		F13650352AF34C3200950A0F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		F13650372AF4202C00950A0F /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		F13650392AF4218B00950A0F /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
-		F136503B2AF42AE800950A0F /* SearchRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRow.swift; sourceTree = "<group>"; };
 		F15DB22B2AE8B7370031FD75 /* BusyBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusyBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F15DB22E2AE8B7370031FD75 /* BusyBeeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusyBeeApp.swift; sourceTree = "<group>"; };
 		F15DB2302AE8B7370031FD75 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -137,6 +137,7 @@
 		F15DB22D2AE8B7370031FD75 /* BusyBee */ = {
 			isa = PBXGroup;
 			children = (
+				F1123C7A2AF7565D005C0588 /* Lato-Regular.ttf */,
 				59DCD2022AF46CFD000FCC59 /* Info.plist */,
 				F1126BD82AE9D38000A98A9C /* ViewModels */,
 				F1126BD62AE9D0F100A98A9C /* DataRepositories */,
@@ -176,7 +177,6 @@
 				F15DB2302AE8B7370031FD75 /* ContentView.swift */,
 				5980FC3C2AF1BF14003053BB /* RegistrationView.swift */,
 				F13650372AF4202C00950A0F /* SearchView.swift */,
-				F136503B2AF42AE800950A0F /* SearchRow.swift */,
 				F13650332AF3487C00950A0F /* LoginView.swift */,
 				5980FC3E2AF1C047003053BB /* AppView.swift */,
 				F13650352AF34C3200950A0F /* ProfileView.swift */,
@@ -270,6 +270,7 @@
 				F15DB2362AE8B73A0031FD75 /* Preview Assets.xcassets in Resources */,
 				F15DB2332AE8B73A0031FD75 /* Assets.xcassets in Resources */,
 				F1126BD52AE9944500A98A9C /* GoogleService-Info.plist in Resources */,
+				F1123C7B2AF7565D005C0588 /* Lato-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +302,6 @@
 				59A802842AF41EFD00F69178 /* CameraControlsView.swift in Sources */,
 				F1280C832AF1C61100B09570 /* Subgoal.swift in Sources */,
 				F15DB22F2AE8B7370031FD75 /* BusyBeeApp.swift in Sources */,
-				F136503C2AF42AE800950A0F /* SearchRow.swift in Sources */,
 				F13650362AF34C3200950A0F /* ProfileView.swift in Sources */,
 				F15DB2442AE8BB340031FD75 /* Post.swift in Sources */,
 				F1280C892AF2EF0D00B09570 /* AuthViewModel.swift in Sources */,
