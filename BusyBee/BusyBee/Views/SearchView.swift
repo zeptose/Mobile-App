@@ -20,6 +20,7 @@ struct SearchView: View {
     @State var searchField: String = ""
     @State var displayedUsers = [User]()
     @ObservedObject var userController = UserController()
+    let customYellow = Color(UIColor(hex: "#FFD111"))
     
     @State private var selectedUser: User? // Store the selected user for custom action
     
@@ -35,8 +36,15 @@ struct SearchView: View {
         NavigationView {
             VStack {
                 Spacer()
-                TextField(" Search by username", text: binding)
-                  .padding(.leading, 15)
+              HStack {
+                  TextField("Search by username", text: binding)
+                      .padding(.vertical, 5)
+              }
+              .padding(.horizontal, 10)
+              .background(
+                  RoundedRectangle(cornerRadius: 12)
+                      .stroke(customYellow, lineWidth: 1)
+              )
                 List {
                   Section {
                     ForEach(displayedUsers) { user in
@@ -48,9 +56,15 @@ struct SearchView: View {
                                 .frame(height: 60)
                                 .overlay(
                                     HStack {
+                                      Image("profilePic")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 32, height: 32)
+                                        .clipShape(Circle())
+                                        .overlay(Circle().stroke(customYellow, lineWidth: 2))
+                                        .padding(.leading, 10)
                                         Text(user.username)
-                                          .padding(.leading, 10)
-//                                            .font(.custom("Lato-Regular", size: 16))
+                                          .padding(.leading, 6)
                                         Spacer()
                                     }
                                 )

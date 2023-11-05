@@ -15,7 +15,7 @@ struct Goal: Identifiable, Codable, Comparable {
   var description: String?
   var dueDate: Date
   var frequency: Int
-  var subgoals: [Subgoal]
+  var subgoals: [String]
   var userId: String
   var progress: Int
   

@@ -12,10 +12,11 @@ import FirebaseFirestoreSwift
 struct Post: Identifiable, Codable, Comparable {
   
   @DocumentID var id: String?
-  var goal: Goal
+  var goalId: String
+  var userId: String
   var caption: String
   var photo: String
-  var subgoal: Subgoal? // Optional bc post may or may not pertain to a subgoal
+  var subgoal: String? // Optional bc post may or may not pertain to a subgoal
   var timePosted: Date
   var comments: [String]
   var reactions: Int
@@ -23,7 +24,8 @@ struct Post: Identifiable, Codable, Comparable {
   // To conform to Codable protocol
   enum CodingKeys: String, CodingKey {
     case id
-    case goal
+    case goalId
+    case userId
     case caption
     case photo
     case subgoal
