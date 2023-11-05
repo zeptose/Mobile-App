@@ -10,8 +10,10 @@ import AVFoundation
 
 struct CameraView: View {
     @StateObject var camera: CameraController
+    @EnvironmentObject var viewModeluser: AuthViewModel
     @State private var isPictureTaken = false
     @StateObject var viewModel = CameraViewModel()
+  
   
   
 

@@ -52,5 +52,13 @@ class GoalController: ObservableObject {
     func getSubgoals(currentUser: User, goal: Goal) -> [Subgoal] {
         return goal.subgoals
     }
+  
+    func getCurrentGoal(currentUser: User) -> Goal? {
+        let goals = currentUser.goals
+        let today = Date()
+        let curr = goals.filter { today <= $0.dueDate }
+        return curr.sorted { $0.dueDate >= $1.dueDate }.first
+    }
+  
     
 }
