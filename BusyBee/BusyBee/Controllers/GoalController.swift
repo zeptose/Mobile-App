@@ -24,7 +24,7 @@ class GoalController: ObservableObject {
     func addnewGoal(currentUser: User, name: String, desc: String?, dueDate: Date, frequency: Int, subGoalStr: [String]) {
 //        let id = UUID().uuidString
         var subgoals: [Subgoal] = []
-        for subgoal in subGoalStr {
+        for subgoal in ["123", "hi", "yes"] {
             let newSub = Subgoal(name: subgoal,
                                  isCompleted: false)
             subgoalRepository.create(newSub)
@@ -61,9 +61,9 @@ class GoalController: ObservableObject {
     }
     
   
-  func getCurrentGoal(currentUser: User) -> Goal? {
-      return getCurrentGoals(currentUser: currentUser).first
-  }
+//  func getCurrentGoal(currentUser: User) -> Goal? {
+//      return getCurrentGoals(currentUser: currentUser).first
+//  }
 
 
 

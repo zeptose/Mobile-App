@@ -8,84 +8,122 @@
 import SwiftUI
 
 struct CreatePostView: View {
-  var uiImage: UIImage // Assuming you're using UIImage for the captured image
-  @State private var caption: String = ""
-  @StateObject var camera: CameraController
-  @Environment(\.presentationMode) var presentationMode
-  @EnvironmentObject var viewModel: AuthViewModel
-  @EnvironmentObject var goalController: GoalController
-  @State private var uploadedImageURL: String = ""
-  
-  var body: some View {
-    VStack(spacing: 20) {
-      HStack {
-        NavigationLink(destination: CameraView(camera: camera)) {
-          Image(systemName: "arrow.left")
-            .foregroundColor(.white)
-            .padding()
-            .font(.system(size: 30))
-        }
-        .padding(.leading, 0)
-        Spacer()
-      }
-      .padding()
-      
-      GeometryReader { geometry in
+    var uiImage: UIImage
+    @State private var caption: String = ""
+    @StateObject var camera: CameraController
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var goalController: GoalController
+    @State private var uploadedImageURL: String = ""
+    @State private var selectedGoal: Goal? = nil
+    @State private var selectedSubgoal: Subgoal? = nil
+
+    var body: some View {
         VStack(spacing: 20) {
-          // Image
-          Image(uiImage: uiImage)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .frame(width: geometry.size.width, height: geometry.size.height * 0.65)
-            .clipped()
-          
-          // Caption TextField
-          TextField("Write a caption...", text: $caption)
-            .padding()
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-            .padding()
-        }
-        .onTapGesture {
-          camera.capturedImage = nil
-        }
-      }
-      .frame(maxHeight: .infinity)
-      
-      Spacer() // Add Spacer to push the share button to the bottom
-      
-      // Share Button
-      Button(action: {
-          uploadedImageURL = PostController().uploadPhoto(uiImage)
-
-        if let currentUser = viewModel.currentUser {
-                if let currentGoal = goalController.getCurrentGoal(currentUser: currentUser) {
-                    PostController().addPost(
-                        currentUser: currentUser,
-                        goal: currentGoal,
-                        caption: caption,
-                        photo: uploadedImageURL,
-                        subgoalId: nil,
-                        comments: [],
-                        reactions: 0
-                    )
-
-                    // Print a message indicating that the post was successfully added
-                    print("Post added successfully!")
-                } else {
-                    // Handle the case where there is no current goal for the user
-                    print("No current goal available for the user.")
+            HStack {
+                NavigationLink(destination: CameraView(camera: camera)) {
+                    Image(systemName: "arrow.left")
+                        .foregroundColor(.white)
+                        .padding()
+                        .font(.system(size: 30))
                 }
-            } else {
-                // Handle the case where viewModel.currentUser is nil
-                print("User is not logged in.")
+                .padding(.leading, 0)
+                Spacer()
             }
-          
-          // Dismiss the view after creating the post
-          presentationMode.wrappedValue.dismiss()
-      }) {
-          Text("Share")
-      }
-      .padding()
+            .padding()
+
+            GeometryReader { geometry in
+                VStack(spacing: 20) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: geometry.size.width, height: geometry.size.height * 0.65)
+                        .clipped()
+
+                    TextField("Write a caption...", text: $caption)
+                        .padding()
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+                }
+                .onTapGesture {
+                    camera.capturedImage = nil
+                }
+            }
+            .frame(maxHeight: .infinity)
+
+            Spacer()
+
+            VStack {
+                Text("Select Main Goal")
+                    .font(.headline)
+                    .padding()
+
+                ScrollView {
+                    ForEach(goalController.getCurrentGoals(currentUser: viewModel.currentUser!), id: \.id) { goal in
+                        Button(action: {
+                            selectedGoal = goal
+                        }) {
+                            Text(goal.name)
+                                .padding()
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                }
+                .frame(maxHeight: 150)
+
+              
+              if let selectedGoal = selectedGoal {
+                 Text("Selected Sub goals")
+                     .font(.headline)
+                     .padding()
+
+                 ScrollView {
+                     ForEach(selectedGoal.subgoals, id: \.id) { subgoal in
+                         Button(action: {
+                             selectedSubgoal = subgoal
+                         }) {
+                             Text(subgoal.name)
+                                 .padding()
+                         }
+                         .buttonStyle(PlainButtonStyle())
+                     }
+                 }
+                 .frame(maxHeight: 150)
+             }
+                Button(action: {
+                    guard let selectedGoal = selectedGoal else {
+                        // Handle the case where no goal is selected
+                        return
+                    }
+                    guard let selectedSubgoal = selectedSubgoal else {
+                        // Handle the case where no subgoal is selected
+                        return
+                    }
+
+                    uploadedImageURL = PostController().uploadPhoto(uiImage)
+
+                    if let currentUser = viewModel.currentUser {
+                        PostController().addPost(
+                            currentUser: currentUser,
+                            goal: selectedGoal,
+                            caption: caption,
+                            photo: uploadedImageURL,
+                            subgoalId: selectedSubgoal.id,
+                            comments: [],
+                            reactions: 0
+                        )
+
+                        print("Post added successfully!")
+                    } else {
+                        print("User is not logged in.")
+                    }
+
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("Share")
+                }
+                .padding()
+            }
+        }
     }
-  }
 }
