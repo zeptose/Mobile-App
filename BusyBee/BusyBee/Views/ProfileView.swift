@@ -9,10 +9,14 @@ import SwiftUI
 
 struct ProfileView: View {
   @EnvironmentObject var viewModel: AuthViewModel
+  @ObservedObject var goalController = GoalController()
   let customYellow = Color(UIColor(hex: "#FFD111"))
+  @State var displayedCurrentGoals : [Goal] = []
+  @State private var showCurrentGoals = true
   var user: User?
     var body: some View {
       if let profile = user {
+        let currentGoals = goalController.getCurrentGoals(currentUser: profile)
         ZStack {
           VStack {
 
@@ -51,18 +55,29 @@ struct ProfileView: View {
                 .font(.caption)
                 .padding()
             }
-            
             Spacer()
             Button("Logout") {
               Task {
                 viewModel.signOut()
               }
             }
+            // add a goal
+            if (profile == viewModel.currentUser) {
+              NavigationLink(destination: AddGoalView(goalController: goalController, user: profile)) {
+                Text("Add Goal")
+              }
+              .padding()
+            }
+//            } else {
+//              Button(
+//            }
+            
+            
             HStack {
               Spacer()
               
               Button(action: {
-                print("Current Goals button tapped")
+                showCurrentGoals = true
               }) {
                 Text("Current Goals")
                   .padding()
@@ -71,8 +86,9 @@ struct ProfileView: View {
                   .cornerRadius(8)
               }
               
+              
               Button(action: {
-                print("Past Goals button tapped")
+                showCurrentGoals = false
               }) {
                 Text("Past Goals")
                   .padding()
@@ -80,6 +96,30 @@ struct ProfileView: View {
                   .background(Color.yellow)
                   .cornerRadius(8)
               }
+              
+              VStack {
+                  if showCurrentGoals {
+                      ForEach(currentGoals) { goal in
+                          Text(goal.name)
+                              .frame(width: 100, height: 100)
+                              .background(Color.blue)
+                              .foregroundColor(.white)
+                              .cornerRadius(8)
+                              .padding()
+                      }
+                  } else {
+                    let pastGoals = goalController.getPastGoals(currentUser: profile)
+                      ForEach(pastGoals) { goal in
+                          Text(goal.name)
+                              .frame(width: 100, height: 100)
+                              .background(Color.green)
+                              .foregroundColor(.white)
+                              .cornerRadius(8)
+                              .padding()
+                      }
+                  }
+              }
+
               
               Spacer()
             }
@@ -104,6 +144,7 @@ struct ProfileView: View {
 
 //struct ProfileView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        ProfileView()
+//      ProfileView()
+//
 //    }
 //}

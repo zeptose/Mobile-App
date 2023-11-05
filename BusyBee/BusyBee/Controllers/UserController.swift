@@ -16,8 +16,8 @@ class UserController: ObservableObject {
   init () {
     self.userRepository.get({(users) -> Void in
           self.users = users
-    })
-  }
+      })
+    }
   
     func followFriend(currentUser: User, follow: User) {
         var following = currentUser.follows
