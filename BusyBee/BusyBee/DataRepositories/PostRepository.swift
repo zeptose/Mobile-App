@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseStorage
 
 class PostRepository: ObservableObject {
   // Set up properties here
@@ -24,21 +25,20 @@ class PostRepository: ObservableObject {
         })
   }
 
-//  func get() {
-//    store.collection(path)
-//      .addSnapshotListener { querySnapshot, error in
-//        if let error = error {
-//          print("Error getting posts: \(error.localizedDescription)")
-//          return
-//        }
-//        querySnapshot?.documents.forEach({ document in
-//          print(document.data())
-//        })
-//        self.posts = querySnapshot?.documents.compactMap { document in
-//          try? document.data(as: post.self)
-//        } ?? []
-//      }
-//  }
+  func getPhoto(_ completionHandler: @escaping (_ image: UIImage) -> Void, _ url: String) -> Void {
+    let storage = Storage.storage()
+    let ref = storage.reference().child(url)
+    ref.getData(maxSize: 1 * 1024 * 1024) { data, error in
+      if let error = error {
+        print("Error getting photo \(url): \(error)")
+      } else {
+        let image = UIImage(data: data!)
+        completionHandler(image!)
+      }
+    }
+  }
+  
+  
   func get(_ completionHandler: @escaping (_ posts: [Post]) -> Void) {
       store.collection(path)
         .addSnapshotListener { querySnapshot, error in
