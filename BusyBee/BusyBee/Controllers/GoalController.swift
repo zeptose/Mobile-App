@@ -13,7 +13,7 @@ class GoalController: ObservableObject {
     @Published var goalRepository: GoalRepository = GoalRepository()
     @Published var subgoalRepository: SubgoalRepository = SubgoalRepository()
     @Published var userRepository: UserRepository = UserRepository()
-  @Published var goals: [Goal] = []
+    @Published var goals: [Goal] = []
   
     init () {
       self.goalRepository.get({(goals) -> Void in

@@ -50,6 +50,7 @@ struct ContentView: View {
             }
           } else {
               AppView()
+                .environment(\.font, Font.custom("Lato-Regular", size: 16))
                   
           }
         }
