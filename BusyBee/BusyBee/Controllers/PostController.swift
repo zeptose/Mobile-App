@@ -13,12 +13,22 @@ import FirebaseStorage
 class PostController: ObservableObject {
     @Published var postRepository: PostRepository = PostRepository()
     @Published var userRepository: UserRepository = UserRepository()
+  
+  @Published var posts: [Post] = []
+  
+  init() {
+    self.postRepository.get({ (posts) -> Void in
+      self.posts = posts
+      
+    })
+  }
+  
     
-    func addPost(currentUser: User, goal: Goal, caption: String, photo: String, subgoal: Subgoal?, comments: [String], reactions: Int) {
+    func addPost(currentUser: User, goal: Goal, caption: String, photo: String, subgoal: String?, comments: [String], reactions: Int) {
         let timePosted = Date()
         
-        let newPost = Post(
-                           goal: goal,
+        let newPost = Post(goalId: goal.id ?? "",
+                           userId: currentUser.id,
                            caption: caption,
                            photo: photo,
                            subgoal: subgoal,
@@ -31,10 +41,13 @@ class PostController: ObservableObject {
         var user = currentUser
         user.posts.append(newPost)
         userRepository.update(user)
+        
+        var goal = 
     }
     
     func getPosts(currentUser: User) -> [Post] {
-        return currentUser.posts.sorted { $0.timePosted > $1.timePosted }
+        let currPosts = self.posts.filter{ String($0.userId) == String(currentUser.id) }
+        return currPosts.sorted { $0.timePosted > $1.timePosted }
     }
   
   func uploadPhoto(_ photo: UIImage) -> String {
