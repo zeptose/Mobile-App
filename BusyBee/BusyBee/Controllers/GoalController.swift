@@ -60,4 +60,11 @@ class GoalController: ObservableObject {
         return goal.subgoals
     }
     
+  
+  func getCurrentGoal(currentUser: User) -> Goal? {
+      return getCurrentGoals(currentUser: currentUser).first
+  }
+
+
+
 }

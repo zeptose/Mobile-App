@@ -64,7 +64,7 @@ struct CreatePostView: View {
                         goal: currentGoal,
                         caption: caption,
                         photo: uploadedImageURL,
-                        subgoal: nil,
+                        subgoalId: nil,
                         comments: [],
                         reactions: 0
                     )

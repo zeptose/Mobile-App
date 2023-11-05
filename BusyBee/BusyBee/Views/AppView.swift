@@ -8,9 +8,8 @@ struct AppView: View {
     @EnvironmentObject var viewModel: AuthViewModel
   
     @State private var selectedTab = 4
-//    let userController = UserController()
     @State private var isShowingCamera = false
-//    @StateObject private var cameraController = CameraController()
+    @StateObject private var cameraController = CameraController()
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -27,12 +26,12 @@ struct AppView: View {
                 }
                 .tag(1)
 
-//            CameraView(camera: cameraController)
-//                .tabItem {
-//                    Image(systemName: "camera")
-//                    Text("Camera")
-//                }
-//                .tag(2)
+            CameraView(camera: cameraController)
+                .tabItem {
+                    Image(systemName: "camera")
+                    Text("Camera")
+                }
+                .tag(2)
 
             Text("Calendar")
                 .tabItem {
