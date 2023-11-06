@@ -49,7 +49,7 @@ struct AddGoalView: View {
                               .foregroundColor(.white)
                       }
                       .padding(8)
-                      .background(Color(red: Double(0x99) / 255.0, green: Double(0x24) / 255.0, blue: Double(0x09) / 255.0)).opacity(1)
+                      .background(Color(UIColor(hex: "#992409"))).opacity(1)
                       .clipShape(Capsule())
                   }
               }
