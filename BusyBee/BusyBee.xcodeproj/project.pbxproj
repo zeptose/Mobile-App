@@ -44,6 +44,7 @@
 		F15DB24C2AE8E3FD0031FD75 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F15DB24B2AE8E3FD0031FD75 /* FirebaseFirestoreSwift */; };
 		F15DB2502AE8EE860031FD75 /* GoalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB24F2AE8EE860031FD75 /* GoalRepository.swift */; };
 		F9908DB02AF4AEE000415845 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DAF2AF4AEE000415845 /* AddGoalView.swift */; };
+		F9908DB22AF8DAF400415845 /* IndividualGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DB12AF8DAF400415845 /* IndividualGoalView.swift */; };
 		F9BE505A2AF4288900FF1C16 /* HexCodeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 		F15DB2432AE8BB340031FD75 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F15DB24F2AE8EE860031FD75 /* GoalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRepository.swift; sourceTree = "<group>"; };
 		F9908DAF2AF4AEE000415845 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
+		F9908DB12AF8DAF400415845 /* IndividualGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualGoalView.swift; sourceTree = "<group>"; };
 		F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCodeConverter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,6 +201,7 @@
 				59A802832AF41EFD00F69178 /* CameraControlsView.swift */,
 				5995CEBD2AF56AEC004C9158 /* CreatePostView.swift */,
 				F9908DAF2AF4AEE000415845 /* AddGoalView.swift */,
+				F9908DB12AF8DAF400415845 /* IndividualGoalView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				5995CEC42AF58983004C9158 /* PostRepository.swift in Sources */,
 				59A802862AF41F0A00F69178 /* CameraController.swift in Sources */,
 				F15DB2502AE8EE860031FD75 /* GoalRepository.swift in Sources */,
+				F9908DB22AF8DAF400415845 /* IndividualGoalView.swift in Sources */,
 				F9908DB02AF4AEE000415845 /* AddGoalView.swift in Sources */,
 				59A802802AF4030100F69178 /* CameraView.swift in Sources */,
 				F13650322AF3405500950A0F /* GoalController.swift in Sources */,
