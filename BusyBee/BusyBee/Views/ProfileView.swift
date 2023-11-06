@@ -19,7 +19,7 @@ struct ProfileView: View {
         let currentGoals = goalController.getCurrentGoals(currentUser: profile)
         ZStack {
           VStack {
-
+            
             HStack {
               Button(action: {
                 print("Back button tapped")
@@ -68,64 +68,111 @@ struct ProfileView: View {
               }
               .padding()
             }
-//            } else {
-//              Button(
-//            }
+            //            } else {
+            //              Button(
+            //            }
             
-            
-            HStack {
-              Spacer()
-              
-              Button(action: {
-                showCurrentGoals = true
-              }) {
-                Text("Current Goals")
-                  .padding()
-                  .foregroundColor(.white)
-                  .background(Color.yellow)
-                  .cornerRadius(8)
-              }
-              
-              
-              Button(action: {
-                showCurrentGoals = false
-              }) {
-                Text("Past Goals")
-                  .padding()
-                  .foregroundColor(.white)
-                  .background(Color.yellow)
-                  .cornerRadius(8)
+            VStack {
+              HStack {
+                Spacer()
+                
+                Button(action: {
+                  showCurrentGoals = true
+                }) {
+                  Text("Current Goals")
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.yellow)
+                    .cornerRadius(8)
+                }
+                
+                
+                Button(action: {
+                  showCurrentGoals = false
+                }) {
+                  Text("Past Goals")
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.yellow)
+                    .cornerRadius(8)
+                }
+                Spacer()
+
               }
               
               VStack {
-                  if showCurrentGoals {
-                      ForEach(currentGoals) { goal in
-                          Text(goal.name)
-                              .frame(width: 100, height: 100)
-                              .background(Color.blue)
-                              .foregroundColor(.white)
-                              .cornerRadius(8)
-                              .padding()
-                      }
-                  } else {
-                    let pastGoals = goalController.getPastGoals(currentUser: profile)
-                      ForEach(pastGoals) { goal in
-                          Text(goal.name)
-                              .frame(width: 100, height: 100)
-                              .background(Color.green)
-                              .foregroundColor(.white)
-                              .cornerRadius(8)
-                              .padding()
-                      }
+                if showCurrentGoals {
+                  ForEach(currentGoals) { goal in
+                      RoundedRectangle(cornerRadius: 12)
+                          .fill(Color.white)
+                          .shadow(color: Color.gray, radius: 4, x: 0, y: 2)
+                          .frame(width: UIScreen.main.bounds.width * 0.75)
+                          .overlay(
+                              VStack {
+                                  Text(goal.name)
+                                      .font(.title)
+                                      .fontWeight(.bold)
+                                      .padding(8)
+                                  
+                                  Text("Due: \(goal.dueDate)")
+                                      .font(.subheadline)
+                                      .padding(8)
+                              }
+                          )
+                          .overlay(
+                              VStack {
+                                  Spacer()
+                                  HStack {
+                                      Spacer()
+                                      Text("Frequency: \(goal.frequency)") //
+                                          .font(.subheadline)
+                                          .padding(8)
+                                  }
+                              }
+                          )
+                          .padding()
+                          
                   }
+                } else {
+                  let pastGoals = goalController.getPastGoals(currentUser: profile)
+                  ForEach(pastGoals) { goal in
+                    RoundedRectangle(cornerRadius: 12)
+                      .fill(Color.white)
+                      .shadow(color: Color.gray, radius: 4, x: 0, y: 2)
+                      .frame(width: UIScreen.main.bounds.width * 0.75)
+                      .overlay(
+                        VStack {
+                          Text(goal.name)
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .padding(8)
+                          
+                          Text("Due: \(goal.dueDate)")
+                            .font(.subheadline)
+                            .padding(8)
+                        }
+                      )
+                      .overlay(
+                        VStack {
+                          Spacer()
+                          HStack {
+                            Spacer()
+                            Text("Frequency: \(goal.frequency)")
+                              .font(.subheadline)
+                              .padding(8)
+                          }
+                        }
+                      )
+                      .padding()
+                  }
+                }
               }
-
               
               Spacer()
             }
+          }
             
             Spacer()
-          }
         }
         .edgesIgnoringSafeArea(.top)
           // Background Image
@@ -142,9 +189,9 @@ struct ProfileView: View {
     }
 }
 
-//struct ProfileView_Previews: PreviewProvider {
-//    static var previews: some View {
-//      ProfileView()
-//
-//    }
-//}
+struct ProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+      ProfileView()
+
+    }
+}
