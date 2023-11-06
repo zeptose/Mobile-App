@@ -18,12 +18,8 @@ class UserController: ObservableObject {
           self.users = users
       })
     }
-  
-    func followFriend(currentUser: User, follow: User) {
-        var following = currentUser.follows
-        following.append(follow)
-        userRepository.update(currentUser)
-    }
     
-  
+    func getUserFriends(currentUser: User) -> [User] {
+      return self.users.filter { currentUser.follows.contains($0.id) }
+    }
 }

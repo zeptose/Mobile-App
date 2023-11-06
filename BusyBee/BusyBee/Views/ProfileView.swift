@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
   @EnvironmentObject var viewModel: AuthViewModel
   @ObservedObject var goalController = GoalController()
+  @ObservedObject var userController = UserController()
   let customYellow = Color(UIColor(hex: "#FFD111"))
   @State var displayedCurrentGoals : [Goal] = []
   @State private var showCurrentGoals = true
@@ -68,9 +69,6 @@ struct ProfileView: View {
               }
               .padding()
             }
-//            } else {
-//              Button(
-//            }
             
             
             HStack {
