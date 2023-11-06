@@ -18,35 +18,38 @@ struct CreatePostView: View {
     @State private var selectedGoal: Goal? = nil
     @State private var selectedSubgoal: Subgoal? = nil
 
-    var body: some View {
-        VStack(spacing: 20) {
-            HStack {
-                NavigationLink(destination: CameraView(camera: camera)) {
-                    Image(systemName: "xmark")
-                        .foregroundColor(.black)
-                        .padding()
-                        .font(.system(size: 30))
-                }
-                .padding(.leading, 0).navigationBarBackButtonHidden(true)
-                Spacer()
-            }
-            .padding()
+  var body: some View {
+          VStack(spacing: 20) {
+              HStack {
+                  NavigationLink(destination: CameraView(camera: camera)) {
+                      Image(systemName: "arrow.left")
+                          .foregroundColor(.white)
+                          .padding()
+                          .font(.system(size: 30))
+                  }
+                  .padding(.leading, 0)
+                  Spacer()
+              }
+              .padding()
 
-            GeometryReader { geometry in
-                VStack(spacing: 20) {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: geometry.size.width, height: geometry.size.height * 0.75) // Reduced image size
-                        .clipped()
-                        .offset(y: -20) // Adjusted vertical offset
-                }
-                .onTapGesture {
-                    
-                    camera.capturedImage = nil
-                }
-            }
-            .frame(maxHeight: .infinity)
+              GeometryReader { geometry in
+                  VStack(spacing: 20) {
+                      Image(uiImage: uiImage)
+                          .resizable()
+                          .aspectRatio(contentMode: .fill)
+                          .frame(width: geometry.size.width, height: geometry.size.height * 0.65)
+                          .clipped()
+
+                      TextField("Write a caption...", text: $caption)
+                          .padding()
+                          .textFieldStyle(RoundedBorderTextFieldStyle())
+                          .padding()
+                  }
+                  .onTapGesture {
+                      camera.capturedImage = nil
+                  }
+              }
+              .frame(maxHeight: .infinity)
           
             TextField("Write a caption...", text: $caption)
                 .padding()
@@ -123,7 +126,8 @@ struct CreatePostView: View {
                         print("Post added successfully!")
                     } else {
                         print("User is not logged in.")
-                    }
+                    } 
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Share")
                 }
@@ -132,9 +136,6 @@ struct CreatePostView: View {
             .padding(.horizontal) // Added horizontal padding
 
             Spacer()
-        }
-        .onDisappear {
-            camera.capturedImage = nil
         }
     }
 }
