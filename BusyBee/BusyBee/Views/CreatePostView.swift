@@ -23,7 +23,7 @@ struct CreatePostView: View {
               HStack {
                   NavigationLink(destination: CameraView(camera: camera)) {
                       Image(systemName: "arrow.left")
-                          .foregroundColor(.white)
+                          .foregroundColor(.blue)
                           .padding()
                           .font(.system(size: 30))
                   }
@@ -37,13 +37,9 @@ struct CreatePostView: View {
                       Image(uiImage: uiImage)
                           .resizable()
                           .aspectRatio(contentMode: .fill)
-                          .frame(width: geometry.size.width, height: geometry.size.height * 0.65)
+                          .frame(width: geometry.size.width * 0.95, height: geometry.size.height * 0.65)
                           .clipped()
 
-                      TextField("Write a caption...", text: $caption)
-                          .padding()
-                          .textFieldStyle(RoundedBorderTextFieldStyle())
-                          .padding()
                   }
                   .onTapGesture {
                       camera.capturedImage = nil
@@ -55,7 +51,7 @@ struct CreatePostView: View {
                 .padding()
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
-                .offset(y: -80) // Increased vertical offset for caption
+                .offset(y: -100) // Increased vertical offset for caption
 
             VStack(alignment: .leading) { // Styled ScrollView containers
                 Text("Select Main Goal")

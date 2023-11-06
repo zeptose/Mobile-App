@@ -19,7 +19,6 @@ struct ProfileView: View {
         let currentGoals = goalController.getCurrentGoals(currentUser: profile)
         ZStack {
           VStack {
-            
             HStack {
               Button(action: {
                 print("Back button tapped")
@@ -102,68 +101,73 @@ struct ProfileView: View {
               
               VStack {
                 if showCurrentGoals {
-                  ForEach(currentGoals) { goal in
+                  let dateFormatter: DateFormatter = {
+                          let formatter = DateFormatter()
+                          formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                          return formatter
+                      }()
+                    
+                    ForEach(currentGoals) { goal in
+                      NavigationLink(destination: IndividualGoalView(goal: goal)) {
+
                       RoundedRectangle(cornerRadius: 12)
-                          .fill(Color.white)
-                          .shadow(color: Color.gray, radius: 4, x: 0, y: 2)
-                          .frame(width: UIScreen.main.bounds.width * 0.75)
-                          .overlay(
-                              VStack {
-                                  Text(goal.name)
-                                      .font(.title)
-                                      .fontWeight(.bold)
-                                      .padding(8)
-                                  
-                                  Text("Due: \(goal.dueDate)")
-                                      .font(.subheadline)
-                                      .padding(8)
-                              }
-                          )
-                          .overlay(
-                              VStack {
-                                  Spacer()
-                                  HStack {
-                                      Spacer()
-                                      Text("Frequency: \(goal.frequency)") //
-                                          .font(.subheadline)
-                                          .padding(8)
-                                  }
-                              }
-                          )
-                          .padding()
+                        .fill(Color.white)
+                        .shadow(color: Color.gray, radius: 4, x: 0, y: 2)
+                        .frame(width: UIScreen.main.bounds.width * 0.85, height: 120)
+                        .overlay(
+                          VStack(alignment: .leading) {
+                            Text(goal.name)
+                              .font(.title)
+                              .fontWeight(.bold)
+                              .padding(.bottom, 4)
+                            HStack {
+                              
+                              Text("Due: \(dateFormatter.string(from: goal.dueDate))")
+                                .font(.subheadline)
+                              Spacer()
+                              Text("Frequency: \(goal.frequency)")
+                                .font(.subheadline)
+                                .multilineTextAlignment(.trailing)
+                            }
+                          }
+                            .padding(12)
                           
+                        )
+                    }
                   }
                 } else {
                   let pastGoals = goalController.getPastGoals(currentUser: profile)
+                  let dateFormatter: DateFormatter = {
+                          let formatter = DateFormatter()
+                          formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                          return formatter
+                      }()
                   ForEach(pastGoals) { goal in
-                    RoundedRectangle(cornerRadius: 12)
-                      .fill(Color.white)
-                      .shadow(color: Color.gray, radius: 4, x: 0, y: 2)
-                      .frame(width: UIScreen.main.bounds.width * 0.75)
-                      .overlay(
-                        VStack {
-                          Text(goal.name)
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .padding(8)
-                          
-                          Text("Due: \(goal.dueDate)")
-                            .font(.subheadline)
-                            .padding(8)
-                        }
-                      )
-                      .overlay(
-                        VStack {
-                          Spacer()
-                          HStack {
-                            Spacer()
-                            Text("Frequency: \(goal.frequency)")
-                              .font(.subheadline)
-                              .padding(8)
+                    NavigationLink(destination: IndividualGoalView(goal: goal)) {
+                      RoundedRectangle(cornerRadius: 12)
+                        .fill(Color.white)
+                        .shadow(color: Color.gray, radius: 4, x: 0, y: 2)
+                        .frame(width: UIScreen.main.bounds.width * 0.85, height: 120)
+                        .overlay(
+                          VStack(alignment: .leading) {
+                            Text(goal.name)
+                              .font(.title)
+                              .fontWeight(.bold)
+                              .padding(.bottom, 4)
+                            HStack {
+                              
+                              Text("Due: \(dateFormatter.string(from: goal.dueDate))")
+                                .font(.subheadline)
+                              Spacer()
+                              Text("Frequency: \(goal.frequency)")
+                                .font(.subheadline)
+                                .multilineTextAlignment(.trailing)
+                            }
                           }
-                        }
-                      )
-                      .padding()
+                            .padding(12)
+                          
+                        )
+                    }
                   }
                 }
               }
