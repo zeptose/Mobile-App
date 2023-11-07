@@ -24,10 +24,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct BusyBeeApp: App {
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
   @StateObject var viewModel = AuthViewModel()
+  @StateObject var userController = UserController()
+  @StateObject var postController = PostController()
+  @StateObject var goalController = GoalController()
+  @StateObject var cameraController = CameraController()
     var body: some Scene {
         WindowGroup {
             ContentView()
             .environmentObject(viewModel)
+            .environmentObject(userController)
+            .environmentObject(postController)
+            .environmentObject(goalController)
+            .environmentObject(cameraController)
         }
     }
 }

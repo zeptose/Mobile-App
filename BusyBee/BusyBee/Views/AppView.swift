@@ -2,15 +2,15 @@
 import SwiftUI
 
 struct AppView: View {
-    @StateObject var userController = UserController()
-    @StateObject var postController = PostController()
-    @StateObject var goalController = GoalController()
+    @EnvironmentObject var userController : UserController
+    @EnvironmentObject var postController : PostController
+    @EnvironmentObject var goalController: GoalController
     @EnvironmentObject var viewModel: AuthViewModel
-    
+    @EnvironmentObject var cameraController : CameraController
   
     @State private var selectedTab = 4
     @State private var isShowingCamera = false
-//    @StateObject private var cameraController = CameraController()
+    
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -26,13 +26,13 @@ struct AppView: View {
                     Text("Search")
                 }
                 .tag(1)
-//
-//            CameraView(camera: cameraController)
-//                .tabItem {
-//                    Image(systemName: "camera")
-//                    Text("Camera")
-//                }
-//                .tag(2)
+
+            CameraView()
+                .tabItem {
+                    Image(systemName: "camera")
+                    Text("Camera")
+                }
+                .tag(2)
 
             Text("Calendar")
                 .tabItem {
@@ -49,9 +49,9 @@ struct AppView: View {
                 }
                 .tag(4)
         }.navigationBarTitleDisplayMode(.inline)
-            .environmentObject(userController)
-            .environmentObject(goalController)
-            .environmentObject(postController)
+//            .environmentObject(userController)
+//            .environmentObject(goalController)
+//            .environmentObject(postController)
             .navigationBarBackButtonHidden(true)
     }
 }
