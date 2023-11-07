@@ -63,10 +63,15 @@ class GoalController: ObservableObject {
     }
     
   
-//  func getCurrentGoal(currentUser: User) -> Goal? {
-//      return getCurrentGoals(currentUser: currentUser).first
-//  }
-
+    func getGoalFromId(goalId: String) -> Goal? {
+      let temp = self.goals.first( where: {$0.id == goalId} )
+      if let ourGoal = temp {
+        return ourGoal
+      } else {
+        return nil
+      }
+    }
+    
 
 
 }

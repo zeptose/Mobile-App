@@ -92,9 +92,9 @@ struct CreatePostView: View {
                     guard let selectedSubgoal = selectedSubgoal else {
                         return
                     }
-
+                    
                     uploadedImageURL = PostController().uploadPhoto(uiImage)
-
+                    isShareButtonPressed = true
                     if let currentUser = viewModel.currentUser {
                         PostController().addPost(
                             currentUser: currentUser,
@@ -110,6 +110,7 @@ struct CreatePostView: View {
                     } else {
                         print("User is not logged in.")
                     }
+
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Share")

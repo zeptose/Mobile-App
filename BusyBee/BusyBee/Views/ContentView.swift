@@ -8,7 +8,6 @@ import SwiftUI
 struct ContentView: View {
     @State private var isRegistering = true
     @State private var isLoggingIn = true
-    @ObservedObject var goalRepository = GoalRepository()
     @State private var selectedTab = 4 // Assuming "Profile" is the 5th tab (index 4)
     @EnvironmentObject var viewModel: AuthViewModel
   
@@ -24,7 +23,7 @@ struct ContentView: View {
                   
                   Spacer()
                   NavigationLink(destination: RegistrationFormView(isRegistering: $isRegistering, selectedTab: $selectedTab)
-                    .environmentObject(goalRepository)) {
+                  ) {
                     Text("Register")
                   }
                   .font(.title)
