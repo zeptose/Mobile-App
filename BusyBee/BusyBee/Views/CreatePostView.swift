@@ -17,6 +17,7 @@ struct CreatePostView: View {
     @State private var uploadedImageURL: String = ""
     @State private var selectedGoal: Goal? = nil
     @State private var selectedSubgoal: Subgoal? = nil
+    @State private var isShareButtonPressed = false
 
   var body: some View {
           VStack(spacing: 20) {
@@ -109,9 +110,9 @@ struct CreatePostView: View {
                         // Handle the case where no subgoal is selected
                         return
                     }
-
+                    
                     uploadedImageURL = PostController().uploadPhoto(uiImage)
-
+                    isShareButtonPressed = true
                     if let currentUser = viewModel.currentUser {
                         PostController().addPost(
                             currentUser: currentUser,
@@ -126,7 +127,8 @@ struct CreatePostView: View {
                         print("Post added successfully!")
                     } else {
                         print("User is not logged in.")
-                    } 
+                    }
+                
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Share")

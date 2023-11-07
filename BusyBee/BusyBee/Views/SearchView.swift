@@ -19,7 +19,7 @@ struct SearchView: View {
     @ObservedObject var searchViewModel = SearchViewModel()
     @State var searchField: String = ""
     @State var displayedUsers = [User]()
-    @ObservedObject var userController = UserController()
+    @EnvironmentObject var userController : UserController
     let customYellow = Color(UIColor(hex: "#FFD111"))
     
     @State private var selectedUser: User? // Store the selected user for custom action

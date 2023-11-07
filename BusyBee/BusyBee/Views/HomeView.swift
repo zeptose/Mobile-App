@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var postController = PostController()
+    @EnvironmentObject var postController: PostController
     @EnvironmentObject var viewModel: AuthViewModel
     var user: User?
 
@@ -34,9 +34,9 @@ struct HomeView: View {
 struct FeedItemView: View {
     var userId: String
     var post: Post
-    @ObservedObject var postController = PostController()
-    @ObservedObject var userController = UserController()
-    @ObservedObject var goalController = GoalController()
+    @EnvironmentObject var postController: PostController
+    @EnvironmentObject var userController: UserController
+    @EnvironmentObject var goalController: GoalController
     var body: some View {
       if let feedUser = userController.getUserFromId(userId: userId){
         VStack {
