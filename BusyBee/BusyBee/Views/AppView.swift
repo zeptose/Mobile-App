@@ -49,6 +49,7 @@ struct AppView: View {
                 .tag(4)
         }.navigationBarTitleDisplayMode(.inline).environmentObject(userController).environmentObject(goalController)
             .environmentObject(viewModel)
+            .navigationBarBackButtonHidden(true)
     }
 }
 

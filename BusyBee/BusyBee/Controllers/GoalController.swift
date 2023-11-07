@@ -24,11 +24,13 @@ class GoalController: ObservableObject {
     func addnewGoal(currentUser: User, name: String, desc: String?, dueDate: Date, frequency: Int, subGoalStr: [String]) {
 //        let id = UUID().uuidString
         var subgoals: [Subgoal] = []
-        for subgoal in ["123", "hi", "yes"] {
-            let newSub = Subgoal(name: subgoal,
-                                 isCompleted: false)
-            subgoalRepository.create(newSub)
-            subgoals.append(newSub)
+        for subgoal in subGoalStr {
+            if !subgoal.isEmpty {
+                let newSub = Subgoal(name: subgoal,
+                                     isCompleted: false)
+                subgoalRepository.create(newSub)
+                subgoals.append(newSub)
+            }
         }
         let newGoal = Goal(name: name,
                            description: desc,
@@ -61,10 +63,15 @@ class GoalController: ObservableObject {
     }
     
   
-//  func getCurrentGoal(currentUser: User) -> Goal? {
-//      return getCurrentGoals(currentUser: currentUser).first
-//  }
-
+    func getGoalFromId(goalId: String) -> Goal? {
+      let temp = self.goals.first( where: {$0.id == goalId} )
+      if let ourGoal = temp {
+        return ourGoal
+      } else {
+        return nil
+      }
+    }
+    
 
 
 }

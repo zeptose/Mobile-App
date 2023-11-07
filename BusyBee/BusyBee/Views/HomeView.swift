@@ -19,11 +19,11 @@ struct HomeView: View {
             VStack {
                 Spacer()
                 Text("BusyBee")
-                    .padding()
                 
                 List {
                     ForEach(allPosts) { post in
                         FeedItemView(userId: post.userId, post: post)
+                          .multilineTextAlignment(.leading)
                     }
                 }
             }
@@ -35,27 +35,57 @@ struct FeedItemView: View {
     var userId: String
     var post: Post
     @ObservedObject var postController = PostController()
+    @ObservedObject var userController = UserController()
+    @ObservedObject var goalController = GoalController()
     var body: some View {
+      if let feedUser = userController.getUserFromId(userId: userId){
         VStack {
-            // Profile Picture and Username
-            HStack {
-                Image("profilePic") // Replace with user's profile image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 50, height: 50)
-                    .clipShape(Circle())
-                
-                Text(userId)
-                    .font(.headline)
-            }
+          // Profile Picture and Username
+          HStack {
+            Image("profilePic") // Replace with user's profile image
+              .resizable()
+              .aspectRatio(contentMode: .fit)
+              .frame(width: 50, height: 50, alignment: .leading)
+              .clipShape(Circle())
             
-            // Photo
-            Image(uiImage: postController.getImageFromURL(url: post.photo))
-                .resizable()
-                .scaledToFill()
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                .clipped()
+            Text(feedUser.username)
+              .frame(maxWidth: .infinity, alignment: .leading)
+
+          }
+          
+          // Goal and Progress
+          if let feedGoal = goalController.getGoalFromId(goalId: post.goalId){
+            let percentage = CGFloat(feedGoal.progress)/CGFloat(feedGoal.frequency)
+            let progressBarMax = UIScreen.main.bounds.width - 50
+            Text(feedGoal.name)
+              .font(.subheadline)
+              .frame(maxWidth: .infinity, alignment: .leading)
+              .padding(.leading, 10)
+            
+            ZStack(alignment: .leading) {
+              Capsule().frame(width: progressBarMax)
+                .foregroundColor(Color.gray)
+              Capsule().frame(width: progressBarMax * percentage)
+                .foregroundColor(Color.yellow)
+            }.frame(height: 20)
+          }
+          
+          // Photo
+          Image(uiImage: postController.getImageFromURL(url: post.photo))
+            .resizable()
+            .scaledToFill()
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+            .clipped()
         }
         .padding()
+      }
     }
 }
+
+//struct HomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//      let sampleUser = User(id: "dskmSXft9neXeZC5MfTlMXUqCBy1", username: "SampleUser", bio: "Sample Bio", goals: [], posts: [], follows: [])
+//      HomeView(user: sampleUser)
+//
+//    }
+//}
