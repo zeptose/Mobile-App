@@ -44,6 +44,7 @@
 		F15DB24C2AE8E3FD0031FD75 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F15DB24B2AE8E3FD0031FD75 /* FirebaseFirestoreSwift */; };
 		F15DB2502AE8EE860031FD75 /* GoalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB24F2AE8EE860031FD75 /* GoalRepository.swift */; };
 		F1A512A42AF9F3CC00D3D3BE /* IndividualGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A512A32AF9F3CC00D3D3BE /* IndividualGoalView.swift */; };
+		F1A512A62AFA094700D3D3BE /* FeedItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A512A52AFA094700D3D3BE /* FeedItemView.swift */; };
 		F9908DB02AF4AEE000415845 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DAF2AF4AEE000415845 /* AddGoalView.swift */; };
 		F9BE505A2AF4288900FF1C16 /* HexCodeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +85,7 @@
 		F15DB2432AE8BB340031FD75 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F15DB24F2AE8EE860031FD75 /* GoalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRepository.swift; sourceTree = "<group>"; };
 		F1A512A32AF9F3CC00D3D3BE /* IndividualGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualGoalView.swift; sourceTree = "<group>"; };
+		F1A512A52AFA094700D3D3BE /* FeedItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemView.swift; sourceTree = "<group>"; };
 		F9908DAF2AF4AEE000415845 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
 		F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCodeConverter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -201,6 +203,7 @@
 				59A802792AF402DB00F69178 /* CalendarView.swift */,
 				59A8027B2AF402ED00F69178 /* HomeView.swift */,
 				F1A512A32AF9F3CC00D3D3BE /* IndividualGoalView.swift */,
+				F1A512A52AFA094700D3D3BE /* FeedItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				59A8027A2AF402DB00F69178 /* CalendarView.swift in Sources */,
 				F13650342AF3487C00950A0F /* LoginView.swift in Sources */,
 				5980FC3F2AF1C047003053BB /* AppView.swift in Sources */,
+				F1A512A62AFA094700D3D3BE /* FeedItemView.swift in Sources */,
 				F15DB2422AE8B9D10031FD75 /* Goal.swift in Sources */,
 				F136503A2AF4218B00950A0F /* SearchViewModel.swift in Sources */,
 				F13650382AF4202C00950A0F /* SearchView.swift in Sources */,

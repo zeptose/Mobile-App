@@ -111,6 +111,8 @@ class PostController: ObservableObject {
     let flatFeedPosts = feedPosts.flatMap{ $0 }
     return flatFeedPosts.sorted { $0.timePosted >= $1.timePosted }
   }
+  
+  
 }
 
 

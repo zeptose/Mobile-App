@@ -14,7 +14,7 @@ struct AppView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-          HomeView(user: viewModel.currentUser)
+            HomeView(user: viewModel.currentUser)
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
