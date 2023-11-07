@@ -10,7 +10,7 @@ struct AppView: View {
   
     @State private var selectedTab = 4
     @State private var isShowingCamera = false
-    @StateObject private var cameraController = CameraController()
+//    @StateObject private var cameraController = CameraController()
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -26,13 +26,13 @@ struct AppView: View {
                     Text("Search")
                 }
                 .tag(1)
-
-            CameraView(camera: cameraController)
-                .tabItem {
-                    Image(systemName: "camera")
-                    Text("Camera")
-                }
-                .tag(2)
+//
+//            CameraView(camera: cameraController)
+//                .tabItem {
+//                    Image(systemName: "camera")
+//                    Text("Camera")
+//                }
+//                .tag(2)
 
             Text("Calendar")
                 .tabItem {
@@ -52,7 +52,6 @@ struct AppView: View {
             .environmentObject(userController)
             .environmentObject(goalController)
             .environmentObject(postController)
-            .environmentObject(viewModel)
             .navigationBarBackButtonHidden(true)
     }
 }
