@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CameraControlsView: View {
-    @StateObject var camera: CameraController
+    @EnvironmentObject var camera: CameraController
     @Binding var isPictureTaken: Bool
     @ObservedObject var viewModel: CameraViewModel
 

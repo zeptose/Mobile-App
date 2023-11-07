@@ -8,11 +8,33 @@
 import SwiftUI
 
 struct HomeView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    @EnvironmentObject var postController: PostController
+    @EnvironmentObject var viewModel: AuthViewModel
+    var user: User?
+
+  var body: some View {
+      if let currUser = user {
+        let allPosts = postController.getFeedPosts(currUser: currUser)
+        
+        VStack {
+          Spacer()
+          Text("BusyBee")
+          
+          List {
+            ForEach(allPosts) { post in
+              FeedItemView(userId: post.userId, post: post)
+                .multilineTextAlignment(.leading)
+            }
+          }
+        }
+      }
     }
 }
 
-//#Preview {
-//    HomeView()
+//struct HomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//      let sampleUser = User(id: "dskmSXft9neXeZC5MfTlMXUqCBy1", username: "SampleUser", bio: "Sample Bio", goals: [], posts: [], follows: [])
+//      HomeView(user: sampleUser)
+//
+//    }
 //}

@@ -14,21 +14,27 @@ class GoalController: ObservableObject {
     @Published var subgoalRepository: SubgoalRepository = SubgoalRepository()
     @Published var userRepository: UserRepository = UserRepository()
     @Published var goals: [Goal] = []
+    @Published var subgoals: [Subgoal] = []
   
     init () {
       self.goalRepository.get({(goals) -> Void in
             self.goals = goals
       })
+      
+      self.subgoalRepository.get({(subgoals) -> Void in
+            self.subgoals = subgoals
+      })
     }
   
     func addnewGoal(currentUser: User, name: String, desc: String?, dueDate: Date, frequency: Int, subGoalStr: [String]) {
 //        let id = UUID().uuidString
-        var subgoals: [Subgoal] = []
-        for subgoal in ["123", "hi", "yes"] {
-            let newSub = Subgoal(name: subgoal,
-                                 isCompleted: false)
-            subgoalRepository.create(newSub)
-            subgoals.append(newSub)
+        for subgoal in subGoalStr {
+            if !subgoal.isEmpty {
+                let newSub = Subgoal(name: subgoal,
+                                     isCompleted: false)
+                subgoalRepository.create(newSub)
+                subgoals.append(newSub)
+            }
         }
         let newGoal = Goal(name: name,
                            description: desc,
@@ -61,10 +67,25 @@ class GoalController: ObservableObject {
     }
     
   
-//  func getCurrentGoal(currentUser: User) -> Goal? {
-//      return getCurrentGoals(currentUser: currentUser).first
-//  }
+    func getGoalFromId(goalId: String) -> Goal? {
+      let temp = self.goals.first( where: {$0.id == goalId} )
+      if let ourGoal = temp {
+        return ourGoal
+      } else {
+        return nil
+      }
+    }
+  
+    func getSubgoalFromId(subgoalId: String) -> Subgoal? {
+      let temp = self.subgoals.first( where: {$0.id == subgoalId} )
+      if let ourGoal = temp {
+        return ourGoal
+      } else {
+        return nil
+      }
+    }
 
+    
 
 
 }

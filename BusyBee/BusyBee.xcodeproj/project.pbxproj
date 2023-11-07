@@ -43,6 +43,8 @@
 		F15DB24A2AE8E3FD0031FD75 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F15DB2492AE8E3FD0031FD75 /* FirebaseFirestore */; };
 		F15DB24C2AE8E3FD0031FD75 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F15DB24B2AE8E3FD0031FD75 /* FirebaseFirestoreSwift */; };
 		F15DB2502AE8EE860031FD75 /* GoalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15DB24F2AE8EE860031FD75 /* GoalRepository.swift */; };
+		F1A512A42AF9F3CC00D3D3BE /* IndividualGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A512A32AF9F3CC00D3D3BE /* IndividualGoalView.swift */; };
+		F1A512A62AFA094700D3D3BE /* FeedItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A512A52AFA094700D3D3BE /* FeedItemView.swift */; };
 		F9908DB02AF4AEE000415845 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DAF2AF4AEE000415845 /* AddGoalView.swift */; };
 		F9908DB22AF8DAF400415845 /* IndividualGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DB12AF8DAF400415845 /* IndividualGoalView.swift */; };
 		F9BE505A2AF4288900FF1C16 /* HexCodeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */; };
@@ -83,6 +85,8 @@
 		F15DB2412AE8B9D10031FD75 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		F15DB2432AE8BB340031FD75 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F15DB24F2AE8EE860031FD75 /* GoalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRepository.swift; sourceTree = "<group>"; };
+		F1A512A32AF9F3CC00D3D3BE /* IndividualGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualGoalView.swift; sourceTree = "<group>"; };
+		F1A512A52AFA094700D3D3BE /* FeedItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemView.swift; sourceTree = "<group>"; };
 		F9908DAF2AF4AEE000415845 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
 		F9908DB12AF8DAF400415845 /* IndividualGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualGoalView.swift; sourceTree = "<group>"; };
 		F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCodeConverter.swift; sourceTree = "<group>"; };
@@ -188,12 +192,15 @@
 		F15DB23D2AE8B7500031FD75 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F1A512A22AF9F2E800D3D3BE /* Camera */,
 				F15DB2302AE8B7370031FD75 /* ContentView.swift */,
+				5995CEBD2AF56AEC004C9158 /* CreatePostView.swift */,
 				5980FC3C2AF1BF14003053BB /* RegistrationView.swift */,
-				F13650372AF4202C00950A0F /* SearchView.swift */,
-				F13650332AF3487C00950A0F /* LoginView.swift */,
-				5980FC3E2AF1C047003053BB /* AppView.swift */,
+				F9908DAF2AF4AEE000415845 /* AddGoalView.swift */,
 				F13650352AF34C3200950A0F /* ProfileView.swift */,
+				F13650332AF3487C00950A0F /* LoginView.swift */,
+				F13650372AF4202C00950A0F /* SearchView.swift */,
+				5980FC3E2AF1C047003053BB /* AppView.swift */,
 				F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */,
 				59A802792AF402DB00F69178 /* CalendarView.swift */,
 				59A8027B2AF402ED00F69178 /* HomeView.swift */,
@@ -201,7 +208,8 @@
 				59A802832AF41EFD00F69178 /* CameraControlsView.swift */,
 				5995CEBD2AF56AEC004C9158 /* CreatePostView.swift */,
 				F9908DAF2AF4AEE000415845 /* AddGoalView.swift */,
-				F9908DB12AF8DAF400415845 /* IndividualGoalView.swift */,
+				F1A512A32AF9F3CC00D3D3BE /* IndividualGoalView.swift */,
+				F1A512A52AFA094700D3D3BE /* FeedItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -216,6 +224,15 @@
 				5995CEC12AF58871004C9158 /* PostController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F1A512A22AF9F2E800D3D3BE /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				59A802832AF41EFD00F69178 /* CameraControlsView.swift */,
+				59A8027F2AF4030100F69178 /* CameraView.swift */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,13 +320,14 @@
 				5995CEC42AF58983004C9158 /* PostRepository.swift in Sources */,
 				59A802862AF41F0A00F69178 /* CameraController.swift in Sources */,
 				F15DB2502AE8EE860031FD75 /* GoalRepository.swift in Sources */,
-				F9908DB22AF8DAF400415845 /* IndividualGoalView.swift in Sources */,
+				F1A512A42AF9F3CC00D3D3BE /* IndividualGoalView.swift in Sources */,
 				F9908DB02AF4AEE000415845 /* AddGoalView.swift in Sources */,
 				59A802802AF4030100F69178 /* CameraView.swift in Sources */,
 				F13650322AF3405500950A0F /* GoalController.swift in Sources */,
 				59A8027A2AF402DB00F69178 /* CalendarView.swift in Sources */,
 				F13650342AF3487C00950A0F /* LoginView.swift in Sources */,
 				5980FC3F2AF1C047003053BB /* AppView.swift in Sources */,
+				F1A512A62AFA094700D3D3BE /* FeedItemView.swift in Sources */,
 				F15DB2422AE8B9D10031FD75 /* Goal.swift in Sources */,
 				F136503A2AF4218B00950A0F /* SearchViewModel.swift in Sources */,
 				F13650382AF4202C00950A0F /* SearchView.swift in Sources */,
@@ -460,7 +478,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BusyBee/Preview Content\"";
-				DEVELOPMENT_TEAM = TZD8338J4G;
+				DEVELOPMENT_TEAM = 83S2CV3ZRK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BusyBee/Info.plist;
@@ -494,7 +512,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BusyBee/Preview Content\"";
-				DEVELOPMENT_TEAM = TZD8338J4G;
+				DEVELOPMENT_TEAM = 83S2CV3ZRK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BusyBee/Info.plist;

@@ -19,24 +19,25 @@ class SubgoalRepository: ObservableObject {
   private var cancellables: Set<AnyCancellable> = []
   
   init() {
-    self.get()
+    self.get({ (subgoals) -> Void in
+          self.subgoals = subgoals
+        })
   }
 
-  func get() {
-    store.collection(path)
-      .addSnapshotListener { querySnapshot, error in
-        if let error = error {
-          print("Error getting subgoals: \(error.localizedDescription)" )
-          return
+  func get(_ completionHandler: @escaping (_ subgoals: [Subgoal]) -> Void) {
+      store.collection(path)
+        .addSnapshotListener { querySnapshot, error in
+          if let error = error {
+            print("Error getting goals: \(error.localizedDescription)")
+            return
+          }
+          
+          let subgoals = querySnapshot?.documents.compactMap { document in
+            try? document.data(as: Subgoal.self)
+          } ?? []
+          completionHandler(subgoals)
         }
-//        querySnapshot?.documents.forEach({ document in
-//          print(document.data())
-//        })
-        self.subgoals = querySnapshot?.documents.compactMap { document in
-          try? document.data(as: Subgoal.self)
-        } ?? []
-      }
-  }
+    }
   
   func create(_ subgoal: Subgoal) {
     do {

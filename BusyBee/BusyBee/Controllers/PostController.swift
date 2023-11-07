@@ -17,6 +17,7 @@ class PostController: ObservableObject {
     @Published var subgoalRepository: SubgoalRepository = SubgoalRepository()
     @Published var images: [(String, UIImage)] = []
     @Published var posts: [Post] = []
+    @Published var userController: UserController = UserController()
   
   
   init() {
@@ -55,7 +56,7 @@ class PostController: ObservableObject {
         }
       
       var currGoal = goal
-      var currProgress = currGoal.progress + 1
+      let currProgress = currGoal.progress + 1
       currGoal.progress = currProgress
       
       
@@ -101,6 +102,17 @@ class PostController: ObservableObject {
     }
     return UIImage()
   }
+
+  func getFeedPosts(currUser: User) -> [Post] {
+    let people: [User] = userController.getUserFriends(currentUser: currUser) + [currUser]
+//    print("follows: \(people)")
+    let feedPosts = people.map { self.getPosts(currentUser: $0) }
+//    print("feed posts: \(feedPosts)")
+    let flatFeedPosts = feedPosts.flatMap{ $0 }
+    return flatFeedPosts.sorted { $0.timePosted >= $1.timePosted }
+  }
+  
+  
 }
 
 

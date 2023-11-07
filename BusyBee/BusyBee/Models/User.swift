@@ -16,7 +16,7 @@ struct User: Identifiable, Codable, Comparable {
   var bio: String?
   var goals: [Goal]
   var posts: [Post]
-  var follows: [User]
+  var follows: [String]
   
   // To conform to Codable protocol
   enum CodingKeys: String, CodingKey {

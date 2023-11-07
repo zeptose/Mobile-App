@@ -9,19 +9,20 @@ import SwiftUI
 import AVFoundation
 
 struct CameraView: View {
-    @StateObject var camera: CameraController
+    @EnvironmentObject var camera: CameraController
     @EnvironmentObject var viewModeluser: AuthViewModel
     @State private var isPictureTaken = false
     @StateObject var viewModel = CameraViewModel()
-  
+    @EnvironmentObject var postController: PostController
+    
   
   
 
     var body: some View {
         ZStack {
-            if let capturedImage = camera.capturedImage {
-                CreatePostView(uiImage: capturedImage, camera: camera)
-            } else {
+          if let capturedImage = camera.capturedImage {
+              CreatePostView(uiImage: capturedImage).environmentObject(postController).navigationBarBackButtonHidden(true)} 
+          else {
                 CameraPreview(camera: camera)
                     .ignoresSafeArea(.all, edges: .all)
                 VStack {
@@ -37,10 +38,10 @@ struct CameraView: View {
                     }
                     Spacer()
                     HStack {
-                        CameraControlsView(camera: camera, isPictureTaken: $isPictureTaken, viewModel: viewModel)
+                        CameraControlsView(isPictureTaken: $isPictureTaken, viewModel: viewModel)
                     }
                     .frame(height: 75)
-                }
+                }.navigationBarBackButtonHidden(true)
             }
         }
         .onAppear {
