@@ -1,10 +1,3 @@
-//
-//  CreatePostView.swift
-//  BusyBee
-//
-//  Created by Ryan McGrady on 11/3/23.
-//
-
 import SwiftUI
 
 struct CreatePostView: View {
@@ -15,94 +8,88 @@ struct CreatePostView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var goalController: GoalController
     @State private var uploadedImageURL: String = ""
-    @State private var selectedGoal: Goal? = nil
-    @State private var selectedSubgoal: Subgoal? = nil
+    @State private var selectedGoalIndex: Int = 0
+    @State private var selectedSubgoalIndex: Int = 0
 
-  var body: some View {
-          VStack(spacing: 20) {
-              HStack {
-                  NavigationLink(destination: CameraView(camera: camera)) {
-                      Image(systemName: "arrow.left")
-                          .foregroundColor(.blue)
-                          .padding()
-                          .font(.system(size: 30))
-                  }
-                  .padding(.leading, 0)
-                  Spacer()
-              }
-              .padding()
+    var selectedGoal: Goal? {
+        goalController.getCurrentGoals(currentUser: viewModel.currentUser!)[selectedGoalIndex]
+    }
 
-              GeometryReader { geometry in
-                  VStack(spacing: 20) {
-                      Image(uiImage: uiImage)
-                          .resizable()
-                          .aspectRatio(contentMode: .fill)
-                          .frame(width: geometry.size.width * 0.95, height: geometry.size.height * 0.65)
-                          .clipped()
+    var selectedSubgoal: Subgoal? {
+        selectedGoal?.subgoals[selectedSubgoalIndex]
+    }
 
-                  }
-                  .onTapGesture {
-                      camera.capturedImage = nil
-                  }
-              }
-              .frame(maxHeight: .infinity)
-          
+    var body: some View {
+        VStack(spacing: 20) {
+            HStack {
+                NavigationLink(destination: CameraView(camera: camera)) {
+                    Image(systemName: "arrow.left")
+                        .foregroundColor(.blue)
+                        .padding()
+                        .font(.system(size: 30))
+                }
+                .padding(.leading, 0)
+                Spacer()
+            }
+            .padding()
+
+            GeometryReader { geometry in
+                VStack(spacing: 20) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: geometry.size.width * 0.95, height: geometry.size.height * 0.65)
+                        .clipped()
+                }
+                .onTapGesture {
+                    camera.capturedImage = nil
+                }
+            }
+            .frame(maxHeight: .infinity)
+
             TextField("Write a caption...", text: $caption)
                 .padding()
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
-                .offset(y: -100) // Increased vertical offset for caption
+                .offset(y: -100)
 
-            VStack(alignment: .leading) { // Styled ScrollView containers
+            VStack(alignment: .leading) {
                 Text("Select Main Goal")
                     .font(.headline)
-                    .foregroundColor(.blue) // Changed text color
-                    .padding(.bottom, 4) // Added bottom padding
+                    .foregroundColor(.blue)
+                    .padding(.bottom, 4)
 
-                ScrollView {
-                    ForEach(goalController.getCurrentGoals(currentUser: viewModel.currentUser!), id: \.id) { goal in
-                        Button(action: {
-                            selectedGoal = goal
-                            selectedSubgoal = nil // Reset selected subgoal
-                        }) {
-                            Text(goal.name)
-                                .padding()
-                        }
-                        .buttonStyle(PlainButtonStyle())
+                Picker(selection: $selectedGoalIndex, label: Text("Main Goal")) {
+                    ForEach(0..<goalController.getCurrentGoals(currentUser: viewModel.currentUser!).count, id: \.self) { index in
+                        Text(goalController.getCurrentGoals(currentUser: viewModel.currentUser!)[index].name)
                     }
                 }
-                .frame(maxHeight: 150)
-                .background(Color.gray.opacity(0.2)) // Styled background
+                .pickerStyle(SegmentedPickerStyle())
+                .background(Color.gray.opacity(0.2))
+                .padding(.bottom, 20)
 
                 if let selectedGoal = selectedGoal {
                     Text("Select Sub Goals")
                         .font(.headline)
-                        .foregroundColor(.blue) // Changed text color
-                        .padding(.bottom, 4) // Added bottom padding
+                        .foregroundColor(.blue)
+                        .padding(.bottom, 4)
 
-                    ScrollView {
-                        ForEach(selectedGoal.subgoals, id: \.id) { subgoal in
-                            Button(action: {
-                                selectedSubgoal = subgoal
-                            }) {
-                                Text(subgoal.name)
-                                    .padding()
-                            }
-                            .buttonStyle(PlainButtonStyle())
+                    Picker(selection: $selectedSubgoalIndex, label: Text("Sub Goal")) {
+                        ForEach(0..<selectedGoal.subgoals.count, id: \.self) { index in
+                            Text(selectedGoal.subgoals[index].name)
                         }
                     }
-                    .frame(maxHeight: 150)
-                    .background(Color.gray.opacity(0.2)) // Styled background
+                    .pickerStyle(SegmentedPickerStyle())
+                    .background(Color.gray.opacity(0.2))
+                    .padding(.bottom, 20)
                 }
 
                 Button(action: {
                     guard let selectedGoal = selectedGoal else {
-                        // Handle the case where no goal is selected
                         return
                     }
 
                     guard let selectedSubgoal = selectedSubgoal else {
-                        // Handle the case where no subgoal is selected
                         return
                     }
 
@@ -122,14 +109,14 @@ struct CreatePostView: View {
                         print("Post added successfully!")
                     } else {
                         print("User is not logged in.")
-                    } 
+                    }
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Share")
                 }
                 .padding()
             }
-            .padding(.horizontal) // Added horizontal padding
+            .padding(.horizontal)
 
             Spacer()
         }
