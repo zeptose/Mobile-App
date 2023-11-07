@@ -10,6 +10,10 @@ struct ContentView: View {
     @State private var isLoggingIn = true
     @State private var selectedTab = 4 // Assuming "Profile" is the 5th tab (index 4)
     @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var userController: UserController
+    @EnvironmentObject var postController: PostController
+    @EnvironmentObject var goalController: GoalController
+    @EnvironmentObject var cameraController: CameraController
   
     var body: some View {
         NavigationView {
@@ -49,7 +53,12 @@ struct ContentView: View {
             }
           } else {
               AppView()
-                .environment(\.font, Font.custom("Lato-Regular", size: 16))
+              .environmentObject(userController)
+              .environmentObject(postController)
+              .environmentObject(goalController)
+              .environmentObject(viewModel)
+              .environmentObject(cameraController)
+              .environment(\.font, Font.custom("Lato-Regular", size: 16))
                   
           }
         }
