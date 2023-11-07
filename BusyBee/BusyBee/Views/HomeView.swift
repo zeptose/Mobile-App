@@ -12,72 +12,21 @@ struct HomeView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     var user: User?
 
-    var body: some View {
-        if let currUser = user {
-            let allPosts = postController.getFeedPosts(currUser: currUser)
-
-            VStack {
-                Spacer()
-                Text("BusyBee")
-                
-                List {
-                    ForEach(allPosts) { post in
-                        FeedItemView(userId: post.userId, post: post)
-                          .multilineTextAlignment(.leading)
-                    }
-                }
-            }
-        }
-    }
-}
-
-struct FeedItemView: View {
-    var userId: String
-    var post: Post
-    @EnvironmentObject var postController: PostController
-    @EnvironmentObject var userController: UserController
-    @EnvironmentObject var goalController: GoalController
-    var body: some View {
-      if let feedUser = userController.getUserFromId(userId: userId){
+  var body: some View {
+      if let currUser = user {
+        let allPosts = postController.getFeedPosts(currUser: currUser)
+        
         VStack {
-          // Profile Picture and Username
-          HStack {
-            Image("profilePic") // Replace with user's profile image
-              .resizable()
-              .aspectRatio(contentMode: .fit)
-              .frame(width: 50, height: 50, alignment: .leading)
-              .clipShape(Circle())
-            
-            Text(feedUser.username)
-              .frame(maxWidth: .infinity, alignment: .leading)
-
-          }
+          Spacer()
+          Text("BusyBee")
           
-          // Goal and Progress
-          if let feedGoal = goalController.getGoalFromId(goalId: post.goalId){
-            let percentage = CGFloat(feedGoal.progress)/CGFloat(feedGoal.frequency)
-            let progressBarMax = UIScreen.main.bounds.width - 50
-            Text(feedGoal.name)
-              .font(.subheadline)
-              .frame(maxWidth: .infinity, alignment: .leading)
-              .padding(.leading, 10)
-            
-            ZStack(alignment: .leading) {
-              Capsule().frame(width: progressBarMax)
-                .foregroundColor(Color.gray)
-              Capsule().frame(width: progressBarMax * percentage)
-                .foregroundColor(Color.yellow)
-            }.frame(height: 20)
+          List {
+            ForEach(allPosts) { post in
+              FeedItemView(userId: post.userId, post: post)
+                .multilineTextAlignment(.leading)
+            }
           }
-          
-          // Photo
-          Image(uiImage: postController.getImageFromURL(url: post.photo))
-            .resizable()
-            .scaledToFill()
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-            .clipped()
         }
-        .padding()
       }
     }
 }
