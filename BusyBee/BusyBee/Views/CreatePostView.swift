@@ -7,6 +7,7 @@ struct CreatePostView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var goalController: GoalController
+    @EnvironmentObject var postController: PostController
     @State private var uploadedImageURL: String = ""
     @State private var selectedGoalIndex: Int = 0
     @State private var selectedSubgoalIndex: Int = 0
@@ -93,10 +94,9 @@ struct CreatePostView: View {
                         return
                     }
                     
-                    uploadedImageURL = PostController().uploadPhoto(uiImage)
-                    isShareButtonPressed = true
+                    uploadedImageURL = postController.uploadPhoto(uiImage)
                     if let currentUser = viewModel.currentUser {
-                        PostController().addPost(
+                      postController.addPost(
                             currentUser: currentUser,
                             goal: selectedGoal,
                             caption: caption,
