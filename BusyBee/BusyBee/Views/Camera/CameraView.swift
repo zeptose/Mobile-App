@@ -27,7 +27,7 @@ struct CameraView: View {
                     .ignoresSafeArea(.all, edges: .all)
                 VStack {
                     HStack {
-                        NavigationLink(destination: AppView()) {
+                      NavigationLink(destination: AppView(selectedTab : 4)) {
                             Image(systemName: "xmark")
                                 .foregroundColor(.white)
                                 .padding()
@@ -46,6 +46,7 @@ struct CameraView: View {
         }
         .onAppear {
             camera.start()
+            camera.capturedImage = nil
         }
     }
 }

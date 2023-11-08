@@ -8,10 +8,9 @@ struct AppView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var cameraController : CameraController
   
-    @State private var selectedTab = 4
-    @State private var isShowingCamera = false
+    @State var selectedTab: Int
+    @State var navigateToHome = false
     
-
     var body: some View {
         TabView(selection: $selectedTab) {
             HomeView(user: viewModel.currentUser)
@@ -48,17 +47,10 @@ struct AppView: View {
                     .padding()
                 }
                 .tag(4)
-        }.navigationBarTitleDisplayMode(.inline)
-//            .environmentObject(userController)
-//            .environmentObject(goalController)
-//            .environmentObject(postController)
-            .navigationBarBackButtonHidden(true)
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+
     }
 }
 
-
-struct AppView_Previews: PreviewProvider {
-    static var previews: some View {
-        AppView()
-    }
-}

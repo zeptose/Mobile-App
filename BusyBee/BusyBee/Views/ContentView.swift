@@ -52,7 +52,7 @@ struct ContentView: View {
                 }
             }
           } else {
-              AppView()
+            AppView(selectedTab: 4)
               .environmentObject(userController)
               .environmentObject(postController)
               .environmentObject(goalController)
