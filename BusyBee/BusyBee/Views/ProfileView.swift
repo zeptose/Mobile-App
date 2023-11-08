@@ -15,6 +15,10 @@ struct ProfileView: View {
     @State var displayedCurrentGoals: [Goal] = []
     @State private var showCurrentGoals = true
     var user: User?
+  
+  let customMaroon = Color(UIColor(hex: "#992409"))
+
+
 
     var body: some View {
         if let profile = user {
@@ -28,17 +32,18 @@ struct ProfileView: View {
                         }) {
                             Image(systemName: "arrow.left")
                         }
-                        .padding().padding().padding()
+                        .padding()
 
                         Spacer()
 
-                        Button(action: {
-                            print("Settings button tapped")
-                        }) {
-                            Image(systemName: "gear")
-                        }
-                        .padding()
-                    }
+                      Button("Logout") {
+                          Task {
+                              viewModel.signOut()
+                          }
+                      }.padding()
+                      
+                      
+                    }.padding(.top, 35)
 
                     Image("profilePic")
                         .resizable()
@@ -57,47 +62,42 @@ struct ProfileView: View {
                             .padding()
                     }
 
-                    Spacer()
-
-                    Button("Logout") {
-                        Task {
-                            viewModel.signOut()
-                        }
-                    }
 
                     if profile == viewModel.currentUser {
                         NavigationLink(destination: AddGoalView(goalController: goalController, user: profile)) {
-                            Text("Add Goal")
+                          Text("Add Goal")
+                            .font(.system(size: 14))
+                            .foregroundColor(.white)
+                            .padding(5)
+                            .frame(width: UIScreen.main.bounds.width * 0.3)
+                            .background(customMaroon)
+                            .cornerRadius(100)
                         }
-                        .padding()
                     }
 
                     VStack {
                         HStack {
                             Spacer()
 
-                            Button(action: {
-                                showCurrentGoals = true
-                            }) {
-                                Text("Current Goals")
-                                    .padding()
-                                    .foregroundColor(.white)
-                                    .background(Color.yellow)
-                                    .cornerRadius(8)
+                          TabBarButton(text: "Current Goals", isSelected: showCurrentGoals) {
+                            withAnimation {
+                              showCurrentGoals = true
+                            }
+                          }
+                          
+                          Spacer()
+                          TabBarButton(text: "Past Goals", isSelected: showCurrentGoals == false) {
+                            withAnimation {
+                              showCurrentGoals = false
                             }
 
-                            Button(action: {
-                                showCurrentGoals = false
-                            }) {
-                                Text("Past Goals")
-                                    .padding()
-                                    .foregroundColor(.white)
-                                    .background(Color.yellow)
-                                    .cornerRadius(8)
-                            }
+                          }
 
                             Spacer()
                         }
+                        .overlay(Rectangle().frame(width: nil, height: 2, alignment: .bottom).foregroundColor(Color.gray), alignment: .bottom)
+
+
 
                         ScrollView {
                             VStack {
@@ -189,8 +189,29 @@ struct ProfileView: View {
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
+struct TabBarButton: View {
+    var text: String
+    var isSelected: Bool
+    var action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Text(text)
+                .padding(10)
+                .foregroundColor(isSelected ? .yellow : .black)
+        }
+        .overlay(
+            RoundedRectangle(cornerRadius: 2)
+                .frame(height: 4)
+                .padding(.top, 30)
+                .foregroundColor(isSelected ? .yellow : .clear)
+                .animation(.easeInOut(duration: 0.2))
+        )
     }
 }
+
+//struct ProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProfileView()
+//    }
+//}
