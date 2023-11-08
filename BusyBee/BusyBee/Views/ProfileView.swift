@@ -74,11 +74,12 @@ struct ProfileView: View {
                         }
                
                       NavigationLink(destination: EditProfileView(user: updatedCurrentUser!, userController: userController)) {
-                            Text("Edit Profile")
+
+                        Text("Edit Profile")
                       }.padding()
-                        NavigationLink(destination: AddGoalView(goalController: goalController, user: updatedCurrentUser!)) {
-                            Text("Add Goal")
-                        }
+                      NavigationLink(destination: AddGoalView(goalController: goalController, user: updatedCurrentUser!)) {
+                        Text("Add Goal" )
+                      }
                         .padding()
                     } else if userController.isFollowing(currentUser: updatedCurrentUser!, otherUser: updatedUser!) {
 //                      Button(action: {

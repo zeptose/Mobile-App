@@ -26,6 +26,7 @@ class GoalController: ObservableObject {
       })
     }
   
+
     func addnewGoal(currentUser: User, name: String, desc: String?, dueDate: Date, frequency: Int, subGoalStr: [String]) {
 //        let id = UUID().uuidString
         var subgoalsForGoal : [Subgoal] = []
@@ -49,6 +50,7 @@ class GoalController: ObservableObject {
         var user = currentUser
         user.goals.append(newGoal)
         userRepository.update(user)
+
     }
   
     func getCurrentGoals(currentUser: User) -> [Goal] {

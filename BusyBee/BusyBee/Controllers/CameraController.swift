@@ -14,8 +14,8 @@ class CameraController: NSObject, ObservableObject, AVCapturePhotoCaptureDelegat
   @Published var flashMode: AVCaptureDevice.FlashMode = .off
   @Published var capturedImage: UIImage?
   @Published var alert = false
-//  @Published var photos = []
-//  @Published var images : [UIImage] = []
+  @Published var photos = []
+  @Published var images : [UIImage] = []
   
   var backCamera : AVCaptureDevice!
   var frontCamera : AVCaptureDevice!
@@ -198,10 +198,10 @@ class CameraController: NSObject, ObservableObject, AVCapturePhotoCaptureDelegat
       if let imageData = photo.fileDataRepresentation(), let image = UIImage(data: imageData) {
           capturedImage = image
 
-//          DispatchQueue.main.async {
-//              self.photos.append(imageData)
-////              self.images.append(image)
-//          }
+          DispatchQueue.main.async {
+              self.photos.append(imageData)
+              self.images.append(image)
+          }
 
           UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
       }
