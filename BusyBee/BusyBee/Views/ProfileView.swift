@@ -16,12 +16,14 @@ struct ProfileView: View {
     @State private var showCurrentGoals = true
     @State private var isEditingProfile = false
     var user: User?
+    @State var curr: User?
 
     var body: some View {
       if let profile = user {
             let currentGoals = goalController.getCurrentGoals(currentUser: profile)
             let updatedUser = userController.getUserFromId(userId: profile.id)
-           
+            let updatedCurrentUser = userController.getUserFromId(userId: viewModel.currentUser!.id)
+            let currentFollows = updatedCurrentUser!.follows
             ZStack {
                 VStack {
                     HStack {
@@ -77,6 +79,25 @@ struct ProfileView: View {
                             Text("Add Goal")
                         }
                         .padding()
+                    } else if userController.isFollowing(currentUser: updatedCurrentUser!, otherUser: profile) {
+//                      Button(action: {
+//                        userController.toggleFriendStatus(currentUser: viewModel.currentUser!, friend: profile)
+//                      }) {
+//                        Text(userController.isFriend ? "Unfriend" : "Add Friend")
+//                      }
+                      Button(action: {
+                        userController.unfollowFriend(currentUser: updatedCurrentUser!, unfollow: profile)
+                      }) {
+                        Text("Unfollow")
+                      }
+
+                    } else {
+                      
+                      Button(action: {
+                        userController.followFriend(currentUser: updatedCurrentUser!, follow: profile)
+                      }) {
+                        Text("Follow")
+                      }
                     }
 
                     VStack {
