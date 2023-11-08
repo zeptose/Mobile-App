@@ -18,7 +18,7 @@ class PostController: ObservableObject {
     @Published var images: [(String, UIImage)] = []
     @Published var posts: [Post] = []
     @Published var userController: UserController = UserController()
-  
+    @Published var goalController: GoalController = GoalController()
   
   init() {
     self.postRepository.get({ (posts) -> Void in
@@ -33,7 +33,6 @@ class PostController: ObservableObject {
     
     func addPost(currentUser: User, goal: Goal, caption: String, photo: String, subgoalId: String?, comments: [String], reactions: Int) {
         let timePosted = Date()
-        
         let newPost = Post(goalId: goal.id ?? "",
                            userId: currentUser.id,
                            caption: caption,
@@ -46,7 +45,7 @@ class PostController: ObservableObject {
         postRepository.create(newPost)
         
       if let sgId = subgoalId {
-        if let subgoalObject = goal.subgoals.first(where: { $0.id == sgId }) {
+        if let subgoalObject = goalController.getSubgoalFromId(subgoalId: sgId) {
             var sgobject = subgoalObject
             sgobject.isCompleted = true
             subgoalRepository.update(sgobject)
@@ -110,6 +109,11 @@ class PostController: ObservableObject {
 //    print("feed posts: \(feedPosts)")
     let flatFeedPosts = feedPosts.flatMap{ $0 }
     return flatFeedPosts.sorted { $0.timePosted >= $1.timePosted }
+  }
+  
+  func getPostsForGoal(goalId: String) -> [Post] {
+    let posts = self.posts.filter { String($0.goalId) == String(goalId)  }
+    return posts
   }
   
   

@@ -73,10 +73,10 @@ struct ProfileView: View {
                             }
                         }
                
-                      NavigationLink(destination: EditProfileView(user: updatedUser!, userController: userController)) {
+                      NavigationLink(destination: EditProfileView(user: updatedCurrentUser!, userController: userController)) {
                             Text("Edit Profile")
                       }.padding()
-                        NavigationLink(destination: AddGoalView(goalController: goalController, user: updatedUser!)) {
+                        NavigationLink(destination: AddGoalView(goalController: goalController, user: updatedCurrentUser!)) {
                             Text("Add Goal")
                         }
                         .padding()
