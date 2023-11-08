@@ -16,14 +16,14 @@ struct ProfileView: View {
     @State private var showCurrentGoals = true
     @State private var isEditingProfile = false
     var user: User?
-    @State var curr: User?
+//    @State var curr: User?
 
     var body: some View {
       if let profile = user {
             let currentGoals = goalController.getCurrentGoals(currentUser: profile)
             let updatedUser = userController.getUserFromId(userId: profile.id)
             let updatedCurrentUser = userController.getUserFromId(userId: viewModel.currentUser!.id)
-            let currentFollows = updatedCurrentUser!.follows
+//            let currentFollows = updatedCurrentUser!.follows
             ZStack {
                 VStack {
                     HStack {
