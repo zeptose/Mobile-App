@@ -83,6 +83,7 @@ struct CreatePostView: View {
                         .foregroundColor(.blue)
                         .padding(.bottom, 4)
 
+                  
                     Picker(selection: $selectedSubgoalIndex, label: Text("Sub Goal")) {
                         ForEach(0..<selectedGoal.subgoals.count, id: \.self) { index in
                             Text(selectedGoal.subgoals[index].name)
@@ -117,7 +118,7 @@ struct CreatePostView: View {
                         print("Post added successfully!")
                         navigateToHome = true
                         presentationMode.wrappedValue.dismiss()
-
+  
                     } else {
                         print("User is not logged in.")
                     }
@@ -141,10 +142,7 @@ struct CreatePostView: View {
                 }
                 .opacity(0)
                 .frame(width: 0, height: 0)
-
-        }
-        .onDisappear {
-            camera.capturedImage = nil
+            
         }
     }
 }
