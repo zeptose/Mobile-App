@@ -65,28 +65,29 @@ struct ProfileView: View {
 
     
 
-                    if updatedUser == viewModel.currentUser {
+                    if updatedUser ==
+                        updatedCurrentUser {
                         Button("Logout") {
                             Task {
                                 viewModel.signOut()
                             }
                         }
                
-                      NavigationLink(destination: EditProfileView(user: profile, userController: userController)) {
+                      NavigationLink(destination: EditProfileView(user: updatedUser!, userController: userController)) {
                             Text("Edit Profile")
                       }.padding()
-                        NavigationLink(destination: AddGoalView(goalController: goalController, user: profile)) {
+                        NavigationLink(destination: AddGoalView(goalController: goalController, user: updatedUser!)) {
                             Text("Add Goal")
                         }
                         .padding()
-                    } else if userController.isFollowing(currentUser: updatedCurrentUser!, otherUser: profile) {
+                    } else if userController.isFollowing(currentUser: updatedCurrentUser!, otherUser: updatedUser!) {
 //                      Button(action: {
 //                        userController.toggleFriendStatus(currentUser: viewModel.currentUser!, friend: profile)
 //                      }) {
 //                        Text(userController.isFriend ? "Unfriend" : "Add Friend")
 //                      }
                       Button(action: {
-                        userController.unfollowFriend(currentUser: updatedCurrentUser!, unfollow: profile)
+                        userController.unfollowFriend(currentUser: updatedCurrentUser!, unfollow: updatedUser!)
                       }) {
                         Text("Unfollow")
                       }
@@ -94,7 +95,7 @@ struct ProfileView: View {
                     } else {
                       
                       Button(action: {
-                        userController.followFriend(currentUser: updatedCurrentUser!, follow: profile)
+                        userController.followFriend(currentUser: updatedCurrentUser!, follow: updatedUser!)
                       }) {
                         Text("Follow")
                       }
@@ -162,7 +163,7 @@ struct ProfileView: View {
                                         }
                                     }
                                 } else {
-                                    let pastGoals = goalController.getPastGoals(currentUser: profile)
+                                    let pastGoals = goalController.getPastGoals(currentUser: updatedUser!)
                                     let dateFormatter: DateFormatter = {
                                         let formatter = DateFormatter()
                                         formatter.dateFormat = "yyyy-MM-dd"
