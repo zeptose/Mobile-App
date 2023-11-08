@@ -31,4 +31,11 @@ class UserController: ObservableObject {
         return nil
       }
     }
+    
+  func updateProfile(user: User, username: String, bio: String)  {
+    var temp = user
+    temp.bio = bio
+    temp.username = username
+    userRepository.update(temp)
+  }
 }

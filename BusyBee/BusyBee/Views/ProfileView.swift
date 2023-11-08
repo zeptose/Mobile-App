@@ -14,12 +14,14 @@ struct ProfileView: View {
     let customYellow = Color(UIColor(hex: "#FFD111"))
     @State var displayedCurrentGoals: [Goal] = []
     @State private var showCurrentGoals = true
+    @State private var isEditingProfile = false
     var user: User?
 
     var body: some View {
-        if let profile = user {
+      if let profile = user {
             let currentGoals = goalController.getCurrentGoals(currentUser: profile)
-
+            let updatedUser = userController.getUserFromId(userId: profile.id)
+           
             ZStack {
                 VStack {
                     HStack {
@@ -47,25 +49,30 @@ struct ProfileView: View {
                         .clipShape(Circle())
                         .overlay(Circle().stroke(customYellow, lineWidth: 10))
 
-                    Text(profile.username)
+                  Text(updatedUser!.username)
                         .font(.headline)
                         .padding()
-
-                    if let bio = profile.bio {
+                    
+                  if let bio = updatedUser?.bio {
                         Text(bio)
                             .font(.caption)
                             .padding()
                     }
-
+                  
                     Spacer()
 
-                    Button("Logout") {
-                        Task {
-                            viewModel.signOut()
-                        }
-                    }
+    
 
-                    if profile == viewModel.currentUser {
+                    if updatedUser == viewModel.currentUser {
+                        Button("Logout") {
+                            Task {
+                                viewModel.signOut()
+                            }
+                        }
+               
+                      NavigationLink(destination: EditProfileView(user: profile, userController: userController)) {
+                            Text("Edit Profile")
+                      }.padding()
                         NavigationLink(destination: AddGoalView(goalController: goalController, user: profile)) {
                             Text("Add Goal")
                         }
@@ -189,10 +196,10 @@ struct ProfileView: View {
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
-    }
-}
+//struct ProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProfileView()
+//    }
+//}
 
 
