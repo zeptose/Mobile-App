@@ -26,30 +26,32 @@ class GoalController: ObservableObject {
       })
     }
   
-  func addnewGoal(currentUser: User, name: String, desc: String?, dueDate: Date, frequency: Int, subGoalStr: [String]) {
-  //        let id = UUID().uuidString
-    var subgoalsForGoal : [Subgoal] = []
-    for subgoal in subGoalStr {
-      if !subgoal.isEmpty {
-        let newSub = Subgoal(name: subgoal,
-                             isCompleted: false)
-        subgoalRepository.create(newSub)
-        subgoals.append(newSub)
-        subgoalsForGoal.append(newSub)
-      }
+
+    func addnewGoal(currentUser: User, name: String, desc: String?, dueDate: Date, frequency: Int, subGoalStr: [String]) {
+//        let id = UUID().uuidString
+        var subgoalsForGoal : [Subgoal] = []
+        for subgoal in subGoalStr {
+            if !subgoal.isEmpty {
+                let newSub = Subgoal(name: subgoal,
+                                     isCompleted: false)
+                subgoalRepository.create(newSub)
+                subgoals.append(newSub)
+                subgoalsForGoal.append(newSub)
+            }
+        }
+        let newGoal = Goal(name: name,
+                           description: desc,
+                           dueDate: dueDate,
+                           frequency: frequency,
+                           subgoals: subgoalsForGoal,
+                           userId: currentUser.id,
+                           progress: 0)
+        goalRepository.create(newGoal)
+        var user = currentUser
+        user.goals.append(newGoal)
+        userRepository.update(user)
+
     }
-    let newGoal = Goal(name: name,
-                          description: desc,
-                          dueDate: dueDate,
-                          frequency: frequency,
-                          subgoals: subgoalsForGoal,
-                          userId: currentUser.id,
-                          progress: 0)
-    goalRepository.create(newGoal)
-    var user = currentUser
-    user.goals.append(newGoal)
-    userRepository.update(user)
-  }
   
     func getCurrentGoals(currentUser: User) -> [Goal] {
       let usersGoals = self.goals.filter{ String($0.userId) == String(currentUser.id) }
@@ -64,10 +66,19 @@ class GoalController: ObservableObject {
         let curr = usersGoals.filter { today > $0.dueDate }
         return curr.sorted { $0.dueDate >= $1.dueDate}
     }
+  
     func getSubgoals(currentUser: User, goal: Goal) -> [Subgoal] {
         return goal.subgoals
     }
     
+    func getSubgoalFromId(subgoalId: String) -> Subgoal?  {
+        let temp = self.subgoals.first( where: {$0.id == subgoalId} )
+        if let ourSubgoal = temp {
+          return ourSubgoal
+        } else {
+          return nil
+        }
+    }
   
     func getGoalFromId(goalId: String) -> Goal? {
       let temp = self.goals.first( where: {$0.id == goalId} )
@@ -77,15 +88,8 @@ class GoalController: ObservableObject {
         return nil
       }
     }
+
   
-    func getSubgoalFromId(subgoalId: String) -> Subgoal? {
-      let temp = self.subgoals.first( where: {$0.id == subgoalId} )
-      if let ourGoal = temp {
-        return ourGoal
-      } else {
-        return nil
-      }
-    }
 
     
 

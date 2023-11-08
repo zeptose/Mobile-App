@@ -12,8 +12,7 @@ import FirebaseFirestoreSwift
 class UserController: ObservableObject {
   @Published var userRepository: UserRepository = UserRepository()
   @Published var users: [User] = []
-//  @Published var follows: [Follow] = []
-//  @Published var isFriend: Bool = false
+
   
   init () {
     self.userRepository.get({(users) -> Void in
@@ -58,18 +57,5 @@ class UserController: ObservableObject {
           curr.follows.remove(at: ind!)
           userRepository.update(curr)
       }
-//      func toggleFriendStatus(currentUser: User, friend: User) {
-//        print("Current Following List: \(currentUser.follows)")
-//        print("toggling: \(friend.username)")
-//          if isFollowing(currentUser: currentUser, otherUser: friend) {
-//              print("Unfollowiing: \(friend.username)")
-//                  unfollowFriend(currentUser: currentUser, unfollow: friend)
-//              } else {
-//                print("Following: \(friend.username)")
-//                  followFriend(currentUser: currentUser, follow: friend)
-//              }
-//
-//              isFriend.toggle()
-//      }
 
 }
