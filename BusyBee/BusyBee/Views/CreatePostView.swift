@@ -117,7 +117,7 @@ struct CreatePostView: View {
                         print("Post added successfully!")
                         navigateToHome = true
                         presentationMode.wrappedValue.dismiss()
-  
+
                     } else {
                         print("User is not logged in.")
                     }
@@ -141,7 +141,10 @@ struct CreatePostView: View {
                 }
                 .opacity(0)
                 .frame(width: 0, height: 0)
-            
+
+        }
+        .onDisappear {
+            camera.capturedImage = nil
         }
     }
 }

@@ -14,6 +14,7 @@ struct CameraView: View {
     @State private var isPictureTaken = false
     @StateObject var viewModel = CameraViewModel()
     @EnvironmentObject var postController: PostController
+  
     
   
   
