@@ -86,7 +86,7 @@ struct SearchView: View {
                         set: { _ in self.selectedUser = nil }
                     ),
                     label: { EmptyView() }
-                )
+                ).navigationBarBackButtonHidden(true)
             )
         }
     }

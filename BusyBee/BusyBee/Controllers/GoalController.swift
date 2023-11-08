@@ -26,28 +26,30 @@ class GoalController: ObservableObject {
       })
     }
   
-    func addnewGoal(currentUser: User, name: String, desc: String?, dueDate: Date, frequency: Int, subGoalStr: [String]) {
-//        let id = UUID().uuidString
-        for subgoal in subGoalStr {
-            if !subgoal.isEmpty {
-                let newSub = Subgoal(name: subgoal,
-                                     isCompleted: false)
-                subgoalRepository.create(newSub)
-                subgoals.append(newSub)
-            }
-        }
-        let newGoal = Goal(name: name,
-                           description: desc,
-                           dueDate: dueDate,
-                           frequency: frequency,
-                           subgoals: subgoals,
-                           userId: currentUser.id,
-                           progress: 0)
-        goalRepository.create(newGoal)
-        var user = currentUser
-        user.goals.append(newGoal)
-        userRepository.update(user)
+  func addnewGoal(currentUser: User, name: String, desc: String?, dueDate: Date, frequency: Int, subGoalStr: [String]) {
+  //        let id = UUID().uuidString
+    var subgoalsForGoal : [Subgoal] = []
+    for subgoal in subGoalStr {
+      if !subgoal.isEmpty {
+        let newSub = Subgoal(name: subgoal,
+                             isCompleted: false)
+        subgoalRepository.create(newSub)
+        subgoals.append(newSub)
+        subgoalsForGoal.append(newSub)
+      }
     }
+    let newGoal = Goal(name: name,
+                          description: desc,
+                          dueDate: dueDate,
+                          frequency: frequency,
+                          subgoals: subgoalsForGoal,
+                          userId: currentUser.id,
+                          progress: 0)
+    goalRepository.create(newGoal)
+    var user = currentUser
+    user.goals.append(newGoal)
+    userRepository.update(user)
+  }
   
     func getCurrentGoals(currentUser: User) -> [Goal] {
       let usersGoals = self.goals.filter{ String($0.userId) == String(currentUser.id) }

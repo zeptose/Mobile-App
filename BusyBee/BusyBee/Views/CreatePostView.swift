@@ -83,6 +83,7 @@ struct CreatePostView: View {
                         .foregroundColor(.blue)
                         .padding(.bottom, 4)
 
+                  
                     Picker(selection: $selectedSubgoalIndex, label: Text("Sub Goal")) {
                         ForEach(0..<selectedGoal.subgoals.count, id: \.self) { index in
                             Text(selectedGoal.subgoals[index].name)

@@ -33,7 +33,7 @@ struct AppView: View {
                 }
                 .tag(2)
 
-            Text("Calendar")
+            CalendarView()
                 .tabItem {
                     Image(systemName: "calendar")
                     Text("Calendar")
