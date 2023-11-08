@@ -6,7 +6,7 @@ struct AppView: View {
     @EnvironmentObject var postController : PostController
     @EnvironmentObject var goalController: GoalController
     @EnvironmentObject var viewModel: AuthViewModel
-    @EnvironmentObject var cameraController : CameraController
+//    @EnvironmentObject var cameraController : CameraController
   
     @State private var selectedTab = 4
     @State private var isShowingCamera = false
@@ -27,12 +27,12 @@ struct AppView: View {
                 }
                 .tag(1)
 
-            CameraView()
-                .tabItem {
-                    Image(systemName: "camera")
-                    Text("Camera")
-                }
-                .tag(2)
+//            CameraView()
+//                .tabItem {
+//                    Image(systemName: "camera")
+//                    Text("Camera")
+//                }
+//                .tag(2)
 
             Text("Calendar")
                 .tabItem {

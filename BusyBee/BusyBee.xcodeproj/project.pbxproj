@@ -15,9 +15,7 @@
 		5995CEC42AF58983004C9158 /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5995CEC32AF58983004C9158 /* PostRepository.swift */; };
 		59A8027A2AF402DB00F69178 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A802792AF402DB00F69178 /* CalendarView.swift */; };
 		59A8027C2AF402ED00F69178 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A8027B2AF402ED00F69178 /* HomeView.swift */; };
-		59A802802AF4030100F69178 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A8027F2AF4030100F69178 /* CameraView.swift */; };
 		59A802822AF4034100F69178 /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A802812AF4034100F69178 /* ImageController.swift */; };
-		59A802842AF41EFD00F69178 /* CameraControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A802832AF41EFD00F69178 /* CameraControlsView.swift */; };
 		59A802862AF41F0A00F69178 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A802852AF41F0A00F69178 /* CameraController.swift */; };
 		59F546452AF591F6002C9079 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 59F546442AF591F6002C9079 /* FirebaseStorage */; };
 		F10BDA572AF2F31B00C44070 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F10BDA562AF2F31B00C44070 /* FirebaseAuth */; };
@@ -46,7 +44,8 @@
 		F1A512A42AF9F3CC00D3D3BE /* IndividualGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A512A32AF9F3CC00D3D3BE /* IndividualGoalView.swift */; };
 		F1A512A62AFA094700D3D3BE /* FeedItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A512A52AFA094700D3D3BE /* FeedItemView.swift */; };
 		F9908DB02AF4AEE000415845 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DAF2AF4AEE000415845 /* AddGoalView.swift */; };
-		F9908DB22AF8DAF400415845 /* IndividualGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DB12AF8DAF400415845 /* IndividualGoalView.swift */; };
+		F9908DB42AFB090300415845 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DB32AFB090300415845 /* CameraView.swift */; };
+		F9908DB62AFB092800415845 /* CameraControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DB52AFB092800415845 /* CameraControlsView.swift */; };
 		F9BE505A2AF4288900FF1C16 /* HexCodeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,9 +58,7 @@
 		5995CEC32AF58983004C9158 /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
 		59A802792AF402DB00F69178 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		59A8027B2AF402ED00F69178 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		59A8027F2AF4030100F69178 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		59A802812AF4034100F69178 /* ImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
-		59A802832AF41EFD00F69178 /* CameraControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControlsView.swift; sourceTree = "<group>"; };
 		59A802852AF41F0A00F69178 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		59DCD2022AF46CFD000FCC59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F1123C7A2AF7565D005C0588 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
@@ -88,7 +85,8 @@
 		F1A512A32AF9F3CC00D3D3BE /* IndividualGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualGoalView.swift; sourceTree = "<group>"; };
 		F1A512A52AFA094700D3D3BE /* FeedItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemView.swift; sourceTree = "<group>"; };
 		F9908DAF2AF4AEE000415845 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
-		F9908DB12AF8DAF400415845 /* IndividualGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualGoalView.swift; sourceTree = "<group>"; };
+		F9908DB32AFB090300415845 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		F9908DB52AFB092800415845 /* CameraControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControlsView.swift; sourceTree = "<group>"; };
 		F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCodeConverter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,9 +192,7 @@
 			children = (
 				F1A512A22AF9F2E800D3D3BE /* Camera */,
 				F15DB2302AE8B7370031FD75 /* ContentView.swift */,
-				5995CEBD2AF56AEC004C9158 /* CreatePostView.swift */,
 				5980FC3C2AF1BF14003053BB /* RegistrationView.swift */,
-				F9908DAF2AF4AEE000415845 /* AddGoalView.swift */,
 				F13650352AF34C3200950A0F /* ProfileView.swift */,
 				F13650332AF3487C00950A0F /* LoginView.swift */,
 				F13650372AF4202C00950A0F /* SearchView.swift */,
@@ -204,8 +200,6 @@
 				F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */,
 				59A802792AF402DB00F69178 /* CalendarView.swift */,
 				59A8027B2AF402ED00F69178 /* HomeView.swift */,
-				59A8027F2AF4030100F69178 /* CameraView.swift */,
-				59A802832AF41EFD00F69178 /* CameraControlsView.swift */,
 				5995CEBD2AF56AEC004C9158 /* CreatePostView.swift */,
 				F9908DAF2AF4AEE000415845 /* AddGoalView.swift */,
 				F1A512A32AF9F3CC00D3D3BE /* IndividualGoalView.swift */,
@@ -229,8 +223,8 @@
 		F1A512A22AF9F2E800D3D3BE /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				59A802832AF41EFD00F69178 /* CameraControlsView.swift */,
-				59A8027F2AF4030100F69178 /* CameraView.swift */,
+				F9908DB32AFB090300415845 /* CameraView.swift */,
+				F9908DB52AFB092800415845 /* CameraControlsView.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -322,11 +316,12 @@
 				F15DB2502AE8EE860031FD75 /* GoalRepository.swift in Sources */,
 				F1A512A42AF9F3CC00D3D3BE /* IndividualGoalView.swift in Sources */,
 				F9908DB02AF4AEE000415845 /* AddGoalView.swift in Sources */,
-				59A802802AF4030100F69178 /* CameraView.swift in Sources */,
 				F13650322AF3405500950A0F /* GoalController.swift in Sources */,
+				F9908DB42AFB090300415845 /* CameraView.swift in Sources */,
 				59A8027A2AF402DB00F69178 /* CalendarView.swift in Sources */,
 				F13650342AF3487C00950A0F /* LoginView.swift in Sources */,
 				5980FC3F2AF1C047003053BB /* AppView.swift in Sources */,
+				F9908DB62AFB092800415845 /* CameraControlsView.swift in Sources */,
 				F1A512A62AFA094700D3D3BE /* FeedItemView.swift in Sources */,
 				F15DB2422AE8B9D10031FD75 /* Goal.swift in Sources */,
 				F136503A2AF4218B00950A0F /* SearchViewModel.swift in Sources */,
@@ -338,7 +333,6 @@
 				F1280C872AF1CDC200B09570 /* UserController.swift in Sources */,
 				F15DB2402AE8B9B80031FD75 /* User.swift in Sources */,
 				59A802822AF4034100F69178 /* ImageController.swift in Sources */,
-				59A802842AF41EFD00F69178 /* CameraControlsView.swift in Sources */,
 				F1280C832AF1C61100B09570 /* Subgoal.swift in Sources */,
 				F15DB22F2AE8B7370031FD75 /* BusyBeeApp.swift in Sources */,
 				F13650362AF34C3200950A0F /* ProfileView.swift in Sources */,

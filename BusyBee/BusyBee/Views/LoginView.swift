@@ -14,6 +14,7 @@ struct LoginFormView: View {
     @State private var email = ""
     @Binding var selectedTab: Int
     @EnvironmentObject var viewModel: AuthViewModel
+
     
     var body: some View {
         VStack {
