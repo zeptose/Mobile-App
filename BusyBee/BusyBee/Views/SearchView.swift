@@ -76,6 +76,7 @@ struct SearchView: View {
                 }
                 .listStyle(PlainListStyle())
                 .navigationBarTitle("")
+
             }
             .onAppear(perform: loadData)
             .background(
