@@ -109,15 +109,9 @@ class PostController: ObservableObject {
   }
   
   func getPostsForGoal(goalId: String) -> [Post] {
-<<<<<<< HEAD
-      let posts = self.posts.filter { String($0.goalId) == String(goalId)  }
-      return posts
-    }
-=======
     let posts = self.posts.filter { String($0.goalId) == String(goalId)  }
     return posts
   }
->>>>>>> 8c864946c23ff38e52410b736eab0af96edd99e7
   
   
 }
