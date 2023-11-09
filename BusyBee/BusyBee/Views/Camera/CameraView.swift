@@ -21,10 +21,6 @@ struct CameraView: View {
     var body: some View {
         ZStack {
           if let capturedImage = camera.capturedImage {
-<<<<<<< HEAD
-              CreatePostView(uiImage: capturedImage).environmentObject(postController).navigationBarBackButtonHidden(true)}
-          else {
-=======
             CreatePostView(uiImage: capturedImage)
                   .environmentObject(postController)
                   .navigationBarBackButtonHidden(true)
@@ -32,7 +28,6 @@ struct CameraView: View {
                       presentationMode.wrappedValue.dismiss()
                   }
           } else {
->>>>>>> 8c864946c23ff38e52410b736eab0af96edd99e7
                 CameraPreview(camera: camera)
                     .ignoresSafeArea(.all, edges: .all)
                 VStack {
