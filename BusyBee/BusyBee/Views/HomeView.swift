@@ -10,23 +10,25 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var postController: PostController
     @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var userController: UserController
     var user: User?
 
-  var body: some View {
-      if let currUser = user {
-        let allPosts = postController.getFeedPosts(currUser: currUser)
-        
-        VStack {
-          Spacer()
-          Text("BusyBee")
+    var body: some View {
+        if let temp = user {
+          let currUser = userController.getUserFromId(userId: temp.id)
+          let allPosts = postController.getFeedPosts(currUser: currUser!)
           
-          List {
-            ForEach(allPosts) { post in
-              FeedItemView(userId: post.userId, post: post)
-                .multilineTextAlignment(.leading)
+          VStack {
+            Spacer()
+            Text("BusyBee")
+            
+            List {
+              ForEach(allPosts) { post in
+                FeedItemView(userId: post.userId, post: post)
+                  .multilineTextAlignment(.leading)
+              }
             }
           }
-        }
       }
     }
 }
