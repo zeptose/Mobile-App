@@ -56,8 +56,8 @@ class GoalController: ObservableObject {
       let usersGoals = self.goals.filter{ String($0.userId) == String(currentUser.id) }
       let today = Date()
       let curr = usersGoals.filter { today <= $0.dueDate && $0.progress < $0.frequency }
-      print("currentUser: \(currentUser)" )
-      print("currentGoals: \(curr)")
+//      print("currentUser: \(currentUser)" )
+//      print("currentGoals: \(curr)")
       return curr.sorted { $0.dueDate >= $1.dueDate}
       
     }

@@ -13,7 +13,7 @@ import SwiftUI
 struct CreatePostView: View {
     var uiImage: UIImage
     @State private var caption: String = ""
-//    @EnvironmentObject var camera: CameraController
+    @EnvironmentObject var camera: CameraController
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var goalController: GoalController
@@ -22,7 +22,7 @@ struct CreatePostView: View {
     @State private var selectedGoalIndex: Int = 0
     @State private var selectedSubgoalIndex: Int = -1
     @State private var navigateToHome = false
-    var subgoalidval = "-1"
+   
   
   
 
@@ -106,11 +106,12 @@ struct CreatePostView: View {
                         return
                     }
 
+                  var subgoalidval: String? = nil
                   if let selectedSubgoal = selectedSubgoal {
-                    let subgoalidval = selectedGoal.id
+                    subgoalidval = selectedSubgoal.id
                   }
                   else{
-                    let subgoalidval = "-1"
+                    subgoalidval = "-1"
                   }
                     
                     uploadedImageURL = postController.uploadPhoto(uiImage)
