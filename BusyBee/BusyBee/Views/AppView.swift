@@ -26,7 +26,7 @@ struct AppView: View {
                 }
                 .tag(1)
 
-            CameraView()
+          CameraView()
                 .tabItem {
                     Image(systemName: "camera")
                     Text("Camera")
