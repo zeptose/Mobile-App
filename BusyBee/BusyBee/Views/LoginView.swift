@@ -14,37 +14,77 @@ struct LoginFormView: View {
     @State private var email = ""
     @Binding var selectedTab: Int
     @EnvironmentObject var viewModel: AuthViewModel
-    
-    var body: some View {
-        VStack {
-            Text("BusyBee")
-                .font(.largeTitle)
-                .foregroundColor(Color.yellow)
-                .padding(.top, 20)
-            Spacer()
+    let customMaroon = Color(UIColor(hex: "#992409"))
 
-              VStack {
-                    TextField("Email", text: $email)
-                      .padding()
-                    
-                    SecureField("Password", text: $password)
-                        .padding()
-                  
-                    Button("Submit") {
-                        isLoggingIn.toggle()
-                        selectedTab = 4
-                      Task {
-                        try await viewModel.signIn(withEmail: email,
-                                                   password: password)
-                      }
-                    }
-                    .padding()
-//                    .disabled(!formIsValid)
-                    .opacity(formIsValid ? 1.0 : 0.5)
-                }
+
+    
+  var body: some View {
+    ZStack {
+      Image("HiveGraphic")
+        .resizable()
+        .aspectRatio(contentMode: .fit)
+        .frame(width: UIScreen.main.bounds.width * 0.5)
+        .position(x: UIScreen.main.bounds.width * 0.9, y: UIScreen.main.bounds.height * 0)
+      
+      Image("BeeGraphic")
+        .resizable()
+        .aspectRatio(contentMode: .fit)
+        .frame(width: UIScreen.main.bounds.width * 0.4)
+        .position(x: UIScreen.main.bounds.width * 0.7, y: UIScreen.main.bounds.height * 0.025)
+      
+      VStack {
+        Text("BusyBee")
+          .font(.system(size: 65, weight: .bold))
+          .foregroundColor(customMaroon)
+          .padding(.top, 40)
+
+        
+        Text("Login to your accont and\ncontinue your goal-achieving journey")
+          .font(.system(size: 18))
+          .foregroundColor(Color.gray)
+          .multilineTextAlignment(.center)
+          .padding(.bottom, 20)
+        
+        VStack(alignment: .leading, spacing: 30) {
+          TextField("Email", text: $email)
+            .padding()
+            .overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(Color.gray))
+          
+          SecureField("Password", text: $password)
+            .padding()
+            .overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(Color.gray))
+          
+          HStack{
+            
+            Spacer()
+            
+            Button("Submit") {
+              isLoggingIn.toggle()
+              selectedTab = 4
+              Task {
+                try await viewModel.signIn(withEmail: email,
+                                           password: password)
+              }
+            }
+            .font(.system(size: 16))
+            .foregroundColor(.white)
+            .padding()
+            .frame(width: UIScreen.main.bounds.width * 0.5)
+            .background(customMaroon)
+            .cornerRadius(100)
+            //                    .disabled(!formIsValid)
+            .opacity(formIsValid ? 1.0 : 0.5)
+            
+            Spacer()
+          }
+          
+          Spacer()
+
         }
-        .padding()
+      }
+      .padding()
     }
+  }
 }
 
 extension LoginFormView: AuthenticationFormProtocol {

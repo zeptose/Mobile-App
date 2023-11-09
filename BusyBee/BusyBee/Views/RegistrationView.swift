@@ -17,58 +17,88 @@ struct RegistrationFormView: View {
     @State private var email = ""
     @Binding var selectedTab: Int
     @EnvironmentObject var viewModel: AuthViewModel
+  let customMaroon = Color(UIColor(hex: "#992409"))
+
     
-    var body: some View {
-        VStack {
-            Text("BusyBee")
-                .font(.largeTitle)
-                .foregroundColor(Color.yellow)
-                .padding(.top, 20)
-            
-            Spacer()
-//            Button("Register") {
-//                isEnteringCredentials.toggle()
-//            }
-//            .font(.title)
-//            .foregroundColor(Color.blue)
-//            .padding()
-//            .overlay(
-//                RoundedRectangle(cornerRadius: 10)
-//                    .stroke(Color.blue, lineWidth: 2)
-//            )
-//            Spacer()
-            
-//            if isEnteringCredentials {
-              VStack {
-                    TextField("Email", text: $email)
-                      .padding()
-                  
-                    TextField("Username", text: $username)
-                        .padding()
-                    
-                    SecureField("Password", text: $password)
-                        .padding()
-                  
-                    SecureField("Confirm Password", text: $confirmpassword)
-                      .padding()
-                    
-                    Button("Submit") {
-                        isRegistering.toggle() // Set isRegistering to false
-                        selectedTab = 4
-                      Task {
-                        try await viewModel.createUser(withEmail: email,
-                                                      password: password,
-                                                      username: username)
-                      }
-                    }
-                    .padding()
-//                    .disabled(!formIsValid)
-                    .opacity(formIsValid ? 1.0 : 0.5)
-                }
-//            }
+  var body: some View {
+    ZStack {
+      Image("HiveGraphic")
+        .resizable()
+        .aspectRatio(contentMode: .fit)
+        .frame(width: UIScreen.main.bounds.width * 0.5)
+        .position(x: UIScreen.main.bounds.width * 0.9, y: UIScreen.main.bounds.height * 0)
+      
+      Image("BeeGraphic")
+        .resizable()
+        .aspectRatio(contentMode: .fit)
+        .frame(width: UIScreen.main.bounds.width * 0.4)
+        .position(x: UIScreen.main.bounds.width * 0.7, y: UIScreen.main.bounds.height * 0.025)
+
+      VStack {
+        Text("BusyBee")
+          .font(.system(size: 65, weight: .bold))
+          .foregroundColor(customMaroon)
+          .padding(.top, 40)
+        
+        Text("Join your friends and\nstart your goal-achieving journey")
+          .font(.system(size: 18))
+          .foregroundColor(Color.gray)
+          .multilineTextAlignment(.center)
+          .padding(.bottom, 20)
+        
+        VStack(alignment: .leading, spacing: 20) {
+          TextField("Email", text: $email)
+            .padding()
+            .overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(Color.gray))
+          
+          TextField("Username", text: $username)
+            .padding()
+            .overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(Color.gray))
+          
+          SecureField("Password", text: $password)
+            .padding()
+            .overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(Color.gray))
+          
+          SecureField("Confirm Password", text: $confirmpassword)
+            .padding()
+            .overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(Color.gray))
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, 20)
+        
+        Spacer()
+        
+        Button(action: {
+          isRegistering.toggle()
+          selectedTab = 4
+          Task {
+            try await viewModel.createUser(withEmail: email, password: password, username: username)
+          }
+        }) {
+          Text("Submit")
+            .font(.system(size: 16))
+            .foregroundColor(.white)
+            .padding()
+            .frame(width: UIScreen.main.bounds.width * 0.5)
+            .background(customMaroon)
+            .cornerRadius(100)
         }
         .padding()
+        .disabled(!formIsValid)
+        
+        Spacer()
+        
+        //            NavigationLink(destination: LoginView()) {
+        Text("Have an account? Login here")
+          .foregroundColor(Color.blue)
+        //            }
+
+      }
+      .padding()
+      
+      
     }
+  }
 }
 
 extension RegistrationFormView: AuthenticationFormProtocol {
