@@ -9,6 +9,8 @@ import SwiftUI
 
 struct IndividualGoalView: View {
     var goal: Goal
+//    var post: Post
+    @EnvironmentObject var postController: PostController
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
@@ -34,7 +36,19 @@ struct IndividualGoalView: View {
             Spacer()
         }
         .padding()
-        .navigationBarHidden(true) // Optional: Hide navigation bar
+        .navigationBarHidden(true)
+      
+//        VStack {
+//          let postList = postController.getPostsForGoal(goalId: post.goalId)
+//          // Photo
+//          ForEach(postList) { post in
+//            Image(uiImage: postController.getImageFromURL(url: post.photo))
+//              .resizable()
+//              .scaledToFill()
+//              .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 280)
+//              .clipped()
+//          }
+//        }
     }
 }
 
@@ -46,3 +60,5 @@ let dateFormatter: DateFormatter = {
     formatter.dateStyle = .short
     return formatter
 }()
+
+

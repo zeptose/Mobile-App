@@ -36,7 +36,7 @@ struct FeedItemView: View {
         if let feedGoal = goalController.getGoalFromId(goalId: post.goalId) {
           let percentage = CGFloat(feedGoal.progress)/CGFloat(feedGoal.frequency)
           let progressBarMax = UIScreen.main.bounds.width - 85
-            NavigationLink(destination: IndividualGoalView(goal: feedGoal)) {
+          NavigationLink(destination: IndividualGoalView(goal: feedGoal)) {
               RoundedRectangle(cornerRadius: 12)
                 .fill(Color(.clear))
                 .frame(height: 45)
