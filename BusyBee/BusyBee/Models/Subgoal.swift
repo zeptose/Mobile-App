@@ -13,12 +13,14 @@ struct Subgoal: Identifiable, Codable, Comparable {
   @DocumentID var id: String?
   var name: String
   var isCompleted: Bool
+  var goalId: String
   
   // To conform to Codable protocol
   enum CodingKeys: String, CodingKey {
     case id
     case name
     case isCompleted
+    case goalId
   }
   
   // To conform to Comparable protocol
