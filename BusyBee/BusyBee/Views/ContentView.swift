@@ -13,6 +13,8 @@ struct ContentView: View {
     @EnvironmentObject var userController: UserController
     @EnvironmentObject var postController: PostController
     @EnvironmentObject var goalController: GoalController
+    @EnvironmentObject var cameraController: CameraController
+    
     let customMaroon = Color(UIColor(hex: "#992409"))
   
   @State private var beeOffset: CGFloat = 0
@@ -82,16 +84,6 @@ struct ContentView: View {
                     }
                   }
                 }
-            } else {
-                AppView()
-                    .environmentObject(userController)
-                    .environmentObject(postController)
-                    .environmentObject(goalController)
-                    .environmentObject(viewModel)
-                    .environment(\.font, Font.custom("Lato-Regular", size: 16))
-            }
-<<<<<<< HEAD
-=======
           } else {
             AppView(selectedTab: 4)
               .environmentObject(userController)
@@ -102,15 +94,14 @@ struct ContentView: View {
               .environment(\.font, Font.custom("Lato-Regular", size: 16))
                   
           }
->>>>>>> 8c864946c23ff38e52410b736eab0af96edd99e7
         }
     }
       
 
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
