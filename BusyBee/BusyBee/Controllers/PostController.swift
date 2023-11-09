@@ -112,6 +112,11 @@ class PostController: ObservableObject {
     return flatFeedPosts.sorted { $0.timePosted >= $1.timePosted }
   }
   
+  func getPostsForGoal(goalId: String) -> [Post] {
+      let posts = self.posts.filter { String($0.goalId) == String(goalId)  }
+      return posts
+    }
+  
   
 }
 

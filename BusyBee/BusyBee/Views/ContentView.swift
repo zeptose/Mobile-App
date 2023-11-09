@@ -24,11 +24,11 @@ struct ContentView: View {
                 NavigationView {
                   ZStack {
                     // Background Image
-                    Image("HiveGraphic") // Replace "yourBackgroundImage" with the name of your image asset
+                    Image("HiveGraphic")
                       .resizable()
                       .aspectRatio(contentMode: .fit)
-                      .frame(width: UIScreen.main.bounds.width * 0.8) // 90% width of the screen
-                      .padding(.top, -375) // 20 padding from the top
+                      .frame(width: UIScreen.main.bounds.width * 0.8)
+                      .padding(.top, -375)
                     
                     Image("BeeGraphic")
                       .resizable()
