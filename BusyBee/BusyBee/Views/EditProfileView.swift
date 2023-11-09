@@ -14,12 +14,6 @@ struct EditProfileView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var userController: UserController
 
-//    init(user: User) {
-//        self.user = user
-//        _username = State(initialValue: user.username)
-//        _bio = State(initialValue: user.bio ?? "")
-//    }
-
     var body: some View {
         NavigationView {
             Form {

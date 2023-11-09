@@ -13,7 +13,7 @@ import SwiftUI
 struct CreatePostView: View {
     var uiImage: UIImage
     @State private var caption: String = ""
-    @EnvironmentObject var camera: CameraController
+//    @EnvironmentObject var camera: CameraController
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var goalController: GoalController
