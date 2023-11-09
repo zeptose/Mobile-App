@@ -31,43 +31,42 @@ class PostController: ObservableObject {
     }
   
     
-    func addPost(currentUser: User, goal: Goal, caption: String, photo: String, subgoalId: String?, comments: [String], reactions: Int) {
-        let timePosted = Date()
-        let newPost = Post(goalId: goal.id ?? "",
-                           userId: currentUser.id,
-                           caption: caption,
-                           photo: photo,
-                           subgoalId: subgoalId,
-                           timePosted: timePosted,
-                           comments: comments,
-                           reactions: reactions)
-        
-        postRepository.create(newPost)
-        
-      if let sgId = subgoalId {
-        if let subgoalObject = goalController.getSubgoalFromId(subgoalId: sgId) {
-            var sgobject = subgoalObject
-            sgobject.isCompleted = true
-            subgoalRepository.update(sgobject)
-            } else {
-                print("Error finding subgoal")
-            }
-        }
+  func addPost(currentUser: User, goal: Goal, caption: String, photo: String, subgoalId: String?, comments: [String], reactions: Int) {
+      let timePosted = Date()
+      let newPost = Post(goalId: goal.id ?? "",
+                         userId: currentUser.id,
+                         caption: caption,
+                         photo: photo,
+                         subgoalId: subgoalId,
+                         timePosted: timePosted,
+                         comments: comments,
+                         reactions: reactions)
       
+      postRepository.create(newPost)
+      
+    if subgoalId != "-1"{
+      if let sgId = subgoalId {
+        if let subgoalObject = goal.subgoals.first(where: { $0.id == sgId }) {
+          var sgobject = subgoalObject
+          sgobject.isCompleted = true
+          subgoalRepository.update(sgobject)
+        } else {
+          print("Error finding subgoal")
+        }
+      }
+    }
+    
       var currGoal = goal
       let currProgress = currGoal.progress + 1
       currGoal.progress = currProgress
-      
-      
+    
       var user = currentUser
       user.posts.append(newPost)
-      
       userRepository.update(user)
       goalRepository.update(currGoal)
       
-    
-        
-    }
+  }
+
     
     func getPosts(currentUser: User) -> [Post] {
         let currPosts = self.posts.filter{ String($0.userId) == String(currentUser.id) }
@@ -104,9 +103,7 @@ class PostController: ObservableObject {
 
   func getFeedPosts(currUser: User) -> [Post] {
     let people: [User] = userController.getUserFriends(currentUser: currUser) + [currUser]
-//    print("follows: \(people)")
     let feedPosts = people.map { self.getPosts(currentUser: $0) }
-//    print("feed posts: \(feedPosts)")
     let flatFeedPosts = feedPosts.flatMap{ $0 }
     return flatFeedPosts.sorted { $0.timePosted >= $1.timePosted }
   }

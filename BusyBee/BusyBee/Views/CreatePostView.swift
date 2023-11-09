@@ -20,30 +20,36 @@ struct CreatePostView: View {
     @EnvironmentObject var postController: PostController
     @State private var uploadedImageURL: String = ""
     @State private var selectedGoalIndex: Int = 0
-    @State private var selectedSubgoalIndex: Int = 0
+    @State private var selectedSubgoalIndex: Int = -1
     @State private var navigateToHome = false
+    var subgoalidval = "-1"
+  
+  
 
     var selectedGoal: Goal? {
         goalController.getCurrentGoals(currentUser: viewModel.currentUser!)[selectedGoalIndex]
     }
 
-    var selectedSubgoal: Subgoal? {
-        selectedGoal?.subgoals[selectedSubgoalIndex]
-    }
+  var selectedSubgoal: Subgoal? {
+      guard selectedSubgoalIndex >= 0 else {
+          return nil
+      }
+      return selectedGoal?.subgoals[selectedSubgoalIndex]
+  }
 
     var body: some View {
-        VStack(spacing: 20) {
-            HStack {
-                NavigationLink(destination: CameraView()) {
-                    Image(systemName: "arrow.left")
-                        .foregroundColor(.blue)
-                        .padding()
-                        .font(.system(size: 30))
-                }
-                .padding(.leading, 0)
-                Spacer()
-            }
-            .padding()
+      VStack(spacing: 20) {
+          HStack {
+            NavigationLink(destination: CameraView()) {
+                  Image(systemName: "arrow.left")
+                      .foregroundColor(.blue)
+                      .padding()
+                      .font(.system(size: 30))
+                      }
+              .padding(.leading, 0)
+              Spacer()
+          }
+          .padding()
 
             GeometryReader { geometry in
                 VStack(spacing: 20) {
@@ -92,6 +98,7 @@ struct CreatePostView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     .background(Color.gray.opacity(0.2))
                     .padding(.bottom, 20)
+
                 }
 
                 Button(action: {
@@ -99,10 +106,13 @@ struct CreatePostView: View {
                         return
                     }
 
-                    guard let selectedSubgoal = selectedSubgoal else {
-                        return
-                    }
-
+                  if let selectedSubgoal = selectedSubgoal {
+                    let subgoalidval = selectedGoal.id
+                  }
+                  else{
+                    let subgoalidval = "-1"
+                  }
+                    
                     uploadedImageURL = postController.uploadPhoto(uiImage)
                     if let currentUser = viewModel.currentUser {
                         postController.addPost(
@@ -110,12 +120,12 @@ struct CreatePostView: View {
                             goal: selectedGoal,
                             caption: caption,
                             photo: uploadedImageURL,
-                            subgoalId: selectedSubgoal.id,
+                            subgoalId: subgoalidval,
                             comments: [],
                             reactions: 0
                         )
-
                         print("Post added successfully!")
+                        
                         navigateToHome = true
                         presentationMode.wrappedValue.dismiss()
   
@@ -142,7 +152,7 @@ struct CreatePostView: View {
                 }
                 .opacity(0)
                 .frame(width: 0, height: 0)
-            
-        }
+      }
     }
-}
+  }
+
