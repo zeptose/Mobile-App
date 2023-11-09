@@ -56,15 +56,15 @@ class GoalController: ObservableObject {
     func getCurrentGoals(currentUser: User) -> [Goal] {
       let usersGoals = self.goals.filter{ String($0.userId) == String(currentUser.id) }
       let today = Date()
-      let curr = usersGoals.filter { today <= $0.dueDate }
+      let curr = usersGoals.filter { today <= $0.dueDate && $0.progress < $0.frequency }
       return curr.sorted { $0.dueDate >= $1.dueDate}
     }
   
     func getPastGoals(currentUser: User) -> [Goal] {
         let usersGoals = self.goals.filter{ String($0.userId) == String(currentUser.id) }
         let today = Date()
-        let curr = usersGoals.filter { today > $0.dueDate }
-        return curr.sorted { $0.dueDate >= $1.dueDate}
+        let past = usersGoals.filter { $0.progress == $0.frequency || today > $0.dueDate}
+        return past.sorted { $0.dueDate >= $1.dueDate}
     }
   
     func getSubgoals(currentUser: User, goal: Goal) -> [Subgoal] {
