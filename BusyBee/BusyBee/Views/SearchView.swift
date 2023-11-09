@@ -75,7 +75,8 @@ struct SearchView: View {
                   }
                 }
                 .listStyle(PlainListStyle())
-//                .navigationBarTitle("Search for friends")
+                .navigationBarTitle("")
+
             }
             .onAppear(perform: loadData)
             .background(

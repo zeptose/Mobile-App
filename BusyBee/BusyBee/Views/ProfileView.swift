@@ -16,86 +16,8 @@ struct ProfileView: View {
     @State private var showCurrentGoals = true
     @State private var isEditingProfile = false
     var user: User?
-<<<<<<< HEAD
-  
-  let customMaroon = Color(UIColor(hex: "#992409"))
+    let customMaroon = Color(UIColor(hex: "#992409"))
 
-
-
-    var body: some View {
-        if let profile = user {
-            let currentGoals = goalController.getCurrentGoals(currentUser: profile)
-
-            ZStack {
-                VStack {
-                    HStack {
-                        Button(action: {
-                            print("Back button tapped")
-                        }) {
-                            Image(systemName: "arrow.left")
-                        }
-                        .padding()
-
-                        Spacer()
-
-                      Button("Logout") {
-                          Task {
-                              viewModel.signOut()
-                          }
-                      }.padding()
-                      
-                      
-                    }.padding(.top, 35)
-
-                    Image("profilePic")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 150, height: 150)
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(customYellow, lineWidth: 10))
-
-                    Text(profile.username)
-                        .font(.headline)
-                        .padding()
-
-                    if let bio = profile.bio {
-                        Text(bio)
-                            .font(.caption)
-                            .padding()
-                    }
-
-
-                    if profile == viewModel.currentUser {
-                        NavigationLink(destination: AddGoalView(goalController: goalController, user: profile)) {
-                          Text("Add Goal")
-                            .font(.system(size: 14))
-                            .foregroundColor(.white)
-                            .padding(5)
-                            .frame(width: UIScreen.main.bounds.width * 0.3)
-                            .background(customMaroon)
-                            .cornerRadius(100)
-                        }
-                    }
-
-                    VStack {
-                        HStack {
-                            Spacer()
-
-                          TabBarButton(text: "Current Goals", isSelected: showCurrentGoals) {
-                            withAnimation {
-                              showCurrentGoals = true
-                            }
-                          }
-                          
-                          Spacer()
-                          TabBarButton(text: "Past Goals", isSelected: showCurrentGoals == false) {
-                            withAnimation {
-                              showCurrentGoals = false
-                            }
-
-                          }
-
-=======
     //    @State var curr: User?
     
     var body: some View {
@@ -108,57 +30,34 @@ struct ProfileView: View {
                 ZStack {
                     VStack {
                         HStack {
-                            Button(action: {
-                                print("Back button tapped")
-                            }) {
-                                Image(systemName: "arrow.left")
-                            }
-                            .padding().padding().padding()
+//                            Button(action: {
+//                                print("Back button tapped")
+//                            }) {
+//                                Image(systemName: "arrow.left")
+//                            }
+//                            .padding()
                             
->>>>>>> 8c864946c23ff38e52410b736eab0af96edd99e7
                             Spacer()
                             
-                            Button(action: {
-                                print("Settings button tapped")
-                            }) {
-                                Image(systemName: "gear")
-                            }
-                            .padding()
-                        }
-<<<<<<< HEAD
-                        .overlay(Rectangle().frame(width: nil, height: 2, alignment: .bottom).foregroundColor(Color.gray), alignment: .bottom)
-
-
-
-                        ScrollView {
-                            VStack {
-                                if showCurrentGoals {
-                                    let dateFormatter: DateFormatter = {
-                                        let formatter = DateFormatter()
-                                        formatter.dateFormat = "yyyy-MM-dd"
-                                        return formatter
-                                    }()
-
-                                    ForEach(currentGoals) { goal in
-                                        NavigationLink(destination: IndividualGoalView(goal: goal)) {
-                                            RoundedRectangle(cornerRadius: 12)
-                                                .fill(Color.white)
-                                                .shadow(color: Color.gray, radius: 4, x: 0, y: 2)
-                                                .frame(width: UIScreen.main.bounds.width * 0.85, height: 120)
-                                                .overlay(
-                                                    VStack(alignment: .leading) {
-                                                        Text(goal.name)
-                                                            .font(.title)
-                                                            .fontWeight(.bold)
-                                                            .padding(.bottom, 4)
-                                                        HStack {
-                                                            Text("Due: \(dateFormatter.string(from: goal.dueDate))")
-                                                                .font(.subheadline)
-                                                            Spacer()
-                                                            Text("Frequency: \(goal.frequency)")
-                                                                .font(.subheadline)
-                                                                .multilineTextAlignment(.trailing)
-=======
+//                            Button(action: {
+//                                print("Settings button tapped")
+//                            }) {
+//                                Image(systemName: "gear")
+//                            }
+//                            .padding()
+                          
+                          if updatedUser ==
+                              updatedCurrentUser {
+                            Button("Logout") {
+                              Task {
+                                viewModel.signOut()
+                              }
+                            }.padding()
+                          } else{
+                            HStack{}.padding(.top, 35)
+                          }
+                        }.padding(.top, 35)
+                      
                         
                         Image("profilePic")
                             .resizable()
@@ -183,11 +82,11 @@ struct ProfileView: View {
                         
                         if updatedUser ==
                             updatedCurrentUser {
-                            Button("Logout") {
-                                Task {
-                                    viewModel.signOut()
-                                }
-                            }
+//                            Button("Logout") {
+//                                Task {
+//                                    viewModel.signOut()
+//                                }
+//                            }
                             
                             NavigationLink(destination: EditProfileView(user: updatedCurrentUser!, userController: userController)) {
                                 
@@ -195,6 +94,12 @@ struct ProfileView: View {
                             }.padding()
                             NavigationLink(destination: AddGoalView(goalController: goalController, user: updatedCurrentUser!)) {
                                 Text("Add Goal" )
+                                .font(.system(size: 14))
+                                .foregroundColor(.white)
+                                .padding(5)
+                                .frame(width: UIScreen.main.bounds.width * 0.3)
+                                .background(customMaroon)
+                                .cornerRadius(100)
                             }
                             .padding()
                         } else if userController.isFollowing(currentUser: updatedCurrentUser!, otherUser: updatedUser!) {
@@ -222,28 +127,24 @@ struct ProfileView: View {
                             HStack {
                                 Spacer()
                                 
-                                Button(action: {
-                                    showCurrentGoals = true
-                                }) {
-                                    Text("Current Goals")
-                                        .padding()
-                                        .foregroundColor(.white)
-                                        .background(Color.yellow)
-                                        .cornerRadius(8)
-                                }
-                                
-                                Button(action: {
-                                    showCurrentGoals = false
-                                }) {
-                                    Text("Past Goals")
-                                        .padding()
-                                        .foregroundColor(.white)
-                                        .background(Color.yellow)
-                                        .cornerRadius(8)
-                                }
+                                TabBarButton(text: "Current Goals", isSelected: showCurrentGoals) {
+                                    withAnimation {
+                                      showCurrentGoals = true
+                                    }
+                                  }
+                                  
+                                  Spacer()
+                                  TabBarButton(text: "Past Goals", isSelected: showCurrentGoals == false) {
+                                    withAnimation {
+                                      showCurrentGoals = false
+                                    }
+
+                                  }
                                 
                                 Spacer()
-                            }
+                            }.overlay(Rectangle().frame(width: nil, height: 2, alignment: .bottom)
+                            .foregroundColor(Color.gray), alignment: .bottom)
+
                             
                             ScrollView {
                                 VStack {
@@ -274,7 +175,6 @@ struct ProfileView: View {
                                                                     .font(.subheadline)
                                                                     .multilineTextAlignment(.trailing)
                                                             }
->>>>>>> 8c864946c23ff38e52410b736eab0af96edd99e7
                                                         }
                                                             .padding(12)
                                                     )
@@ -337,7 +237,6 @@ struct ProfileView: View {
     }
 }
 
-<<<<<<< HEAD
 struct TabBarButton: View {
     var text: String
     var isSelected: Bool
@@ -358,16 +257,5 @@ struct TabBarButton: View {
         )
     }
 }
-=======
-//struct ProfileView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProfileView()
-//    }
-//}
->>>>>>> 8c864946c23ff38e52410b736eab0af96edd99e7
 
-//struct ProfileView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProfileView()
-//    }
-//}
+

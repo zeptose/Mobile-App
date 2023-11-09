@@ -1,7 +1,9 @@
 {
   "images" : [
     {
+
       "filename" : "HiveGraphic.png",
+      
       "idiom" : "universal",
       "scale" : "1x"
     },
