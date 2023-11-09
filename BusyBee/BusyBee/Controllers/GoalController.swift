@@ -79,11 +79,14 @@ class GoalController: ObservableObject {
     }
   
     func getSubgoalFromId(subgoalId: String) -> Subgoal? {
-      let temp = self.subgoals.first( where: {$0.id == subgoalId} )
-      if let ourGoal = temp {
-        return ourGoal
-      } else {
-        return nil
+      if subgoalId == "-1" { return nil}
+      else {
+        let temp = self.subgoals.first( where: {$0.id == subgoalId} )
+        if let ourGoal = temp {
+          return ourGoal
+        } else {
+          return nil
+        }
       }
     }
 
