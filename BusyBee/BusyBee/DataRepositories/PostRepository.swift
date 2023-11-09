@@ -26,17 +26,28 @@ class PostRepository: ObservableObject {
   }
 
   func getPhoto(_ completionHandler: @escaping (_ image: UIImage) -> Void, _ url: String) -> Void {
-    let storage = Storage.storage()
-    let ref = storage.reference().child(url)
-    ref.getData(maxSize: 1 * 1024 * 1024) { data, error in
-      if let error = error {
-        print("Error getting photo \(url): \(error)")
-      } else {
-        let image = UIImage(data: data!)
-        completionHandler(image!)
+      let storage = Storage.storage()
+      let ref = storage.reference().child(url)
+
+      ref.getData(maxSize: 1 * 1024 * 1024) { data, error in
+          if let error = error {
+              print("Error getting photo \(url): \(error)")
+              return
+          }
+
+          guard let imageData = data,
+                let image = UIImage(data: imageData),
+                let compressedImageData = image.jpegData(compressionQuality: 0.01),
+                let compressedImage = UIImage(data: compressedImageData) else {
+              print("Error compressing or converting image")
+              return
+          }
+
+          completionHandler(compressedImage)
       }
-    }
   }
+
+
   
   
   func get(_ completionHandler: @escaping (_ posts: [Post]) -> Void) {

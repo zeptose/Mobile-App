@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyCb42_ukImGVhu96gJyxJ7YMzHyEeqVYMo</string>
+	<string>AIzaSyAmUmaSQmSMJx-IyDT8nD0z_iO5ea6AJaw</string>
 	<key>GCM_SENDER_ID</key>
-	<string>694372665219</string>
+	<string>877323961278</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>mobileapp.BusyBee</string>
+	<string>mobileapp.BusyBeee</string>
 	<key>PROJECT_ID</key>
-	<string>busybee-93059</string>
+	<string>busybee-bfe69</string>
 	<key>STORAGE_BUCKET</key>
-	<string>busybee-93059.appspot.com</string>
+	<string>busybee-bfe69.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:694372665219:ios:58368796208d882fb098b6</string>
+	<string>1:877323961278:ios:b65eb7b9acf2adbb5a6fef</string>
 </dict>
 </plist>

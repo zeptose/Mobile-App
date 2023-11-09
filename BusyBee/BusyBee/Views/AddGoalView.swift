@@ -57,9 +57,11 @@ struct AddGoalView: View {
           }
       }
       Button("Add Goal") {
+        Task {
           // Create a new goal and add it using the GoalController, using the input values
-          goalController.addnewGoal(currentUser: user, name: goalName, desc: goalDescription, dueDate: dueDate, frequency: frequency, subGoalStr: subgoals)
+          try await goalController.addnewGoal(currentUser: user, name: goalName, desc: goalDescription, dueDate: dueDate, frequency: frequency, subGoalStr: subgoals)
           presentationMode.wrappedValue.dismiss()
+        }
       }
       .navigationBarTitle("Add Goal")
   }

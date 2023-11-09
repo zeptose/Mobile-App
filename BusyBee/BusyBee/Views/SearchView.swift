@@ -80,13 +80,13 @@ struct SearchView: View {
             .onAppear(perform: loadData)
             .background(
                 NavigationLink(
-                    destination: ProfileView(user: selectedUser),
+                  destination: ProfileView(user: selectedUser),
                     isActive: Binding<Bool>(
                         get: { self.selectedUser != nil },
                         set: { _ in self.selectedUser = nil }
                     ),
                     label: { EmptyView() }
-                )
+                ).navigationBarBackButtonHidden(true)
             )
         }
     }

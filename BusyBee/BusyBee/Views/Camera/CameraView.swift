@@ -14,20 +14,30 @@ struct CameraView: View {
     @State private var isPictureTaken = false
     @StateObject var viewModel = CameraViewModel()
     @EnvironmentObject var postController: PostController
-    
-  
-  
+    @Environment(\.presentationMode) var presentationMode
 
+  
+  
     var body: some View {
         ZStack {
           if let capturedImage = camera.capturedImage {
+<<<<<<< HEAD
               CreatePostView(uiImage: capturedImage).environmentObject(postController).navigationBarBackButtonHidden(true)}
           else {
+=======
+            CreatePostView(uiImage: capturedImage)
+                  .environmentObject(postController)
+                  .navigationBarBackButtonHidden(true)
+                  .onAppear {
+                      presentationMode.wrappedValue.dismiss()
+                  }
+          } else {
+>>>>>>> 8c864946c23ff38e52410b736eab0af96edd99e7
                 CameraPreview(camera: camera)
                     .ignoresSafeArea(.all, edges: .all)
                 VStack {
                     HStack {
-                        NavigationLink(destination: AppView()) {
+                      NavigationLink(destination: AppView(selectedTab : 4)) {
                             Image(systemName: "xmark")
                                 .foregroundColor(.white)
                                 .padding()
@@ -46,7 +56,9 @@ struct CameraView: View {
         }
         .onAppear {
             camera.start()
+            camera.capturedImage = nil
         }
+
     }
 }
 

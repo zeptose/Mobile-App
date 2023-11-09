@@ -10,12 +10,11 @@ import FirebaseFirestoreSwift
 
 struct Goal: Identifiable, Codable, Comparable {
   
-  @DocumentID var id: String?
+  var id: String
   var name: String
   var description: String?
   var dueDate: Date
   var frequency: Int
-  var subgoals: [Subgoal]
   var userId: String
   var progress: Int
   
@@ -26,7 +25,6 @@ struct Goal: Identifiable, Codable, Comparable {
     case description
     case dueDate
     case frequency
-    case subgoals
     case userId
     case progress
   }

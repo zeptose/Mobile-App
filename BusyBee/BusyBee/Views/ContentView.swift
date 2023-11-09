@@ -90,6 +90,19 @@ struct ContentView: View {
                     .environmentObject(viewModel)
                     .environment(\.font, Font.custom("Lato-Regular", size: 16))
             }
+<<<<<<< HEAD
+=======
+          } else {
+            AppView(selectedTab: 4)
+              .environmentObject(userController)
+              .environmentObject(postController)
+              .environmentObject(goalController)
+              .environmentObject(viewModel)
+              .environmentObject(cameraController)
+              .environment(\.font, Font.custom("Lato-Regular", size: 16))
+                  
+          }
+>>>>>>> 8c864946c23ff38e52410b736eab0af96edd99e7
         }
     }
       
