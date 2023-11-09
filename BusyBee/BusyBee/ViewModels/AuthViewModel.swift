@@ -7,7 +7,7 @@
 
 import Foundation
 import FirebaseAuth
-import Firebase
+import FirebaseFirestore
 
 protocol AuthenticationFormProtocol {
   var formIsValid: Bool { get }
@@ -52,7 +52,6 @@ class AuthViewModel: ObservableObject {
                          follows: follows)
       let encodedUser = try Firestore.Encoder().encode(newUser)
       try await Firestore.firestore().collection("users").document(newUser.id).setData(encodedUser)
-//      userRepository.create(newUser)
       await fetchUser()
     } catch {
       print("Unable to create user: \(error.localizedDescription)")

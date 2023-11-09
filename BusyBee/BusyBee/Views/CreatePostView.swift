@@ -13,7 +13,7 @@ import SwiftUI
 struct CreatePostView: View {
     var uiImage: UIImage
     @State private var caption: String = ""
-    @EnvironmentObject var camera: CameraController
+//    @EnvironmentObject var camera: CameraController
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var goalController: GoalController
@@ -34,7 +34,7 @@ struct CreatePostView: View {
       guard selectedSubgoalIndex >= 0 else {
           return nil
       }
-      return selectedGoal?.subgoals[selectedSubgoalIndex]
+    return goalController.getSubgoalsForGoal(goal: selectedGoal!)[selectedSubgoalIndex]
   }
 
     var body: some View {
@@ -89,10 +89,10 @@ struct CreatePostView: View {
                         .foregroundColor(.blue)
                         .padding(.bottom, 4)
 
-                  
+                    let selectedSubs = goalController.getSubgoalsForGoal(goal: selectedGoal)
                     Picker(selection: $selectedSubgoalIndex, label: Text("Sub Goal")) {
-                        ForEach(0..<selectedGoal.subgoals.count, id: \.self) { index in
-                            Text(selectedGoal.subgoals[index].name)
+                      ForEach(0..<selectedSubs.count, id: \.self) { index in
+                            Text(selectedSubs[index].name)
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())

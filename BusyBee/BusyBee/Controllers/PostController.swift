@@ -33,7 +33,7 @@ class PostController: ObservableObject {
     
   func addPost(currentUser: User, goal: Goal, caption: String, photo: String, subgoalId: String?, comments: [String], reactions: Int) {
       let timePosted = Date()
-      let newPost = Post(goalId: goal.id ?? "",
+      let newPost = Post(goalId: goal.id ,
                          userId: currentUser.id,
                          caption: caption,
                          photo: photo,
@@ -46,7 +46,7 @@ class PostController: ObservableObject {
       
     if subgoalId != "-1"{
       if let sgId = subgoalId {
-        if let subgoalObject = goal.subgoals.first(where: { $0.id == sgId }) {
+        if let subgoalObject = goalController.getSubgoalFromId(subgoalId: sgId) {
           var sgobject = subgoalObject
           sgobject.isCompleted = true
           subgoalRepository.update(sgobject)

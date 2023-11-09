@@ -37,19 +37,22 @@ class GoalRepository: ObservableObject {
           } ?? []
           completionHandler(goals)
         }
-    }
+  }
   
-  func create(_ goal: Goal) {
+  func create(_ goal: Goal) async throws {
     do {
-        let newGoal = goal
-        _ = try store.collection(path).addDocument(from: newGoal)
+//        let newGoal = goal
+//        _ = try store.collection(path).addDocument(from: newGoal)
+        let encodedGoal = try Firestore.Encoder().encode(goal)
+        try await store.collection(path).document(goal.id).setData(encodedGoal)
+
       } catch {
         fatalError("Unable to add goal: \(error.localizedDescription).")
       }
   }
   
   func update(_ goal: Goal) {
-    guard let goalId = goal.id else { return }
+    let goalId = goal.id
     
     do {
       try store.collection(path).document(goalId).setData(from: goal)
@@ -59,7 +62,7 @@ class GoalRepository: ObservableObject {
   }
 
   func delete(_ goal: Goal) {
-    guard let goalId = goal.id else { return }
+   let goalId = goal.id 
     
     store.collection(path).document(goalId).delete { error in
       if let error = error {
