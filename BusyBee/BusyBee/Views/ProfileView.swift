@@ -68,7 +68,6 @@ struct ProfileView: View {
                         
                         Text(updatedUser!.username)
                             .font(.headline)
-                            .padding()
                         
                         if let bio = updatedUser?.bio {
                             Text(bio)
@@ -87,13 +86,19 @@ struct ProfileView: View {
 //                                    viewModel.signOut()
 //                                }
 //                            }
-                            
+                          HStack{
                             NavigationLink(destination: EditProfileView(user: updatedCurrentUser!, userController: userController)) {
-                                
-                                Text("Edit Profile")
-                            }.padding()
+                              
+                              Label("Edit Profile", systemImage: "pencil")
+                            }
+                            .font(.system(size: 14))
+                            .foregroundColor(.white)
+                            .padding(5)
+                            .frame(width: UIScreen.main.bounds.width * 0.3)
+                            .background(customMaroon)
+                            .cornerRadius(100)
                             NavigationLink(destination: AddGoalView(goalController: goalController, user: updatedCurrentUser!)) {
-                                Text("Add Goal" )
+                              Label("Add Goal", systemImage: "plus")
                                 .font(.system(size: 14))
                                 .foregroundColor(.white)
                                 .padding(5)
@@ -101,7 +106,7 @@ struct ProfileView: View {
                                 .background(customMaroon)
                                 .cornerRadius(100)
                             }
-                            .padding()
+                          }
                         } else if userController.isFollowing(currentUser: updatedCurrentUser!, otherUser: updatedUser!) {
                             //                      Button(action: {
                             //                        userController.toggleFriendStatus(currentUser: viewModel.currentUser!, friend: profile)
@@ -113,6 +118,12 @@ struct ProfileView: View {
                             }) {
                                 Text("Unfollow")
                             }
+                            .font(.system(size: 14))
+                            .foregroundColor(.white)
+                            .padding(5)
+                            .frame(width: UIScreen.main.bounds.width * 0.3)
+                            .background(customMaroon)
+                            .cornerRadius(100)
                             
                         } else {
                             
@@ -121,6 +132,12 @@ struct ProfileView: View {
                             }) {
                                 Text("Follow")
                             }
+                            .font(.system(size: 14))
+                            .foregroundColor(.white)
+                            .padding(5)
+                            .frame(width: UIScreen.main.bounds.width * 0.3)
+                            .background(customMaroon)
+                            .cornerRadius(100)
                         }
                         
                         VStack {
