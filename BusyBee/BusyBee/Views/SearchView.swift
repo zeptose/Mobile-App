@@ -21,6 +21,10 @@ struct SearchView: View {
     @State var displayedUsers = [User]()
     @EnvironmentObject var userController : UserController
     let customYellow = Color(UIColor(hex: "#FFD111"))
+    let customLightGray = Color(UIColor(hex: "#D3D3D3"))
+    let customDarkGray = Color(UIColor(hex: "#A9A9A9"))
+
+
     
     @State private var selectedUser: User? // Store the selected user for custom action
     
@@ -37,13 +41,24 @@ struct SearchView: View {
             VStack {
                 Spacer()
               HStack {
-                  TextField("Search by username", text: binding)
-                      .padding(.vertical, 5)
+                  Image(systemName: "magnifyingglass")
+                      .foregroundColor(Color.gray)
+
+                  ZStack(alignment: .leading) {
+                      if self.searchField.isEmpty {
+                          Text("Search by username")
+                              .foregroundColor(Color.gray.opacity(0.7))
+                      }
+
+                      TextField("", text: binding)
+                          .foregroundColor(Color.black)
+                          .padding(.vertical, 5)
+                  }
               }
               .padding(.horizontal, 10)
               .background(
                   RoundedRectangle(cornerRadius: 12)
-                      .stroke(customYellow, lineWidth: 1)
+                      .fill(customLightGray)
               )
                 List {
                   Section {
@@ -54,6 +69,7 @@ struct SearchView: View {
                             RoundedRectangle(cornerRadius: 12)
                                 .fill(Color(hex: 0xF3F4F6))
                                 .frame(height: 60)
+                                .frame(maxWidth: .infinity)
                                 .overlay(
                                     HStack {
                                       Image("profilePic")
@@ -63,9 +79,10 @@ struct SearchView: View {
                                         .clipShape(Circle())
                                         .overlay(Circle().stroke(customYellow, lineWidth: 2))
                                         .padding(.leading, 10)
-                                        Text(user.username)
-                                          .padding(.leading, 6)
-                                        Spacer()
+                                      Text(user.username)
+                                        .padding(.leading, 6)
+                                        .foregroundColor(Color.black)
+                                      Spacer()
                                     }
                                 )
                         }
@@ -78,6 +95,7 @@ struct SearchView: View {
                 .navigationBarTitle("")
 
             }
+            .padding(.horizontal, 20)
             .onAppear(perform: loadData)
             .background(
                 NavigationLink(

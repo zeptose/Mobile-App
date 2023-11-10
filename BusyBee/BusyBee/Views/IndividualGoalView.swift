@@ -9,12 +9,11 @@ import SwiftUI
 
 struct IndividualGoalView: View {
     var goal: Goal
-//    var post: Post
     @EnvironmentObject var postController: PostController
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             HStack {
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
@@ -25,34 +24,43 @@ struct IndividualGoalView: View {
                 Spacer()
             }
 
-            Text("Goal Details")
+            Text(goal.name)
                 .font(.title)
-                .padding()
+                .bold()
+                .padding(.leading, 10)
 
-            Text("Name: \(goal.name)")
             Text("Due Date: \(dateFormatter.string(from: goal.dueDate))")
-            Text("Frequency: \(goal.frequency)")
+                .foregroundColor(.gray)
+                .font(.system(size: 18))
+                .padding(.leading, 10)
 
-            Spacer()
+            Text("Frequency: \(goal.frequency)")
+                .foregroundColor(.gray)
+                .font(.system(size: 18))
+                .padding(.leading, 10)
         }
         .padding()
         .navigationBarHidden(true)
-      
-//        VStack {
-//          let postList = postController.getPostsForGoal(goalId: post.goalId)
-//          // Photo
-//          ForEach(postList) { post in
-//            Image(uiImage: postController.getImageFromURL(url: post.photo))
-//              .resizable()
-//              .scaledToFill()
-//              .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 280)
-//              .clipped()
-//          }
-//        }
+
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 15) {
+                ForEach(postController.getPostsForGoal(goalId: goal.id)) { post in
+                    VStack(spacing: 15) {
+                        Image(uiImage: postController.getImageFromURL(url: post.photo))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 200, height: 200)
+                            .clipped()
+                            .cornerRadius(10)
+                            .aspectRatio(contentMode: .fill)
+                    }
+                }
+            }
+            .padding(.horizontal, 10)
+        }
+        Spacer()
     }
 }
-
-
 
 // DateFormatter for displaying dates
 let dateFormatter: DateFormatter = {
@@ -60,5 +68,3 @@ let dateFormatter: DateFormatter = {
     formatter.dateStyle = .short
     return formatter
 }()
-
-

@@ -165,14 +165,17 @@ struct ProfileView: View {
                                                         VStack(alignment: .leading) {
                                                             Text(goal.name)
                                                                 .font(.title)
+                                                                .foregroundColor(Color.black)
                                                                 .fontWeight(.bold)
                                                                 .padding(.bottom, 4)
                                                             HStack {
                                                                 Text("Due: \(dateFormatter.string(from: goal.dueDate))")
                                                                     .font(.subheadline)
+                                                                    .foregroundColor(Color.black)
                                                                 Spacer()
                                                                 Text("Frequency: \(goal.frequency)")
                                                                     .font(.subheadline)
+                                                                    .foregroundColor(Color.black)
                                                                     .multilineTextAlignment(.trailing)
                                                             }
                                                         }
