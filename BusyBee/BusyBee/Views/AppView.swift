@@ -51,6 +51,7 @@ struct AppView: View {
     }
     .navigationBarTitleDisplayMode(.inline)
     .navigationBarBackButtonHidden(true)
+    .tint(.white)
     .onChange(of: selectedTab) { newTab in
       if newTab == 2 {
         if goalController.getCurrentGoals(currentUser: viewModel.currentUser!).isEmpty {
