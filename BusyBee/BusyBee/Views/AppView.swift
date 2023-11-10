@@ -27,7 +27,6 @@ struct AppView: View {
           Text("Search")
         }
         .tag(1)
-      
       CameraView()
         .tabItem {
           Image(systemName: "camera")
