@@ -29,11 +29,11 @@ struct CameraControlsView: View {
                 .frame(width: 30)
 
             Button(action: {
-                DispatchQueue.global(qos: .background).async {
+                DispatchQueue.main.async {
                     camera.takePhoto()
                     DispatchQueue.main.async {
                         isPictureTaken = true
-                        viewModel.isCreatePostViewPresented = true
+//                        viewModel.isCreatePostViewPresented = true
                     }
                 }
             }, label: {

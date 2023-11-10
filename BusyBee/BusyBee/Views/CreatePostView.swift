@@ -22,11 +22,12 @@ struct CreatePostView: View {
     @State private var selectedGoalIndex: Int = 0
     @State private var selectedSubgoalIndex: Int = -1
     @State private var navigateToHome = false
+ 
    
   
   
 
-    var selectedGoal: Goal? {
+  var selectedGoal: Goal? {
         goalController.getCurrentGoals(currentUser: viewModel.currentUser!)[selectedGoalIndex]
     }
 
@@ -39,24 +40,25 @@ struct CreatePostView: View {
 
     var body: some View {
       VStack(spacing: 20) {
-          HStack {
-            NavigationLink(destination: CameraView()) {
-                  Image(systemName: "arrow.left")
-                      .foregroundColor(.blue)
-                      .padding()
-                      .font(.system(size: 30))
-                      }
-              .padding(.leading, 0)
-              Spacer()
-          }
-          .padding()
+            HStack {
+              NavigationLink(destination: CameraView()) {
+                    Image(systemName: "arrow.left")
+                        .foregroundColor(.blue)
+                        .padding()
+                        .font(.system(size: 30))
+                        }
+                .padding(.leading, 0)
+                Spacer()
+            }
+            .padding()
+
 
             GeometryReader { geometry in
                 VStack(spacing: 20) {
                     Image(uiImage: uiImage)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: geometry.size.width * 0.95, height: geometry.size.height * 0.65)
+                        .frame(width: geometry.size.width, height: geometry.size.height * 0.65)
                         .clipped()
                 }
             }
