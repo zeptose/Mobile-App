@@ -40,17 +40,19 @@ struct CreatePostView: View {
 
     var body: some View {
       VStack(spacing: 20) {
-            HStack {
-              NavigationLink(destination: CameraView()) {
-                    Image(systemName: "arrow.left")
-                        .foregroundColor(.blue)
-                        .padding()
-                        .font(.system(size: 30))
-                        }
-                .padding(.leading, 0)
-                Spacer()
-            }
-            .padding()
+          HStack {
+                  Button(action: {
+                      camera.capturedImage = nil
+                  }) {
+                      Image(systemName: "arrow.left")
+                          .foregroundColor(.blue)
+                          .padding()
+                          .font(.system(size: 30))
+                  }
+                  .padding(.leading, 0)
+                  
+                  Spacer()
+          }.zIndex(1).padding()
 
 
             GeometryReader { geometry in
