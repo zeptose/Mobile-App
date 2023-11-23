@@ -13,7 +13,7 @@ import SwiftUI
 struct CreatePostView: View {
     var uiImage: UIImage
     @State private var caption: String = ""
-    @EnvironmentObject var camera: CameraController
+//    @EnvironmentObject var camera: CameraController
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var goalController: GoalController
@@ -40,19 +40,19 @@ struct CreatePostView: View {
 
     var body: some View {
       VStack(spacing: 20) {
-          HStack {
-                  Button(action: {
-                      camera.capturedImage = nil
-                  }) {
-                      Image(systemName: "arrow.left")
-                          .foregroundColor(.blue)
-                          .padding()
-                          .font(.system(size: 30))
-                  }
-                  .padding(.leading, 0)
-                  
-                  Spacer()
-          }.zIndex(1).padding()
+//          HStack {
+//                  Button(action: {
+//                      camera.capturedImage = nil
+//                  }) {
+//                      Image(systemName: "arrow.left")
+//                          .foregroundColor(.blue)
+//                          .padding()
+//                          .font(.system(size: 30))
+//                  }
+//                  .padding(.leading, 0)
+//                  
+//                  Spacer()
+//          }.zIndex(1).padding()
 
 
             GeometryReader { geometry in
