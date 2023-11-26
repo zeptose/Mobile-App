@@ -52,6 +52,43 @@ class GoalController: ObservableObject {
         }
     }
   
+  func updateGoal(currentUser: User, goal: Goal, newName: String, newDesc: String?, newDueDate: Date, newFrequency: Int, newSubGoals: [String]) async throws {
+      // Create a new instance of the goal with updated values
+      var updatedGoal = goal
+      updatedGoal.name = newName
+      updatedGoal.description = newDesc
+      updatedGoal.dueDate = newDueDate
+      updatedGoal.frequency = newFrequency
+      
+      // Update the goal in the repository
+      try await goalRepository.update(updatedGoal)
+      
+      // Fetch existing subgoals associated with this goal
+    let existingSubgoals = getSubgoalsForGoal(goal: goal)
+      
+      // Delete existing subgoals
+      for subgoal in existingSubgoals {
+          subgoalRepository.delete(subgoal)
+      }
+      
+      // Create new subgoals
+      for subgoal in newSubGoals {
+          if !subgoal.isEmpty {
+              let newSub = Subgoal(name: subgoal, isCompleted: false, goalId: updatedGoal.id)
+              subgoalRepository.create(newSub)
+          }
+      }
+      
+      // Assuming the goal is associated with the current user, update the user's goals
+      var user = currentUser
+      if let index = user.goals.firstIndex(where: { $0.id == goal.id }) {
+          user.goals[index] = updatedGoal
+          userRepository.update(user)
+      }
+  }
+
+
+  
     func getCurrentGoals(currentUser: User) -> [Goal] {
       let usersGoals = self.goals.filter{ String($0.userId) == String(currentUser.id) }
       let today = Date()
