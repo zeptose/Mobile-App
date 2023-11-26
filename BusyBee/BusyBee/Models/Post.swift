@@ -32,6 +32,7 @@ struct Post: Identifiable, Codable, Comparable {
     case timePosted
     case comments
     case reactions
+//    use a dictionary with userID -> reaction to it
   }
   
   // To conform to Comparable protocol
