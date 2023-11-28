@@ -87,25 +87,26 @@ struct ProfileView: View {
 //                                }
 //                            }
                           HStack{
+                              NavigationLink(destination: AddGoalView(goalController: goalController, user: updatedCurrentUser!)) {
+                                Label("Add Goal", systemImage: "plus")
+                                  .font(.system(size: 14))
+                                  .foregroundColor(.white)
+                                  .padding(5)
+                                  .frame(width: UIScreen.main.bounds.width * 0.3)
+                                  .background(customMaroon)
+                                  .cornerRadius(5)
+                              }
                             NavigationLink(destination: EditProfileView(user: updatedCurrentUser!, userController: userController)) {
                               
                               Label("Edit Profile", systemImage: "pencil")
                             }
                             .font(.system(size: 14))
-                            .foregroundColor(.white)
+                            .foregroundColor(customMaroon)
                             .padding(5)
                             .frame(width: UIScreen.main.bounds.width * 0.3)
-                            .background(customMaroon)
-                            .cornerRadius(100)
-                            NavigationLink(destination: AddGoalView(goalController: goalController, user: updatedCurrentUser!)) {
-                              Label("Add Goal", systemImage: "plus")
-                                .font(.system(size: 14))
-                                .foregroundColor(.white)
-                                .padding(5)
-                                .frame(width: UIScreen.main.bounds.width * 0.3)
-                                .background(customMaroon)
-                                .cornerRadius(100)
-                            }
+                            .background(RoundedRectangle(cornerRadius: 5)
+                                .stroke(customMaroon, lineWidth: 1))
+                            
                           }
                         } else if userController.isFollowing(currentUser: updatedCurrentUser!, otherUser: updatedUser!) {
                             //                      Button(action: {
@@ -144,14 +145,14 @@ struct ProfileView: View {
                             HStack {
                                 Spacer()
                                 
-                                TabBarButton(text: "Current Goals", isSelected: showCurrentGoals) {
+                                TabBarButton(text: "In Progress", isSelected: showCurrentGoals) {
                                     withAnimation {
                                       showCurrentGoals = true
                                     }
                                   }
                                   
                                   Spacer()
-                                  TabBarButton(text: "Past Goals", isSelected: showCurrentGoals == false) {
+                                  TabBarButton(text: "Completed", isSelected: showCurrentGoals == false) {
                                     withAnimation {
                                       showCurrentGoals = false
                                     }
