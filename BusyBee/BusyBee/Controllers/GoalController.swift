@@ -39,6 +39,8 @@ class GoalController: ObservableObject {
         try await goalRepository.create(newGoal)
         
         var user = currentUser
+      print("userId: \(user.id)")
+      print("goal: \(newGoal)")
         user.goals.append(newGoal)
         userRepository.update(user)
         

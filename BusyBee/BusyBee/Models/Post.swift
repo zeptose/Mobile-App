@@ -18,8 +18,11 @@ struct Post: Identifiable, Codable, Comparable {
   var photo: String
   var subgoalId: String? // Optional bc post may or may not pertain to a subgoal
   var timePosted: Date
-  var comments: [String]
-  var reactions: Int
+  var comments: [Comment]
+  var reaction1: [String]
+  var reaction2: [String]
+  var reaction3: [String]
+  var reaction4: [String]
   
   // To conform to Codable protocol
   enum CodingKeys: String, CodingKey {
@@ -31,8 +34,10 @@ struct Post: Identifiable, Codable, Comparable {
     case subgoalId
     case timePosted
     case comments
-    case reactions
-//    use a dictionary with userID -> reaction to it
+    case reaction1
+    case reaction2
+    case reaction3
+    case reaction4
   }
   
   // To conform to Comparable protocol

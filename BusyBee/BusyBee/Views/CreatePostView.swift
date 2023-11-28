@@ -125,9 +125,7 @@ struct CreatePostView: View {
                             goal: selectedGoal,
                             caption: caption,
                             photo: uploadedImageURL,
-                            subgoalId: subgoalidval,
-                            comments: [],
-                            reactions: 0
+                            subgoalId: subgoalidval
                         )
                         print("Post added successfully!")
                         
