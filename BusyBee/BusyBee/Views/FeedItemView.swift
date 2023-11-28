@@ -66,13 +66,73 @@ struct FeedItemView: View {
             }
                 
         }
-        VStack {
-          // Photo
-          Image(uiImage: postController.getImageFromURL(url: post.photo))
-            .resizable()
-            .scaledToFill()
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 280)
-            .clipped()
+        ZStack(alignment: .bottom) {
+          VStack {
+            // Photo
+            Image(uiImage: postController.getImageFromURL(url: post.photo))
+              .resizable()
+              .scaledToFill()
+              .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 280)
+              .clipped()
+          }
+//          HStack {
+//            let colors = postController.getUserReaction(userId: userId, postId: post.id!)
+//            Button(action: {
+//              postController.reactToPost(userId: userId, reactionNum: 1, postId: post.id!)
+//            }) {
+//                Circle()
+//                    .fill(Color.blue)
+//                    .overlay(
+//                        Image("heart")
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fit)
+//                            .frame(width: 30, height: 30, alignment: .leading)
+//                    )
+//                    .padding()
+//            }
+//            
+//            Button(action: {
+//              postController.reactToPost(userId: userId, reactionNum: 2, postId: post.id!)
+//            }) {
+//                Circle()
+//                    .fill(Color.blue)
+//                    .overlay(
+//                        Image("clappingHands")
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fit)
+//                            .frame(width: 30, height: 30, alignment: .leading)
+//                    )
+//                    .padding()
+//            }
+//            
+//            Button(action: {
+//              postController.reactToPost(userId: userId, reactionNum: 3, postId: post.id!)
+//            }) {
+//                Circle()
+//                    .fill(Color.blue)
+//                    .overlay(
+//                        Image("champagne")
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fit)
+//                            .frame(width: 30, height: 30, alignment: .leading)
+//                    )
+//                    .padding()
+//            }
+//            
+//            Button(action: {
+//              postController.reactToPost(userId: userId, reactionNum: 4, postId: post.id!)
+//            }) {
+//                Circle()
+//                    .fill(Color.blue)
+//                    .overlay(
+//                        Image("celebrate")
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fit)
+//                            .frame(width: 30, height: 30, alignment: .leading)
+//                    )
+//                    .padding()
+//            }
+//          }
         }
         
         VStack {

@@ -14,11 +14,13 @@ class PostController: ObservableObject {
     @Published var postRepository: PostRepository = PostRepository()
     @Published var goalRepository: GoalRepository = GoalRepository()
     @Published var userRepository: UserRepository = UserRepository()
+    @Published var commentRepository: CommentRepository = CommentRepository()
     @Published var subgoalRepository: SubgoalRepository = SubgoalRepository()
     @Published var images: [(String, UIImage)] = []
     @Published var posts: [Post] = []
     @Published var userController: UserController = UserController()
     @Published var goalController: GoalController = GoalController()
+    @Published var comments: [Comment] = []
   
   init() {
     self.postRepository.get({ (posts) -> Void in
@@ -31,7 +33,7 @@ class PostController: ObservableObject {
     }
   
     
-  func addPost(currentUser: User, goal: Goal, caption: String, photo: String, subgoalId: String?, comments: [String], reactions: Int) {
+  func addPost(currentUser: User, goal: Goal, caption: String, photo: String, subgoalId: String?) {
       let timePosted = Date()
       let newPost = Post(goalId: goal.id ,
                          userId: currentUser.id,
@@ -39,8 +41,11 @@ class PostController: ObservableObject {
                          photo: photo,
                          subgoalId: subgoalId,
                          timePosted: timePosted,
-                         comments: comments,
-                         reactions: reactions)
+                         comments: [],
+                         reaction1: [],
+                         reaction2: [],
+                         reaction3: [],
+                         reaction4: [])
       
       postRepository.create(newPost)
       
@@ -113,8 +118,72 @@ class PostController: ObservableObject {
     return posts
   }
   
+  func getPostFromId(postId: String) -> Post? {
+    let temp = self.posts.first( where: {$0.id == postId} )
+    if let ourPost = temp {
+      return ourPost
+    } else {
+      return nil
+    }
+  }
+  
+  func addComment(commenterId: String, postId: String, body: String) {
+    let timePosted = Date()
+    let newComment = Comment(userId: commenterId, body: body, timePosted: timePosted)
+    commentRepository.create(newComment)
+    
+    if let currPost = getPostFromId(postId: postId) {
+      var temp = currPost
+      temp.comments.append(newComment)
+      postRepository.update(temp)
+    }
+    
+  }
+  
+  func reactToPost(userId: String, reactionNum: Int, postId: String) {
+    if let currPost = getPostFromId(postId: postId) {
+      var temp = currPost
+      
+      if reactionNum == 1 {
+        temp.reaction1.append(userId)
+      } else if reactionNum == 2 {
+        temp.reaction2.append(userId)
+      } else if reactionNum == 3 {
+        temp.reaction3.append(userId)
+      } else if reactionNum == 4 {
+        temp.reaction4.append(userId)
+      }
+      
+      postRepository.update(temp)
+    }
+  }
+  
+  func getUserReaction(userId: String, postId: String) -> [Bool] {
+    var ret = [false, false, false, false]
+    
+    if let currPost = getPostFromId(postId: postId) {
+      var temp = currPost
+      
+      if temp.reaction1.contains(userId) {
+        ret[0] = true
+      }
+      if temp.reaction2.contains(userId) {
+        ret[1] = true
+      }
+      if temp.reaction3.contains(userId) {
+        ret[2] = true
+      }
+      if temp.reaction4.contains(userId) {
+        ret[3] = true
+      }
+      
+    }
+    
+    return ret
+  }
   
 }
+
 
 
 

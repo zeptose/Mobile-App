@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct CalendarView: View {
+  @EnvironmentObject var viewModel: AuthViewModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+//        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+      Button("Logout") {
+        Task {
+          viewModel.signOut()
+        }
+      }
     }
 }
 
