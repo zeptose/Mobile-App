@@ -157,30 +157,30 @@ class PostController: ObservableObject {
       postRepository.update(temp)
     }
   }
-  
-  func getUserReaction(userId: String, postId: String) -> [Bool] {
-    var ret = [false, false, false, false]
-    
-    if let currPost = getPostFromId(postId: postId) {
-      var temp = currPost
-      
-      if temp.reaction1.contains(userId) {
-        ret[0] = true
-      }
-      if temp.reaction2.contains(userId) {
-        ret[1] = true
-      }
-      if temp.reaction3.contains(userId) {
-        ret[2] = true
-      }
-      if temp.reaction4.contains(userId) {
-        ret[3] = true
-      }
-      
-    }
-    
-    return ret
-  }
+//
+//  func getUserReaction(userId: String, postId: String) -> [Bool] {
+//    var ret = [false, false, false, false]
+//
+//    if let currPost = getPostFromId(postId: postId) {
+//      var temp = currPost
+//      
+//      if temp.reaction1.contains(userId) {
+//        ret[0] = true
+//      }
+//      if temp.reaction2.contains(userId) {
+//        ret[1] = true
+//      }
+//      if temp.reaction3.contains(userId) {
+//        ret[2] = true
+//      }
+//      if temp.reaction4.contains(userId) {
+//        ret[3] = true
+//      }
+//
+//    }
+//
+//    return ret
+//  }
   
 }
 
