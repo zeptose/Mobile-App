@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2FA621DF2B1677E9001EA7F1 /* EditGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA621DE2B1677E9001EA7F1 /* EditGoalView.swift */; };
+		2FA621E12B16E4F8001EA7F1 /* GoalCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA621E02B16E4F8001EA7F1 /* GoalCardView.swift */; };
+		2FA621E32B16F510001EA7F1 /* HoneyJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA621E22B16F510001EA7F1 /* HoneyJarView.swift */; };
+		2FA621E52B16FD59001EA7F1 /* HoneyJarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA621E42B16FD59001EA7F1 /* HoneyJarViewController.swift */; };
 		5980FC3D2AF1BF14003053BB /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5980FC3C2AF1BF14003053BB /* RegistrationView.swift */; };
 		5980FC3F2AF1C047003053BB /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5980FC3E2AF1C047003053BB /* AppView.swift */; };
 		5995CEBE2AF56AEC004C9158 /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5995CEBD2AF56AEC004C9158 /* CreatePostView.swift */; };
@@ -53,6 +57,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2FA621DE2B1677E9001EA7F1 /* EditGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGoalView.swift; sourceTree = "<group>"; };
+		2FA621E02B16E4F8001EA7F1 /* GoalCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCardView.swift; sourceTree = "<group>"; };
+		2FA621E22B16F510001EA7F1 /* HoneyJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneyJarView.swift; sourceTree = "<group>"; };
+		2FA621E42B16FD59001EA7F1 /* HoneyJarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneyJarViewController.swift; sourceTree = "<group>"; };
 		5980FC3C2AF1BF14003053BB /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		5980FC3E2AF1C047003053BB /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		5995CEBD2AF56AEC004C9158 /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
@@ -213,6 +221,9 @@
 				F1A512A52AFA094700D3D3BE /* FeedItemView.swift */,
 				F9908DAF2AF4AEE000415845 /* AddGoalView.swift */,
 				F1A512A92AFAD19E00D3D3BE /* EditProfileView.swift */,
+				2FA621DE2B1677E9001EA7F1 /* EditGoalView.swift */,
+				2FA621E02B16E4F8001EA7F1 /* GoalCardView.swift */,
+				2FA621E22B16F510001EA7F1 /* HoneyJarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -225,6 +236,7 @@
 				59A802812AF4034100F69178 /* ImageController.swift */,
 				59A802852AF41F0A00F69178 /* CameraController.swift */,
 				5995CEC12AF58871004C9158 /* PostController.swift */,
+				2FA621E42B16FD59001EA7F1 /* HoneyJarViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -324,6 +336,7 @@
 				59A802862AF41F0A00F69178 /* CameraController.swift in Sources */,
 				F1A512AA2AFAD19E00D3D3BE /* EditProfileView.swift in Sources */,
 				F15DB2502AE8EE860031FD75 /* GoalRepository.swift in Sources */,
+				2FA621E52B16FD59001EA7F1 /* HoneyJarViewController.swift in Sources */,
 				F1C26E6D2B0C0AF600251D91 /* Comment.swift in Sources */,
 				F1A512A42AF9F3CC00D3D3BE /* IndividualGoalView.swift in Sources */,
 				F9908DB02AF4AEE000415845 /* AddGoalView.swift in Sources */,
@@ -337,14 +350,17 @@
 				F15DB2422AE8B9D10031FD75 /* Goal.swift in Sources */,
 				F136503A2AF4218B00950A0F /* SearchViewModel.swift in Sources */,
 				F13650382AF4202C00950A0F /* SearchView.swift in Sources */,
+				2FA621E32B16F510001EA7F1 /* HoneyJarView.swift in Sources */,
 				F15DB2312AE8B7370031FD75 /* ContentView.swift in Sources */,
 				F1280C812AF17A4600B09570 /* UserRepository.swift in Sources */,
 				59A8027C2AF402ED00F69178 /* HomeView.swift in Sources */,
+				2FA621DF2B1677E9001EA7F1 /* EditGoalView.swift in Sources */,
 				5995CEBE2AF56AEC004C9158 /* CreatePostView.swift in Sources */,
 				F1280C872AF1CDC200B09570 /* UserController.swift in Sources */,
 				F15DB2402AE8B9B80031FD75 /* User.swift in Sources */,
 				59A802822AF4034100F69178 /* ImageController.swift in Sources */,
 				F1280C832AF1C61100B09570 /* Subgoal.swift in Sources */,
+				2FA621E12B16E4F8001EA7F1 /* GoalCardView.swift in Sources */,
 				F15DB22F2AE8B7370031FD75 /* BusyBeeApp.swift in Sources */,
 				F13650362AF34C3200950A0F /* ProfileView.swift in Sources */,
 				F1C26E6F2B0C0C9300251D91 /* CommentRepository.swift in Sources */,

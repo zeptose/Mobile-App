@@ -174,39 +174,75 @@ struct ProfileView: View {
                                         }()
                                         
                                       ForEach(currentGoals) { goal in
-                                          NavigationLink(destination: IndividualGoalView(goal: goal)) {
-                                              VStack(alignment: .leading) {
-                                                  HStack {
-                                                      Text(goal.name)
-                                                          .font(.title)
-                                                          .foregroundColor(Color.black)
-                                                          .fontWeight(.bold)
-                                                          .padding(.bottom, 4)
-                                                      Spacer()
-                                                      NavigationLink(destination: EditGoalView(goalController: goalController, currentUser: updatedUser!, goal: goal)) {
-                                                          Image(systemName: "pencil")
-                                                              .foregroundColor(.black)
-                                                              .font(.title)
-                                                      }
-                                                  }
-                                                  HStack {
-                                                      Text("Due: \(dateFormatter.string(from: goal.dueDate))")
-                                                          .font(.subheadline)
-                                                          .foregroundColor(Color.black)
-                                                      Spacer()
-                                                      Text("Frequency: \(goal.frequency)")
-                                                          .font(.subheadline)
-                                                          .foregroundColor(Color.black)
-                                                          .multilineTextAlignment(.trailing)
-                                                  }
-                                              }
-                                              .padding(12)
-                                              .background(
-                                                  RoundedRectangle(cornerRadius: 12)
-                                                      .fill(Color.white)
-                                                      .shadow(color: Color.gray, radius: 4, x: 0, y: 2)
-                                              )
-                                          }
+                                          GoalCardView(user: updatedUser!, goal: goal)
+//                                          NavigationLink(destination: IndividualGoalView(goal: goal)) {
+//                                              VStack(alignment: .leading) {
+//                                                  let goalDueDate = goal.dueDate
+//                                                  let currentDate = Date()
+//                                                  let calendar = Calendar.current
+//                                                  let components = calendar.dateComponents([.day], from: currentDate, to: goalDueDate)
+//                                                  let dayDifference = components.day
+//                                                  HStack {
+//                                                      Image("HoneyJarPic")
+//                                                        .resizable()
+//                                                        .aspectRatio(contentMode: .fit)
+//                                                        .frame(width: 70, height: 70, alignment: .leading)
+//                                                      VStack {
+//                                                          Text(goal.name)
+//                                                              .font(.subheadline)
+//                                                              .foregroundColor(Color.black)
+//                                                              .fontWeight(.bold)
+//                                                              .padding(.bottom, 4)
+//                                                          if let dayDifference = dayDifference {
+//                                                              if dayDifference == 1 {
+//                                                                  Text("\(dayDifference) day left")
+//                                                                      .font(.subheadline)
+//                                                                      .foregroundColor(Color.black)
+//                                                                      .fontWeight(.bold)
+//                                                                      .padding(.bottom, 4)
+//                                                              } else {
+//                                                                  Text("\(dayDifference) days left")
+//                                                                      .font(.subheadline)
+//                                                                      .foregroundColor(Color.black)
+//                                                                      .fontWeight(.bold)
+//                                                                      .padding(.bottom, 4)
+//                                                              }
+//                                                            
+//                                                                     
+//                                                                  } else {
+//                                                                      Text("This goal is overdue!")
+//                                                                          .font(.subheadline)
+//                                                                          .foregroundColor(Color.black)
+//                                                                          .fontWeight(.bold)
+//                                                                          .padding(.bottom, 4)
+//                                                                  }
+//                                                          
+//                                                      }
+//                                                      Spacer()
+//                                                      NavigationLink(destination: EditGoalView(goalController: goalController, currentUser: updatedUser!, goal: goal)) {
+//                                                          Image(systemName: "pencil")
+//                                                              .foregroundColor(.black)
+//                                                              .font(.title)
+//                                                      }
+//                                                  }
+////                                                  HStack {
+////                                                      Text("Due: \(dateFormatter.string(from: goal.dueDate))")
+////                                                          .font(.subheadline)
+////                                                          .foregroundColor(Color.black)
+////                                                      Spacer()
+////                                                      Text("Frequency: \(goal.frequency)")
+////                                                          .font(.subheadline)
+////                                                          .foregroundColor(Color.black)
+////                                                          .multilineTextAlignment(.trailing)
+////                                                  }
+//                                              }
+//                                              .padding(12)
+//                                              .background(
+//                                                  RoundedRectangle(cornerRadius: 12)
+//                                                      .fill(Color.white)
+//                                                      .shadow(color: Color.gray, radius: 4, x: 0, y: 2)
+//                                              )
+//                                          }
                                       }
                                     } else {
                                         let pastGoals = goalController.getPastGoals(currentUser: updatedUser!)
