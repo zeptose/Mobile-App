@@ -13,6 +13,8 @@ struct FeedItemView: View {
     @EnvironmentObject var postController: PostController
     @EnvironmentObject var userController: UserController
     @EnvironmentObject var goalController: GoalController
+    @EnvironmentObject var viewModel: AuthViewModel
+    @State private var isShowingPopUp = false
   
     var body: some View {
       if let feedUser = userController.getUserFromId(userId: userId){
@@ -66,76 +68,41 @@ struct FeedItemView: View {
             }
                 
         }
-        ZStack(alignment: .bottom) {
+        ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
             // Photo
             Image(uiImage: postController.getImageFromURL(url: post.photo))
               .resizable()
               .scaledToFill()
               .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 280)
               .clipped()
-//          HStack {
-////              let colors = postController.getUserReaction(userId: userId, postId: post.id!)
-//              Button(action: {
-//                postController.reactToPost(userId: userId, reactionNum: 1, postId: post.id!)
-//              }) {
-//                VStack{
-//                  Circle()
-//                      .fill(Color.blue)
-//                      .overlay(
-//                          Image("heart")
-//                              .resizable()
-//                              .aspectRatio(contentMode: .fit)
-//                              .frame(width: 30, height: 30, alignment: .leading)
-//                      )
-//              }
-//            }
-//
-//              Button(action: {
-//                postController.reactToPost(userId: userId, reactionNum: 2, postId: post.id!)
-//              }) {
-//                VStack {
-//                  Circle()
-//                      .fill(Color.blue)
-//                      .overlay(
-//                          Image("clappingHands")
-//                              .resizable()
-//                              .aspectRatio(contentMode: .fit)
-//                              .frame(width: 30, height: 30, alignment: .leading)
-//                      )
-//              }
-//            }
-//
-//              Button(action: {
-//                postController.reactToPost(userId: userId, reactionNum: 3, postId: post.id!)
-//              }) {
-//                VStack {
-//                  Circle()
-//                      .fill(Color.blue)
-//                      .overlay(
-//                          Image("champagne")
-//                              .resizable()
-//                              .aspectRatio(contentMode: .fit)
-//                              .frame(width: 30, height: 30, alignment: .leading)
-//                      )
-//              }
-//            }
-//
-//              Button(action: {
-//                postController.reactToPost(userId: userId, reactionNum: 4, postId: post.id!)
-//              }) {
-//                VStack {
-//                  Circle()
-//                      .fill(Color.blue)
-//                      .overlay(
-//                          Image("celebrate")
-//                              .resizable()
-//                              .aspectRatio(contentMode: .fit)
-//                              .frame(width: 30, height: 30, alignment: .leading)
-//                      )
-//              }
-//            }
-//            }
+          
+          
+          VStack(alignment: .leading){
+            if isShowingPopUp {
+              ReactionsComponent(post: post)
+              Button(action: {
+                isShowingPopUp.toggle()
+              }) {
+                Image("Reaction")
+                  .resizable()
+                  .aspectRatio(contentMode: .fit)
+                  .frame(width: 40, height: 40, alignment: .leading)
+              }
+            } else {
+              Button(action: {
+                isShowingPopUp.toggle()
+              }) {
+                Image("bwHexagon")
+                  .resizable()
+                  .aspectRatio(contentMode: .fit)
+                  .frame(width: 40, height: 40, alignment: .leading)
+              }
+            }
+          }
+            .padding(.leading, 10)
+            .padding(.bottom, 7)
         }
+        
         
         VStack {
           //Subgoal

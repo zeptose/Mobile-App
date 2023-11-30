@@ -46,6 +46,8 @@
 		F1C26E6D2B0C0AF600251D91 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C26E6C2B0C0AF600251D91 /* Comment.swift */; };
 		F1C26E6F2B0C0C9300251D91 /* CommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C26E6E2B0C0C9300251D91 /* CommentRepository.swift */; };
 		F1C7F65A2B15C15200A61DE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1C7F6592B15C15200A61DE4 /* GoogleService-Info.plist */; };
+		F1C7F65C2B16724D00A61DE4 /* ReactionsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C7F65B2B16724D00A61DE4 /* ReactionsComponent.swift */; };
+		F1C7F65E2B1674D300A61DE4 /* EditGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C7F65D2B1674D300A61DE4 /* EditGoalView.swift */; };
 		F9908DB02AF4AEE000415845 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DAF2AF4AEE000415845 /* AddGoalView.swift */; };
 		F9908DB42AFB090300415845 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DB32AFB090300415845 /* CameraView.swift */; };
 		F9908DB62AFB092800415845 /* CameraControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DB52AFB092800415845 /* CameraControlsView.swift */; };
@@ -90,6 +92,8 @@
 		F1C26E6C2B0C0AF600251D91 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		F1C26E6E2B0C0C9300251D91 /* CommentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepository.swift; sourceTree = "<group>"; };
 		F1C7F6592B15C15200A61DE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F1C7F65B2B16724D00A61DE4 /* ReactionsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsComponent.swift; sourceTree = "<group>"; };
+		F1C7F65D2B1674D300A61DE4 /* EditGoalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGoalView.swift; sourceTree = "<group>"; };
 		F9908DAF2AF4AEE000415845 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
 		F9908DB32AFB090300415845 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		F9908DB52AFB092800415845 /* CameraControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControlsView.swift; sourceTree = "<group>"; };
@@ -209,10 +213,12 @@
 				59A802792AF402DB00F69178 /* CalendarView.swift */,
 				59A8027B2AF402ED00F69178 /* HomeView.swift */,
 				5995CEBD2AF56AEC004C9158 /* CreatePostView.swift */,
+				F1C7F65B2B16724D00A61DE4 /* ReactionsComponent.swift */,
 				F1A512A32AF9F3CC00D3D3BE /* IndividualGoalView.swift */,
 				F1A512A52AFA094700D3D3BE /* FeedItemView.swift */,
 				F9908DAF2AF4AEE000415845 /* AddGoalView.swift */,
 				F1A512A92AFAD19E00D3D3BE /* EditProfileView.swift */,
+				F1C7F65D2B1674D300A61DE4 /* EditGoalView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -329,6 +335,7 @@
 				F9908DB02AF4AEE000415845 /* AddGoalView.swift in Sources */,
 				F13650322AF3405500950A0F /* GoalController.swift in Sources */,
 				F9908DB42AFB090300415845 /* CameraView.swift in Sources */,
+				F1C7F65C2B16724D00A61DE4 /* ReactionsComponent.swift in Sources */,
 				59A8027A2AF402DB00F69178 /* CalendarView.swift in Sources */,
 				F13650342AF3487C00950A0F /* LoginView.swift in Sources */,
 				5980FC3F2AF1C047003053BB /* AppView.swift in Sources */,
@@ -351,6 +358,7 @@
 				F15DB2442AE8BB340031FD75 /* Post.swift in Sources */,
 				F1280C892AF2EF0D00B09570 /* AuthViewModel.swift in Sources */,
 				5995CEC02AF56CBD004C9158 /* CameraViewModel.swift in Sources */,
+				F1C7F65E2B1674D300A61DE4 /* EditGoalView.swift in Sources */,
 				F9BE505A2AF4288900FF1C16 /* HexCodeConverter.swift in Sources */,
 				5980FC3D2AF1BF14003053BB /* RegistrationView.swift in Sources */,
 				5995CEC22AF58871004C9158 /* PostController.swift in Sources */,

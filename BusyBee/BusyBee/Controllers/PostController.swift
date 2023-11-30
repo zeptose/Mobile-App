@@ -140,9 +140,8 @@ class PostController: ObservableObject {
     
   }
   
-  func reactToPost(userId: String, reactionNum: Int, postId: String) {
-    if let currPost = getPostFromId(postId: postId) {
-      var temp = currPost
+  func reactToPost(userId: String, reactionNum: Int, post: Post) {
+      var temp = post
       
       if reactionNum == 1 {
         temp.reaction1.append(userId)
@@ -155,32 +154,55 @@ class PostController: ObservableObject {
       }
       
       postRepository.update(temp)
-    }
   }
-//
-//  func getUserReaction(userId: String, postId: String) -> [Bool] {
-//    var ret = [false, false, false, false]
-//
-//    if let currPost = getPostFromId(postId: postId) {
-//      var temp = currPost
-//      
-//      if temp.reaction1.contains(userId) {
-//        ret[0] = true
-//      }
-//      if temp.reaction2.contains(userId) {
-//        ret[1] = true
-//      }
-//      if temp.reaction3.contains(userId) {
-//        ret[2] = true
-//      }
-//      if temp.reaction4.contains(userId) {
-//        ret[3] = true
-//      }
-//
-//    }
-//
-//    return ret
-//  }
+  
+  func removeReaction(userId: String, reactionNum: Int, post: Post) {
+      var temp = post
+      
+      if reactionNum == 1 {
+        let ind = temp.reaction1.firstIndex(of: userId)
+        temp.reaction1.remove(at: ind!)
+      } else if reactionNum == 2 {
+        let ind = temp.reaction2.firstIndex(of: userId)
+        temp.reaction2.remove(at: ind!)
+      } else if reactionNum == 3 {
+        let ind = temp.reaction3.firstIndex(of: userId)
+        temp.reaction3.remove(at: ind!)
+      } else if reactionNum == 4 {
+        let ind = temp.reaction4.firstIndex(of: userId)
+        temp.reaction4.remove(at: ind!)
+      }
+      
+      postRepository.update(temp)
+  }
+  
+  func didUserReact1(userId: String, post: Post) -> Bool {
+    if post.reaction1.contains(userId) {
+      return true
+    }
+    return false
+  }
+  
+  func didUserReact2(userId: String, post: Post) -> Bool {
+    if post.reaction2.contains(userId) {
+      return true
+    }
+    return false
+  }
+  
+  func didUserReact3(userId: String, post: Post) -> Bool {
+    if post.reaction3.contains(userId) {
+      return true
+    }
+    return false
+  }
+  
+  func didUserReact4(userId: String, post: Post) -> Bool {
+    if post.reaction4.contains(userId) {
+      return true
+    }
+    return false
+  }
   
 }
 
