@@ -204,6 +204,16 @@ class PostController: ObservableObject {
     return false
   }
   
+  func commentToTuple(comment: Comment) -> (String, String, Date) {
+      return (comment.userId, comment.body, comment.timePosted)
+  }
+  
+  // returns username of poster, comment body, and date posted
+  func getPostComments(post: Post) -> [(String, String, Date)] {
+    let commentTuples = post.comments.map { commentToTuple(comment: $0) }
+    return commentTuples
+  }
+  
 }
 
 

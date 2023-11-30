@@ -48,6 +48,7 @@
 		F1C7F65A2B15C15200A61DE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1C7F6592B15C15200A61DE4 /* GoogleService-Info.plist */; };
 		F1C7F65C2B16724D00A61DE4 /* ReactionsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C7F65B2B16724D00A61DE4 /* ReactionsComponent.swift */; };
 		F1C7F65E2B1674D300A61DE4 /* EditGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C7F65D2B1674D300A61DE4 /* EditGoalView.swift */; };
+		F1C7F6602B1835EE00A61DE4 /* CommentSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C7F65F2B1835EE00A61DE4 /* CommentSheetView.swift */; };
 		F9908DB02AF4AEE000415845 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DAF2AF4AEE000415845 /* AddGoalView.swift */; };
 		F9908DB42AFB090300415845 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DB32AFB090300415845 /* CameraView.swift */; };
 		F9908DB62AFB092800415845 /* CameraControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DB52AFB092800415845 /* CameraControlsView.swift */; };
@@ -94,6 +95,7 @@
 		F1C7F6592B15C15200A61DE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1C7F65B2B16724D00A61DE4 /* ReactionsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsComponent.swift; sourceTree = "<group>"; };
 		F1C7F65D2B1674D300A61DE4 /* EditGoalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGoalView.swift; sourceTree = "<group>"; };
+		F1C7F65F2B1835EE00A61DE4 /* CommentSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSheetView.swift; sourceTree = "<group>"; };
 		F9908DAF2AF4AEE000415845 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
 		F9908DB32AFB090300415845 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		F9908DB52AFB092800415845 /* CameraControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControlsView.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				F1C7F65B2B16724D00A61DE4 /* ReactionsComponent.swift */,
 				F1A512A32AF9F3CC00D3D3BE /* IndividualGoalView.swift */,
 				F1A512A52AFA094700D3D3BE /* FeedItemView.swift */,
+				F1C7F65F2B1835EE00A61DE4 /* CommentSheetView.swift */,
 				F9908DAF2AF4AEE000415845 /* AddGoalView.swift */,
 				F1A512A92AFAD19E00D3D3BE /* EditProfileView.swift */,
 				F1C7F65D2B1674D300A61DE4 /* EditGoalView.swift */,
@@ -343,6 +346,7 @@
 				F1A512A62AFA094700D3D3BE /* FeedItemView.swift in Sources */,
 				F15DB2422AE8B9D10031FD75 /* Goal.swift in Sources */,
 				F136503A2AF4218B00950A0F /* SearchViewModel.swift in Sources */,
+				F1C7F6602B1835EE00A61DE4 /* CommentSheetView.swift in Sources */,
 				F13650382AF4202C00950A0F /* SearchView.swift in Sources */,
 				F15DB2312AE8B7370031FD75 /* ContentView.swift in Sources */,
 				F1280C812AF17A4600B09570 /* UserRepository.swift in Sources */,

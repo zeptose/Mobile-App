@@ -27,7 +27,6 @@ struct ReactionsComponent: View {
                   .aspectRatio(contentMode: .fit)
                   .frame(width: hexagonSize, height: hexagonSize, alignment: .leading)
             }
-            .padding(0.5)
             .buttonStyle(BorderlessButtonStyle())
           } else {
             Button(action: {
@@ -39,7 +38,6 @@ struct ReactionsComponent: View {
                   .frame(width: hexagonSize, height: hexagonSize, alignment: .leading)
                   
             }
-            .padding(0.5)
             .buttonStyle(BorderlessButtonStyle())
           }
           
@@ -53,7 +51,6 @@ struct ReactionsComponent: View {
                   .aspectRatio(contentMode: .fit)
                   .frame(width: hexagonSize, height: hexagonSize, alignment: .leading)
             }
-            .padding(0.5)
             .buttonStyle(BorderlessButtonStyle())
           } else {
             Button(action: {
@@ -64,7 +61,6 @@ struct ReactionsComponent: View {
                   .aspectRatio(contentMode: .fit)
                   .frame(width: hexagonSize, height: hexagonSize, alignment: .leading)
             }
-            .padding(0.5)
             .buttonStyle(BorderlessButtonStyle())
           }
           
@@ -78,7 +74,6 @@ struct ReactionsComponent: View {
                   .aspectRatio(contentMode: .fit)
                   .frame(width: hexagonSize, height: hexagonSize, alignment: .leading)
             }
-            .padding(0.5)
             .buttonStyle(BorderlessButtonStyle())
           } else {
             Button(action: {
@@ -89,7 +84,6 @@ struct ReactionsComponent: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: hexagonSize, height: hexagonSize, alignment: .leading)
             }
-            .padding(0.5)
             .buttonStyle(BorderlessButtonStyle())
           }
           
