@@ -175,39 +175,9 @@ struct ProfileView: View {
                                         
                                       ForEach(currentGoals) { goal in
                                           NavigationLink(destination: IndividualGoalView(goal: goal)) {
-                                              VStack(alignment: .leading) {
-                                                  HStack {
-                                                      Text(goal.name)
-                                                          .font(.title)
-                                                          .foregroundColor(Color.black)
-                                                          .fontWeight(.bold)
-                                                          .padding(.bottom, 4)
-                                                      Spacer()
-                                                      NavigationLink(destination: EditGoalView(goalController: goalController, currentUser: updatedUser!, goal: goal)) {
-                                                          Image(systemName: "pencil")
-                                                              .foregroundColor(.black)
-                                                              .font(.title)
-                                                      }
-                                                  }
-                                                  HStack {
-                                                      Text("Due: \(dateFormatter.string(from: goal.dueDate))")
-                                                          .font(.subheadline)
-                                                          .foregroundColor(Color.black)
-                                                      Spacer()
-                                                      Text("Frequency: \(goal.frequency)")
-                                                          .font(.subheadline)
-                                                          .foregroundColor(Color.black)
-                                                          .multilineTextAlignment(.trailing)
-                                                  }
-                                              }
-                                              .padding(12)
-                                              .background(
-                                                  RoundedRectangle(cornerRadius: 12)
-                                                      .fill(Color.white)
-                                                      .shadow(color: Color.gray, radius: 4, x: 0, y: 2)
-                                              )
+                                              GoalCardView(user: updatedUser!, goal: goal)
                                           }
-                                      }
+                                          }
                                     } else {
                                         let pastGoals = goalController.getPastGoals(currentUser: updatedUser!)
                                         let dateFormatter: DateFormatter = {

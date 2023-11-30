@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2FBB027C2B186D4900044A36 /* GoalCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB027B2B186D4900044A36 /* GoalCardView.swift */; };
+		2FBB027E2B186D6E00044A36 /* HoneyJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB027D2B186D6E00044A36 /* HoneyJarView.swift */; };
+		2FBB02802B186E0000044A36 /* HoneyJarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB027F2B186E0000044A36 /* HoneyJarViewController.swift */; };
 		5980FC3D2AF1BF14003053BB /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5980FC3C2AF1BF14003053BB /* RegistrationView.swift */; };
 		5980FC3F2AF1C047003053BB /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5980FC3E2AF1C047003053BB /* AppView.swift */; };
 		5995CEBE2AF56AEC004C9158 /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5995CEBD2AF56AEC004C9158 /* CreatePostView.swift */; };
@@ -55,6 +58,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2FBB027B2B186D4900044A36 /* GoalCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCardView.swift; sourceTree = "<group>"; };
+		2FBB027D2B186D6E00044A36 /* HoneyJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneyJarView.swift; sourceTree = "<group>"; };
+		2FBB027F2B186E0000044A36 /* HoneyJarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneyJarViewController.swift; sourceTree = "<group>"; };
 		5980FC3C2AF1BF14003053BB /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		5980FC3E2AF1C047003053BB /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		5995CEBD2AF56AEC004C9158 /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
@@ -219,6 +225,8 @@
 				F9908DAF2AF4AEE000415845 /* AddGoalView.swift */,
 				F1A512A92AFAD19E00D3D3BE /* EditProfileView.swift */,
 				F1C7F65D2B1674D300A61DE4 /* EditGoalView.swift */,
+				2FBB027B2B186D4900044A36 /* GoalCardView.swift */,
+				2FBB027D2B186D6E00044A36 /* HoneyJarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,6 +239,7 @@
 				59A802812AF4034100F69178 /* ImageController.swift */,
 				59A802852AF41F0A00F69178 /* CameraController.swift */,
 				5995CEC12AF58871004C9158 /* PostController.swift */,
+				2FBB027F2B186E0000044A36 /* HoneyJarViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -339,6 +348,7 @@
 				59A8027A2AF402DB00F69178 /* CalendarView.swift in Sources */,
 				F13650342AF3487C00950A0F /* LoginView.swift in Sources */,
 				5980FC3F2AF1C047003053BB /* AppView.swift in Sources */,
+				2FBB02802B186E0000044A36 /* HoneyJarViewController.swift in Sources */,
 				F9908DB62AFB092800415845 /* CameraControlsView.swift in Sources */,
 				F1A512A62AFA094700D3D3BE /* FeedItemView.swift in Sources */,
 				F15DB2422AE8B9D10031FD75 /* Goal.swift in Sources */,
@@ -358,6 +368,8 @@
 				F15DB2442AE8BB340031FD75 /* Post.swift in Sources */,
 				F1280C892AF2EF0D00B09570 /* AuthViewModel.swift in Sources */,
 				5995CEC02AF56CBD004C9158 /* CameraViewModel.swift in Sources */,
+				2FBB027C2B186D4900044A36 /* GoalCardView.swift in Sources */,
+				2FBB027E2B186D6E00044A36 /* HoneyJarView.swift in Sources */,
 				F1C7F65E2B1674D300A61DE4 /* EditGoalView.swift in Sources */,
 				F9BE505A2AF4288900FF1C16 /* HexCodeConverter.swift in Sources */,
 				5980FC3D2AF1BF14003053BB /* RegistrationView.swift in Sources */,

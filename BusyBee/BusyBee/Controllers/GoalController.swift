@@ -94,7 +94,7 @@ class GoalController: ObservableObject {
   func getCurrentGoals(currentUser: User) -> [Goal] {
     let usersGoals = self.goals.filter{ String($0.userId) == String(currentUser.id) }
     let today = Date()
-    let curr = usersGoals.filter { today <= $0.dueDate && $0.progress < $0.frequency }
+    let curr = usersGoals.filter { $0.progress < $0.frequency }
 //      print("currentUser: \(currentUser)" )
 //      print("currentGoals: \(curr)")
     return curr.sorted { $0.dueDate >= $1.dueDate}
@@ -104,7 +104,7 @@ class GoalController: ObservableObject {
   func getPastGoals(currentUser: User) -> [Goal] {
       let usersGoals = self.goals.filter{ String($0.userId) == String(currentUser.id) }
       let today = Date()
-      let past = usersGoals.filter { $0.progress == $0.frequency || today > $0.dueDate}
+      let past = usersGoals.filter { $0.progress == $0.frequency }
       return past.sorted { $0.dueDate >= $1.dueDate}
   }
   
@@ -121,6 +121,11 @@ class GoalController: ObservableObject {
         }
     }
   
+    func getCountSubgoals(goal: Goal) -> Int {
+            let subGoals = getSubgoalsForGoal(goal: goal)
+            return subGoals.count
+    }
+    
     func getGoalFromId(goalId: String) -> Goal? {
       let temp = self.goals.first( where: {$0.id == goalId} )
       if let ourGoal = temp {
