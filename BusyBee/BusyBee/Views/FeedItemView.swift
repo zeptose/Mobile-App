@@ -15,6 +15,7 @@ struct FeedItemView: View {
     @EnvironmentObject var goalController: GoalController
     @EnvironmentObject var viewModel: AuthViewModel
     @State private var isShowingPopUp = false
+    @State private var isSheetPresented = false
   
     var body: some View {
       if let feedUser = userController.getUserFromId(userId: userId){
@@ -68,6 +69,7 @@ struct FeedItemView: View {
             }
                 
         }
+        // Image and Reactions
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
             // Photo
             Image(uiImage: postController.getImageFromURL(url: post.photo))
@@ -103,9 +105,8 @@ struct FeedItemView: View {
             .padding(.bottom, 7)
         }
         
-        
+        //Subgoal
         VStack {
-          //Subgoal
           if let subgoal = goalController.getSubgoalFromId(subgoalId: post.subgoalId!){
             Capsule()
                 .foregroundColor(Color.green)
@@ -127,9 +128,23 @@ struct FeedItemView: View {
               .frame(maxWidth: .infinity, alignment: .leading)
           }
         }
-            
+        
+        VStack {
+          Text("View Comments")
+              .foregroundColor(.gray)
+              .font(.system(size: 10))
+              .onTapGesture {
+                  isSheetPresented.toggle()
+              }
+              .sheet(isPresented: $isSheetPresented) {
+                  CommentSheetView(post: post)
+              }
+              .padding()
         }
+      
+            
+      }
         Spacer()
 //        .padding()
-      }
+    }
 }
