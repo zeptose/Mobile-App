@@ -214,6 +214,48 @@ class PostController: ObservableObject {
     return commentTuples
   }
   
+  func timeAgoString(from date: Date) -> String {
+      let currentDate = Date()
+      let calendar = Calendar.current
+
+      if let seconds = calendar.dateComponents([.second], from: date, to: currentDate).second, seconds < 60 {
+          return "\(seconds) seconds ago"
+      } else if let minutes = calendar.dateComponents([.minute], from: date, to: currentDate).minute, minutes < 60 {
+          return "\(minutes) minutes ago"
+      } else if let hours = calendar.dateComponents([.hour], from: date, to: currentDate).hour, hours < 24 {
+          return "\(hours) hours ago"
+      } else if let days = calendar.dateComponents([.day], from: date, to: currentDate).day, days < 7 {
+          return "\(days) days ago"
+      } else if let weeks = calendar.dateComponents([.weekOfMonth], from: date, to: currentDate).weekOfMonth, weeks < 5 {
+          return "\(weeks) weeks ago"
+      } else if let months = calendar.dateComponents([.month], from: date, to: currentDate).month, months < 12 {
+        return "\(months) months ago"
+      }  else {
+          return "Unknown"
+      }
+  }
+  
+  func timeAgoStringAbv(from date: Date) -> String {
+      let currentDate = Date()
+      let calendar = Calendar.current
+
+      if let seconds = calendar.dateComponents([.second], from: date, to: currentDate).second, seconds < 60 {
+          return "\(seconds)s ago"
+      } else if let minutes = calendar.dateComponents([.minute], from: date, to: currentDate).minute, minutes < 60 {
+          return "\(minutes)m ago"
+      } else if let hours = calendar.dateComponents([.hour], from: date, to: currentDate).hour, hours < 24 {
+          return "\(hours)h ago"
+      } else if let days = calendar.dateComponents([.day], from: date, to: currentDate).day, days < 7 {
+          return "\(days)d ago"
+      } else if let weeks = calendar.dateComponents([.weekOfMonth], from: date, to: currentDate).weekOfMonth, weeks < 5 {
+          return "\(weeks)w ago"
+      } else if let months = calendar.dateComponents([.month], from: date, to: currentDate).month, months < 12 {
+          return "\(months)mo ago"
+      } else {
+          return "Unknown"
+      }
+  }
+  
 }
 
 

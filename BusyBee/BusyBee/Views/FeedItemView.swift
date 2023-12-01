@@ -16,22 +16,31 @@ struct FeedItemView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     @State private var isShowingPopUp = false
     @State private var isSheetPresented = false
+    let customYellow = Color(UIColor(hex: "#FFD111"))
+    let subgoalColor = Color(UIColor(hex: "#53B141"))
   
     var body: some View {
       if let feedUser = userController.getUserFromId(userId: userId){
-        VStack {
+          let timeAgo = postController.timeAgoString(from: post.timePosted)
           VStack {
             // Profile Picture and Username
             
             HStack {
-              Image("profilePic") // Replace with user's profile image
+              Image("profilePic")
                 .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 50, height: 50, alignment: .leading)
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 50, height: 50)
                 .clipShape(Circle())
+                .overlay(Circle().stroke(customYellow, lineWidth: 3))
               
-              Text(feedUser.username)
-                .frame(maxWidth: .infinity, alignment: .leading)
+              VStack {
+                Text(feedUser.username)
+                  .frame(maxWidth: .infinity, alignment: .leading)
+                Text(timeAgo)
+                  .foregroundColor(.gray)
+                  .font(.system(size: 12))
+                  .frame(maxWidth: .infinity, alignment: .leading)
+              }
             }
           }
           
@@ -40,65 +49,38 @@ struct FeedItemView: View {
           if let feedGoal = goalController.getGoalFromId(goalId: post.goalId) {
             let percentage = CGFloat(feedGoal.progress)/CGFloat(feedGoal.frequency)
             let progressBarMax = UIScreen.main.bounds.width - 85
-              NavigationLink(destination: IndividualGoalView(goal: feedGoal)) {
-//                RoundedRectangle(cornerRadius: 12)
-////                  .fill(Color(.clear))
-//                  .fill(Color(.blue))
-//                  .overlay(
-//                    VStack {
-//                      HStack{
-//                        Text(feedGoal.name)
-//                          .font(.subheadline)
-//                          .foregroundColor(.black)
-//                          .frame(maxWidth: .infinity, alignment: .leading)
-//                        //                      .padding(.leading, 10)
-//                        Text("\(feedGoal.progress)/\(feedGoal.frequency)")
-//                          .font(.subheadline)
-//                          .foregroundColor(.black)
-//                          .frame(maxWidth: .infinity, alignment: .trailing)
-//                      }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-//                      ZStack(alignment: .leading) {
-//                        Capsule().frame(width: progressBarMax)
-//                          .foregroundColor(Color.gray)
-//                        Capsule().frame(width: progressBarMax * percentage)
-//                          .foregroundColor(Color.yellow)
-//                      }.frame(height: 20, alignment: .center)
-//                        .padding(.leading, 10)
-//                      Spacer()
-//                    }
-//                  )
-                RoundedRectangle(cornerRadius: 12)
-                        .fill(Color.blue)
-                        .overlay(
-                            VStack {
-                                HStack {
-                                    Text(feedGoal.name)
-                                        .font(.subheadline)
-                                        .foregroundColor(.black)
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                    Text("\(feedGoal.progress)/\(feedGoal.frequency)")
-                                        .font(.subheadline)
-                                        .foregroundColor(.black)
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                                .padding(.leading, 10)
-                                
-                                ZStack(alignment: .leading) {
-                                    Capsule().frame(width: progressBarMax)
-                                        .foregroundColor(Color.gray)
-                                    Capsule().frame(width: progressBarMax * percentage)
-                                        .foregroundColor(Color.yellow)
-                                }
-                                .frame(height: 20, alignment: .center)
-                                
-//                                Spacer() // Move Spacer inside the VStack
-                            }
-                        )
-                
-              }
-//              .background(.blue)
-              .padding()
             
+            NavigationLink(destination: IndividualGoalView(goal: feedGoal)) {
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color.clear)
+                    .frame(height: 40)
+                    .overlay(
+                      VStack(alignment: .leading) {
+                          Spacer()
+                            HStack {
+                                Text(feedGoal.name)
+                                    .font(.subheadline)
+                                    .foregroundColor(.black)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                Text("\(feedGoal.progress)/\(feedGoal.frequency)")
+                                    .font(.subheadline)
+                                    .foregroundColor(.black)
+                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                                    .padding(.trailing, 20)
+                            }
+//                            .padding(.leading, 10)
+                          Spacer()
+                            ZStack(alignment: .leading) {
+                                Capsule().frame(width: progressBarMax)
+                                    .foregroundColor(Color.gray)
+                                Capsule().frame(width: progressBarMax * percentage)
+                                    .foregroundColor(Color.yellow)
+                            }
+                            .frame(height: 20, alignment: .center)
+                           Spacer()
+                        }
+                    )
+            }
           }
           // Image and Reactions
           ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
@@ -106,8 +88,9 @@ struct FeedItemView: View {
             Image(uiImage: postController.getImageFromURL(url: post.photo))
               .resizable()
               .scaledToFill()
-              .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 500)
+              .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 400)
               .clipped()
+              .edgesIgnoringSafeArea([.top, .bottom])
             
             
             VStack(alignment: .leading){
@@ -134,21 +117,26 @@ struct FeedItemView: View {
             }
             .padding(.leading, 10)
             .padding(.bottom, 7)
-          }
+          }.padding(.bottom, 0)
           
           //Subgoal
-          VStack (alignment: .leading) {
+        VStack (alignment: .leading) {
             if let subgoal = goalController.getSubgoalFromId(subgoalId: post.subgoalId!){
               Capsule()
-                .foregroundColor(Color.green)
-                .frame(height: 20, alignment: .leading)
+                .foregroundColor(subgoalColor)
+                .frame(height: 25, alignment: .leading)
                 .overlay(
                   HStack{
-                    Image(systemName: "checkmark.circle")
-                      .frame(width: 20, alignment: .leading)
+                    Image("checkmark")
+                      .resizable()
+                      .aspectRatio(contentMode: .fit)
+                      .frame(width: 12, alignment: .leading)
+                      .padding(.leading, 10)
                     Text(subgoal.name)
-                      .font(.system(size: 10))
+                      .font(.system(size: 15))
+                      .foregroundColor(.white)
                       .frame(maxWidth: .infinity, alignment: .leading)
+                    
                   }
                 )
                 .frame(maxWidth: 150, alignment: .leading)
@@ -157,34 +145,37 @@ struct FeedItemView: View {
             if (post.caption != "") {
               Text(post.caption)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, -1)
             }
-          }
-          
-          VStack {
-            Text("View Comments")
-              .foregroundColor(.gray)
-              .font(.system(size: 10))
-              .onTapGesture {
-                isSheetPresented.toggle()
-              }
-              .sheet(isPresented: $isSheetPresented) {
-                CommentSheetView(post: post)
-              }
-              .padding()
-          }
         }
-        .background(
-          RoundedRectangle(cornerRadius: 12)
-              .fill(Color.white)
-              .frame(minHeight: 0, maxHeight: .infinity)
-              .shadow(color: Color.gray, radius: 4, x: 0, y: 2)
-        )
-        .frame(minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-        .padding(.top, 1)
-        .padding(.bottom, 1)
-        .padding(.leading, 5)
-        .padding(.trailing, 5)
+        .padding(.top, -5)
+        
+        Text("View Comments")
+          .foregroundColor(.gray)
+          .font(.system(size: 12))
+          .padding(.leading, 2)
+          .padding(.top, -20)
+          .onTapGesture {
+            isSheetPresented.toggle()
+          }
+          .sheet(isPresented: $isSheetPresented) {
+            CommentSheetView(post: post)
+          }
+          .frame(maxWidth: .infinity, alignment: .leading)
+        }
+//        .background(
+//          RoundedRectangle(cornerRadius: 12)
+//              .fill(Color.white)
+//              .frame(minHeight: 0, maxHeight: .infinity)
+//              .shadow(color: Color.gray, radius: 4, x: 0, y: 2)
+//        )
+////        .frame(minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+//        .frame(minHeight: 0, maxHeight: .infinity)
+//        .padding(.top, 1)
+//        .padding(.bottom, 1)
+//        .padding(.leading, 1)
+//        .padding(.trailing, 1)
             
-      }
+      
     }
 }

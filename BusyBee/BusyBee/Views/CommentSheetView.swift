@@ -34,8 +34,10 @@ struct CommentSheetView: View {
             Button(action: {
               presentationMode.wrappedValue.dismiss()
             }) {
-              Text("X")
-                .foregroundColor(.gray)
+              Image("dismiss")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 20)
             }
           }
         }
@@ -44,6 +46,7 @@ struct CommentSheetView: View {
           ForEach(allComments,  id: \.self) { comment in
             HStack {
               if let commenter = userController.getUserFromId(userId: comment.id) {
+                let timeAgo = postController.timeAgoStringAbv(from: comment.timePosted)
                 Image("profilePic")
                   .resizable()
                   .aspectRatio(contentMode: .fill)
@@ -58,10 +61,15 @@ struct CommentSheetView: View {
                   Text(comment.body)
                     .font(.system(size: 12))
                     .foregroundColor(.black)
-                    .frame(maxWidth: 400, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
+                Text(timeAgo)
+                  .foregroundColor(.gray)
+                  .font(.system(size: 12))
+                  .frame(maxWidth: .infinity, alignment: .trailing)
               }
-            }.padding(EdgeInsets(top: 1, leading: 1, bottom: 1, trailing: 1))
+              
+            }.padding(EdgeInsets(top: 1, leading: 1, bottom: 1, trailing: 0))
           }
         }.listStyle(PlainListStyle())
         
@@ -81,12 +89,17 @@ struct CommentSheetView: View {
             
             Button(action: {
               postController.addComment(commenterId: user.id, postId: updatedPost.id!, body: newComment)
+              self.newComment = ""
             })
             {
-              Text("Send")
-                .foregroundColor(.blue)
+              Image("send")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 20)
             }
           }
+          .padding(.leading, 10)
+          .padding(.trailing, 10)
         }
         
       }
