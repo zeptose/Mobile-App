@@ -16,6 +16,7 @@ struct CommentSheetView: View {
     @State private var newComment: String = ""
     @Environment(\.presentationMode) var presentationMode
     var post: Post
+  let customYellow = Color(UIColor(hex: "#FFD111"))
   
   var body: some View {
     if let updatedPost = postController.getPostFromId(postId: post.id!) {
@@ -33,34 +34,46 @@ struct CommentSheetView: View {
             Button(action: {
               presentationMode.wrappedValue.dismiss()
             }) {
-              Text("X")
-                .foregroundColor(.gray)
+              Image("dismiss")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 20)
             }
           }
         }
+        Divider()
         List {
           ForEach(allComments,  id: \.self) { comment in
             HStack {
               if let commenter = userController.getUserFromId(userId: comment.id) {
-                Image("profilePic") // Replace with user's profile image
+                let timeAgo = postController.timeAgoStringAbv(from: comment.timePosted)
+                Image("profilePic")
                   .resizable()
-                  .aspectRatio(contentMode: .fit)
-                  .frame(width: 40, height: 40, alignment: .leading)
+                  .aspectRatio(contentMode: .fill)
+                  .frame(width: 40, height: 40)
                   .clipShape(Circle())
-                VStack {
+                  .overlay(Circle().stroke(customYellow, lineWidth: 3))
+                VStack(alignment: .leading) {
                   Text(commenter.username)
                     .font(.system(size: 15))
+                    .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding()
                   Text(comment.body)
-                    .font(.system(size: 10))
-                    .foregroundColor(.gray)
-                    .frame(maxWidth: 400, alignment: .leading)
+                    .font(.system(size: 12))
+                    .foregroundColor(.black)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
+                Text(timeAgo)
+                  .foregroundColor(.gray)
+                  .font(.system(size: 12))
+                  .frame(maxWidth: .infinity, alignment: .trailing)
               }
-            }
+              
+            }.padding(EdgeInsets(top: 1, leading: 1, bottom: 1, trailing: 0))
           }
-        }
+        }.listStyle(PlainListStyle())
+        
+        //}.listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
         
         Spacer()
         
@@ -76,12 +89,17 @@ struct CommentSheetView: View {
             
             Button(action: {
               postController.addComment(commenterId: user.id, postId: updatedPost.id!, body: newComment)
+              self.newComment = ""
             })
             {
-              Text("Send")
-                .foregroundColor(.blue)
+              Image("send")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 20)
             }
           }
+          .padding(.leading, 10)
+          .padding(.trailing, 10)
         }
         
       }
