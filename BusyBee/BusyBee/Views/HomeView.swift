@@ -22,12 +22,14 @@ struct HomeView: View {
             Spacer()
             Text("BusyBee")
             
-            List {
+//            List {
+            ScrollView {
               ForEach(allPosts) { post in
                 FeedItemView(userId: post.userId, post: post)
                   .multilineTextAlignment(.leading)
-              }
-            }
+              }.listRowSeparator(.hidden)
+              //            }.listStyle(PlainListStyle())
+            }.frame(minHeight: 0, maxHeight: .infinity)
           }
       }
     }
