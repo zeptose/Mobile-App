@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct Subgoal: Identifiable, Codable, Comparable {
+struct Subgoal: Identifiable, Codable, Comparable, Hashable {
   
   @DocumentID var id: String?
   var name: String
