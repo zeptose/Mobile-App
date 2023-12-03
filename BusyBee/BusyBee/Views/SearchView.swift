@@ -23,6 +23,7 @@ struct SearchView: View {
     let customYellow = Color(UIColor(hex: "#FFD111"))
     let customLightGray = Color(UIColor(hex: "#D3D3D3"))
     let customDarkGray = Color(UIColor(hex: "#A9A9A9"))
+    @Environment(\.presentationMode) var presentationMode
 
 
     
@@ -39,7 +40,16 @@ struct SearchView: View {
         
         NavigationView {
             VStack {
-                Spacer()
+              HStack {
+                  Button(action: {
+                      presentationMode.wrappedValue.dismiss()
+                  }) {
+                      Image(systemName: "arrow.left")
+                  }
+                  .padding()
+                  Spacer()
+              }
+              Spacer()
               HStack {
                   Image(systemName: "magnifyingglass")
                       .foregroundColor(Color.gray)
@@ -100,12 +110,14 @@ struct SearchView: View {
             .background(
                 NavigationLink(
                   destination: ProfileView(user: selectedUser),
+//                                    .navigationBarBackButtonHidden(true),
                     isActive: Binding<Bool>(
                         get: { self.selectedUser != nil },
                         set: { _ in self.selectedUser = nil }
                     ),
                     label: { EmptyView() }
-                ).navigationBarBackButtonHidden(true)
+                )
+                .navigationBarBackButtonHidden(true)
             )
         }
     }

@@ -70,7 +70,7 @@ struct RegistrationFormView: View {
         
         Button(action: {
           isRegistering.toggle()
-          selectedTab = 4
+          selectedTab = 3
           Task {
             try await viewModel.createUser(withEmail: email, password: password, username: username)
           }

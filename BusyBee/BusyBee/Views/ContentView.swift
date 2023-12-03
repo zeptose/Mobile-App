@@ -8,12 +8,12 @@ import SwiftUI
 struct ContentView: View {
     @State private var isRegistering = true
     @State private var isLoggingIn = true
-    @State private var selectedTab = 4 // Assuming "Profile" is the 5th tab (index 4)
+    @State private var selectedTab = 3 // Assuming "Profile" is the 4th tab (index 3)
     @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var userController: UserController
     @EnvironmentObject var postController: PostController
     @EnvironmentObject var goalController: GoalController
-//    @EnvironmentObject var cameraController: CameraController
+    @EnvironmentObject var cameraController: CameraController
     
     let customMaroon = Color(UIColor(hex: "#992409"))
   
@@ -85,12 +85,12 @@ struct ContentView: View {
                   }
                 }
           } else {
-            AppView(selectedTab: 4)
+            AppView(selectedTab: 3)
               .environmentObject(userController)
               .environmentObject(postController)
               .environmentObject(goalController)
               .environmentObject(viewModel)
-//              .environmentObject(cameraController)
+              .environmentObject(cameraController)
               .environment(\.font, Font.custom("Lato-Regular", size: 16))
                   
           }
