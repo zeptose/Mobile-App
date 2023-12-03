@@ -60,7 +60,7 @@ struct LoginFormView: View {
             
             Button("Submit") {
               isLoggingIn.toggle()
-              selectedTab = 4
+              selectedTab = 3
               Task {
                 try await viewModel.signIn(withEmail: email,
                                            password: password)

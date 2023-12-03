@@ -32,7 +32,7 @@ struct CameraView: View {
                     .ignoresSafeArea(.all, edges: .all)
                 VStack {
                     HStack {
-                      NavigationLink(destination: AppView(selectedTab : 4)) {
+                      NavigationLink(destination: AppView(selectedTab : 3)) {
                             Image(systemName: "xmark")
                                 .foregroundColor(.white)
                                 .padding()
