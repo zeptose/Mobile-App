@@ -25,7 +25,6 @@ struct GoalListView: View {
                         selectedGoals.append(goals[index]) // Append selected goal to selectedGoals
                         presentationMode.wrappedValue.dismiss()
                     }
-//              Text(goals[index].dueDate)
             }
         }
     }
@@ -102,44 +101,39 @@ struct CreatePostView: View {
         Spacer()
         Spacer()
         
-        Button(action: {
-          guard let selectedGoal = selectedGoal else {
-            return
-          }
-          
-          var subgoalidval: String? = nil
-          if let selectedSubgoal = selectedSubgoal {
-            subgoalidval = selectedSubgoal.id
-          }
-          else{
-            subgoalidval = "-1"
-          }
-          
-          uploadedImageURL = postController.uploadPhoto(uiImage)
-          if let currentUser = viewModel.currentUser {
-            postController.addPost(
-              currentUser: currentUser,
-              goal: selectedGoal,
-              caption: caption,
-              photo: uploadedImageURL,
-              subgoalId: subgoalidval
-            )
-            print("Post added successfully!")
-            
-            navigateToHome = true
-            presentationMode.wrappedValue.dismiss()
-            
-          } else {
-            print("User is not logged in.")
-          }
-        }) {
-          Text("Share")
-        }
-        .font(.system(size: 16))
-        .padding(.horizontal, 10)
-        .padding(.vertical, 5)
-        .background(Color(UIColor(hex: "#992409"))).opacity(1)
-        .cornerRadius(8)
+        Text("Share")
+            .foregroundColor(Color(UIColor(hex: "#992409")))
+            .font(.system(size: 16, weight: .bold))
+            .onTapGesture {
+                guard let selectedGoal = selectedGoal else {
+                    return
+                }
+                
+                var subgoalidval: String? = nil
+                if let selectedSubgoal = selectedSubgoal {
+                    subgoalidval = selectedSubgoal.id
+                }
+                else {
+                    subgoalidval = "-1"
+                }
+                
+                uploadedImageURL = postController.uploadPhoto(uiImage)
+                if let currentUser = viewModel.currentUser {
+                    postController.addPost(
+                        currentUser: currentUser,
+                        goal: selectedGoal,
+                        caption: caption,
+                        photo: uploadedImageURL,
+                        subgoalId: subgoalidval
+                    )
+                    print("Post added successfully!")
+                    
+                    navigateToHome = true
+                    presentationMode.wrappedValue.dismiss()
+                } else {
+                    print("User is not logged in.")
+                }
+            }
         .overlay(
           NavigationLink(
             destination: AppView(selectedTab : 0).navigationBarHidden(true),
@@ -154,136 +148,140 @@ struct CreatePostView: View {
       }.zIndex(1).padding()
       
   
+
       GeometryReader { geometry in
-        VStack {
-          Image(uiImage: uiImage)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.65)
-            .clipped()
-            .padding(.horizontal, (geometry.size.width * 0.05))
-        }
-      }
-      .frame(maxHeight: .infinity)
-     
-      VStack {
-        TextField("Write a caption...🐝", text: $caption)
-          .textFieldStyle(DefaultTextFieldStyle())
-          .offset(y: -160)
-          .offset(x: 20)
-      }
-      VStack(alignment: .leading) {
-        HStack {
-          Text("Main Goal")
-            .font(.headline)
-            .foregroundColor(.black)
-            .offset(x: 20)
-          
-          Spacer()
-          
-          if selectedGoals.isEmpty {
-            Button(action: {
-              isShowingGoalList = true
-            }) {
-              Text("Add")
-                .foregroundColor(.white)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 5)
-                .background(Color(UIColor(hex: "#992409"))).opacity(1)
-                .cornerRadius(8)
-            }
-            .sheet(isPresented: $isShowingGoalList) {
-              GoalListView(selectedGoalIndex: $selectedGoalIndex, goals: goalController.getCurrentGoals(currentUser: viewModel.currentUser!), selectedGoals: $selectedGoals)
-            }
-          }
-        }.padding(.trailing).offset(y: -130)
-      }
-                    
-  
-      ForEach(selectedGoals, id: \.self) { goal in
-          ZStack {
-              RoundedRectangle(cornerRadius: 15)
-                  .fill(Color.yellow)
-                  .frame(height: 30)
-
-              HStack {
-                  Text(goal.name)
-                  Button(action: {
-                      if let index = selectedGoals.firstIndex(of: goal) {
-                          selectedGoals.remove(at: index)
-                      }
-                  }) {
-                      Image(systemName: "minus.circle")
-                          .foregroundColor(.red)
-                  }
-              }
-              .padding(.horizontal, 10)
+          VStack {
+              Image(uiImage: uiImage)
+                  .resizable()
+                  .aspectRatio(contentMode: .fill)
+                  .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.50)
+                  .clipped()
+                  .padding(.horizontal, (geometry.size.width * 0.05))
               
-              
-          }
-          .frame(height: 30)
-          .padding(.horizontal)
-          .offset(y: -120)
-        
-      }
-
-          HStack {
-            Text("Subgoals")
-              .font(.headline)
-              .foregroundColor(.black)
-              .offset(x: 20)
+              TextField("Write a caption...🐝", text: $caption)
+                  .textFieldStyle(DefaultTextFieldStyle())
+                  .background(Color.white) // Set the background color to white
+                  .cornerRadius(8)
+                  .offset(x: 20)
+                  .padding()
+                  
             
             Spacer()
-            
-            if selectedSubgoals.isEmpty {
-              Button(action: {
-                isShowingSubgoalList = true
-              }) {
-                Text("Add")
-                  .foregroundColor(.white)
-                  .padding(.horizontal, 10)
-                  .padding(.vertical, 5)
-                  .background(Color(UIColor(hex: "#992409"))).opacity(1)
-                  .cornerRadius(8)
-              }
-              .sheet(isPresented: $isShowingSubgoalList) {
-                if let selectedGoal = selectedGoal {
-                  SubgoalListView(selectedSubgoalIndex: $selectedSubgoalIndex, subgoals: goalController.getSubgoalsForGoal(goal: selectedGoal), selectedSubgoals: $selectedSubgoals)
-                } else {
-                  Text("No goal selected") // Placeholder view or action when no goal is selected
-                }
-              }
-            }
-          }.padding(.trailing).offset(y: -90)
-        
-          
-                      
-    
-        ForEach(selectedSubgoals, id: \.self) { subgoal in
-            ZStack {
-                RoundedRectangle(cornerRadius: 15)
-                    .fill(Color.yellow)
-                    .frame(height: 30)
-
-                HStack {
-                    Text(subgoal.name)
-                    Button(action: {
-                        if let index = selectedSubgoals.firstIndex(of: subgoal) {
-                          selectedSubgoals.remove(at: index)
-                        }
-                    }) {
-                        Image(systemName: "minus.circle")
-                            .foregroundColor(.red)
+            Spacer()
+            Spacer()
+            Spacer()
+            Spacer()
+            Spacer()
+         
+            VStack{
+              HStack {
+                Text("Main Goal")
+                  .font(.headline)
+                  .foregroundColor(.black)
+                  .offset(x: 30)
+                
+                Spacer()
+                
+                if selectedGoals.isEmpty {
+                  Text("Add")
+                    .foregroundColor(Color(UIColor(hex: "#992409")))
+                    .font(.system(size: 16, weight: .bold)) // Adjust size and weight as needed
+                    .padding(.leading, -5) // Negative padding moves the text to the left
+                    .onTapGesture {
+                      isShowingGoalList = true
+                    }
+                    .sheet(isPresented: $isShowingGoalList) {
+                      GoalListView(selectedGoalIndex: $selectedGoalIndex, goals: goalController.getCurrentGoals(currentUser: viewModel.currentUser!), selectedGoals: $selectedGoals)
                     }
                 }
-                .padding(.horizontal, 10)
+              }.padding(.trailing).offset(y: -130)
+              
+              
+              ForEach(selectedGoals, id: \.self) { goal in
+                ZStack {
+                  RoundedRectangle(cornerRadius: 15)
+                    .fill(Color.yellow)
+                    .frame(height: 30)
+                  
+                  HStack {
+                    Text(goal.name)
+                    Button(action: {
+                      if let index = selectedGoals.firstIndex(of: goal) {
+                        selectedGoals.remove(at: index)
+                      }
+                    }) {
+                      Image(systemName: "minus.circle")
+                        .foregroundColor(.red)
+                    }
+                  }
+                  .padding(.horizontal, 10)
+                  
+                  
+                }
+                .frame(height: 30)
+                .padding(.horizontal)
+                .offset(y: -120)
                 
+              }
+            } .padding(.top, 20)
+
+            VStack{
+                HStack {
+                  Text("Subgoals")
+                    .font(.headline)
+                    .foregroundColor(.black)
+                    .offset(x: 30)
+                  
+                  Spacer()
+                  
+                  if selectedSubgoals.isEmpty {
+                    Text("Add")
+                        .foregroundColor(Color(UIColor(hex: "#992409")))
+                        .font(.system(size: 16, weight: .bold)) // Adjust size and weight as needed
+                        .padding(.leading, -5) // Negative padding moves the text to the left
+                        .onTapGesture {
+                          isShowingSubgoalList = true
+                        }
+                    .sheet(isPresented: $isShowingSubgoalList) {
+                      if let selectedGoal = selectedGoal {
+                        SubgoalListView(selectedSubgoalIndex: $selectedSubgoalIndex, subgoals: goalController.getSubgoalsForGoal(goal: selectedGoal), selectedSubgoals: $selectedSubgoals)
+                      } else {
+                        Text("No goal selected") // Placeholder view or action when no goal is selected
+                      }
+                    }
+                  }
+                }.padding(.trailing).offset(y: -90)
+              
                 
-            }
-            .frame(height: 30)
-            .padding(.horizontal)
-            .offset(y: -80)
+                            
           
+              ForEach(selectedSubgoals, id: \.self) { subgoal in
+                ZStack {
+                  RoundedRectangle(cornerRadius: 15)
+                    .fill(Color.yellow)
+                    .frame(height: 30)
+                  
+                  HStack {
+                    Text(subgoal.name)
+                    Button(action: {
+                      if let index = selectedSubgoals.firstIndex(of: subgoal) {
+                        selectedSubgoals.remove(at: index)
+                      }
+                    }) {
+                      Image(systemName: "minus.circle")
+                        .foregroundColor(.red)
+                    }
+                  }
+                  .padding(.horizontal, 10)
+                  
+                  
+                }
+                .frame(height: 30)
+                .padding(.horizontal)
+                .offset(y: -80)
+              } .padding(.top, 20)
+              }
+          }
         }
       }
     }
