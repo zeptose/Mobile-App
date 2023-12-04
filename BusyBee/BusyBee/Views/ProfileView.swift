@@ -17,7 +17,7 @@ struct ProfileView: View {
     @State private var isEditingProfile = false
     var user: User?
     let customMaroon = Color(UIColor(hex: "#992409"))
-
+//   @Environment(\.presentationMode) var presentationMode
     //    @State var curr: User?
     
     var body: some View {
@@ -30,21 +30,8 @@ struct ProfileView: View {
                 ZStack {
                     VStack {
                         HStack {
-//                            Button(action: {
-//                                print("Back button tapped")
-//                            }) {
-//                                Image(systemName: "arrow.left")
-//                            }
-//                            .padding()
                             
                             Spacer()
-                            
-//                            Button(action: {
-//                                print("Settings button tapped")
-//                            }) {
-//                                Image(systemName: "gear")
-//                            }
-//                            .padding()
                           
                           if updatedUser ==
                               updatedCurrentUser {
@@ -81,11 +68,7 @@ struct ProfileView: View {
                         
                         if updatedUser ==
                             updatedCurrentUser {
-//                            Button("Logout") {
-//                                Task {
-//                                    viewModel.signOut()
-//                                }
-//                            }
+
                           HStack{
                               NavigationLink(destination: AddGoalView(goalController: goalController, user: updatedCurrentUser!)) {
                                 Label("Add Goal", systemImage: "plus")
@@ -109,11 +92,6 @@ struct ProfileView: View {
                             
                           }
                         } else if userController.isFollowing(currentUser: updatedCurrentUser!, otherUser: updatedUser!) {
-                            //                      Button(action: {
-                            //                        userController.toggleFriendStatus(currentUser: viewModel.currentUser!, friend: profile)
-                            //                      }) {
-                            //                        Text(userController.isFriend ? "Unfriend" : "Add Friend")
-                            //                      }
                             Button(action: {
                                 userController.unfollowFriend(currentUser: updatedCurrentUser!, unfollow: updatedUser!)
                             }) {

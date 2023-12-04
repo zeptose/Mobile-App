@@ -21,25 +21,19 @@ struct AppView: View {
           Text("Home")
         }
         .tag(0)
-      SearchView()
-        .tabItem {
-          Image(systemName: "magnifyingglass")
-          Text("Search")
-        }
-        .tag(1)
       CameraView()
         .tabItem {
           Image(systemName: "camera")
           Text("Camera")
         }
-        .tag(2)
+        .tag(1)
       
       CalendarView()
         .tabItem {
           Image(systemName: "calendar")
           Text("Calendar")
         }
-        .tag(3)
+        .tag(2)
       
       ProfileView(user: viewModel.currentUser)
         .tabItem {
@@ -47,13 +41,13 @@ struct AppView: View {
           Text("Profile")
             .padding()
         }
-        .tag(4)
+        .tag(3)
     }
     .navigationBarTitleDisplayMode(.inline)
     .navigationBarBackButtonHidden(true)
     .tint(.white)
     .onChange(of: selectedTab) { newTab in
-      if newTab == 2 {
+      if newTab == 1 {
         if goalController.getCurrentGoals(currentUser: viewModel.currentUser!).isEmpty {
           showAlert = true
         }
