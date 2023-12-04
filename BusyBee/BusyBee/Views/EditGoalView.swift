@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EditGoalView: View {
     @ObservedObject var goalController: GoalController
+    @Environment(\.presentationMode) var presentationMode
     var currentUser: User
     var goalToEdit: Goal
 
@@ -16,7 +17,7 @@ struct EditGoalView: View {
     @State private var goalDescription: String?
     @State private var dueDate: Date
     @State private var frequency: String
-    @State private var subgoals: [String]
+    @State private var subgoals: [Subgoal]
 
     init(goalController: GoalController, currentUser: User, goal: Goal) {
         self.goalController = goalController
@@ -28,7 +29,7 @@ struct EditGoalView: View {
         _goalDescription = State(initialValue: goal.description ?? "")
         _dueDate = State(initialValue: goal.dueDate)
         _frequency = State(initialValue: "\(goal.frequency)")
-        _subgoals = State(initialValue: goalController.getSubgoalsForGoal(goal: goal).map { $0.name })
+        _subgoals = State(initialValue: goalController.getSubgoalsForGoal(goal: goal))
     }
 
     var body: some View {
@@ -53,8 +54,12 @@ struct EditGoalView: View {
                 .keyboardType(.numberPad)
                 .padding(10)
 
-            Text("Milestones").font(.headline)
-            // Add UI for subgoals, you can use ForEach or other UI elements as needed
+          Text("Milestones").font(.headline)
+          
+          ForEach($subgoals) { $subgoal in
+              TextField("Enter Subgoal Name", text: $subgoal.name)
+                  .padding(10)
+          }
 
             Button("Save Changes") {
                 Task {
@@ -65,9 +70,9 @@ struct EditGoalView: View {
                         newDesc: goalDescription,
                         newDueDate: dueDate,
                         newFrequency: Int(frequency) ?? 1,
-                        newSubGoals: subgoals
+                        newSubGoals: subgoals.map{ $0.name }
                     )
-                    // Dismiss the view or perform any other action upon saving changes
+                    presentationMode.wrappedValue.dismiss()
                 }
             }
         }

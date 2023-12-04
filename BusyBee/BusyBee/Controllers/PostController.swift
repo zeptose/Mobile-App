@@ -82,7 +82,7 @@ class PostController: ObservableObject {
       print(photo)
       let url = "\(UUID().uuidString).jpg"
       let storageRef = Storage.storage().reference().child(url)
-      let data = photo.jpegData(compressionQuality: 0.2)
+      let data = photo.jpegData(compressionQuality: 0.1)
       let metadata = StorageMetadata()
       metadata.contentType = "image/jpg"
       if let data = data {
