@@ -18,6 +18,7 @@ struct AddGoalView: View {
     @State private var subgoals: [String] = [""]
     @State private var isDatePickerPresented = false
     @State private var scrollToBottom = false
+    @State private var showAlert = false
     var user: User
     @Environment(\.presentationMode) var presentationMode
     @State private var currentStep = 0
@@ -116,6 +117,7 @@ struct AddGoalView: View {
                     Text("Frequency").font(.headline).padding(textPadding)
                     Text("How often do you want to update progress on your goal?").font(.subheadline).foregroundColor(.gray).padding(textPadding)
                     TextField("Enter Frequency", text: $frequency)
+                    
                         .keyboardType(.numberPad)
                         .padding(10)
                         .background(
@@ -123,6 +125,11 @@ struct AddGoalView: View {
                             
                                 .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
                         ).padding(fieldPadding)
+                        .onChange(of: frequency) { newValue in
+                            if let enteredValue = Int(newValue), enteredValue <= 0 {
+                                self.showAlert = true
+                            }
+                        }
                     Spacer()
                     
                 } else if currentStep == 5 {
@@ -223,6 +230,7 @@ struct AddGoalView: View {
                                 .bold()
                                 .foregroundColor(Color(UIColor(hex: "#992409")))
                         }.padding()
+                        
                     }
                 }
             }
