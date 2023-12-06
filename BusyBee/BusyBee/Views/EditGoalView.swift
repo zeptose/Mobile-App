@@ -54,27 +54,27 @@ struct EditGoalView: View {
                 .keyboardType(.numberPad)
                 .padding(10)
 
-          Text("Milestones").font(.headline)
-          
-          ForEach($subgoals) { $subgoal in
-              TextField("Enter Subgoal Name", text: $subgoal.name)
-                  .padding(10)
-          }
+            Text("Milestones").font(.headline)
 
-            Button("Save Changes") {
-                Task {
-                    try await goalController.updateGoal(
-                        currentUser: currentUser,
-                        goal: goalToEdit,
-                        newName: goalName,
-                        newDesc: goalDescription,
-                        newDueDate: dueDate,
-                        newFrequency: Int(frequency) ?? 1,
-                        newSubGoals: subgoals.map{ $0.name }
-                    )
-                    presentationMode.wrappedValue.dismiss()
-                }
+            ForEach($subgoals) { $subgoal in
+                TextField("Enter Subgoal Name", text: $subgoal.name)
+                    .padding(10)
             }
+
+              Button("Save Changes") {
+                  Task {
+                      try await goalController.updateGoal(
+                          currentUser: currentUser,
+                          goal: goalToEdit,
+                          newName: goalName,
+                          newDesc: goalDescription,
+                          newDueDate: dueDate,
+                          newFrequency: Int(frequency) ?? 1,
+                          newSubGoals: subgoals.map{ $0.name }
+                      )
+                      presentationMode.wrappedValue.dismiss()
+                  }
+              }
         }
         .padding(20)
         .navigationBarTitle("Edit Goal")

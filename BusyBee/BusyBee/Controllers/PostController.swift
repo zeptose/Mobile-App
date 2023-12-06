@@ -256,6 +256,23 @@ class PostController: ObservableObject {
       }
   }
   
+  func deletePost(post: Post, currentUser: User) {
+      let currGoal = goalController.getGoalFromId(goalId: post.goalId)
+      if var tempGoal = currGoal {
+        tempGoal.progress = tempGoal.progress - 1
+        goalRepository.update(tempGoal)
+      }
+      
+      var currUser = currentUser
+      let i = currUser.posts.firstIndex(where: { $0.photo == post.photo })
+      if let i = i {
+        currUser.posts.remove(at: i)
+      }
+      userRepository.update(currUser)
+      postRepository.delete(post)
+    }
+
+  
 }
 
 

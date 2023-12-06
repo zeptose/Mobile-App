@@ -70,6 +70,7 @@ struct HomeView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 20)
                     .foregroundColor(.white)
+                    .padding(.leading, 15)
                 Spacer()
                 Image("feedHeader")
                     .resizable()

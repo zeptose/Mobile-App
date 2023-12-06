@@ -13,6 +13,7 @@ class GoalController: ObservableObject {
     @Published var goalRepository: GoalRepository = GoalRepository()
     @Published var subgoalRepository: SubgoalRepository = SubgoalRepository()
     @Published var userRepository: UserRepository = UserRepository()
+    @Published var postController: PostController = PostController()
     @Published var goals: [Goal] = []
     @Published var subgoals: [Subgoal] = []
   
@@ -134,5 +135,23 @@ class GoalController: ObservableObject {
         return nil
       }
     }
+  
+    func deleteGoal(goal: Goal, currentUser: User) {
+  //    first, delete all related posts
+      let relatedPosts = postController.getPostsForGoal(goalId: goal.id)
+      for post in relatedPosts {
+        postController.deletePost(post: post, currentUser: currentUser)
+      }
+
+      var currUser = currentUser
+      let i = currUser.goals.firstIndex(where: { $0.id == goal.id })
+      if let i = i {
+        currUser.goals.remove(at: i)
+      }
+      userRepository.update(currUser)
+
+      goalRepository.delete(goal)
+    }
+
 
 }

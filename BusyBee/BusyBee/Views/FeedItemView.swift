@@ -41,6 +41,29 @@ struct FeedItemView: View {
                   .font(.system(size: 12))
                   .frame(maxWidth: .infinity, alignment: .leading)
               }
+              Spacer()
+                            
+              if feedUser == viewModel.currentUser {
+                VStack {
+                    Menu {
+                        Button("Edit Post") {
+                            print("Editing post...")
+                        }
+                        Button("Delete Post") {
+                            postController.deletePost(post: post, currentUser: feedUser)
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis")
+                            .foregroundColor(.black)
+                    }
+                    .padding()
+                    .offset(y: -5)
+                }
+
+              }
+              
+              
+
             }
           }
           
@@ -102,7 +125,7 @@ struct FeedItemView: View {
                   Image("Reaction")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 40, height: 40, alignment: .leading)
+                    .frame(width: 48, height: 48, alignment: .leading)
                 }
               } else {
                 Button(action: {
@@ -111,7 +134,7 @@ struct FeedItemView: View {
                   Image("bwHexagon")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 40, height: 40, alignment: .leading)
+                    .frame(width: 48, height: 48, alignment: .leading)
                 }
               }
             }
@@ -163,19 +186,6 @@ struct FeedItemView: View {
           }
           .frame(maxWidth: .infinity, alignment: .leading)
         }
-//        .background(
-//          RoundedRectangle(cornerRadius: 12)
-//              .fill(Color.white)
-//              .frame(minHeight: 0, maxHeight: .infinity)
-//              .shadow(color: Color.gray, radius: 4, x: 0, y: 2)
-//        )
-////        .frame(minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-//        .frame(minHeight: 0, maxHeight: .infinity)
-//        .padding(.top, 1)
-//        .padding(.bottom, 1)
-//        .padding(.leading, 1)
-//        .padding(.trailing, 1)
-            
-      
+
     }
 }
