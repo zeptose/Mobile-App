@@ -28,10 +28,10 @@ struct AppView: View {
         }
         .tag(1)
       
-      CalendarView()
+      NotificationView()
         .tabItem {
-          Image(systemName: "calendar")
-          Text("Calendar")
+          Image(systemName: "heart")
+          Text("Notifications")
         }
         .tag(2)
       

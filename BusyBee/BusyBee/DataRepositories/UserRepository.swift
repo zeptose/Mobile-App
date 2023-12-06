@@ -24,21 +24,13 @@ class UserRepository: ObservableObject {
         })
   }
 
-//  func get() {
-//    store.collection(path)
-//      .addSnapshotListener { querySnapshot, error in
-//        if let error = error {
-//          print("Error getting users: \(error.localizedDescription)")
-//          return
-//        }
-//        querySnapshot?.documents.forEach({ document in
-//          print(document.data())
-//        })
-//        self.users = querySnapshot?.documents.compactMap { document in
-//          try? document.data(as: User.self)
-//        } ?? []
-//      }
-//  }
+  func getUserWithId(_ userId: String) -> User? {
+         // Implement the logic to fetch a user with the given userId
+         // This might involve querying a data source or fetching from a stored array of users
+         
+         // Example (if users are stored in an array):
+         return users.first { $0.id == userId }
+     }
   func get(_ completionHandler: @escaping (_ users: [User]) -> Void) {
       store.collection(path)
         .addSnapshotListener { querySnapshot, error in
