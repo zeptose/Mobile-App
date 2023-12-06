@@ -88,7 +88,7 @@ struct GoalCardView: View {
                                         Text("Overdue")
                                             .font(.subheadline)
                                             .foregroundColor(Color.gray)
-                                            .padding(.trailing, 7)
+                                            .padding(.trailing, 10)
                                     }
                                 }
                             }
