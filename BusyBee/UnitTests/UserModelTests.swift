@@ -8,6 +8,7 @@
 import XCTest
 @testable import BusyBee
 
+
 class UserModelTests: XCTestCase {
 
     func testUserCoding() throws {

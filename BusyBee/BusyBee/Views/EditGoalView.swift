@@ -45,40 +45,40 @@ struct EditGoalView: View {
 
                             .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
                     )
-          Text("Description").font(.headline)
-          Text("Describe what you want your goal to be!").font(.subheadline).foregroundColor(.gray)
-            TextField("Enter Description", text: Binding(
-                get: { goalDescription ?? "" },
-                set: { goalDescription = $0 }
-            ))
-              .padding(10)
-              .background(
-                    RoundedRectangle(cornerRadius: 15)
-
-                            .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
-                    )
-          Text("Due Date").font(.headline)
-          Text("When do you want this goal to be completed?").font(.subheadline).foregroundColor(.gray)
-          DatePicker("", selection: $dueDate, displayedComponents: .date)
-              .labelsHidden()
-              .padding(10)
-              .frame(maxWidth: .infinity, alignment: .leading)
-              .background(
-                    RoundedRectangle(cornerRadius: 15)
-
-                            .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
-                    )
-
-          Text("Frequency").font(.headline)
-          Text("How often do you want to update progress on your goal?").font(.subheadline).foregroundColor(.gray)
-          TextField("Enter Frequency", text: $frequency)
-              .keyboardType(.numberPad)
-              .padding(10)
-              .background(
-                    RoundedRectangle(cornerRadius: 15)
-
-                            .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
-                    )
+//          Text("Description").font(.headline)
+//          Text("Describe what you want your goal to be!").font(.subheadline).foregroundColor(.gray)
+//            TextField("Enter Description", text: Binding(
+//                get: { goalDescription ?? "" },
+//                set: { goalDescription = $0 }
+//            ))
+//              .padding(10)
+//              .background(
+//                    RoundedRectangle(cornerRadius: 15)
+//
+//                            .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
+//                    )
+//          Text("Due Date").font(.headline)
+//          Text("When do you want this goal to be completed?").font(.subheadline).foregroundColor(.gray)
+//          DatePicker("", selection: $dueDate, displayedComponents: .date)
+//              .labelsHidden()
+//              .padding(10)
+//              .frame(maxWidth: .infinity, alignment: .leading)
+//              .background(
+//                    RoundedRectangle(cornerRadius: 15)
+//
+//                            .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
+//                    )
+//
+//          Text("Frequency").font(.headline)
+//          Text("How often do you want to update progress on your goal?").font(.subheadline).foregroundColor(.gray)
+//          TextField("Enter Frequency", text: $frequency)
+//              .keyboardType(.numberPad)
+//              .padding(10)
+//              .background(
+//                    RoundedRectangle(cornerRadius: 15)
+//
+//                            .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
+//                    )
           Text("Milestones").font(.headline)
           Text("Add smaller goals that will serve as intermediary steps on your road to your main goal!").font(.subheadline).foregroundColor(.gray)
             VStack {

@@ -6,12 +6,11 @@
 //
 
 import Foundation
-import SwiftUI
 import FirebaseFirestoreSwift
 
 struct Comment: Identifiable, Codable, Comparable, Hashable {
   
-  @DocumentID var id: String?
+  var id: String?
   var userId: String
   var body: String
   var timePosted: Date
