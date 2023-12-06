@@ -13,7 +13,8 @@ struct HoneyJarView: View {
     var frequency: Int
     
     var body: some View {
-        let percentage =  CGFloat(progress/frequency)
+        let percentage =  CGFloat(Float(progress)/Float(frequency))
+        
         ZStack {
             Image("FilledHoneyJar")
                 .resizable()
@@ -36,6 +37,6 @@ struct HoneyJarView: View {
                 .padding(EdgeInsets(top: 50, leading: -8, bottom: 0, trailing: 20))
             
             
-        }
+        }.padding(.leading, 10)
     }
 }
