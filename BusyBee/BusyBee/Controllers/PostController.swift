@@ -256,6 +256,83 @@ class PostController: ObservableObject {
       }
   }
   
+  func getNotificationsForCurrentUser(currentUser: User) -> [AppNotification] {
+      var notifications: Set<AppNotification> = Set()
+
+          
+      for post in getPosts(currentUser: currentUser) {
+          if let postId = post.id {
+              for comment in post.comments {
+                  let notification = AppNotification(type: .comment, postId: postId, commenterId: comment.userId, timestamp: Date())
+                  notifications.insert(notification)
+              }
+              
+              let currentUserReaction = [post.reaction1, post.reaction2, post.reaction3, post.reaction4]
+              for (_, reaction) in currentUserReaction.enumerated() {
+                  if reaction.contains(currentUser.id) {
+                      let notification = AppNotification(type: .reaction, postId: postId, commenterId: currentUser.id, timestamp: Date())
+                      notifications.insert(notification)
+                  }
+              }
+          }
+      }
+   
+    if let updatedUser = userController.getUserFromId(userId: currentUser.id) {
+      let beforeUpdate = currentUser.follows
+      let afterUpdate = updatedUser.follows
+      let newFollowers = userController.getNewFollowers(beforeUpdate: beforeUpdate, afterUpdate: afterUpdate)
+      
+      // Create notifications for new followers
+      for followerId in newFollowers {
+        if let follower = userController.getUserFromId(userId: followerId) {
+          let notification = AppNotification(type: .follow, postId: "", commenterId: followerId, timestamp: Date())
+         
+          notifications.insert(notification)
+        }
+      }
+      let allCurrentFollowers = updatedUser.follows
+      for followerId in allCurrentFollowers {
+        if !newFollowers.contains(followerId) {
+          if let follower = userController.getUserFromId(userId: followerId) {
+            let notification = AppNotification(type: .follow, postId: "", commenterId: followerId, timestamp: Date())
+            notifications.insert(notification)
+          }
+        }
+      }
+    }
+  return Array(notifications)
+}
+          
+  
+  func getReactionText(forPost post: Post, commenterId: String) -> String {
+      if post.reaction1.contains(commenterId) {
+          return "❤️"
+      } else if post.reaction2.contains(commenterId) {
+          return "👏"
+      } else if post.reaction3.contains(commenterId) {
+          return "🍾"
+      } else if post.reaction4.contains(commenterId) {
+          return "🎉"
+      } else {
+          return ""
+      }
+  }
+  
+  
+  func getUniqueComments(for userComments: [Comment]) -> [Comment] {
+          var displayedCommentIDs = Set<String>()
+          var uniqueComments: [Comment] = []
+          
+          for comment in userComments {
+              if !displayedCommentIDs.contains(comment.id ?? "") {
+                  displayedCommentIDs.insert(comment.id ?? "")
+                  uniqueComments.append(comment)
+              }
+          }
+          
+          return uniqueComments
+      }
+  
 }
 
 
