@@ -77,7 +77,7 @@ struct ProfileView: View {
                                   .padding(5)
                                   .frame(width: UIScreen.main.bounds.width * 0.3)
                                   .background(customMaroon)
-                                  .cornerRadius(5)
+                                  .cornerRadius(100)
                               }
                             NavigationLink(destination: EditProfileView(user: updatedCurrentUser!, userController: userController)) {
                               
@@ -87,7 +87,7 @@ struct ProfileView: View {
                             .foregroundColor(customMaroon)
                             .padding(5)
                             .frame(width: UIScreen.main.bounds.width * 0.3)
-                            .background(RoundedRectangle(cornerRadius: 5)
+                            .background(RoundedRectangle(cornerRadius: 100)
                                 .stroke(customMaroon, lineWidth: 1))
                             
                           }

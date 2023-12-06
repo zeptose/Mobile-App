@@ -112,6 +112,11 @@ class GoalController: ObservableObject {
       return self.subgoals.filter( {$0.goalId == goal.id} )
     }
     
+    func getSubgoalNamesForGoal(goal: Goal) -> [String] {
+        return self.subgoals
+            .filter { $0.goalId == goal.id }
+            .map { $0.name }
+    }
     func getSubgoalFromId(subgoalId: String) -> Subgoal?  {
         let temp = self.subgoals.first( where: {$0.id == subgoalId} )
         if let ourSubgoal = temp {
