@@ -9,6 +9,9 @@ import SwiftUI
 
 struct GoalCardView: View {
     @EnvironmentObject var goalController: GoalController
+    @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var postController: PostController
+  
     var user: User
     var goal: Goal
     var body: some View {
@@ -75,11 +78,23 @@ struct GoalCardView: View {
                         }
                     }
                     Spacer()
-                    NavigationLink(destination: EditGoalView(goalController: goalController, currentUser: user, goal: goal)) {
+                  
+                  if user == viewModel.currentUser {
+                    HStack{
+                      NavigationLink(destination: EditGoalView(goalController: goalController, currentUser: user, goal: goal)) {
                         Image(systemName: "pencil")
-                            .foregroundColor(.gray)
-                            .font(.title)
-                        }
+                          .foregroundColor(.gray)
+                          .font(.title)
+                      }.padding()
+                      Button(action: {
+                        postController.deleteGoal(goal: goal, currentUser: user)
+                      }) {
+                          Image(systemName: "trash")
+                          .foregroundColor(.gray)
+                          .font(.title)
+                      }.padding()
+                    }
+                  }
                 }
                 }
             }

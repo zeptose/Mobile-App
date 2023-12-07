@@ -90,7 +90,7 @@ struct HomeView: View {
             
             List {
               ForEach(allPosts) { post in
-                FeedItemView(userId: post.userId, post: post)
+                FeedItemView(userId: post.userId, currentPost: post)
                   .multilineTextAlignment(.leading)
               }
               .listRowSeparator(.hidden)

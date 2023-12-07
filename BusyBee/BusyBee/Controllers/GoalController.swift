@@ -12,8 +12,9 @@ import FirebaseFirestoreSwift
 class GoalController: ObservableObject {
     @Published var goalRepository: GoalRepository = GoalRepository()
     @Published var subgoalRepository: SubgoalRepository = SubgoalRepository()
+    @Published var postRepository: PostRepository = PostRepository()
     @Published var userRepository: UserRepository = UserRepository()
-    @Published var postController: PostController = PostController()
+
     @Published var goals: [Goal] = []
     @Published var subgoals: [Subgoal] = []
   
@@ -40,8 +41,6 @@ class GoalController: ObservableObject {
         try await goalRepository.create(newGoal)
         
         var user = currentUser
-      print("userId: \(user.id)")
-      print("goal: \(newGoal)")
         user.goals.append(newGoal)
         userRepository.update(user)
         
@@ -94,17 +93,13 @@ class GoalController: ObservableObject {
   
   func getCurrentGoals(currentUser: User) -> [Goal] {
     let usersGoals = self.goals.filter{ String($0.userId) == String(currentUser.id) }
-    let today = Date()
     let curr = usersGoals.filter { $0.progress < $0.frequency }
-//      print("currentUser: \(currentUser)" )
-//      print("currentGoals: \(curr)")
     return curr.sorted { $0.dueDate >= $1.dueDate}
     
   }
   
   func getPastGoals(currentUser: User) -> [Goal] {
       let usersGoals = self.goals.filter{ String($0.userId) == String(currentUser.id) }
-      let today = Date()
       let past = usersGoals.filter { $0.progress == $0.frequency }
       return past.sorted { $0.dueDate >= $1.dueDate}
   }
@@ -135,23 +130,7 @@ class GoalController: ObservableObject {
         return nil
       }
     }
+
   
-    func deleteGoal(goal: Goal, currentUser: User) {
-  //    first, delete all related posts
-      let relatedPosts = postController.getPostsForGoal(goalId: goal.id)
-      for post in relatedPosts {
-        postController.deletePost(post: post, currentUser: currentUser)
-      }
-
-      var currUser = currentUser
-      let i = currUser.goals.firstIndex(where: { $0.id == goal.id })
-      if let i = i {
-        currUser.goals.remove(at: i)
-      }
-      userRepository.update(currUser)
-
-      goalRepository.delete(goal)
-    }
-
 
 }
