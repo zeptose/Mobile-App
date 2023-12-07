@@ -65,9 +65,9 @@ class PostController: ObservableObject {
       let currProgress = currGoal.progress + 1
       currGoal.progress = currProgress
     
-      var user = currentUser
-      user.posts.append(newPost)
-      userRepository.update(user)
+//      var user = currentUser
+//      user.posts.append(newPost)
+//      userRepository.update(user)
       goalRepository.update(currGoal)
       
   }
@@ -274,12 +274,12 @@ class PostController: ObservableObject {
         goalRepository.update(tempGoal)
       }
       
-      var currUser = currentUser
-      let i = currUser.posts.firstIndex(where: { $0.photo == post.photo })
-      if let i = i {
-        currUser.posts.remove(at: i)
-      }
-      userRepository.update(currUser)
+//      var currUser = currentUser
+//      let i = currUser.posts.firstIndex(where: { $0.photo == post.photo })
+//      if let i = i {
+//        currUser.posts.remove(at: i)
+//      }
+//      userRepository.update(currUser)
       postRepository.delete(post)
     }
 
@@ -290,12 +290,12 @@ class PostController: ObservableObject {
       deletePost(post: post, currentUser: currentUser)
     }
 
-    var currUser = currentUser
-    let i = currUser.goals.firstIndex(where: { $0.id == goal.id })
-    if let i = i {
-      currUser.goals.remove(at: i)
-    }
-    userRepository.update(currUser)
+//    var currUser = currentUser
+//    let i = currUser.goals.firstIndex(where: { $0.id == goal.id })
+//    if let i = i {
+//      currUser.goals.remove(at: i)
+//    }
+//    userRepository.update(currUser)
     goalRepository.delete(goal)
   }
   

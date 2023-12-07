@@ -37,12 +37,14 @@ class GoalController: ObservableObject {
                            dueDate: dueDate,
                            frequency: frequency,
                            userId: currentUser.id,
-                           progress: 0)
+                           progress: 0,
+                           dateStarted: Date(),
+                           dateEnded: nil)
         try await goalRepository.create(newGoal)
         
-        var user = currentUser
-        user.goals.append(newGoal)
-        userRepository.update(user)
+//        var user = currentUser
+//        user.goals.append(newGoal)
+//        userRepository.update(user)
         
         for subgoal in subGoalStr {
             if !subgoal.isEmpty {
@@ -83,10 +85,10 @@ class GoalController: ObservableObject {
       
       // Assuming the goal is associated with the current user, update the user's goals
       var user = currentUser
-      if let index = user.goals.firstIndex(where: { $0.id == goal.id }) {
-          user.goals[index] = updatedGoal
-          userRepository.update(user)
-      }
+//      if let index = user.goals.firstIndex(where: { $0.id == goal.id }) {
+//          user.goals[index] = updatedGoal
+//          userRepository.update(user)
+//      }
   }
 
 
