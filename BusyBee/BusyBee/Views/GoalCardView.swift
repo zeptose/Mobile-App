@@ -113,7 +113,7 @@ struct GoalCardView: View {
                             }
                           }
                         }
-                        }
+              
                     }
 
                 }
