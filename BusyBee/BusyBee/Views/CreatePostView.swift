@@ -54,7 +54,7 @@ struct SubgoalListView: View {
 struct CreatePostView: View {
   var uiImage: UIImage
   @State private var caption: String = ""
-//  @EnvironmentObject var camera: CameraController
+  @EnvironmentObject var camera: CameraController
   @Environment(\.presentationMode) var presentationMode
   @EnvironmentObject var viewModel: AuthViewModel
   @EnvironmentObject var goalController: GoalController
@@ -88,7 +88,7 @@ struct CreatePostView: View {
     VStack {
       HStack {
         Button(action: {
-//          camera.capturedImage = nil
+          camera.capturedImage = nil
         }) {
           Image(systemName: "chevron.backward")
             .foregroundColor(.black)
@@ -154,7 +154,7 @@ struct CreatePostView: View {
           Image(uiImage: uiImage)
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.50)
+            .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.45)
             .clipped()
             .padding(.horizontal, (geometry.size.width * 0.05))
           
@@ -166,7 +166,7 @@ struct CreatePostView: View {
             .padding()
           
         
-          Spacer().frame(height: 180)
+          Spacer().frame(height: 200)
         
       
               HStack {
@@ -244,7 +244,7 @@ struct CreatePostView: View {
                     }
                   }
               }
-            }.padding(.trailing).offset(y: -180)
+            }.padding(.trailing).offset(y: -100)
             
             
             
