@@ -266,6 +266,65 @@ class PostController: ObservableObject {
       }
   }
   
+
+  func deletePost(post: Post, currentUser: User) {
+      let currGoal = goalController.getGoalFromId(goalId: post.goalId)
+      if var tempGoal = currGoal {
+        tempGoal.progress = tempGoal.progress - 1
+        goalRepository.update(tempGoal)
+      }
+      
+      var currUser = currentUser
+      let i = currUser.posts.firstIndex(where: { $0.photo == post.photo })
+      if let i = i {
+        currUser.posts.remove(at: i)
+      }
+      userRepository.update(currUser)
+      postRepository.delete(post)
+    }
+
+  func deleteGoal(goal: Goal, currentUser: User) {
+    
+    let relatedPosts = getPostsForGoal(goalId: goal.id)
+    for post in relatedPosts {
+      deletePost(post: post, currentUser: currentUser)
+    }
+
+    var currUser = currentUser
+    let i = currUser.goals.firstIndex(where: { $0.id == goal.id })
+    if let i = i {
+      currUser.goals.remove(at: i)
+    }
+    userRepository.update(currUser)
+    goalRepository.delete(goal)
+  }
+  
+  func updatePost(post: Post, caption: String, goalId: String, subgoalId: String) {
+    var currPost = post
+    currPost.caption = caption
+    
+    if currPost.goalId != goalId {
+      if let tempGoal = goalController.getGoalFromId(goalId: currPost.goalId){
+        var oldGoal = tempGoal
+        let oldP = tempGoal.progress
+        oldGoal.progress = oldP - 1
+        goalRepository.update(oldGoal)
+      }
+      
+      if let tempGoal2 = goalController.getGoalFromId(goalId: goalId) {
+        var newGoal = tempGoal2
+        let oldP = tempGoal2.progress
+        newGoal.progress = oldP + 1
+        goalRepository.update(newGoal)
+      }
+      
+      currPost.goalId = goalId
+    }
+    
+    currPost.subgoalId = subgoalId
+    postRepository.update(currPost)
+  }
+
   func getNotificationsForCurrentUser(currentUser: User) -> [AppNotification] {
       var notifications: [AppNotification] = []
 
@@ -342,10 +401,7 @@ class PostController: ObservableObject {
 //      }
 //  }
 //  
-  
-  
-  
-  
+
 }
 
 

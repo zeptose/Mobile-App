@@ -9,18 +9,21 @@ import SwiftUI
 
 struct FeedItemView: View {
     var userId: String
-    var post: Post
+    var currentPost: Post
     @EnvironmentObject var postController: PostController
     @EnvironmentObject var userController: UserController
     @EnvironmentObject var goalController: GoalController
     @EnvironmentObject var viewModel: AuthViewModel
     @State private var isShowingPopUp = false
     @State private var isSheetPresented = false
+    @State var navigateTo: AnyView?
+    @State var isNavigationActive = false
     let customYellow = Color(UIColor(hex: "#FFD111"))
     let subgoalColor = Color(UIColor(hex: "#53B141"))
   
     var body: some View {
-      if let feedUser = userController.getUserFromId(userId: userId){
+      if let post = postController.getPostFromId(postId: currentPost.id!) {
+        if let feedUser = userController.getUserFromId(userId: userId){
           let timeAgo = postController.timeAgoString(from: post.timePosted)
           VStack {
             // Profile Picture and Username
@@ -41,6 +44,30 @@ struct FeedItemView: View {
                   .font(.system(size: 12))
                   .frame(maxWidth: .infinity, alignment: .leading)
               }
+              Spacer()
+              
+              if feedUser == viewModel.currentUser {
+                VStack {
+                  Menu {
+                    Button("Edit Post") {
+                      navigateTo = AnyView(EditPostView(currentUser: feedUser, post: post))
+                      isNavigationActive = true
+                    }
+                    Button("Delete Post") {
+                      postController.deletePost(post: post, currentUser: feedUser)
+                    }
+                  } label: {
+                    Image(systemName: "ellipsis")
+                      .foregroundColor(.black)
+                  }
+                  .padding()
+                  .offset(y: -5)
+                }
+                
+              }
+              
+              
+              
             }
           }
           
@@ -51,35 +78,35 @@ struct FeedItemView: View {
             let progressBarMax = UIScreen.main.bounds.width - 85
             
             NavigationLink(destination: IndividualGoalView(goal: feedGoal)) {
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.clear)
-                    .frame(height: 40)
-                    .overlay(
-                      VStack(alignment: .leading) {
-                          Spacer()
-                            HStack {
-                                Text(feedGoal.name)
-                                    .font(.subheadline)
-                                    .foregroundColor(.black)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                Text("\(feedGoal.progress)/\(feedGoal.frequency)")
-                                    .font(.subheadline)
-                                    .foregroundColor(.black)
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                                    .padding(.trailing, 20)
-                            }
-//                            .padding(.leading, 10)
-                          Spacer()
-                            ZStack(alignment: .leading) {
-                                Capsule().frame(width: progressBarMax)
-                                    .foregroundColor(Color.gray)
-                                Capsule().frame(width: progressBarMax * percentage)
-                                    .foregroundColor(Color.yellow)
-                            }
-                            .frame(height: 20, alignment: .center)
-                           Spacer()
-                        }
-                    )
+              RoundedRectangle(cornerRadius: 12)
+                .fill(Color.clear)
+                .frame(height: 40)
+                .overlay(
+                  VStack(alignment: .leading) {
+                    Spacer()
+                    HStack {
+                      Text(feedGoal.name)
+                        .font(.subheadline)
+                        .foregroundColor(.black)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                      Text("\(feedGoal.progress)/\(feedGoal.frequency)")
+                        .font(.subheadline)
+                        .foregroundColor(.black)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding(.trailing, 20)
+                    }
+                    //                            .padding(.leading, 10)
+                    Spacer()
+                    ZStack(alignment: .leading) {
+                      Capsule().frame(width: progressBarMax)
+                        .foregroundColor(Color.gray)
+                      Capsule().frame(width: progressBarMax * percentage)
+                        .foregroundColor(Color.yellow)
+                    }
+                    .frame(height: 20, alignment: .center)
+                    Spacer()
+                  }
+                )
             }
           }
           // Image and Reactions
@@ -102,7 +129,7 @@ struct FeedItemView: View {
                   Image("Reaction")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 40, height: 40, alignment: .leading)
+                    .frame(width: 48, height: 48, alignment: .leading)
                 }
               } else {
                 Button(action: {
@@ -111,7 +138,7 @@ struct FeedItemView: View {
                   Image("bwHexagon")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 40, height: 40, alignment: .leading)
+                    .frame(width: 48, height: 48, alignment: .leading)
                 }
               }
             }
@@ -120,7 +147,7 @@ struct FeedItemView: View {
           }.padding(.bottom, 0)
           
           //Subgoal
-        VStack (alignment: .leading) {
+          VStack (alignment: .leading) {
             if let subgoal = goalController.getSubgoalFromId(subgoalId: post.subgoalId!){
               Capsule()
                 .foregroundColor(subgoalColor)
@@ -147,35 +174,33 @@ struct FeedItemView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, -1)
             }
-        }
-        .padding(.top, -5)
-        
-        Text("View Comments")
-          .foregroundColor(.gray)
-          .font(.system(size: 12))
-          .padding(.leading, 2)
-          .padding(.top, -20)
-          .onTapGesture {
-            isSheetPresented.toggle()
           }
-          .sheet(isPresented: $isSheetPresented) {
-            CommentSheetView(post: post)
-          }
-          .frame(maxWidth: .infinity, alignment: .leading)
+          .padding(.top, -5)
+          
+          Text("View Comments")
+            .foregroundColor(.gray)
+            .font(.system(size: 12))
+            .padding(.leading, 2)
+            .padding(.top, -20)
+            .onTapGesture {
+              isSheetPresented.toggle()
+            }
+            .sheet(isPresented: $isSheetPresented) {
+              CommentSheetView(post: post)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-//        .background(
-//          RoundedRectangle(cornerRadius: 12)
-//              .fill(Color.white)
-//              .frame(minHeight: 0, maxHeight: .infinity)
-//              .shadow(color: Color.gray, radius: 4, x: 0, y: 2)
-//        )
-////        .frame(minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-//        .frame(minHeight: 0, maxHeight: .infinity)
-//        .padding(.top, 1)
-//        .padding(.bottom, 1)
-//        .padding(.leading, 1)
-//        .padding(.trailing, 1)
-            
-      
+      }
+      if let post = postController.getPostFromId(postId: currentPost.id!) {
+        if let feedUser = userController.getUserFromId(userId: userId){
+          NavigationLink(
+            destination: EditPostView(currentUser: feedUser, post: post),
+            isActive: $isNavigationActive
+          ) {
+            EmptyView()
+          }
+          .hidden()
+        }
+      }
     }
 }

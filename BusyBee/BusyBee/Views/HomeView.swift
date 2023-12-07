@@ -70,6 +70,7 @@ struct HomeView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 20)
                     .foregroundColor(.white)
+                    .padding(.leading, 15)
                 Spacer()
                 Image("feedHeader")
                     .resizable()
@@ -89,7 +90,7 @@ struct HomeView: View {
             
             List {
               ForEach(allPosts) { post in
-                FeedItemView(userId: post.userId, post: post)
+                FeedItemView(userId: post.userId, currentPost: post)
                   .multilineTextAlignment(.leading)
               }
               .listRowSeparator(.hidden)

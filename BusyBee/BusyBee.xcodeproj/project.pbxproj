@@ -48,6 +48,7 @@
 		F1A512AA2AFAD19E00D3D3BE /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A512A92AFAD19E00D3D3BE /* EditProfileView.swift */; };
 		F1C26E6D2B0C0AF600251D91 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C26E6C2B0C0AF600251D91 /* Comment.swift */; };
 		F1C26E6F2B0C0C9300251D91 /* CommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C26E6E2B0C0C9300251D91 /* CommentRepository.swift */; };
+		F1C6FB372B2247A800DAA147 /* EditPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6FB362B2247A800DAA147 /* EditPostView.swift */; };
 		F1C7F65A2B15C15200A61DE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1C7F6592B15C15200A61DE4 /* GoogleService-Info.plist */; };
 		F1C7F65C2B16724D00A61DE4 /* ReactionsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C7F65B2B16724D00A61DE4 /* ReactionsComponent.swift */; };
 		F1C7F65E2B1674D300A61DE4 /* EditGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C7F65D2B1674D300A61DE4 /* EditGoalView.swift */; };
@@ -98,6 +99,7 @@
 		F1A512A92AFAD19E00D3D3BE /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		F1C26E6C2B0C0AF600251D91 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		F1C26E6E2B0C0C9300251D91 /* CommentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepository.swift; sourceTree = "<group>"; };
+		F1C6FB362B2247A800DAA147 /* EditPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostView.swift; sourceTree = "<group>"; };
 		F1C7F6592B15C15200A61DE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1C7F65B2B16724D00A61DE4 /* ReactionsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsComponent.swift; sourceTree = "<group>"; };
 		F1C7F65D2B1674D300A61DE4 /* EditGoalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGoalView.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				F1C7F65D2B1674D300A61DE4 /* EditGoalView.swift */,
 				2FBB027B2B186D4900044A36 /* GoalCardView.swift */,
 				2FBB027D2B186D6E00044A36 /* HoneyJarView.swift */,
+				F1C6FB362B2247A800DAA147 /* EditPostView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				F1C7F65E2B1674D300A61DE4 /* EditGoalView.swift in Sources */,
 				F9BE505A2AF4288900FF1C16 /* HexCodeConverter.swift in Sources */,
 				5980FC3D2AF1BF14003053BB /* RegistrationView.swift in Sources */,
+				F1C6FB372B2247A800DAA147 /* EditPostView.swift in Sources */,
 				5995CEC22AF58871004C9158 /* PostController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,7 +530,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = mobileapp.BusyBeee;
+				PRODUCT_BUNDLE_IDENTIFIER = mobileapp.BusyBeeeee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -560,7 +564,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = mobileapp.BusyBeee;
+				PRODUCT_BUNDLE_IDENTIFIER = mobileapp.BusyBeeeee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

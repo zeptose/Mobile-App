@@ -15,7 +15,7 @@ struct ReactionsComponent: View {
   var body: some View {
     if let user = viewModel.currentUser {
       if let updatedPost = postController.getPostFromId(postId: post.id!) {
-        let hexagonSize : CGFloat = 35
+        let hexagonSize : CGFloat = 42
         VStack(alignment: .leading) {
           // reaction 1
           if postController.didUserReact1(userId: user.id, post: updatedPost) {

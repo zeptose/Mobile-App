@@ -21,7 +21,6 @@ struct EditProfileView: View {
                     TextField("Username", text: $username)
                     TextField("Update your Bio", text: $bio)
                 }
-
                 // Add more editable fields here
             }
             .navigationTitle("Edit Profile")

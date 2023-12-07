@@ -57,6 +57,7 @@ struct CreatePostView: View {
 //  @EnvironmentObject var camera: CameraController
   @Environment(\.presentationMode) var presentationMode
   @EnvironmentObject var viewModel: AuthViewModel
+  @EnvironmentObject var userController: UserController
   @EnvironmentObject var goalController: GoalController
   @EnvironmentObject var postController: PostController
   @State private var uploadedImageURL: String = ""
@@ -67,7 +68,6 @@ struct CreatePostView: View {
   @State private var isShowingSubgoalList = false
   @State private var selectedGoals: [Goal] = []
   @State private var selectedSubgoals: [Subgoal] = []
-  
   
   
   var selectedGoal: Goal? {
@@ -118,9 +118,11 @@ struct CreatePostView: View {
                 }
                 
                 uploadedImageURL = postController.uploadPhoto(uiImage)
-                if let currentUser = viewModel.currentUser {
+
+                if let currUser = viewModel.currentUser {
+                  let user = userController.getUserFromId(userId: currUser.id)
                     postController.addPost(
-                        currentUser: currentUser,
+                      currentUser: user!,
                         goal: selectedGoal,
                         caption: caption,
                         photo: uploadedImageURL,
@@ -166,11 +168,6 @@ struct CreatePostView: View {
                   .padding()
                   
             
-            Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
             Spacer()
          
             VStack{
