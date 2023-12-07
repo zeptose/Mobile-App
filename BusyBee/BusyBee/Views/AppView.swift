@@ -6,7 +6,7 @@ struct AppView: View {
   @EnvironmentObject var postController : PostController
   @EnvironmentObject var goalController: GoalController
   @EnvironmentObject var viewModel: AuthViewModel
-  @EnvironmentObject var cameraController : CameraController
+//  @EnvironmentObject var cameraController : CameraController
   
   @State private var showAlert = false
   
@@ -21,17 +21,17 @@ struct AppView: View {
           Text("Home")
         }
         .tag(0)
-      CameraView()
-        .tabItem {
-          Image(systemName: "camera")
-          Text("Camera")
-        }
-        .tag(1)
+//      CameraView()
+//        .tabItem {
+//          Image(systemName: "camera")
+//          Text("Camera")
+//        }
+//        .tag(1)
       
-      CalendarView()
+      NotificationView()
         .tabItem {
-          Image(systemName: "calendar")
-          Text("Calendar")
+          Image(systemName: "heart")
+          Text("Notifications")
         }
         .tag(2)
       

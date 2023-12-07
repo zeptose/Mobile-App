@@ -77,7 +77,7 @@ struct ProfileView: View {
                                   .padding(5)
                                   .frame(width: UIScreen.main.bounds.width * 0.3)
                                   .background(customMaroon)
-                                  .cornerRadius(5)
+                                  .cornerRadius(100)
                               }
                             NavigationLink(destination: EditProfileView(user: updatedCurrentUser!, userController: userController)) {
                               
@@ -87,7 +87,7 @@ struct ProfileView: View {
                             .foregroundColor(customMaroon)
                             .padding(5)
                             .frame(width: UIScreen.main.bounds.width * 0.3)
-                            .background(RoundedRectangle(cornerRadius: 5)
+                            .background(RoundedRectangle(cornerRadius: 100)
                                 .stroke(customMaroon, lineWidth: 1))
                             
                           }
@@ -166,38 +166,10 @@ struct ProfileView: View {
                                         
                                         ForEach(pastGoals) { goal in
                                             NavigationLink(destination: IndividualGoalView(goal: goal)) {
-                                                RoundedRectangle(cornerRadius: 12)
-                                                    .fill(Color.white)
-                                                    .shadow(color: Color.gray, radius: 4, x: 0, y: 2)
-                                                    .frame(width: UIScreen.main.bounds.width * 0.85, height: 120)
-                                                    .overlay(
-                                                      VStack(alignment: .leading) {
-                                                          HStack {
-                                                              Text(goal.name)
-                                                                  .font(.title)
-                                                                  .foregroundColor(Color.black)
-                                                                  .fontWeight(.bold)
-                                                                  .padding(.bottom, 4)
-                                                              Spacer()
-                                                              NavigationLink(destination: EditGoalView(goalController: goalController, currentUser: updatedUser!, goal: goal)) {
-                                                                  Image(systemName: "pencil")
-                                                                      .foregroundColor(.black)
-                                                                      .font(.title)
-                                                              }
-                                                          }
-                                                          HStack {
-                                                              Text("Due: \(dateFormatter.string(from: goal.dueDate))")
-                                                                  .font(.subheadline)
-                                                                  .foregroundColor(Color.black)
-                                                              Spacer()
-                                                              Text("Frequency: \(goal.frequency)")
-                                                                  .font(.subheadline)
-                                                                  .foregroundColor(Color.black)
-                                                                  .multilineTextAlignment(.trailing)
-                                                          }
-                                                      }
-                                                            .padding(12)
-                                                    )
+                                                
+                                                NavigationLink(destination: IndividualGoalView(goal: goal)) {
+                                                    GoalCardView(user: updatedUser!, goal: goal)
+                                                }
                                             }
                                         }
                                     }

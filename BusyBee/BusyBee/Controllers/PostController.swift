@@ -127,6 +127,16 @@ class PostController: ObservableObject {
     }
   }
   
+  func getCommentFromId(commentId: String, postId: String) -> Comment? {
+      if let post = getPostFromId(postId: postId) {
+          let temp = post.comments.first { $0.id == commentId }
+          if let ourComment = temp {
+              return ourComment
+          }
+      }
+      return nil
+  }
+  
   func addComment(commenterId: String, postId: String, body: String) {
     let timePosted = Date()
     let newComment = Comment(userId: commenterId, body: body, timePosted: timePosted)
@@ -256,6 +266,7 @@ class PostController: ObservableObject {
       }
   }
   
+
   func deletePost(post: Post, currentUser: User) {
       let currGoal = goalController.getGoalFromId(goalId: post.goalId)
       if var tempGoal = currGoal {
@@ -273,13 +284,6 @@ class PostController: ObservableObject {
     }
 
   func deleteGoal(goal: Goal, currentUser: User) {
-//    first, delete all related posts
-//      print("userid: \(currentUser.id)")
-//      print("goals: \(currentUser.goals)")
-////      currentUser.goals.map{ print("\($0.id), ") }
-//      for g in currentUser.goals {
-//        print("id: \(g.id)")
-//      }
     
     let relatedPosts = getPostsForGoal(goalId: goal.id)
     for post in relatedPosts {
@@ -320,6 +324,84 @@ class PostController: ObservableObject {
     currPost.subgoalId = subgoalId
     postRepository.update(currPost)
   }
+
+  func getNotificationsForCurrentUser(currentUser: User) -> [AppNotification] {
+      var notifications: [AppNotification] = []
+
+      // Generate notifications for comments
+      for post in getPosts(currentUser: currentUser) {
+          for comment in post.comments {
+              if let postId = post.id {
+                  let notification = AppNotification(type: .comment, postId: postId, commenterId: comment.userId, timestamp: Date(), info: comment.body)
+                  notifications.append(notification)
+              }
+          }
+      }
+
+      // Generate notifications for reactions
+      for post in getPosts(currentUser: currentUser) {
+          guard let postId = post.id else { continue }
+          let currentUserReaction = [post.reaction1, post.reaction2, post.reaction3, post.reaction4]
+          for (index, reaction) in currentUserReaction.enumerated() {
+              if reaction.contains(currentUser.id) {
+                  var emoji = ""
+                  if index == 0 { emoji = "❤️" }
+                  else if index == 1 { emoji = "👏" }
+                  else if index == 2 { emoji = "🍾" }
+                  else if index == 3 { emoji = "🎉" }
+                  
+                  let notification = AppNotification(type: .reaction, postId: postId, commenterId: currentUser.id, timestamp: Date(), info: emoji)
+                  notifications.append(notification)
+              }
+          }
+      }
+
+      // Generate notifications for new followers
+      if let updatedUser = userController.getUserFromId(userId: currentUser.id) {
+          let beforeUpdate = currentUser.follows
+          let afterUpdate = updatedUser.follows
+          
+          // Find the new followers by filtering afterUpdate against beforeUpdate
+          let newFollowers = afterUpdate.filter { !beforeUpdate.contains($0) }
+          
+          for followerId in newFollowers {
+              if let _ = userController.getUserFromId(userId: followerId) {
+                let notification = AppNotification(type: .follow, postId: "", commenterId: currentUser.id, timestamp: Date(), info: followerId)
+                  notifications.append(notification)
+              }
+          }
+          let allCurrentFollowers = updatedUser.follows
+            for followerId in allCurrentFollowers {
+                if !newFollowers.contains(followerId) {
+                    if let follower = userController.getUserFromId(userId: followerId) {
+                      let notification = AppNotification(type: .follow, postId: "", commenterId: followerId, timestamp:Date(), info: followerId)
+                        notifications.append(notification)
+                    }
+                }
+            }
+      }
+
+      return notifications
+  }
+
+    
+          
+//  
+//  func getReactionText(forPost post: Post, commenterId: String) -> String {
+//      if post.reaction1.contains(commenterId) {
+//          return "❤️"
+//      } else if post.reaction2.contains(commenterId) {
+//          return "👏"
+//      } else if post.reaction3.contains(commenterId) {
+//          return "🍾"
+//      } else if post.reaction4.contains(commenterId) {
+//          return "🎉"
+//      } else {
+//          return ""
+//      }
+//  }
+//  
+
 }
 
 
