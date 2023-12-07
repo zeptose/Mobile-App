@@ -39,17 +39,19 @@ class AuthViewModel: ObservableObject {
     do {
       let result = try await Auth.auth().createUser(withEmail: email, password: password)
       self.userSession = result.user
-      let posts: [Post] = []
+//      let posts: [Post] = []
       let follows: [String] = []
-      let goals: [Goal] = []
+      let followers: [String] = []
+//      let goals: [Goal] = []
       let bio = ""
       
       let newUser = User(id: result.user.uid,
                          username: username,
                          bio: bio,
-                         goals: goals,
-                         posts: posts,
-                         follows: follows)
+//                         goals: goals,
+//                         posts: posts,
+                         follows: follows,
+                         followers: followers)
       let encodedUser = try Firestore.Encoder().encode(newUser)
       try await Firestore.firestore().collection("users").document(newUser.id).setData(encodedUser)
       await fetchUser()
