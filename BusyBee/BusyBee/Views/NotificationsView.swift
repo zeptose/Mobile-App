@@ -67,7 +67,7 @@ struct NotificationView: View {
       if let currentUser = viewModel.currentUser {
         notifications = postController.getNotificationsForCurrentUser(currentUser: currentUser)
         notifications.sort()
-        
+         
       }
     }
     
