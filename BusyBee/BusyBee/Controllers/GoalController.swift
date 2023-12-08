@@ -137,7 +137,12 @@ class GoalController: ObservableObject {
         return nil
       }
     }
-
-  
-
+    
+    func updateEndDate(goal: Goal) async throws {
+        if goal.progress == goal.frequency {
+            var updatedGoal = goal
+            updatedGoal.dateEnded = Date()
+            try await goalRepository.update(updatedGoal)
+        }
+    }
 }

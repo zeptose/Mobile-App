@@ -27,7 +27,7 @@ struct BusyBeeApp: App {
   @StateObject var userController = UserController()
   @StateObject var postController = PostController()
   @StateObject var goalController = GoalController()
-  @StateObject var cameraController = CameraController()
+//  @StateObject var cameraController = CameraController()
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -35,7 +35,7 @@ struct BusyBeeApp: App {
             .environmentObject(userController)
             .environmentObject(postController)
             .environmentObject(goalController)
-            .environmentObject(cameraController)
+//            .environmentObject(cameraController)
         }
     }
 }
