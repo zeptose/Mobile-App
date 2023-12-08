@@ -119,7 +119,7 @@ struct NotificationRow: View {
                 }
                 
             case .follow:
-                if let follower = postController.userRepository.getUserWithId(notification.commenterId){
+                if let follower = postController.userRepository.getUserWithId(notification.info){
                     
                     HStack {
                         Image("profilePic")
