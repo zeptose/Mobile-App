@@ -26,31 +26,69 @@ struct GoalCardView: View {
                     HoneyJarView(progress: goal.progress, frequency: goal.frequency)
                         .frame(width: 70, height: 70)
                     VStack(alignment: .leading) {
-                        Text(goal.name)
-                            .font(.headline)
-                            .foregroundColor(Color.black)
-                            .fontWeight(.bold)
                         if goal.progress < goal.frequency {
+                            Text(goal.name)
+                                .font(.headline)
+                                .foregroundColor(Color.black)
+                                .fontWeight(.bold)
+                                .onAppear {
+                                    Task {
+                                        do {
+                                            try await goalController.updateEndDate(goal: goal)
+                                        } catch {
+                                            print("Error updating goal end date")
+                                        }
+                                    }
+                                }
                             if let dayDifference = dayDifference {
                                 if dayDifference == 1 {
                                     Text("\(dayDifference) Day Left")
                                         .font(.subheadline)
-                                        .foregroundColor(Color.black)
+                                        .foregroundColor(.gray)
                                 } else if dayDifference >= 0 {
                                     Text("\(dayDifference) Days Left")
                                         .font(.subheadline)
-                                        .foregroundColor(Color.black)
+                                        .foregroundColor(.gray)
+                                } else if dayDifference == -1 {
+                                    Text("\(-1 * dayDifference) Day Overdue")
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
                                 } else {
-                                    
                                     Text("\(-1 * dayDifference) Days Overdue")
                                         .font(.subheadline)
-                                        .foregroundColor(Color.black)
+                                        .foregroundColor(.gray)
                                 }
                             }
                             Text("Subgoals: \(goalController.getCountSubgoals(goal: goal))")
                                 .font(.subheadline)
                                 .foregroundColor(Color.gray)
                         } else {
+                            HStack {
+                                Text(goal.name)
+                                    .font(.headline)
+                                    .foregroundColor(Color.black)
+                                    .fontWeight(.bold)
+                                    .onAppear {
+                                        Task {
+                                            do {
+                                                try await goalController.updateEndDate(goal: goal)
+                                            } catch {
+                                                print("Error updating goal end date")
+                                            }
+                                        }
+                                    }
+                                let dateFormatter: DateFormatter = {
+                                    let formatter = DateFormatter()
+                                    formatter.dateFormat = "MM/dd/yy"
+                                    return formatter
+                                }()
+                                let startDateString = dateFormatter.string(from: goal.dateStarted)
+                                let endDateString = dateFormatter.string(from: goal.dateEnded!)
+                                Text("\(startDateString) - \(endDateString)")
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
+                                    .padding(.leading, 50)
+                            }
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 10) {
                                     ForEach(postController.getPostsForGoal(goalId: goal.id)) { post in
@@ -80,8 +118,8 @@ struct GoalCardView: View {
                                         Text("On Track")
                                             .font(.subheadline)
                                             .foregroundColor(Color.gray)
-                                            .padding(.trailing, 10)
-                                    }
+                                            
+                                    }.padding(.trailing, 14)
                                 } else {
                                     HStack {
                                         Circle()
@@ -90,8 +128,8 @@ struct GoalCardView: View {
                                         Text("Overdue")
                                             .font(.subheadline)
                                             .foregroundColor(Color.gray)
-                                            .padding(.trailing, 10)
-                                    }
+                                            
+                                    }.padding(.trailing, 14)
                                 }
                             }
                            Spacer()
@@ -102,14 +140,14 @@ struct GoalCardView: View {
                                 Image(systemName: "pencil")
                                   .foregroundColor(.gray)
                                   .font(.title)
-                              }.padding()
+                              }
                               Button(action: {
                                 postController.deleteGoal(goal: goal, currentUser: user)
                               }) {
                                   Image(systemName: "trash")
                                   .foregroundColor(.gray)
                                   .font(.title)
-                              }.padding()
+                              }
                             }
                           }
                         }
