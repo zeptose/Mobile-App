@@ -224,6 +224,7 @@ struct CreatePostView: View {
 
             VStack{
                 HStack {
+                  
                   Text("Subgoals")
                     .font(.headline)
                     .foregroundColor(.black)

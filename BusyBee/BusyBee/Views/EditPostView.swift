@@ -18,24 +18,14 @@ struct EditPostView: View {
       
       @State private var scrollToBottom = false
       @State private var postCaption: String
-
-      @State private var isShowingSubgoalList = false
+      
+      @State private var isShowingGoal = false
+      @State private var isShowingSubgoal = false
+      
+      
       @State private var selectedGoal: String
-      @State private var selectedSubgoal: String
-//      var selectedGoal: Goal? {
-//        guard selectedGoalIndex >= 0 else{
-//          return nil
-//        }
-//        return goalController.getCurrentGoals(currentUser: viewModel.currentUser!)[selectedGoalIndex]
-//      }
-//      
-//      var selectedSubgoal: Subgoal? {
-//        guard selectedSubgoalIndex >= 0 else {
-//          return nil
-//        }
-//        return goalController.getSubgoalsForGoal(goal: selectedGoal!)[selectedSubgoalIndex]
-//      }
-//  
+      @State private var selectedSubgoal: String?
+
       init(currentUser: User, post: Post) {
           self.currentUser = currentUser
           self.postToEdit = post
@@ -43,7 +33,7 @@ struct EditPostView: View {
           // Initialize states with the existing goal data
           _postCaption = State(initialValue: post.caption)
           _selectedGoal = State(initialValue: post.goalId)
-        _selectedSubgoal = State(initialValue: post.subgoalId!)
+          _selectedSubgoal = State(initialValue: post.subgoalId!)
       }
 
       var body: some View {
@@ -55,38 +45,70 @@ struct EditPostView: View {
                 .padding(10)
                 .background(
                       RoundedRectangle(cornerRadius: 15)
-
-                              .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
+                          .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
                       )
             Text("Goal").font(.headline)
             Text("Change the goal you want your post to be associated with").font(.subheadline).foregroundColor(.gray)
-            VStack {
-              Menu {
-                ForEach(goalController.getCurrentGoals(currentUser: currUser)) { goal in
-                  Button(goal.name) {
-                    selectedGoal = goal.id
-                    isShowingSubgoalList = true
-                  }
-                }} label: {
-                  Text(goalController.getGoalFromId(goalId: selectedGoal)!.name)
-                }
-                .padding()
-                .offset(y: -5)
-            }
-            if isShowingSubgoalList {
-              VStack {
+            
+//            if !isShowingGoalList{
+//              Button(goalController.getGoalFromId(goalId: selectedGoal)!.name) {
+//                isShowingGoalList = true
+//              }
+//            } else {
+              HStack {
                 Menu {
-                  ForEach(goalController.getSubgoalsForGoal(goal: goalController.getGoalFromId(goalId: selectedGoal)!)) { subgoal in
-                    Button(subgoal.name) {
-                      selectedSubgoal = subgoal.id!
+                  ForEach(goalController.getCurrentGoals(currentUser: currUser)) { goal in
+                    Button(goal.name) {
+                      selectedGoal = goal.id
+                      selectedSubgoal = nil
+                      isShowingSubgoal = false
+                      isShowingGoal = true
                     }
                   }} label: {
-                    Text(goalController.getSubgoalFromId(subgoalId: selectedSubgoal)!.name)
+                    Text("Edit Goal")
+                      .foregroundColor(.white)
+                      .background(
+                        RoundedRectangle(cornerRadius: 10)
+                           .fill(Color(UIColor(hex: "#FFD111")))
+                           .frame(width: 100, height: 30)
+                      )
                   }
                   .padding()
-                  .offset(y: -5)
+                Spacer()
+                if isShowingGoal {
+                  Text("Selected Goal: \(goalController.getGoalFromId(goalId: selectedGoal)!.name)")
+                    .padding()
                 }
               }
+//            }
+            Text("Subgoal").font(.headline)
+            Text("Change the subgoal you want your post to be associated with").font(.subheadline).foregroundColor(.gray)
+            HStack {
+              Menu {
+                ForEach(goalController.getSubgoalsForGoal(goal: goalController.getGoalFromId(goalId: selectedGoal)!)) { subgoal in
+                  Button(subgoal.name) {
+                    selectedSubgoal = subgoal.id!
+                    isShowingSubgoal = true
+                  }
+                }} label: {
+                  Text("Edit Subgoal")
+                    .foregroundColor(.white)
+                    .background(
+                      RoundedRectangle(cornerRadius: 10)
+                          .fill(Color(UIColor(hex: "#FFD111")))
+                          .frame(width: 140, height: 30)
+                    )
+                }
+                .padding()
+              Spacer()
+              if isShowingSubgoal {
+                if let temp = selectedSubgoal {
+                  Text("Selected Goal: \(goalController.getSubgoalFromId(subgoalId: temp)!.name)")
+                    .padding()
+                }
+              }
+            }
+        
         }.padding(20)
             .navigationBarTitle("Edit Post")
             .navigationBarItems(trailing:

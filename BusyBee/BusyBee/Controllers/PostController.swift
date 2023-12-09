@@ -299,7 +299,7 @@ class PostController: ObservableObject {
     goalRepository.delete(goal)
   }
   
-  func updatePost(post: Post, caption: String, goalId: String, subgoalId: String) {
+  func updatePost(post: Post, caption: String, goalId: String, subgoalId: String?) {
     var currPost = post
     currPost.caption = caption
     
@@ -322,6 +322,14 @@ class PostController: ObservableObject {
     }
     
     currPost.subgoalId = subgoalId
+    if let subId = subgoalId {
+      if let subgoal = goalController.getSubgoalFromId(subgoalId: subId){
+        var temp = subgoal
+        temp.isCompleted = true
+        subgoalRepository.update(temp)
+      }
+    }
+    
     postRepository.update(currPost)
   }
 
