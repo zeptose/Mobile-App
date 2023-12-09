@@ -266,6 +266,22 @@ class PostController: ObservableObject {
       }
   }
   
+  func daysUntilDate(_ date: Date) -> String {
+      let currentDate = Date()
+      let calendar = Calendar.current
+
+      if let difference = calendar.dateComponents([.day], from: currentDate, to: date).day {
+          if difference > 0 {
+              return "\(difference) day\(difference == 1 ? "" : "s") left"
+          } else if difference == 0 {
+              return "Due Today"
+          } else {
+              return "Overdue by \(-difference) day\(-difference == 1 ? "" : "s")"
+          }
+      } else {
+          return "Error"
+      }
+  }
 
   func deletePost(post: Post, currentUser: User) {
       let currGoal = goalController.getGoalFromId(goalId: post.goalId)
