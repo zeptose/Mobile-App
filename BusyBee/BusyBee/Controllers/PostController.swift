@@ -118,6 +118,35 @@ class PostController: ObservableObject {
     return posts
   }
   
+  func getPostsForPastWeek(goalId: String) -> [Post] {
+      let calendar = Calendar.current
+      let now = Date()
+      let allGoalPosts = getPostsForGoal(goalId: goalId)
+    
+      if let oneWeekAgo = calendar.date(byAdding: .weekOfYear, value: -1, to: now) {
+          let filteredPosts = allGoalPosts.filter { post in
+              return post.timePosted >= oneWeekAgo && post.timePosted <= now
+          }
+          
+          return filteredPosts
+      }
+      return []
+  }
+  
+  func getEarlierPosts(goalId: String) -> [Post] {
+      let calendar = Calendar.current
+      let now = Date()
+      let allGoalPosts = getPostsForGoal(goalId: goalId)
+    
+      if let oneWeekAgo = calendar.date(byAdding: .weekOfYear, value: -1, to: now) {
+          let filteredPosts = allGoalPosts.filter { post in
+              return post.timePosted < oneWeekAgo
+          }
+          return filteredPosts
+        }
+      return []
+  }
+  
   func getPostFromId(postId: String) -> Post? {
     let temp = self.posts.first( where: {$0.id == postId} )
     if let ourPost = temp {

@@ -34,7 +34,7 @@ struct IndividualGoalView: View {
                 Image("profilePic")
                   .resizable()
                   .aspectRatio(contentMode: .fill)
-                  .frame(width: 40, height: 40)
+                  .frame(width: 30, height: 30)
                   .clipShape(Circle())
                   .overlay(Circle().stroke(customYellow, lineWidth: 3))
                 if let goalUser = userController.getUserFromId(userId: goal.userId) {
@@ -49,7 +49,7 @@ struct IndividualGoalView: View {
                 .frame(width: 16)
                 .foregroundColor(.white)
                 .padding(.trailing, 5)
-            }
+            }.padding(.bottom, 20)
           
             Text(goal.name)
               .font(.title)
@@ -196,27 +196,61 @@ struct IndividualGoalView: View {
 
         }
         .padding()
-        .padding(.bottom, 40)
+        .padding(.bottom, 25)
         .navigationBarHidden(true)
-          
-        Text("Past Week")
-        ScrollView(.horizontal, showsIndicators: false) {
+      
+      let pastWeek = postController.getPostsForPastWeek(goalId: goal.id)
+      if pastWeek != [] {
+        VStack(alignment: .leading) {
+          Text("Past Week")
+            .font(.system(size: 18))
+            .bold()
+            .padding(.leading, 20)
+          ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 15) {
-                ForEach(postController.getPostsForGoal(goalId: goal.id)) { post in
-                    VStack(spacing: 15) {
-                        Image(uiImage: postController.getImageFromURL(url: post.photo))
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 200, height: 200)
-                            .clipped()
-                            .cornerRadius(10)
-                            .aspectRatio(contentMode: .fill)
-                    }
+              ForEach(pastWeek) { post in
+                VStack(spacing: 15) {
+                  Image(uiImage: postController.getImageFromURL(url: post.photo))
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 200, height: 200)
+                    .clipped()
+                    .cornerRadius(10)
+                    .aspectRatio(contentMode: .fill)
                 }
+              }
             }
             .padding(.horizontal, 10)
+          }
+          Spacer()
         }
-        Spacer()
+      }
+      let earlier = postController.getEarlierPosts(goalId: goal.id)
+      if earlier != [] {
+        VStack(alignment: .leading) {
+          Text("Earlier")
+            .font(.system(size: 18))
+            .bold()
+            .padding(.leading, 20)
+          ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 15) {
+              ForEach(earlier) { post in
+                VStack(spacing: 15) {
+                  Image(uiImage: postController.getImageFromURL(url: post.photo))
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 200, height: 200)
+                    .clipped()
+                    .cornerRadius(10)
+                    .aspectRatio(contentMode: .fill)
+                }
+              }
+            }
+            .padding(.horizontal, 10)
+          }
+          Spacer()
+        }
+      }
     }
 }
 
