@@ -15,7 +15,7 @@ struct GoalCardView: View {
     var user: User
     var goal: Goal
     var body: some View {
-        NavigationLink(destination: IndividualGoalView(goal: goal)) {
+//        NavigationLink(destination: IndividualGoalView(goal: goal)) {
             VStack(alignment: .leading) {
                 let goalDueDate = goal.dueDate
                 let currentDate = Date()
@@ -31,15 +31,6 @@ struct GoalCardView: View {
                                 .font(.headline)
                                 .foregroundColor(Color.black)
                                 .fontWeight(.bold)
-                                .onAppear {
-                                    Task {
-                                        do {
-                                            try await goalController.updateEndDate(goal: goal)
-                                        } catch {
-                                            print("Error updating goal end date")
-                                        }
-                                    }
-                                }
                             if let dayDifference = dayDifference {
                                 if dayDifference == 1 {
                                     Text("\(dayDifference) Day Left")
@@ -59,7 +50,7 @@ struct GoalCardView: View {
                                         .foregroundColor(.gray)
                                 }
                             }
-                            Text("Subgoals: \(goalController.getCountSubgoals(goal: goal))")
+                            Text("\(goalController.getCountSubgoals(goal: goal)) Subgoals")
                                 .font(.subheadline)
                                 .foregroundColor(Color.gray)
                         } else {
@@ -129,7 +120,7 @@ struct GoalCardView: View {
                                             .font(.subheadline)
                                             .foregroundColor(Color.gray)
                                             
-                                    }.padding(.trailing, 14)
+                                    }.padding(.trailing, 13)
                                 }
                             }
                            Spacer()
@@ -152,7 +143,7 @@ struct GoalCardView: View {
                           }
                         }
               
-                    }
+//                    }
 
                 }
             }

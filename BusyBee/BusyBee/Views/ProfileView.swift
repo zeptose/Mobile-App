@@ -145,11 +145,6 @@ struct ProfileView: View {
                             ScrollView {
                                 VStack {
                                     if showCurrentGoals {
-                                        let dateFormatter: DateFormatter = {
-                                            let formatter = DateFormatter()
-                                            formatter.dateFormat = "yyyy-MM-dd"
-                                            return formatter
-                                        }()
                                         
                                       ForEach(currentGoals) { goal in
                                           NavigationLink(destination: IndividualGoalView(goal: goal)) {
@@ -158,18 +153,9 @@ struct ProfileView: View {
                                           }
                                     } else {
                                         let pastGoals = goalController.getPastGoals(currentUser: updatedUser!)
-                                        let dateFormatter: DateFormatter = {
-                                            let formatter = DateFormatter()
-                                            formatter.dateFormat = "yyyy-MM-dd"
-                                            return formatter
-                                        }()
-                                        
                                         ForEach(pastGoals) { goal in
-                                            NavigationLink(destination: IndividualGoalView(goal: goal)) {
-                                                
-                                                NavigationLink(destination: IndividualGoalView(goal: goal)) {
-                                                    GoalCardView(user: updatedUser!, goal: goal)
-                                                }
+                                            NavigationLink(destination: GoalWrappedView(goal: goal, user: updatedUser!)) {
+                                                GoalCardView(user: updatedUser!, goal: goal)
                                             }
                                         }
                                     }
