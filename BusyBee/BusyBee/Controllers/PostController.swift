@@ -118,6 +118,35 @@ class PostController: ObservableObject {
     return posts
   }
   
+  func getPostsForPastWeek(goalId: String) -> [Post] {
+      let calendar = Calendar.current
+      let now = Date()
+      let allGoalPosts = getPostsForGoal(goalId: goalId)
+    
+      if let oneWeekAgo = calendar.date(byAdding: .weekOfYear, value: -1, to: now) {
+          let filteredPosts = allGoalPosts.filter { post in
+              return post.timePosted >= oneWeekAgo && post.timePosted <= now
+          }
+          
+          return filteredPosts
+      }
+      return []
+  }
+  
+  func getEarlierPosts(goalId: String) -> [Post] {
+      let calendar = Calendar.current
+      let now = Date()
+      let allGoalPosts = getPostsForGoal(goalId: goalId)
+    
+      if let oneWeekAgo = calendar.date(byAdding: .weekOfYear, value: -1, to: now) {
+          let filteredPosts = allGoalPosts.filter { post in
+              return post.timePosted < oneWeekAgo
+          }
+          return filteredPosts
+        }
+      return []
+  }
+  
   func getPostFromId(postId: String) -> Post? {
     let temp = self.posts.first( where: {$0.id == postId} )
     if let ourPost = temp {
@@ -266,7 +295,25 @@ class PostController: ObservableObject {
     }
   }
   
-  
+
+  func daysUntilDate(_ date: Date) -> String {
+      let currentDate = Date()
+      let calendar = Calendar.current
+
+      if let difference = calendar.dateComponents([.day], from: currentDate, to: date).day {
+          if difference > 0 {
+              return "\(difference) day\(difference == 1 ? "" : "s") left"
+          } else if difference == 0 {
+              return "Due Today"
+          } else {
+              return "Overdue by \(-difference) day\(-difference == 1 ? "" : "s")"
+          }
+      } else {
+          return "Error"
+      }
+  }
+
+
   func deletePost(post: Post, currentUser: User) {
     let currGoal = goalController.getGoalFromId(goalId: post.goalId)
     if var tempGoal = currGoal {
@@ -299,7 +346,7 @@ class PostController: ObservableObject {
     goalRepository.delete(goal)
   }
   
-  func updatePost(post: Post, caption: String, goalId: String, subgoalId: String) {
+  func updatePost(post: Post, caption: String, goalId: String, subgoalId: String?) {
     var currPost = post
     currPost.caption = caption
     
@@ -322,6 +369,14 @@ class PostController: ObservableObject {
     }
     
     currPost.subgoalId = subgoalId
+    if let subId = subgoalId {
+      if let subgoal = goalController.getSubgoalFromId(subgoalId: subId){
+        var temp = subgoal
+        temp.isCompleted = true
+        subgoalRepository.update(temp)
+      }
+    }
+    
     postRepository.update(currPost)
   }
   

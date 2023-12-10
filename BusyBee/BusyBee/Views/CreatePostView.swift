@@ -219,28 +219,30 @@ struct CreatePostView: View {
                 
               }
 
-          
-            HStack {
-              Text("Subgoals")
-                .font(.headline)
-                .foregroundColor(.black)
-                .offset(x: 30)
-              
-              Spacer()
-              
-              if selectedSubgoals.isEmpty {
-                Text("Add")
-                  .foregroundColor(Color(UIColor(hex: "#992409")))
-                  .font(.system(size: 16, weight: .bold))
-                  .padding(.leading, -5)
-                  .onTapGesture {
-                    isShowingSubgoalList = true
-                  }
-                  .sheet(isPresented: $isShowingSubgoalList) {
-                    if let selectedGoal = selectedGoal {
-                      SubgoalListView(selectedSubgoalIndex: $selectedSubgoalIndex, subgoals: goalController.getSubgoalsForGoal(goal: selectedGoal), selectedSubgoals: $selectedSubgoals)
-                    } else {
-                      Text("No goal selected")
+            VStack{
+                HStack {
+                  
+                  Text("Subgoals")
+                    .font(.headline)
+                    .foregroundColor(.black)
+                    .offset(x: 30)
+                  
+                  Spacer()
+                  
+                  if selectedSubgoals.isEmpty {
+                    Text("Add")
+                        .foregroundColor(Color(UIColor(hex: "#992409")))
+                        .font(.system(size: 16, weight: .bold)) // Adjust size and weight as needed
+                        .padding(.leading, -5) // Negative padding moves the text to the left
+                        .onTapGesture {
+                          isShowingSubgoalList = true
+                        }
+                    .sheet(isPresented: $isShowingSubgoalList) {
+                      if let selectedGoal = selectedGoal {
+                        SubgoalListView(selectedSubgoalIndex: $selectedSubgoalIndex, subgoals: goalController.getSubgoalsForGoal(goal: selectedGoal), selectedSubgoals: $selectedSubgoals)
+                      } else {
+                        Text("No goal selected") // Placeholder view or action when no goal is selected
+                      }
                     }
                   }
               }

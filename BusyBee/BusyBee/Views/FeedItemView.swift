@@ -19,7 +19,7 @@ struct FeedItemView: View {
     @State var navigateTo: AnyView?
     @State var isNavigationActive = false
     let customYellow = Color(UIColor(hex: "#FFD111"))
-    let subgoalColor = Color(UIColor(hex: "#53B141"))
+    let subgoalColor = Color(UIColor(hex: "#F08355"))
   
     var body: some View {
       if let post = postController.getPostFromId(postId: currentPost.id!) {
@@ -59,9 +59,9 @@ struct FeedItemView: View {
                   } label: {
                     Image(systemName: "ellipsis")
                       .foregroundColor(.black)
+                      .frame(height: 50)
                   }
                   .padding()
-                  .offset(y: -5)
                 }
                 
               }
@@ -148,39 +148,40 @@ struct FeedItemView: View {
           
           //Subgoal
           VStack (alignment: .leading) {
-            if let subgoal = goalController.getSubgoalFromId(subgoalId: post.subgoalId!){
-              Capsule()
-                .foregroundColor(subgoalColor)
-                .frame(height: 25, alignment: .leading)
-                .overlay(
-                  HStack{
-                    Image("checkmark")
-                      .resizable()
-                      .aspectRatio(contentMode: .fit)
-                      .frame(width: 12, alignment: .leading)
-                      .padding(.leading, 10)
-                    Text(subgoal.name)
-                      .font(.system(size: 15))
-                      .foregroundColor(.white)
-                      .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                  }
-                )
-                .frame(maxWidth: 150, alignment: .leading)
-            }
-            
-            if (post.caption != "") {
-              Text(post.caption)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, -1)
-            }
+            if let subgoal = goalController.getSubgoalFromId(subgoalId: post.subgoalId!) {
+                    HStack(spacing: 10) {
+                        Image("checkmark")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 12, alignment: .leading)
+                            .padding(.leading, 10)
+
+                        Text(subgoal.name)
+                            .font(.system(size: 15))
+                            .foregroundColor(.white)
+                            .padding(.trailing, 10)
+                    }
+                    .background(
+                        Capsule()
+                            .foregroundColor(subgoalColor)
+                            .frame(height: 25)
+                    )
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.bottom, 1)
+                }
+
+                if !post.caption.isEmpty {
+                    Text(post.caption)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, -1)
+                }
           }
           .padding(.top, -5)
           
           Text("View Comments")
             .foregroundColor(.gray)
             .font(.system(size: 12))
-            .padding(.leading, 2)
+            .padding(.leading, 1.25)
             .padding(.top, -20)
             .onTapGesture {
               isSheetPresented.toggle()
