@@ -115,7 +115,7 @@ struct AddGoalView: View {
                     }
                         .padding(10)
                     Text("Frequency").font(.headline).padding(textPadding)
-                    Text("How often do you want to update progress on your goal?").font(.subheadline).foregroundColor(.gray).padding(textPadding)
+                    Text("How many posts do you want to make to reach your goal?").font(.subheadline).foregroundColor(.gray).padding(textPadding)
                     TextField("Enter Frequency", text: $frequency)
                     
                         .keyboardType(.numberPad)
@@ -143,7 +143,7 @@ struct AddGoalView: View {
                         Spacer()
                     }
                         Text("Milestones").font(.headline).padding(textPadding)
-                        Text("Add smaller goals that will serve as intermediary steps on your road to your main goal!").font(.subheadline).foregroundColor(.gray).padding(textPadding)
+                        Text("Add smaller steps that you want to take to reach your goal!").font(.subheadline).foregroundColor(.gray).padding(textPadding)
                         VStack {
                             ScrollView {
                                 ScrollViewReader { scrollView in
