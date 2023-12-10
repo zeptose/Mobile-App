@@ -42,10 +42,11 @@ struct EditPostView: View {
                       RoundedRectangle(cornerRadius: 15)
                           .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
                       )
-                .padding(.bottom, 10)
+                .padding(.bottom, 20)
             
-            Text("Goal").font(.headline)
             HStack {
+              Text("Goal").font(.headline)
+              Spacer()
               Menu {
                 ForEach(goalController.getCurrentGoals(currentUser: currUser)) { goal in
                   Button(goal.name) {
@@ -56,7 +57,7 @@ struct EditPostView: View {
                   Text("Edit Goal")
                     .foregroundColor(Color(UIColor(hex: "#992409")))
                 }
-            }.padding(.bottom, 5)
+            }.padding(.bottom, 12)
             HStack {
               Spacer()
               Text(goalController.getGoalFromId(goalId: selectedGoal)!.name)
@@ -67,9 +68,11 @@ struct EditPostView: View {
                      .frame(width: UIScreen.main.bounds.width * 0.8, height: 30, alignment: .center)
                 )
               Spacer()
-            }.padding(.bottom, 5)
-            Text("Subgoal").font(.headline)
+            }.padding(.bottom, 20)
+            
             HStack {
+              Text("Subgoal").font(.headline)
+              Spacer()
               Menu {
                 ForEach(goalController.getSubgoalsForGoal(goal: goalController.getGoalFromId(goalId: selectedGoal)!)) { subgoal in
                   Button(subgoal.name) {
@@ -80,7 +83,7 @@ struct EditPostView: View {
                     .foregroundColor(Color(UIColor(hex: "#992409")))
 
                 }
-            }.padding(.bottom, 5)
+            }.padding(.bottom, 12)
             HStack {
               Spacer()
               if let temp = selectedSubgoal {
@@ -91,7 +94,6 @@ struct EditPostView: View {
                       .fill(Color(UIColor(hex: "#FFD111")))
                       .frame(width: UIScreen.main.bounds.width * 0.8, height: 30, alignment: .center)
                   )
-                  .padding()
               }
               Spacer()
             }
