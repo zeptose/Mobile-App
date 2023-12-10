@@ -45,7 +45,7 @@ struct AppView: View {
     }
     .navigationBarTitleDisplayMode(.inline)
     .navigationBarBackButtonHidden(true)
-    .tint(.white)
+    .accentColor(Color(UIColor(hex: "F08355")))
     .onChange(of: selectedTab) { newTab in
       if newTab == 1 {
         if goalController.getCurrentGoals(currentUser: viewModel.currentUser!).isEmpty {
