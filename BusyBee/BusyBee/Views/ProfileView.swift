@@ -30,7 +30,6 @@ struct ProfileView: View {
                 ZStack {
                     VStack {
                         HStack {
-                            
                             Spacer()
                           
                           if updatedUser ==
@@ -52,20 +51,37 @@ struct ProfileView: View {
                             .frame(width: 150, height: 150)
                             .clipShape(Circle())
                             .overlay(Circle().stroke(customYellow, lineWidth: 10))
-                        
-                        Text(updatedUser!.username)
-                            .font(.headline)
-                        
-                        if let bio = updatedUser?.bio {
-                            Text(bio)
-                                .font(.caption)
-                                .padding()
-                        }
-                        
+                      HStack {
+                        Image("ProfileBee")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 70, height: 70)
+                            .padding(.top, 10)
+                            .padding(.leading, 20)
                         Spacer()
-                        
-                        
-                        
+                        VStack {
+                          Text(updatedUser!.username)
+                            .font(.system(size: 32))
+                            .bold()
+                            .padding(.bottom, 9)
+                          
+                          if let bio = updatedUser?.bio {
+                            if bio != "" {
+                              Text(bio)
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                            }
+                          }
+                        }
+                        Spacer()
+                        Image("ProfileBeeClear")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 70, height: 70)
+                            .padding(.top, 20)
+                            .padding(.trailing, 10)
+                      }
+//
                         if updatedUser ==
                             updatedCurrentUser {
 
@@ -75,9 +91,9 @@ struct ProfileView: View {
                                   .font(.system(size: 14))
                                   .foregroundColor(.white)
                                   .padding(5)
-                                  .frame(width: UIScreen.main.bounds.width * 0.3)
+                                  .frame(width: UIScreen.main.bounds.width * 0.3, height: 32)
                                   .background(customMaroon)
-                                  .cornerRadius(100)
+                                  .cornerRadius(70)
                               }
                             NavigationLink(destination: EditProfileView(user: updatedCurrentUser!, userController: userController)) {
                               
@@ -86,11 +102,11 @@ struct ProfileView: View {
                             .font(.system(size: 14))
                             .foregroundColor(customMaroon)
                             .padding(5)
-                            .frame(width: UIScreen.main.bounds.width * 0.3)
-                            .background(RoundedRectangle(cornerRadius: 100)
+                            .frame(width: UIScreen.main.bounds.width * 0.3, height: 32)
+                            .background(RoundedRectangle(cornerRadius: 70)
                                 .stroke(customMaroon, lineWidth: 1))
                             
-                          }
+                          }.padding(.top, 1)
                         } else if userController.isFollowing(currentUser: updatedCurrentUser!, otherUser: updatedUser!) {
                             Button(action: {
                                 userController.unfollowFriend(currentUser: updatedCurrentUser!, unfollow: updatedUser!)
@@ -100,9 +116,10 @@ struct ProfileView: View {
                             .font(.system(size: 14))
                             .foregroundColor(.white)
                             .padding(5)
-                            .frame(width: UIScreen.main.bounds.width * 0.3)
+                            .frame(width: UIScreen.main.bounds.width * 0.3, height: 32)
                             .background(customMaroon)
-                            .cornerRadius(100)
+                            .cornerRadius(70)
+                            .padding(.top, 1)
                             
                         } else {
                             
@@ -114,11 +131,12 @@ struct ProfileView: View {
                             .font(.system(size: 14))
                             .foregroundColor(.white)
                             .padding(5)
-                            .frame(width: UIScreen.main.bounds.width * 0.3)
+                            .frame(width: UIScreen.main.bounds.width * 0.3, height: 32)
                             .background(customMaroon)
-                            .cornerRadius(100)
+                            .cornerRadius(70)
+                            .padding(.top, 1)
                         }
-                        
+
                         VStack {
                             HStack {
                                 Spacer()

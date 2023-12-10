@@ -58,8 +58,10 @@ struct FeedItemView: View {
                     }
                   } label: {
                     Image(systemName: "ellipsis")
+                      .resizable()
+                      .aspectRatio(contentMode: .fit)
+                      .frame(width: 20)
                       .foregroundColor(.black)
-                      .frame(height: 50)
                   }
                   .padding()
                 }
@@ -75,7 +77,7 @@ struct FeedItemView: View {
           
           if let feedGoal = goalController.getGoalFromId(goalId: post.goalId) {
             let percentage = CGFloat(feedGoal.progress)/CGFloat(feedGoal.frequency)
-            let progressBarMax = UIScreen.main.bounds.width - 85
+            let progressBarMax = UIScreen.main.bounds.width - 75
             
             NavigationLink(destination: IndividualGoalView(goal: feedGoal)) {
               RoundedRectangle(cornerRadius: 12)
@@ -190,6 +192,7 @@ struct FeedItemView: View {
               CommentSheetView(post: post)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+
         }
       }
       if let post = postController.getPostFromId(postId: currentPost.id!) {

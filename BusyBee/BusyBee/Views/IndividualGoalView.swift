@@ -55,17 +55,22 @@ struct IndividualGoalView: View {
               .font(.title)
               .bold()
               .padding(.leading, 10)
-            Text("Started on \(dateFormatter.string(from: goal.dateStarted))")
-                .foregroundColor(Color(UIColor(hex: "#939393")))
-                .font(.system(size: 18))
-                .padding(.leading, 10)
-            
+              .padding(.bottom, 1)
+          
+          Text("Started on \(dateFormatter.string(from: goal.dateStarted))")
+            .foregroundColor(Color(UIColor(hex: "#4C4C4C")))
+            .font(.system(size: 18))
+            .padding(.leading, 10)
+//            .padding(.bottom, 2)
+          
             if let desc = goal.description {
-              Text(desc)
-              .foregroundColor(.black)
+              if desc != "" {
+                Text(desc)
+                  .foregroundColor(Color(UIColor(hex: "#4C4C4C")))
                   .font(.system(size: 18))
                   .padding(.leading, 10)
-                  .padding(.bottom, 10)
+//                  .padding(.bottom, 2)
+              }
             }
             
           VStack(alignment: .leading) {
