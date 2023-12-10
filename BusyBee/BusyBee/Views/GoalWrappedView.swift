@@ -50,7 +50,9 @@ struct GoalWrappedView: View {
                         .font(.headline)
                         .fontWeight(.regular)
                         .padding(.top, 1)
-                }.padding()
+                }
+                .padding()
+               .frame(height: 60)
 //                iCarousel(items: postController.getPostsForGoal(goalId: goal.id), id: \.id) { post in
 //                                VStack(spacing: 15) {
 //                                    Image(uiImage: postController.getImageFromURL(url: post.photo))
@@ -92,8 +94,11 @@ struct GoalWrappedView: View {
                                 
                             }
                         }
-                    }.padding(.top, -35)
+                    }
+//                    .padding(.top, -35)
                 }
+//                
+//                .padding(.top, 50)
                 HStack {
                     Image("HeartBeeRight")
                         .resizable()
@@ -185,7 +190,7 @@ struct GoalWrappedView: View {
                           .cornerRadius(8)
                   }
                   .padding()
-            }.padding(.top, -200)
+            }.padding(.top, -85)
               }
             }
             
