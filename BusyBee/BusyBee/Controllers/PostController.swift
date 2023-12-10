@@ -65,9 +65,9 @@ class PostController: ObservableObject {
     let currProgress = currGoal.progress + 1
     currGoal.progress = currProgress
       if currProgress == currGoal.frequency {
-          var updatedGoal = goal
-          updatedGoal.dateEnded = Date()
-          goalRepository.update(updatedGoal)
+//          var updatedGoal = goal
+          currGoal.dateEnded = Date()
+          goalRepository.update(currGoal)
       }
     
     //      var user = currentUser
