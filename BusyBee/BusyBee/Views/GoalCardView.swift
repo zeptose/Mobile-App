@@ -59,15 +59,6 @@ struct GoalCardView: View {
                                     .font(.headline)
                                     .foregroundColor(Color.black)
                                     .fontWeight(.bold)
-                                    .onAppear {
-                                        Task {
-                                            do {
-                                                try await goalController.updateEndDate(goal: goal)
-                                            } catch {
-                                                print("Error updating goal end date")
-                                            }
-                                        }
-                                    }
                                 let dateFormatter: DateFormatter = {
                                     let formatter = DateFormatter()
                                     formatter.dateFormat = "MM/dd/yy"
