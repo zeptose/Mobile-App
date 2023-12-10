@@ -12,7 +12,6 @@ struct GoalWrappedView: View {
     @EnvironmentObject var postController: PostController
     @EnvironmentObject var cameraController: CameraController
     @EnvironmentObject var goalController: GoalController
-    @Environment(\.presentationMode) var presentationMode
     let customYellow = Color(UIColor(hex: "#FEC500"))
     let customMaroon = Color(UIColor(hex: "#992409"))
     var goal: Goal
@@ -26,49 +25,32 @@ struct GoalWrappedView: View {
                 .aspectRatio(contentMode: .fill)
                 .edgesIgnoringSafeArea(.all)
             VStack {
-                HStack {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "chevron.backward")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 16)
-                        .padding(.leading, 5)
-                    }
-                  
-                    Spacer()
-                    Image("profilePic")
-                      .resizable()
-                      .aspectRatio(contentMode: .fill)
-                      .frame(width: 30, height: 30)
-                      .clipShape(Circle())
-                      .overlay(Circle().stroke(customYellow, lineWidth: 3))
-                  Text(user.username)
-                      .font(.system(size: 18))
-                      .padding(.leading, 1)
-                    Spacer()
-                    Image(systemName: "chevron.backward")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 16)
-                    .foregroundColor(customYellow)
-                    .padding(.trailing, 5)
-                }.padding(.bottom, 20)
-                Text("\(goal.name)")
-                    .font(.title)
-                    .bold()
-                let dateFormatter: DateFormatter = {
-                    let formatter = DateFormatter()
-                    formatter.dateFormat = "MM/dd/yy"
-                    return formatter
-                }()
-                let startDateString = dateFormatter.string(from: goal.dateStarted)
-                let endDateString = dateFormatter.string(from: goal.dateEnded!)
-                Text("\(startDateString) - \(endDateString)")
-                    .font(.headline)
-                    .fontWeight(.regular)
-                    .padding(.top, 1)
+                VStack {
+                    HStack{
+                        Image("profilePic")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 40, height: 40)
+                            .clipShape(Circle())
+                            .overlay(Circle().stroke(customYellow, lineWidth: 3))
+                        Text("\(user.username)")
+                            .foregroundColor(.black)
+                    }.padding(EdgeInsets(top: 40, leading: 0, bottom: 0, trailing: 10))
+                    Text("\(goal.name)")
+                        .font(.title)
+                        .bold()
+                    let dateFormatter: DateFormatter = {
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "MM/dd/yy"
+                        return formatter
+                    }()
+                    let startDateString = dateFormatter.string(from: goal.dateStarted)
+                    let endDateString = dateFormatter.string(from: goal.dateEnded!)
+                    Text("\(startDateString) - \(endDateString)")
+                        .font(.headline)
+                        .fontWeight(.regular)
+                        .padding(.top, 1)
+                }.padding()
 //                iCarousel(items: postController.getPostsForGoal(goalId: goal.id), id: \.id) { post in
 //                                VStack(spacing: 15) {
 //                                    Image(uiImage: postController.getImageFromURL(url: post.photo))
@@ -203,7 +185,7 @@ struct GoalWrappedView: View {
                           .cornerRadius(8)
                   }
                   .padding()
-                  }
+            }.padding(.top, -200)
               }
             }
             
