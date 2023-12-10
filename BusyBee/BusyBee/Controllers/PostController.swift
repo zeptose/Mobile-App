@@ -11,44 +11,44 @@ import FirebaseFirestoreSwift
 import FirebaseStorage
 
 class PostController: ObservableObject {
-    @Published var postRepository: PostRepository = PostRepository()
-    @Published var goalRepository: GoalRepository = GoalRepository()
-    @Published var userRepository: UserRepository = UserRepository()
-    @Published var commentRepository: CommentRepository = CommentRepository()
-    @Published var subgoalRepository: SubgoalRepository = SubgoalRepository()
-    @Published var images: [(String, UIImage)] = []
-    @Published var posts: [Post] = []
-    @Published var userController: UserController = UserController()
-    @Published var goalController: GoalController = GoalController()
-    @Published var comments: [Comment] = []
+  @Published var postRepository: PostRepository = PostRepository()
+  @Published var goalRepository: GoalRepository = GoalRepository()
+  @Published var userRepository: UserRepository = UserRepository()
+  @Published var commentRepository: CommentRepository = CommentRepository()
+  @Published var subgoalRepository: SubgoalRepository = SubgoalRepository()
+  @Published var images: [(String, UIImage)] = []
+  @Published var posts: [Post] = []
+  @Published var userController: UserController = UserController()
+  @Published var goalController: GoalController = GoalController()
+  @Published var comments: [Comment] = []
   
   init() {
     self.postRepository.get({ (posts) -> Void in
       self.posts = posts
-    
+      
       for url in posts.map({$0.photo}) {
-          let _ = self.postRepository.getPhoto({ (image) -> Void in self.images.append((url, image)) }, url)
-        }
-      })
-    }
+        let _ = self.postRepository.getPhoto({ (image) -> Void in self.images.append((url, image)) }, url)
+      }
+    })
+  }
   
-    
+  
   func addPost(currentUser: User, goal: Goal, caption: String, photo: String, subgoalId: String?) {
-      let timePosted = Date()
-      let newPost = Post(goalId: goal.id ,
-                         userId: currentUser.id,
-                         caption: caption,
-                         photo: photo,
-                         subgoalId: subgoalId,
-                         timePosted: timePosted,
-                         comments: [],
-                         reaction1: [],
-                         reaction2: [],
-                         reaction3: [],
-                         reaction4: [])
-      
-      postRepository.create(newPost)
-      
+    let timePosted = Date()
+    let newPost = Post(goalId: goal.id ,
+                       userId: currentUser.id,
+                       caption: caption,
+                       photo: photo,
+                       subgoalId: subgoalId,
+                       timePosted: timePosted,
+                       comments: [],
+                       reaction1: [],
+                       reaction2: [],
+                       reaction3: [],
+                       reaction4: [])
+    
+    postRepository.create(newPost)
+    
     if subgoalId != "-1"{
       if let sgId = subgoalId {
         if let subgoalObject = goalController.getSubgoalFromId(subgoalId: sgId) {
@@ -61,43 +61,43 @@ class PostController: ObservableObject {
       }
     }
     
-      var currGoal = goal
-      let currProgress = currGoal.progress + 1
-      currGoal.progress = currProgress
+    var currGoal = goal
+    let currProgress = currGoal.progress + 1
+    currGoal.progress = currProgress
     
-//      var user = currentUser
-//      user.posts.append(newPost)
-//      userRepository.update(user)
-      goalRepository.update(currGoal)
-      
+    //      var user = currentUser
+    //      user.posts.append(newPost)
+    //      userRepository.update(user)
+    goalRepository.update(currGoal)
+    
   }
-
-    
-    func getPosts(currentUser: User) -> [Post] {
-        let currPosts = self.posts.filter{ String($0.userId) == String(currentUser.id) }
-        return currPosts.sorted { $0.timePosted > $1.timePosted }
-    }
+  
+  
+  func getPosts(currentUser: User) -> [Post] {
+    let currPosts = self.posts.filter{ String($0.userId) == String(currentUser.id) }
+    return currPosts.sorted { $0.timePosted > $1.timePosted }
+  }
   
   func uploadPhoto(_ photo: UIImage) -> String {
-      print(photo)
-      let url = "\(UUID().uuidString).jpg"
-      let storageRef = Storage.storage().reference().child(url)
-      let data = photo.jpegData(compressionQuality: 0.1)
-      let metadata = StorageMetadata()
-      metadata.contentType = "image/jpg"
-      if let data = data {
-        storageRef.putData(data, metadata: metadata) { (metadata, error) in
-          if let error = error {
-            print("Error while uploading file: ", error)
-          }
-          if let metadata = metadata {
-            print("Metadata: ", metadata)
-          }
+    print(photo)
+    let url = "\(UUID().uuidString).jpg"
+    let storageRef = Storage.storage().reference().child(url)
+    let data = photo.jpegData(compressionQuality: 0.1)
+    let metadata = StorageMetadata()
+    metadata.contentType = "image/jpg"
+    if let data = data {
+      storageRef.putData(data, metadata: metadata) { (metadata, error) in
+        if let error = error {
+          print("Error while uploading file: ", error)
+        }
+        if let metadata = metadata {
+          print("Metadata: ", metadata)
         }
       }
-    
-      return url
     }
+    
+    return url
+  }
   
   func getImageFromURL(url: String) -> UIImage {
     if let (_, image): (String, UIImage) = (self.images.first { $0.0 == url }) {
@@ -105,7 +105,7 @@ class PostController: ObservableObject {
     }
     return UIImage()
   }
-
+  
   func getFeedPosts(currUser: User) -> [Post] {
     let people: [User] = userController.getUserFriends(currentUser: currUser) + [currUser]
     let feedPosts = people.map { self.getPosts(currentUser: $0) }
@@ -157,13 +157,13 @@ class PostController: ObservableObject {
   }
   
   func getCommentFromId(commentId: String, postId: String) -> Comment? {
-      if let post = getPostFromId(postId: postId) {
-          let temp = post.comments.first { $0.id == commentId }
-          if let ourComment = temp {
-              return ourComment
-          }
+    if let post = getPostFromId(postId: postId) {
+      let temp = post.comments.first { $0.id == commentId }
+      if let ourComment = temp {
+        return ourComment
       }
-      return nil
+    }
+    return nil
   }
   
   func addComment(commenterId: String, postId: String, body: String) {
@@ -180,39 +180,39 @@ class PostController: ObservableObject {
   }
   
   func reactToPost(userId: String, reactionNum: Int, post: Post) {
-      var temp = post
-      
-      if reactionNum == 1 {
-        temp.reaction1.append(userId)
-      } else if reactionNum == 2 {
-        temp.reaction2.append(userId)
-      } else if reactionNum == 3 {
-        temp.reaction3.append(userId)
-      } else if reactionNum == 4 {
-        temp.reaction4.append(userId)
-      }
-      
-      postRepository.update(temp)
+    var temp = post
+    
+    if reactionNum == 1 {
+      temp.reaction1.append(userId)
+    } else if reactionNum == 2 {
+      temp.reaction2.append(userId)
+    } else if reactionNum == 3 {
+      temp.reaction3.append(userId)
+    } else if reactionNum == 4 {
+      temp.reaction4.append(userId)
+    }
+    
+    postRepository.update(temp)
   }
   
   func removeReaction(userId: String, reactionNum: Int, post: Post) {
-      var temp = post
-      
-      if reactionNum == 1 {
-        let ind = temp.reaction1.firstIndex(of: userId)
-        temp.reaction1.remove(at: ind!)
-      } else if reactionNum == 2 {
-        let ind = temp.reaction2.firstIndex(of: userId)
-        temp.reaction2.remove(at: ind!)
-      } else if reactionNum == 3 {
-        let ind = temp.reaction3.firstIndex(of: userId)
-        temp.reaction3.remove(at: ind!)
-      } else if reactionNum == 4 {
-        let ind = temp.reaction4.firstIndex(of: userId)
-        temp.reaction4.remove(at: ind!)
-      }
-      
-      postRepository.update(temp)
+    var temp = post
+    
+    if reactionNum == 1 {
+      let ind = temp.reaction1.firstIndex(of: userId)
+      temp.reaction1.remove(at: ind!)
+    } else if reactionNum == 2 {
+      let ind = temp.reaction2.firstIndex(of: userId)
+      temp.reaction2.remove(at: ind!)
+    } else if reactionNum == 3 {
+      let ind = temp.reaction3.firstIndex(of: userId)
+      temp.reaction3.remove(at: ind!)
+    } else if reactionNum == 4 {
+      let ind = temp.reaction4.firstIndex(of: userId)
+      temp.reaction4.remove(at: ind!)
+    }
+    
+    postRepository.update(temp)
   }
   
   func didUserReact1(userId: String, post: Post) -> Bool {
@@ -244,7 +244,7 @@ class PostController: ObservableObject {
   }
   
   func commentToTuple(comment: Comment) -> (String, String, Date) {
-      return (comment.userId, comment.body, comment.timePosted)
+    return (comment.userId, comment.body, comment.timePosted)
   }
   
   // returns username of poster, comment body, and date posted
@@ -254,47 +254,48 @@ class PostController: ObservableObject {
   }
   
   func timeAgoString(from date: Date) -> String {
-      let currentDate = Date()
-      let calendar = Calendar.current
-
-      if let seconds = calendar.dateComponents([.second], from: date, to: currentDate).second, seconds < 60 {
-          return "\(seconds) seconds ago"
-      } else if let minutes = calendar.dateComponents([.minute], from: date, to: currentDate).minute, minutes < 60 {
-          return "\(minutes) minutes ago"
-      } else if let hours = calendar.dateComponents([.hour], from: date, to: currentDate).hour, hours < 24 {
-          return "\(hours) hours ago"
-      } else if let days = calendar.dateComponents([.day], from: date, to: currentDate).day, days < 7 {
-          return "\(days) days ago"
-      } else if let weeks = calendar.dateComponents([.weekOfMonth], from: date, to: currentDate).weekOfMonth, weeks < 5 {
-          return "\(weeks) weeks ago"
-      } else if let months = calendar.dateComponents([.month], from: date, to: currentDate).month, months < 12 {
-        return "\(months) months ago"
-      }  else {
-          return "Unknown"
-      }
+    let currentDate = Date()
+    let calendar = Calendar.current
+    
+    if let seconds = calendar.dateComponents([.second], from: date, to: currentDate).second, seconds < 60 {
+      return "\(seconds) seconds ago"
+    } else if let minutes = calendar.dateComponents([.minute], from: date, to: currentDate).minute, minutes < 60 {
+      return "\(minutes) minutes ago"
+    } else if let hours = calendar.dateComponents([.hour], from: date, to: currentDate).hour, hours < 24 {
+      return "\(hours) hours ago"
+    } else if let days = calendar.dateComponents([.day], from: date, to: currentDate).day, days < 7 {
+      return "\(days) days ago"
+    } else if let weeks = calendar.dateComponents([.weekOfMonth], from: date, to: currentDate).weekOfMonth, weeks < 5 {
+      return "\(weeks) weeks ago"
+    } else if let months = calendar.dateComponents([.month], from: date, to: currentDate).month, months < 12 {
+      return "\(months) months ago"
+    }  else {
+      return "Unknown"
+    }
   }
   
   func timeAgoStringAbv(from date: Date) -> String {
-      let currentDate = Date()
-      let calendar = Calendar.current
-
-      if let seconds = calendar.dateComponents([.second], from: date, to: currentDate).second, seconds < 60 {
-          return "\(seconds)s ago"
-      } else if let minutes = calendar.dateComponents([.minute], from: date, to: currentDate).minute, minutes < 60 {
-          return "\(minutes)m ago"
-      } else if let hours = calendar.dateComponents([.hour], from: date, to: currentDate).hour, hours < 24 {
-          return "\(hours)h ago"
-      } else if let days = calendar.dateComponents([.day], from: date, to: currentDate).day, days < 7 {
-          return "\(days)d ago"
-      } else if let weeks = calendar.dateComponents([.weekOfMonth], from: date, to: currentDate).weekOfMonth, weeks < 5 {
-          return "\(weeks)w ago"
-      } else if let months = calendar.dateComponents([.month], from: date, to: currentDate).month, months < 12 {
-          return "\(months)mo ago"
-      } else {
-          return "Unknown"
-      }
+    let currentDate = Date()
+    let calendar = Calendar.current
+    
+    if let seconds = calendar.dateComponents([.second], from: date, to: currentDate).second, seconds < 60 {
+      return "\(seconds)s ago"
+    } else if let minutes = calendar.dateComponents([.minute], from: date, to: currentDate).minute, minutes < 60 {
+      return "\(minutes)m ago"
+    } else if let hours = calendar.dateComponents([.hour], from: date, to: currentDate).hour, hours < 24 {
+      return "\(hours)h ago"
+    } else if let days = calendar.dateComponents([.day], from: date, to: currentDate).day, days < 7 {
+      return "\(days)d ago"
+    } else if let weeks = calendar.dateComponents([.weekOfMonth], from: date, to: currentDate).weekOfMonth, weeks < 5 {
+      return "\(weeks)w ago"
+    } else if let months = calendar.dateComponents([.month], from: date, to: currentDate).month, months < 12 {
+      return "\(months)mo ago"
+    } else {
+      return "Unknown"
+    }
   }
   
+
   func daysUntilDate(_ date: Date) -> String {
       let currentDate = Date()
       let calendar = Calendar.current
@@ -312,35 +313,36 @@ class PostController: ObservableObject {
       }
   }
 
-  func deletePost(post: Post, currentUser: User) {
-      let currGoal = goalController.getGoalFromId(goalId: post.goalId)
-      if var tempGoal = currGoal {
-        tempGoal.progress = tempGoal.progress - 1
-        goalRepository.update(tempGoal)
-      }
-      
-//      var currUser = currentUser
-//      let i = currUser.posts.firstIndex(where: { $0.photo == post.photo })
-//      if let i = i {
-//        currUser.posts.remove(at: i)
-//      }
-//      userRepository.update(currUser)
-      postRepository.delete(post)
-    }
 
+  func deletePost(post: Post, currentUser: User) {
+    let currGoal = goalController.getGoalFromId(goalId: post.goalId)
+    if var tempGoal = currGoal {
+      tempGoal.progress = tempGoal.progress - 1
+      goalRepository.update(tempGoal)
+    }
+    
+    //      var currUser = currentUser
+    //      let i = currUser.posts.firstIndex(where: { $0.photo == post.photo })
+    //      if let i = i {
+    //        currUser.posts.remove(at: i)
+    //      }
+    //      userRepository.update(currUser)
+    postRepository.delete(post)
+  }
+  
   func deleteGoal(goal: Goal, currentUser: User) {
     
     let relatedPosts = getPostsForGoal(goalId: goal.id)
     for post in relatedPosts {
       deletePost(post: post, currentUser: currentUser)
     }
-
-//    var currUser = currentUser
-//    let i = currUser.goals.firstIndex(where: { $0.id == goal.id })
-//    if let i = i {
-//      currUser.goals.remove(at: i)
-//    }
-//    userRepository.update(currUser)
+    
+    //    var currUser = currentUser
+    //    let i = currUser.goals.firstIndex(where: { $0.id == goal.id })
+    //    if let i = i {
+    //      currUser.goals.remove(at: i)
+    //    }
+    //    userRepository.update(currUser)
     goalRepository.delete(goal)
   }
   
@@ -377,86 +379,74 @@ class PostController: ObservableObject {
     
     postRepository.update(currPost)
   }
-
+  
   func getNotificationsForCurrentUser(currentUser: User) -> [AppNotification] {
-      var notifications: [AppNotification] = []
-
-      // Generate notifications for comments
-      for post in getPosts(currentUser: currentUser) {
-          for comment in post.comments {
-              if let postId = post.id {
-                  let notification = AppNotification(type: .comment, postId: postId, commenterId: comment.userId, timestamp: Date(), info: comment.body)
-                  notifications.append(notification)
-              }
-          }
-      }
-
-      // Generate notifications for reactions
-      for post in getPosts(currentUser: currentUser) {
-          guard let postId = post.id else { continue }
-          let currentUserReaction = [post.reaction1, post.reaction2, post.reaction3, post.reaction4]
-          for (index, reaction) in currentUserReaction.enumerated() {
-              if reaction.contains(currentUser.id) {
-                  var emoji = ""
-                  if index == 0 { emoji = "❤️" }
-                  else if index == 1 { emoji = "👏" }
-                  else if index == 2 { emoji = "🍾" }
-                  else if index == 3 { emoji = "🎉" }
-                  
-                  let notification = AppNotification(type: .reaction, postId: postId, commenterId: currentUser.id, timestamp: Date(), info: emoji)
-                  notifications.append(notification)
-              }
-          }
-      }
-
-      // Generate notifications for new followers
-      if let updatedUser = userController.getUserFromId(userId: currentUser.id) {
-          let beforeUpdate = currentUser.follows
-          let afterUpdate = updatedUser.follows
-          
-          // Find the new followers by filtering afterUpdate against beforeUpdate
-          let newFollowers = afterUpdate.filter { !beforeUpdate.contains($0) }
-          
-          for followerId in newFollowers {
-              if let _ = userController.getUserFromId(userId: followerId) {
-                let notification = AppNotification(type: .follow, postId: "", commenterId: currentUser.id, timestamp: Date(), info: followerId)
-                  notifications.append(notification)
-              }
-          }
-          let allCurrentFollowers = updatedUser.follows
-            for followerId in allCurrentFollowers {
-                if !newFollowers.contains(followerId) {
-                    if let follower = userController.getUserFromId(userId: followerId) {
-                      let notification = AppNotification(type: .follow, postId: "", commenterId: followerId, timestamp:Date(), info: followerId)
-                        notifications.append(notification)
-                    }
-                }
-            }
-      }
-
-      return notifications
-  }
-
+    var notifications: [AppNotification] = []
     
-          
-//  
-//  func getReactionText(forPost post: Post, commenterId: String) -> String {
-//      if post.reaction1.contains(commenterId) {
-//          return "❤️"
-//      } else if post.reaction2.contains(commenterId) {
-//          return "👏"
-//      } else if post.reaction3.contains(commenterId) {
-//          return "🍾"
-//      } else if post.reaction4.contains(commenterId) {
-//          return "🎉"
-//      } else {
-//          return ""
-//      }
-//  }
-//  
-
-}
-
+    // Generate notifications for comments
+    for post in getPosts(currentUser: currentUser) {
+      for comment in post.comments {
+        if let postId = post.id {
+          let notification = AppNotification(type: .comment, postId: postId, commenterId: comment.userId, timestamp: Date(), info: comment.body)
+          notifications.append(notification)
+        }
+      }
+    }
+    
+    // Generate notifications for reactions
+    for post in getPosts(currentUser: currentUser) {
+      guard let postId = post.id else { continue }
+      
+      let reactions = [post.reaction1, post.reaction2, post.reaction3, post.reaction4]
+      
+      for (index, usersReacted) in reactions.enumerated() {
+        let emoji: String
+        switch index {
+        case 0: emoji = "❤️"
+        case 1: emoji = "👏"
+        case 2: emoji = "🍾"
+        case 3: emoji = "🎉"
+        default: emoji = ""
+        }
+        
+        for userId in usersReacted {
+          let notification = AppNotification(type: .reaction, postId: postId, commenterId: userId, timestamp: Date(), info: emoji)
+          notifications.append(notification)
+        }
+      }
+    }
+      
+      
+      for followerId in currentUser.followers {
+        if let follower = userController.getUserFromId(userId: followerId) {
+          let notification = AppNotification(type: .follow, postId: "", commenterId: followerId, timestamp: Date(), info: followerId)
+          notifications.append(notification)
+        }
+      }
+      
+      return notifications
+    }
+    
+    
+    
+    //
+    //  func getReactionText(forPost post: Post, commenterId: String) -> String {
+    //      if post.reaction1.contains(commenterId) {
+    //          return "❤️"
+    //      } else if post.reaction2.contains(commenterId) {
+    //          return "👏"
+    //      } else if post.reaction3.contains(commenterId) {
+    //          return "🍾"
+    //      } else if post.reaction4.contains(commenterId) {
+    //          return "🎉"
+    //      } else {
+    //          return ""
+    //      }
+    //  }
+    //
+    
+  }
+  
 
 
 

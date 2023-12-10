@@ -39,7 +39,7 @@ struct LoginFormView: View {
           .padding(.top, 40)
 
         
-        Text("Login to your accont and\ncontinue your goal-achieving journey")
+        Text("Login to your account and\ncontinue your goal-achieving journey")
           .font(.system(size: 18))
           .foregroundColor(Color.gray)
           .multilineTextAlignment(.center)
