@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2FA8153B2B25017700F66B81 /* GoalWrappedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA8153A2B25017700F66B81 /* GoalWrappedView.swift */; };
 		2FBB027C2B186D4900044A36 /* GoalCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB027B2B186D4900044A36 /* GoalCardView.swift */; };
 		2FBB027E2B186D6E00044A36 /* HoneyJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB027D2B186D6E00044A36 /* HoneyJarView.swift */; };
 		2FBB02802B186E0000044A36 /* HoneyJarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB027F2B186E0000044A36 /* HoneyJarViewController.swift */; };
@@ -61,6 +62,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2FA8153A2B25017700F66B81 /* GoalWrappedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalWrappedView.swift; sourceTree = "<group>"; };
 		2FBB027B2B186D4900044A36 /* GoalCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCardView.swift; sourceTree = "<group>"; };
 		2FBB027D2B186D6E00044A36 /* HoneyJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneyJarView.swift; sourceTree = "<group>"; };
 		2FBB027F2B186E0000044A36 /* HoneyJarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneyJarViewController.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				2FBB027B2B186D4900044A36 /* GoalCardView.swift */,
 				2FBB027D2B186D6E00044A36 /* HoneyJarView.swift */,
 				F1C6FB362B2247A800DAA147 /* EditPostView.swift */,
+				2FA8153A2B25017700F66B81 /* GoalWrappedView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				F1A512A42AF9F3CC00D3D3BE /* IndividualGoalView.swift in Sources */,
 				F9908DB02AF4AEE000415845 /* AddGoalView.swift in Sources */,
 				F13650322AF3405500950A0F /* GoalController.swift in Sources */,
+				2FA8153B2B25017700F66B81 /* GoalWrappedView.swift in Sources */,
 				F9908DB42AFB090300415845 /* CameraView.swift in Sources */,
 				F1C7F65C2B16724D00A61DE4 /* ReactionsComponent.swift in Sources */,
 				59A8027A2AF402DB00F69178 /* CalendarView.swift in Sources */,

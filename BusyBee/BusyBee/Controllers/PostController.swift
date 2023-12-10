@@ -426,6 +426,15 @@ class PostController: ObservableObject {
       
       return notifications
     }
+    func numReactions(goal: Goal) -> Int {
+        let posts = getPostsForGoal(goalId: goal.id)
+        var count = 0
+        for post in posts {
+            let numReactions = post.reaction1.count + post.reaction2.count + post.reaction3.count + post.reaction4.count
+            count += numReactions
+        }
+        return count
+    }
     
     
     
