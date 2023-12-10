@@ -206,5 +206,27 @@ class CameraController: NSObject, ObservableObject, AVCapturePhotoCaptureDelegat
           UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
       }
   }
+  
+  func captureScreen() -> UIImage? {
+          UIGraphicsBeginImageContextWithOptions(UIScreen.main.bounds.size, false, UIScreen.main.scale)
+          guard let context = UIGraphicsGetCurrentContext() else { return nil }
+          UIApplication.shared.windows.first?.layer.render(in: context)
+          let screenshot = UIGraphicsGetImageFromCurrentImageContext()
+          UIGraphicsEndImageContext()
+          return screenshot
+      }
+  
+  
+  func savePhotoToBackend(imageData: Data) {
+          // Simulated backend saving process - replace this with your actual backend saving logic
+          // For example, make an API call to your server and send the image data
+          
+          // Here's a simulated delay to mimic a network call
+          DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+              // In a real scenario, handle the response or error from the backend
+              // For now, print a success message
+              print("Photo saved to backend!")
+          }
+      }
 }
 
