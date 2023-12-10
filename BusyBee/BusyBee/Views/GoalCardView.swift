@@ -59,6 +59,7 @@ struct GoalCardView: View {
                                     .font(.headline)
                                     .foregroundColor(Color.black)
                                     .fontWeight(.bold)
+                                Spacer()
                                 let dateFormatter: DateFormatter = {
                                     let formatter = DateFormatter()
                                     formatter.dateFormat = "MM/dd/yy"
@@ -69,7 +70,6 @@ struct GoalCardView: View {
                                 Text("\(startDateString) - \(endDateString)")
                                     .font(.caption)
                                     .foregroundColor(.gray)
-                                    .padding(.leading, 50)
                             }
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 10) {
