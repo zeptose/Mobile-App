@@ -34,17 +34,17 @@ struct EditGoalView: View {
     }
 
     var body: some View {
-        
+      ScrollView {
         VStack(alignment: .leading){
           Text("Goal Name").font(.headline)
           Text("Change your goal name!").font(.subheadline).foregroundColor(.gray)
           TextField("Enter Goal Name", text: $goalName)
-              .padding(10)
-              .background(
-                    RoundedRectangle(cornerRadius: 15)
-
-                            .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
-                    )
+            .padding(10)
+            .background(
+              RoundedRectangle(cornerRadius: 15)
+              
+                .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
+            )
           Text("Description").font(.headline)
           Text("Change your description!").font(.subheadline).foregroundColor(.gray)
             TextField("Enter Description", text: Binding(
@@ -60,25 +60,25 @@ struct EditGoalView: View {
           Text("Due Date").font(.headline)
           Text("When do you want this goal to be completed?").font(.subheadline).foregroundColor(.gray)
           DatePicker("", selection: $dueDate, displayedComponents: .date)
-              .labelsHidden()
-              .padding(10)
-              .frame(maxWidth: .infinity, alignment: .leading)
-              .background(
-                    RoundedRectangle(cornerRadius: 15)
-
-                            .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
-                    )
-
+            .labelsHidden()
+            .padding(10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+              RoundedRectangle(cornerRadius: 15)
+              
+                .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
+            )
+          
           Text("Frequency").font(.headline)
           Text("How many posts do you want to make to reach your goal?").font(.subheadline).foregroundColor(.gray)
           TextField("Enter Frequency", text: $frequency)
-              .keyboardType(.numberPad)
-              .padding(10)
-              .background(
-                    RoundedRectangle(cornerRadius: 15)
-
-                            .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
-                    )
+            .keyboardType(.numberPad)
+            .padding(10)
+            .background(
+              RoundedRectangle(cornerRadius: 15)
+              
+                .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
+            )
           Text("Milestones").font(.headline)
           Text("Edit your milestones!").font(.subheadline).foregroundColor(.gray)
             VStack {
@@ -113,44 +113,45 @@ struct EditGoalView: View {
                                 scrollToBottom = false
                             }
                         }
-                    }
-                }
-                Button {
-                    subgoals.append("")
-                    scrollToBottom = true
-                } label: {
-                    HStack {
-                        Image(systemName: "plus")
-                            .foregroundColor(.white)
-                        Text("Add Milestone")
-                            .font(.subheadline)
-                            .foregroundColor(.white)
-                    }
-                    .padding(8)
-                    .background(Color(UIColor(hex: "#992409"))).opacity(1)
-                    .clipShape(Capsule())
-                }
+              }
             }
-   
-      }.padding(20)
+            Button {
+              subgoals.append("")
+              scrollToBottom = true
+            } label: {
+              HStack {
+                Image(systemName: "plus")
+                  .foregroundColor(.white)
+                Text("Add Milestone")
+                  .font(.subheadline)
+                  .foregroundColor(.white)
+              }
+              .padding(8)
+              .background(Color(UIColor(hex: "#992409"))).opacity(1)
+              .clipShape(Capsule())
+            }
+          }
+          
+        }.padding(20)
           .navigationBarTitle("Edit Goal")
           .navigationBarItems(trailing:
-            Button {
-              Task {
-                  try await goalController.updateGoal(
-                                      currentUser: currentUser,
-                                      goal: goalToEdit,
-                                      newName: goalName,
-                                      newDesc: goalDescription,
-                                      newDueDate: dueDate,
-                                      newFrequency: Int(frequency) ?? 1,
-                                      newSubGoals: subgoals
-                                  )
-                presentationMode.wrappedValue.dismiss()
-              }
+                                Button {
+            Task {
+              try await goalController.updateGoal(
+                currentUser: currentUser,
+                goal: goalToEdit,
+                newName: goalName,
+                newDesc: goalDescription,
+                newDueDate: dueDate,
+                newFrequency: Int(frequency) ?? 1,
+                newSubGoals: subgoals
+              )
+              presentationMode.wrappedValue.dismiss()
+            }
           } label: {
-              Text("Save")
-                  .bold()
-                  .foregroundColor(Color(UIColor(hex: "#992409")))})
+            Text("Save")
+              .bold()
+            .foregroundColor(Color(UIColor(hex: "#992409")))})
+      }
     }
 }
