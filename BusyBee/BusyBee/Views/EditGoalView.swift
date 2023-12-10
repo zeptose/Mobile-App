@@ -37,7 +37,7 @@ struct EditGoalView: View {
         
         VStack(alignment: .leading){
           Text("Goal Name").font(.headline)
-          Text("Give your goal a name!").font(.subheadline).foregroundColor(.gray)
+          Text("Change your goal name!").font(.subheadline).foregroundColor(.gray)
           TextField("Enter Goal Name", text: $goalName)
               .padding(10)
               .background(
@@ -46,7 +46,7 @@ struct EditGoalView: View {
                             .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
                     )
           Text("Description").font(.headline)
-          Text("Describe what you want your goal to be!").font(.subheadline).foregroundColor(.gray)
+          Text("Change your description!").font(.subheadline).foregroundColor(.gray)
             TextField("Enter Description", text: Binding(
                 get: { goalDescription ?? "" },
                 set: { goalDescription = $0 }
@@ -70,7 +70,7 @@ struct EditGoalView: View {
                     )
 
           Text("Frequency").font(.headline)
-          Text("How often do you want to update progress on your goal?").font(.subheadline).foregroundColor(.gray)
+          Text("How many posts do you want to make to reach your goal?").font(.subheadline).foregroundColor(.gray)
           TextField("Enter Frequency", text: $frequency)
               .keyboardType(.numberPad)
               .padding(10)
@@ -80,7 +80,7 @@ struct EditGoalView: View {
                             .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
                     )
           Text("Milestones").font(.headline)
-          Text("Add smaller goals that will serve as intermediary steps on your road to your main goal!").font(.subheadline).foregroundColor(.gray)
+          Text("Edit your milestones!").font(.subheadline).foregroundColor(.gray)
             VStack {
                 ScrollView {
                     ScrollViewReader { scrollView in

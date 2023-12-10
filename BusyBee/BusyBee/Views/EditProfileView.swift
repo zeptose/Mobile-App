@@ -16,13 +16,27 @@ struct EditProfileView: View {
 
     var body: some View {
         NavigationView {
-            Form {
-                Section(header: Text("Edit Profile Details")) {
-                    TextField("Username", text: $username)
-                    TextField("Update your Bio", text: $bio)
-                }
-                // Add more editable fields here
-            }
+            VStack(alignment: .leading) {
+                Text("Username").font(.headline)
+                Text("Change your username.").font(.subheadline).foregroundColor(.gray)
+                TextField("Enter Username", text: $username)
+                    .padding(10)
+                    .background(
+                          RoundedRectangle(cornerRadius: 15)
+
+                                  .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
+                          )
+                Text("Bio").font(.headline)
+                Text("Change your profile bio.").font(.subheadline).foregroundColor(.gray)
+                TextField("Enter Bio", text: $bio)
+                    .padding(10)
+                    .background(
+                          RoundedRectangle(cornerRadius: 15)
+
+                                  .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
+                          )
+                Spacer()
+            }.padding(20)
             .navigationTitle("Edit Profile")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
