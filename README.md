@@ -1,7 +1,7 @@
 # Mobile-App
 
 ### About BusyBee
-BusyBee is a goal-setting social media app that promotes healthy habits for achieving their goals through social encouragement. Users are guided through a goal-setting experience and can share their progress by posting photos every time they work towards their goal. Friends and family can also provide support through comments and reactions on the photo feed. BusyBee is an easy and intuitive solution for users to track and stay motivated towards accomplishing their goals.
+BusyBee is a goal-setting social media app that promotes healthy habits for achieving goals through social encouragement. Users are guided through a goal-setting experience and can share their progress by posting photos every time they work towards their goal. Friends and family can also provide support through comments and reactions on the photo feed. BusyBee is an easy and intuitive solution for users to track and stay motivated towards accomplishing their goals.
 
 ### Steps to set up
 #### Some set up notes for our app...
