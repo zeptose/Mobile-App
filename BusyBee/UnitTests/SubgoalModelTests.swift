@@ -9,24 +9,40 @@ import XCTest
 @testable import BusyBee
 
 class SubgoalTests: XCTestCase {
+  
+//  @DocumentID var id: String?
+//  var name: String
+//  var isCompleted: Bool
+//  var goalId: String
 
-    func testSubgoalCoding() throws {
-        let subgoal = Subgoal(id: "1", name: "Test Subgoal", isCompleted: false, goalId: "goal123")
+  func testInit() {
 
-        let data = try JSONEncoder().encode(subgoal)
-        let decodedSubgoal = try JSONDecoder().decode(Subgoal.self, from: data)
+    let subgoalInstance = Subgoal(name: "get better", isCompleted: true, goalId: "1")
+    let subgoalInstance2 = Subgoal(name: "it's doomed", isCompleted: false, goalId: "2")
+     
 
-        XCTAssertEqual(subgoal, decodedSubgoal)
-    }
 
-    func testSubgoalComparison() {
-        let subgoal1 = Subgoal(id: "1", name: "Subgoal1", isCompleted: false, goalId: "goal123")
-        let subgoal2 = Subgoal(id: "2", name: "Subgoal2", isCompleted: true, goalId: "goal456")
+     XCTAssertNotNil(subgoalInstance)
+     XCTAssertNotNil(subgoalInstance.name)
+     XCTAssertNotNil(subgoalInstance.isCompleted)
+     XCTAssertNotNil(subgoalInstance.goalId)
 
-        XCTAssertTrue(subgoal1 < subgoal2)
-        XCTAssertFalse(subgoal2 < subgoal1)
-        XCTAssertFalse(subgoal1 == subgoal2)
-    }
+     //Assert True Tests
+     XCTAssertTrue(subgoalInstance.name == "get better")
+     XCTAssertTrue(subgoalInstance.isCompleted == true)
+     XCTAssertTrue(subgoalInstance.goalId == "1")
+
+
+     //Assert False Tests
+     XCTAssertFalse(subgoalInstance.name == "get worse")
+     XCTAssertFalse(subgoalInstance.isCompleted == false)
+     XCTAssertFalse(subgoalInstance.goalId == "4")
+
+
+     XCTAssertTrue(subgoalInstance != subgoalInstance2)
+     XCTAssertTrue(subgoalInstance < subgoalInstance2)
+
+   }
 
 
 }

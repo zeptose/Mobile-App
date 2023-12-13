@@ -10,7 +10,7 @@ import FirebaseFirestoreSwift
 
 struct Subgoal: Identifiable, Codable, Comparable, Hashable {
   
-  var id: String?
+  @DocumentID var id: String?
   var name: String
   var isCompleted: Bool
   var goalId: String

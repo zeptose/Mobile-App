@@ -66,6 +66,7 @@
 		F9CE8A822B209CC600312090 /* SubgoalModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8A812B209CC600312090 /* SubgoalModelTests.swift */; };
 		F9CE8A842B209D2000312090 /* PostModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8A832B209D2000312090 /* PostModelTests.swift */; };
 		F9CE8A862B209D9300312090 /* CommentModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8A852B209D9300312090 /* CommentModelTests.swift */; };
+		F9CE8A892B29AB5D00312090 /* UserControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8A882B29AB5D00312090 /* UserControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,8 @@
 		F9CE8A812B209CC600312090 /* SubgoalModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubgoalModelTests.swift; sourceTree = "<group>"; };
 		F9CE8A832B209D2000312090 /* PostModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModelTests.swift; sourceTree = "<group>"; };
 		F9CE8A852B209D9300312090 /* CommentModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModelTests.swift; sourceTree = "<group>"; };
+		F9CE8A872B2484CA00312090 /* BusyBeeCoverage.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = BusyBeeCoverage.xctestplan; sourceTree = "<group>"; };
+		F9CE8A882B29AB5D00312090 /* UserControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +196,7 @@
 		F15DB2222AE8B7370031FD75 = {
 			isa = PBXGroup;
 			children = (
+				F9CE8A872B2484CA00312090 /* BusyBeeCoverage.xctestplan */,
 				F15DB22D2AE8B7370031FD75 /* BusyBee */,
 				F9A2EBD02B2088DC0014A91C /* UnitTests */,
 				F15DB22C2AE8B7370031FD75 /* Products */,
@@ -305,6 +309,7 @@
 				F9CE8A812B209CC600312090 /* SubgoalModelTests.swift */,
 				F9CE8A832B209D2000312090 /* PostModelTests.swift */,
 				F9CE8A852B209D9300312090 /* CommentModelTests.swift */,
+				F9CE8A882B29AB5D00312090 /* UserControllerTests.swift */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -477,6 +482,7 @@
 			files = (
 				F9CE8A862B209D9300312090 /* CommentModelTests.swift in Sources */,
 				F9CE8A802B209C0200312090 /* GoalModelTests.swift in Sources */,
+				F9CE8A892B29AB5D00312090 /* UserControllerTests.swift in Sources */,
 				F9CE8A842B209D2000312090 /* PostModelTests.swift in Sources */,
 				F9A2EBD22B2088DC0014A91C /* UserModelTests.swift in Sources */,
 				F9CE8A822B209CC600312090 /* SubgoalModelTests.swift in Sources */,

@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 
 struct Post: Identifiable, Codable, Comparable {
   
-  var id: String?
+  @DocumentID var id: String?
   var goalId: String
   var userId: String
   var caption: String

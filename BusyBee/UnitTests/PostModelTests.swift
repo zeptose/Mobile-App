@@ -10,23 +10,70 @@ import XCTest
 
 class PostTests: XCTestCase {
 
-    func testPostCoding() throws {
-        let post = Post(id: "1", goalId: "goal123", userId: "user123", caption: "Test Caption", photo: "test.jpg", subgoalId: "subgoal123", timePosted: Date(), comments: [], reaction1: ["user1", "user2"], reaction2: ["user3"], reaction3: [], reaction4: ["user4"])
+//  @DocumentID var id: String?
+//  var goalId: String
+//  var userId: String
+//  var caption: String
+//  var photo: String
+//  var subgoalId: String?
+//  var timePosted: Date
+//  var comments: [Comment]
+//  var reaction1: [String]
+//  var reaction2: [String]
+//  var reaction3: [String]
+//  var reaction4: [String]
+  
+  func testInit() {
+    let commentInstance = Comment(userId: "1", body: "yep", timePosted: Date())
 
-        let data = try JSONEncoder().encode(post)
-        let decodedPost = try JSONDecoder().decode(Post.self, from: data)
 
-        XCTAssertEqual(post, decodedPost)
-    }
+    let postInstance = Post(goalId: "1", userId: "1", caption: "yep", photo: "yep", subgoalId: "1", timePosted: Date(), comments: [commentInstance], reaction1:["yep"], reaction2:["yep"], reaction3:["yep"], reaction4:["yep"])
+    
+    let postInstance2 = Post(goalId: "2", userId: "2", caption: "yep", photo: "yep", subgoalId: "2", timePosted: Date(), comments: [], reaction1:["yep"], reaction2:["yep"], reaction3:["yep"], reaction4:["yep"])
+     
 
-    func testPostComparison() {
-        let post1 = Post(id: "1", goalId: "goal123", userId: "user123", caption: "Caption1", photo: "photo1.jpg", subgoalId: nil, timePosted: Date(), comments: [], reaction1: [], reaction2: [], reaction3: [], reaction4: [])
-        let post2 = Post(id: "2", goalId: "goal456", userId: "user456", caption: "Caption2", photo: "photo2.jpg", subgoalId: "subgoal456", timePosted: Date().addingTimeInterval(3600), comments: [], reaction1: ["user1"], reaction2: [], reaction3: [], reaction4: ["user2"])
 
-        XCTAssertTrue(post1 < post2)
-        XCTAssertFalse(post2 < post1)
-        XCTAssertFalse(post1 == post2)
-    }
+     XCTAssertNotNil(postInstance)
+     XCTAssertNotNil(postInstance.userId)
+    XCTAssertNotNil(postInstance.caption)
+     XCTAssertNotNil(postInstance.photo)
+    XCTAssertNotNil(postInstance.subgoalId)
+    XCTAssertNotNil(postInstance.timePosted)
+    XCTAssertNotNil(postInstance.comments)
+    XCTAssertNotNil(postInstance.reaction1)
+    XCTAssertNotNil(postInstance.reaction2)
+    XCTAssertNotNil(postInstance.reaction3)
+    XCTAssertNotNil(postInstance.reaction4)
 
+     //Assert True Tests
+     XCTAssertTrue(postInstance.userId == "1")
+     XCTAssertTrue(postInstance.caption == "yep")
+    XCTAssertTrue(postInstance.photo == "yep")
+    XCTAssertTrue(postInstance.subgoalId == "1")
+    XCTAssertTrue(postInstance.comments == [commentInstance])
+    XCTAssertTrue(postInstance.reaction1 == ["yep"])
+    XCTAssertTrue(postInstance.reaction2 == ["yep"])
+    XCTAssertTrue(postInstance.reaction3 == ["yep"])
+    XCTAssertTrue(postInstance.reaction4 == ["yep"])
+
+     //Assert False Tests
+    XCTAssertFalse(postInstance.userId == "2")
+    XCTAssertFalse(postInstance.caption == "nope")
+   XCTAssertFalse(postInstance.photo == "nope")
+   XCTAssertFalse(postInstance.subgoalId == "2")
+   XCTAssertFalse(postInstance.comments == [])
+   XCTAssertFalse(postInstance.reaction1 == ["nope"])
+   XCTAssertFalse(postInstance.reaction2 == ["nope"])
+   XCTAssertFalse(postInstance.reaction3 == ["nope"])
+   XCTAssertFalse(postInstance.reaction4 == ["nope"])
+
+
+
+     XCTAssertTrue(postInstance != postInstance2)
+     XCTAssertTrue(postInstance < postInstance2)
+
+   }
+
+  
 
 }

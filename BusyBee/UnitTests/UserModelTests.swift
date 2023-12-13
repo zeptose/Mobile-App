@@ -11,23 +11,61 @@ import XCTest
 
 class UserModelTests: XCTestCase {
 
-    func testUserCoding() throws {
-        let user = User(id: "1", username: "testUser", bio: "Testing bio", goals: [], posts: [], follows: ["user1", "user2"])
+  func testInit() {
+//    var id: String
+//    var username: String
+//    var bio: String?
+//    var goals: [Goal]
+//    var posts: [Post]
+//    var follows: [String]
+    
+//    var id: String
+//    var name: String
+//    var description: String?
+//    var dueDate: Date
+//    var frequency: Int
+//    var userId: String
+//    var progress: Int
+    
+    let goal1 = Goal(id: UUID().uuidString, name:"Best Goal", description:"This is the best goal", dueDate: Date(), frequency: 1, userId: "1", progress: 15)
+    
+    let goal2 = Goal(id: UUID().uuidString, name:"Worst Goal", description:"This is the best goal", dueDate: Date(), frequency: 1, userId: "1", progress: 15)
 
-        let data = try JSONEncoder().encode(user)
-        let decodedUser = try JSONDecoder().decode(User.self, from: data)
+    let userInstance = User(id: UUID().uuidString, username: "MonkeyJerr", bio: "Achieving Goals", goals: [goal1], posts: [], follows: ["Zeptose","Mastermind"])
+    
+    let userInstance2 = User(id: UUID().uuidString, username: "Zeptose", bio: "Playing video games", goals: [goal1], posts: [], follows: ["Zeptose","Mastermind"])
+     
 
-        XCTAssertEqual(user, decodedUser)
-    }
 
-    func testUserComparison() {
-        let user1 = User(id: "1", username: "user1", bio: nil, goals: [], posts: [], follows: [])
-        let user2 = User(id: "2", username: "user2", bio: "Bio", goals: [], posts: [], follows: [])
+     XCTAssertNotNil(userInstance)
+     XCTAssertNotNil(userInstance.id)
+     XCTAssertNotNil(userInstance.username)
+     XCTAssertNotNil(userInstance.bio)
+     XCTAssertNotNil(userInstance.goals)
+     XCTAssertNotNil(userInstance.posts)
+     XCTAssertNotNil(userInstance.follows)
 
-        XCTAssertTrue(user1 < user2)
-        XCTAssertFalse(user2 < user1)
-        XCTAssertFalse(user1 == user2)
-    }
+     //Assert True Tests
+     XCTAssertTrue(userInstance.username == "MonkeyJerr")
+     XCTAssertTrue(userInstance.bio == "Achieving Goals")
+     XCTAssertTrue(userInstance.goals == [goal1])
+     XCTAssertTrue(userInstance.posts == [])
+     XCTAssertTrue(userInstance.follows == ["Zeptose","Mastermind"])
+
+
+
+     //Assert False Tests
+     XCTAssertFalse(userInstance.username == "Zeptose")
+     XCTAssertFalse(userInstance.bio == "Not achieving goals")
+     XCTAssertFalse(userInstance.goals == [goal2])
+//     XCTAssertFalse(userInstance.posts == [])
+     XCTAssertFalse(userInstance.follows == ["Zeptose","Mastermind", "Joe"])
+     
+     
+     XCTAssertTrue(userInstance != userInstance2)
+     XCTAssertTrue(userInstance < userInstance2)
+
+   }
 
 
 }

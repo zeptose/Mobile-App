@@ -10,7 +10,7 @@ import FirebaseFirestoreSwift
 
 struct Comment: Identifiable, Codable, Comparable, Hashable {
   
-  var id: String?
+  @DocumentID var id: String?
   var userId: String
   var body: String
   var timePosted: Date
