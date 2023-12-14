@@ -47,8 +47,7 @@ struct GoalWrappedView: View {
                     let startDateString = dateFormatter.string(from: goal.dateStarted)
                     let endDateString = dateFormatter.string(from: goal.dateEnded!)
                     Text("\(startDateString) - \(endDateString)")
-                        .font(.headline)
-                        .fontWeight(.regular)
+                        .font(Font.custom("Quicksand-Regular", size: 16))
                         .padding(.top, 1)
                 }
                 .padding()
@@ -107,39 +106,39 @@ struct GoalWrappedView: View {
                     VStack {
                         let numGoals =  goalController.getPastGoals(currentUser: user).count
                         Text("Congrats on completing")
-                            .font(.headline)
+                            font(Font.custom("Quicksand-Bold", size: 20))
                             .padding(.top, 15)
                         HStack {
                             Text("your")
-                                .font(.headline)
+                                font(Font.custom("Quicksand-Bold", size: 20))
                                 .padding(.trailing, -2)
                             Text("\(numGoals)")
-                                .font(.headline)
+                                font(Font.custom("Quicksand-Bold", size: 20))
                                 .foregroundColor(customMaroon)
                             
                             if numGoals == 1 {
                                 Text("st")
-                                    .font(.headline)
+                                    font(Font.custom("Quicksand-Bold", size: 20))
                                     .foregroundColor(customMaroon)
                                     .padding(.leading, -8)
                             } else if numGoals == 2 {
                                 Text("nd")
-                                    .font(.headline)
+                                    font(Font.custom("Quicksand-Bold", size: 20))
                                     .foregroundColor(customMaroon)
                                     .padding(.leading, -8)
                             } else if numGoals == 3 {
                                 Text("rd")
-                                    .font(.headline)
+                                    font(Font.custom("Quicksand-Bold", size: 20))
                                     .foregroundColor(customMaroon)
                                     .padding(.leading, -8)
                             } else {
                                 Text("th")
-                                    .font(.headline)
+                                    .font(Font.custom("Quicksand-Bold", size: 20))
                                     .foregroundColor(customMaroon)
                                     .padding(.leading, -8)
                             }
                             Text("goal this year!")
-                                .font(.headline)
+                                font(Font.custom("Quicksand-Bold", size: 20))
                                 .padding(.leading, -2)
                         }
                         let numPhotos = postController.getPostsForGoal(goalId: goal.id).count

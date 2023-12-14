@@ -33,7 +33,7 @@ struct AddGoalView: View {
                     VStack {
                         Image("AddGoalHive0")
                             .padding(10)
-                        Text("Create a new goal to fill up the hive!").font(.headline)
+                        Text("Create a new goal to fill up the hive!").font(Font.custom("Quicksand-Bold", size: 20))
                     }
                         
                 }
@@ -47,8 +47,8 @@ struct AddGoalView: View {
                                 .padding(10)
                             Spacer()
                         }
-                        Text("Goal Name").font(.headline).padding(textPadding)
-                        Text("Give your goal a name!").font(.subheadline).foregroundColor(.gray).padding(textPadding)
+                        Text("Goal Name").font(Font.custom("Quicksand-Bold", size: 20)).padding(textPadding)
+                        Text("Give your goal a name!").font(Font.custom("Quicksand-Regular", size: 16)).foregroundColor(.gray).padding(textPadding)
                         TextField("Enter Goal Name", text: $goalName)
                             .padding(10)
                             .background(
@@ -68,8 +68,8 @@ struct AddGoalView: View {
                             .padding(hivePadding)
                         Spacer()
                     }
-                    Text("Description").font(.headline).padding(textPadding)
-                    Text("Describe what you want your goal to be!").font(.subheadline).foregroundColor(.gray).padding(textPadding)
+                    Text("Description").font(Font.custom("Quicksand-Bold", size: 20)).padding(textPadding)
+                    Text("Describe what you want your goal to be!").font(Font.custom("Quicksand-Regular", size: 16)).foregroundColor(.gray).padding(textPadding)
                     TextField("Enter Description", text: $goalDescription)
                         .padding(10)
                         .background(
@@ -90,8 +90,8 @@ struct AddGoalView: View {
                             .padding(hivePadding)
                         Spacer()
                     }
-                    Text("Due Date").font(.headline).padding(textPadding)
-                    Text("When do you want this goal to be completed?").font(.subheadline).foregroundColor(.gray).padding(textPadding)
+                    Text("Due Date").font(Font.custom("Quicksand-Bold", size: 20)).padding(textPadding)
+                    Text("When do you want this goal to be completed?").font(Font.custom("Quicksand-Regular", size: 16)).foregroundColor(.gray).padding(textPadding)
                     DatePicker("", selection: $dueDate, displayedComponents: .date)
                         .labelsHidden()
                         .padding(10)
@@ -114,8 +114,8 @@ struct AddGoalView: View {
                         Spacer()
                     }
                         .padding(10)
-                    Text("Frequency").font(.headline).padding(textPadding)
-                    Text("How many posts do you want to make to reach your goal?").font(.subheadline).foregroundColor(.gray).padding(textPadding)
+                    Text("Frequency").font(Font.custom("Quicksand-Bold", size: 20)).padding(textPadding)
+                    Text("How many posts do you want to make to reach your goal?").font(Font.custom("Quicksand-Regular", size: 16)).foregroundColor(.gray).padding(textPadding)
                     TextField("Enter Frequency", text: $frequency)
                     
                         .keyboardType(.numberPad)
@@ -142,8 +142,8 @@ struct AddGoalView: View {
                             .padding(EdgeInsets(top: 27, leading: 0, bottom: 30, trailing: 6))
                         Spacer()
                     }
-                        Text("Milestones").font(.headline).padding(textPadding)
-                        Text("Add smaller steps that you want to take to reach your goal!").font(.subheadline).foregroundColor(.gray).padding(textPadding)
+                        Text("Milestones").font(Font.custom("Quicksand-Bold", size: 20)).padding(textPadding)
+                        Text("Add smaller steps that you want to take to reach your goal!").font(Font.custom("Quicksand-Regular", size: 16)).foregroundColor(.gray).padding(textPadding)
                         VStack {
                             ScrollView {
                               VStack{
@@ -187,7 +187,7 @@ struct AddGoalView: View {
                                       Image(systemName: "plus")
                                       .foregroundColor(.gray)
                                       Text("Add Milestone")
-                                          .font(.subheadline)
+                                          .font(Font.custom("Quicksand-Regular", size: 16))
                                           .foregroundColor(.gray)
                                   }
                                   .padding(8)

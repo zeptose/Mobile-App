@@ -60,12 +60,12 @@
 		F95D52F82B29CCA10072B137 /* AuthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95D52F72B29CCA10072B137 /* AuthViewModelTests.swift */; };
 		F95D52FA2B29D6E70072B137 /* CameraControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95D52F92B29D6E70072B137 /* CameraControllerTests.swift */; };
 		F95D52FC2B2A759A0072B137 /* HoneyJarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95D52FB2B2A759A0072B137 /* HoneyJarViewControllerTests.swift */; };
+		F95D53022B2B5F800072B137 /* Quicksand-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F95D53012B2B5F800072B137 /* Quicksand-VariableFont_wght.ttf */; };
 		F9908DB02AF4AEE000415845 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DAF2AF4AEE000415845 /* AddGoalView.swift */; };
 		F9908DB42AFB090300415845 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DB32AFB090300415845 /* CameraView.swift */; };
 		F9908DB62AFB092800415845 /* CameraControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DB52AFB092800415845 /* CameraControlsView.swift */; };
 		F9A2EBD22B2088DC0014A91C /* UserModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A2EBD12B2088DC0014A91C /* UserModelTests.swift */; };
 		F9BE505A2AF4288900FF1C16 /* HexCodeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */; };
-		F9CE8A762B208E0600312090 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8A752B208E0600312090 /* NotificationsView.swift */; };
 		F9CE8A782B20911F00312090 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F9CE8A772B20911F00312090 /* FirebaseFirestore */; };
 		F9CE8A7A2B20912900312090 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F9CE8A792B20912900312090 /* FirebaseStorage */; };
 		F9CE8A7C2B20913500312090 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F9CE8A7B2B20913500312090 /* FirebaseAuth */; };
@@ -139,6 +139,7 @@
 		F95D52F72B29CCA10072B137 /* AuthViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelTests.swift; sourceTree = "<group>"; };
 		F95D52F92B29D6E70072B137 /* CameraControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControllerTests.swift; sourceTree = "<group>"; };
 		F95D52FB2B2A759A0072B137 /* HoneyJarViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneyJarViewControllerTests.swift; sourceTree = "<group>"; };
+		F95D53012B2B5F800072B137 /* Quicksand-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		F9908DAF2AF4AEE000415845 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
 		F9908DB32AFB090300415845 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		F9908DB52AFB092800415845 /* CameraControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControlsView.swift; sourceTree = "<group>"; };
@@ -212,6 +213,7 @@
 		F15DB2222AE8B7370031FD75 = {
 			isa = PBXGroup;
 			children = (
+				F95D53012B2B5F800072B137 /* Quicksand-VariableFont_wght.ttf */,
 				F9CE8A872B2484CA00312090 /* BusyBeeCoverage.xctestplan */,
 				F15DB22D2AE8B7370031FD75 /* BusyBee */,
 				F9A2EBD02B2088DC0014A91C /* UnitTests */,
@@ -445,6 +447,7 @@
 				F15DB2362AE8B73A0031FD75 /* Preview Assets.xcassets in Resources */,
 				F1C7F65A2B15C15200A61DE4 /* GoogleService-Info.plist in Resources */,
 				F15DB2332AE8B73A0031FD75 /* Assets.xcassets in Resources */,
+				F95D53022B2B5F800072B137 /* Quicksand-VariableFont_wght.ttf in Resources */,
 				F1123C7B2AF7565D005C0588 /* Lato-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

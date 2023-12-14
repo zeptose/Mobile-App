@@ -39,10 +39,12 @@ struct FeedItemView: View {
               VStack {
                 Text(feedUser.username)
                   .frame(maxWidth: .infinity, alignment: .leading)
+                  .font(Font.custom("Quicksand-Bold", size: 16))
                 Text(timeAgo)
                   .foregroundColor(.gray)
-                  .font(.system(size: 12))
                   .frame(maxWidth: .infinity, alignment: .leading)
+                  .font(Font.custom("Quicksand-Regular", size: 16))
+
               }
               Spacer()
               
@@ -72,6 +74,7 @@ struct FeedItemView: View {
               
             }
           }
+
           
           // Goal and Progress
           
@@ -88,11 +91,11 @@ struct FeedItemView: View {
                     Spacer()
                     HStack {
                       Text(feedGoal.name)
-                        .font(.subheadline)
+                        .font(Font.custom("Quicksand-Regular", size: 16))
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity, alignment: .leading)
                       Text("\(feedGoal.progress)/\(feedGoal.frequency)")
-                        .font(.subheadline)
+                        .font(Font.custom("Quicksand-Regular", size: 16))
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(.trailing, 20)
@@ -159,7 +162,7 @@ struct FeedItemView: View {
                             .padding(.leading, 10)
 
                         Text(subgoal.name)
-                            .font(.system(size: 15))
+                            .font(Font.custom("Quicksand-Regular", size: 16))
                             .foregroundColor(.white)
                             .padding(.trailing, 10)
                     }
@@ -174,6 +177,7 @@ struct FeedItemView: View {
 
                 if !post.caption.isEmpty {
                     Text(post.caption)
+                        .font(Font.custom("Quicksand-Regular", size: 16))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, -1)
                 }
@@ -182,7 +186,7 @@ struct FeedItemView: View {
           
           Text("View Comments")
             .foregroundColor(.gray)
-            .font(.system(size: 14))
+            .font(Font.custom("Quicksand-Regular", size: 14))
             .padding(.leading, 1.25)
             .padding(.top, -15)
             .onTapGesture {
@@ -207,5 +211,5 @@ struct FeedItemView: View {
           .hidden()
         }
       }
-    }
+    } 
 }
