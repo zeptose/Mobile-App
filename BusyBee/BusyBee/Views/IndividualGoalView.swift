@@ -227,9 +227,9 @@ struct IndividualGoalView: View {
             }
             .padding(.horizontal, 10)
           }
-          Spacer()
         }
       }
+      Spacer()
       let earlier = postController.getEarlierPosts(goalId: goal.id)
       if earlier != [] {
         VStack(alignment: .leading) {
@@ -253,9 +253,9 @@ struct IndividualGoalView: View {
             }
             .padding(.horizontal, 10)
           }
-          Spacer()
         }
       }
+      Spacer()
     }
 }
 
