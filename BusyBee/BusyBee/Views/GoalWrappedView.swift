@@ -10,7 +10,7 @@ import SwiftUI
 
 struct GoalWrappedView: View {
     @EnvironmentObject var postController: PostController
-    @EnvironmentObject var cameraController: CameraController
+//    @EnvironmentObject var cameraController: CameraController
     @EnvironmentObject var goalController: GoalController
     let customYellow = Color(UIColor(hex: "#FEC500"))
     let customMaroon = Color(UIColor(hex: "#992409"))
@@ -170,26 +170,27 @@ struct GoalWrappedView: View {
                         .padding(.top, 250)
                 }.padding(.top, -20)
                 
-              
-                  Button(action: {
-                      guard let screenshot = cameraController.captureScreen(),
-                            let imageData = screenshot.jpegData(compressionQuality: 1.0) else {
-                          return
-                      }
-
-                      // Save the screenshot to the camera roll
-                      UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
-
-                      // Call the backend saving function
-                      cameraController.savePhotoToBackend(imageData: imageData)
-                  }) {
-                      Text("Save")
-                          .foregroundColor(.white)
-                          .padding()
-                          .background(Color(UIColor(hex: "#992409")))
-                          .cornerRadius(8)
-                  }
-                  .padding()
+//              
+//                  Button(action: {
+//                      guard let screenshot = cameraController.captureScreen(),
+//                            let imageData = screenshot.jpegData(compressionQuality: 1.0) else {
+//                          return
+//                      }
+//
+//                      // Save the screenshot to the camera roll
+//                      UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
+//
+//                      // Call the backend saving function
+//                      cameraController.savePhotoToBackend(imageData: imageData)
+//                  }) {
+                
+//                      Text("Save")
+//                          .foregroundColor(.white)
+//                          .padding()
+//                          .background(Color(UIColor(hex: "#992409")))
+//                          .cornerRadius(8)
+//                  }
+//                  .padding()
             }.padding(.top, -85)
               }
             }

@@ -65,7 +65,6 @@
 		F9908DB62AFB092800415845 /* CameraControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DB52AFB092800415845 /* CameraControlsView.swift */; };
 		F9A2EBD22B2088DC0014A91C /* UserModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A2EBD12B2088DC0014A91C /* UserModelTests.swift */; };
 		F9BE505A2AF4288900FF1C16 /* HexCodeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */; };
-		F9CE8A762B208E0600312090 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8A752B208E0600312090 /* NotificationsView.swift */; };
 		F9CE8A782B20911F00312090 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F9CE8A772B20911F00312090 /* FirebaseFirestore */; };
 		F9CE8A7A2B20912900312090 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F9CE8A792B20912900312090 /* FirebaseStorage */; };
 		F9CE8A7C2B20913500312090 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F9CE8A7B2B20913500312090 /* FirebaseAuth */; };
