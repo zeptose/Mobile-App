@@ -54,7 +54,7 @@ struct SubgoalListView: View {
 struct CreatePostView: View {
   var uiImage: UIImage
   @State private var caption: String = ""
-//  @EnvironmentObject var camera: CameraController
+  @EnvironmentObject var camera: CameraController
   @Environment(\.presentationMode) var presentationMode
   @EnvironmentObject var viewModel: AuthViewModel
   @EnvironmentObject var goalController: GoalController
@@ -87,15 +87,15 @@ struct CreatePostView: View {
   var body: some View {
     VStack {
       HStack {
-//        Button(action: {
-//          camera.capturedImage = nil
-//        }) {
-//          Image(systemName: "chevron.backward")
-//            .foregroundColor(.black)
-//            .padding()
-//            .font(.system(size: 30))
-//        }
-//        .padding(.leading, 0)
+        Button(action: {
+          camera.capturedImage = nil
+        }) {
+          Image(systemName: "chevron.backward")
+            .foregroundColor(.black)
+            .padding()
+            .font(.system(size: 30))
+        }
+        .padding(.leading, 0)
         
         Spacer()
         Spacer()

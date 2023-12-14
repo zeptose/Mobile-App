@@ -10,7 +10,7 @@ import SwiftUI
 
 struct GoalWrappedView: View {
     @EnvironmentObject var postController: PostController
-//    @EnvironmentObject var cameraController: CameraController
+    @EnvironmentObject var cameraController: CameraController
     @EnvironmentObject var goalController: GoalController
     let customYellow = Color(UIColor(hex: "#FEC500"))
     let customMaroon = Color(UIColor(hex: "#992409"))
@@ -19,6 +19,9 @@ struct GoalWrappedView: View {
   
     
     var body: some View {
+        let completedPosts = postController.getPostsForGoal(goalId: goal.id)
+        let pSize: CGFloat = completedPosts.count > 1 ? -40 : -130
+        let pSize2: CGFloat = completedPosts.count > 1 ? 0 : 50
         ZStack {
             Image("GoalWrappedBg")
                 .resizable()
@@ -35,10 +38,10 @@ struct GoalWrappedView: View {
                             .overlay(Circle().stroke(customYellow, lineWidth: 3))
                         Text("\(user.username)")
                             .foregroundColor(.black)
+                            .font(Font.custom("Quicksand-Regular", size: 20))
                     }.padding(EdgeInsets(top: 40, leading: 0, bottom: 0, trailing: 10))
                     Text("\(goal.name)")
-                        .font(.title)
-                        .bold()
+                      .font(Font.custom("Quicksand-Bold", size: 28))
                     let dateFormatter: DateFormatter = {
                         let formatter = DateFormatter()
                         formatter.dateFormat = "MM/dd/yy"
@@ -50,8 +53,8 @@ struct GoalWrappedView: View {
                         .font(Font.custom("Quicksand-Regular", size: 16))
                         .padding(.top, 1)
                 }
-                .padding()
                .frame(height: 60)
+               .padding()
 //                iCarousel(items: postController.getPostsForGoal(goalId: goal.id), id: \.id) { post in
 //                                VStack(spacing: 15) {
 //                                    Image(uiImage: postController.getImageFromURL(url: post.photo))
@@ -94,10 +97,8 @@ struct GoalWrappedView: View {
                             }
                         }
                     }
-//                    .padding(.top, -35)
                 }
-//                
-//                .padding(.top, 50)
+                .padding(.top, pSize2)
                 HStack {
                     Image("HeartBeeRight")
                         .resizable()
@@ -106,29 +107,29 @@ struct GoalWrappedView: View {
                     VStack {
                         let numGoals =  goalController.getPastGoals(currentUser: user).count
                         Text("Congrats on completing")
-                            font(Font.custom("Quicksand-Bold", size: 20))
+                            .font(Font.custom("Quicksand-Bold", size: 20))
                             .padding(.top, 15)
                         HStack {
                             Text("your")
-                                font(Font.custom("Quicksand-Bold", size: 20))
+                                .font(Font.custom("Quicksand-Bold", size: 20))
                                 .padding(.trailing, -2)
                             Text("\(numGoals)")
-                                font(Font.custom("Quicksand-Bold", size: 20))
+                                .font(Font.custom("Quicksand-Bold", size: 20))
                                 .foregroundColor(customMaroon)
                             
                             if numGoals == 1 {
                                 Text("st")
-                                    font(Font.custom("Quicksand-Bold", size: 20))
+                                    .font(Font.custom("Quicksand-Bold", size: 20))
                                     .foregroundColor(customMaroon)
                                     .padding(.leading, -8)
                             } else if numGoals == 2 {
                                 Text("nd")
-                                    font(Font.custom("Quicksand-Bold", size: 20))
+                                    .font(Font.custom("Quicksand-Bold", size: 20))
                                     .foregroundColor(customMaroon)
                                     .padding(.leading, -8)
                             } else if numGoals == 3 {
                                 Text("rd")
-                                    font(Font.custom("Quicksand-Bold", size: 20))
+                                    .font(Font.custom("Quicksand-Bold", size: 20))
                                     .foregroundColor(customMaroon)
                                     .padding(.leading, -8)
                             } else {
@@ -138,7 +139,7 @@ struct GoalWrappedView: View {
                                     .padding(.leading, -8)
                             }
                             Text("goal this year!")
-                                font(Font.custom("Quicksand-Bold", size: 20))
+                                .font(Font.custom("Quicksand-Bold", size: 20))
                                 .padding(.leading, -2)
                         }
                         let numPhotos = postController.getPostsForGoal(goalId: goal.id).count
@@ -148,18 +149,20 @@ struct GoalWrappedView: View {
                         let numReactions = postController.numReactions(goal: goal)
                         
                         Text("Photos Taken")
-                            .font(.caption)
+                            .font(Font.custom("Quicksand-Regular", size: 14))
                             .padding(.top, 20)
                         Text("\(numPhotos)")
-                            .font(.headline)
+                            .font(Font.custom("Quicksand-Bold", size: 18))
                             .padding(.bottom, 20)
-                        Text("Days Spent").font(.caption)
+                        Text("Days Spent")
+                            .font(Font.custom("Quicksand-Regular", size: 14))
                         Text("\(numDays)")
-                            .font(.headline)
+                            .font(Font.custom("Quicksand-Bold", size: 18))
                             .padding(.bottom, 20)
-                        Text("Reactions Received").font(.caption)
+                        Text("Reactions Received")
+                            .font(Font.custom("Quicksand-Regular", size: 14))
                         Text("\(numReactions)")
-                            .font(.headline)
+                            .font(Font.custom("Quicksand-Bold", size: 18))
                             .padding(.bottom, 20)
                     }
                     Image("HeartBeeLeft")
@@ -170,50 +173,28 @@ struct GoalWrappedView: View {
                 }.padding(.top, -20)
                 
 
-              
                   Button(action: {
                       guard let screenshot = cameraController.captureScreen(),
                             let imageData = screenshot.jpegData(compressionQuality: 1.0) else {
                           return
                       }
 
-                     
+                      // Save the screenshot to the camera roll
                       UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
 
-                      
+                      // Call the backend saving function
                       cameraController.savePhotoToBackend(imageData: imageData)
                   }) {
+                
                       Text("Save")
+                          .font(Font.custom("Quicksand-Bold", size: 18))
                           .foregroundColor(.white)
                           .padding()
                           .background(Color(UIColor(hex: "#992409")))
                           .cornerRadius(8)
                   }
                   .padding()
-
-//              
-//                  Button(action: {
-//                      guard let screenshot = cameraController.captureScreen(),
-//                            let imageData = screenshot.jpegData(compressionQuality: 1.0) else {
-//                          return
-//                      }
-//
-//                      // Save the screenshot to the camera roll
-//                      UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
-//
-//                      // Call the backend saving function
-//                      cameraController.savePhotoToBackend(imageData: imageData)
-//                  }) {
-                
-//                      Text("Save")
-//                          .foregroundColor(.white)
-//                          .padding()
-//                          .background(Color(UIColor(hex: "#992409")))
-//                          .cornerRadius(8)
-//                  }
-//                  .padding()
-
-            }.padding(.top, -85)
+            }.padding(.top, pSize)
               }
             }
             
@@ -246,4 +227,3 @@ struct Hexagon: Shape {
         return path
     }
 }
-

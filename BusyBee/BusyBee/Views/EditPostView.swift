@@ -86,14 +86,16 @@ struct EditPostView: View {
             }.padding(.bottom, 12)
             HStack {
               Spacer()
-              if let temp = selectedSubgoal {
-                Text(goalController.getSubgoalFromId(subgoalId: temp)!.name)
-                  .frame(alignment: .center)
-                  .background(
-                    RoundedRectangle(cornerRadius: 10)
-                      .fill(Color(UIColor(hex: "#FFD111")))
-                      .frame(width: UIScreen.main.bounds.width * 0.8, height: 30, alignment: .center)
-                  )
+              if selectedSubgoal != nil {
+                if let temp = selectedSubgoal {
+                  Text(goalController.getSubgoalFromId(subgoalId: temp)!.name)
+                    .frame(alignment: .center)
+                    .background(
+                      RoundedRectangle(cornerRadius: 10)
+                        .fill(Color(UIColor(hex: "#FFD111")))
+                        .frame(width: UIScreen.main.bounds.width * 0.8, height: 30, alignment: .center)
+                    )
+                }
               }
               Spacer()
             }

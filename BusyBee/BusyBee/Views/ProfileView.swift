@@ -103,7 +103,7 @@ struct ProfileView: View {
                           HStack{
                               NavigationLink(destination: AddGoalView(goalController: goalController, user: updatedCurrentUser!)) {
                                 Label("Add Goal", systemImage: "plus")
-                                  .font(.system(size: 14))
+                                  .font(Font.custom("Quicksand-Regular", size: 16))
                                   .foregroundColor(.white)
                                   .padding(5)
                                   .frame(width: UIScreen.main.bounds.width * 0.3, height: 32)
@@ -114,7 +114,7 @@ struct ProfileView: View {
                               
                               Label("Edit Profile", systemImage: "pencil")
                             }
-                            .font(.system(size: 14))
+                            .font(Font.custom("Quicksand-Regular", size: 16))
                             .foregroundColor(customMaroon)
                             .padding(5)
                             .frame(width: UIScreen.main.bounds.width * 0.3, height: 32)
