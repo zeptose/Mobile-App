@@ -24,6 +24,6 @@ You can find the unit tests written under the UnitTests folder. The files contai
    
 *B-level*
 1. Ability to react and comment on posts
-2. Having in-app notifications when other users follow, react, or comment 
+2. Having in-app notifications when other users react, or comment 
 3. Having a “goal-wrapped” page that summarizes completed goals
 4. Being able to save your “goal-wrapped” image to your camera roll to share with friends

@@ -55,11 +55,36 @@
 		F1C7F65C2B16724D00A61DE4 /* ReactionsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C7F65B2B16724D00A61DE4 /* ReactionsComponent.swift */; };
 		F1C7F65E2B1674D300A61DE4 /* EditGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C7F65D2B1674D300A61DE4 /* EditGoalView.swift */; };
 		F1C7F6602B1835EE00A61DE4 /* CommentSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C7F65F2B1835EE00A61DE4 /* CommentSheetView.swift */; };
+		F95D52F42B29CAD30072B137 /* SearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95D52F32B29CAD30072B137 /* SearchViewModelTests.swift */; };
+		F95D52F62B29CBD30072B137 /* CameraViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95D52F52B29CBD30072B137 /* CameraViewModelTests.swift */; };
+		F95D52F82B29CCA10072B137 /* AuthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95D52F72B29CCA10072B137 /* AuthViewModelTests.swift */; };
+		F95D52FA2B29D6E70072B137 /* CameraControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95D52F92B29D6E70072B137 /* CameraControllerTests.swift */; };
+		F95D52FC2B2A759A0072B137 /* HoneyJarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95D52FB2B2A759A0072B137 /* HoneyJarViewControllerTests.swift */; };
 		F9908DB02AF4AEE000415845 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DAF2AF4AEE000415845 /* AddGoalView.swift */; };
 		F9908DB42AFB090300415845 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DB32AFB090300415845 /* CameraView.swift */; };
 		F9908DB62AFB092800415845 /* CameraControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9908DB52AFB092800415845 /* CameraControlsView.swift */; };
+		F9A2EBD22B2088DC0014A91C /* UserModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A2EBD12B2088DC0014A91C /* UserModelTests.swift */; };
 		F9BE505A2AF4288900FF1C16 /* HexCodeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */; };
+		F9CE8A782B20911F00312090 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F9CE8A772B20911F00312090 /* FirebaseFirestore */; };
+		F9CE8A7A2B20912900312090 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F9CE8A792B20912900312090 /* FirebaseStorage */; };
+		F9CE8A7C2B20913500312090 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F9CE8A7B2B20913500312090 /* FirebaseAuth */; };
+		F9CE8A7E2B20914200312090 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F9CE8A7D2B20914200312090 /* FirebaseFirestoreSwift */; };
+		F9CE8A802B209C0200312090 /* GoalModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8A7F2B209C0200312090 /* GoalModelTests.swift */; };
+		F9CE8A822B209CC600312090 /* SubgoalModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8A812B209CC600312090 /* SubgoalModelTests.swift */; };
+		F9CE8A842B209D2000312090 /* PostModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8A832B209D2000312090 /* PostModelTests.swift */; };
+		F9CE8A862B209D9300312090 /* CommentModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8A852B209D9300312090 /* CommentModelTests.swift */; };
+		F9CE8A892B29AB5D00312090 /* UserControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8A882B29AB5D00312090 /* UserControllerTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F95D52FF2B2AEAA10072B137 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F15DB2232AE8B7370031FD75 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F15DB22A2AE8B7370031FD75;
+			remoteInfo = BusyBee;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2FA8153A2B25017700F66B81 /* GoalWrappedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalWrappedView.swift; sourceTree = "<group>"; };
@@ -108,10 +133,24 @@
 		F1C7F65B2B16724D00A61DE4 /* ReactionsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsComponent.swift; sourceTree = "<group>"; };
 		F1C7F65D2B1674D300A61DE4 /* EditGoalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGoalView.swift; sourceTree = "<group>"; };
 		F1C7F65F2B1835EE00A61DE4 /* CommentSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSheetView.swift; sourceTree = "<group>"; };
+		F95D52F32B29CAD30072B137 /* SearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTests.swift; sourceTree = "<group>"; };
+		F95D52F52B29CBD30072B137 /* CameraViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModelTests.swift; sourceTree = "<group>"; };
+		F95D52F72B29CCA10072B137 /* AuthViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelTests.swift; sourceTree = "<group>"; };
+		F95D52F92B29D6E70072B137 /* CameraControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControllerTests.swift; sourceTree = "<group>"; };
+		F95D52FB2B2A759A0072B137 /* HoneyJarViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneyJarViewControllerTests.swift; sourceTree = "<group>"; };
 		F9908DAF2AF4AEE000415845 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
 		F9908DB32AFB090300415845 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		F9908DB52AFB092800415845 /* CameraControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControlsView.swift; sourceTree = "<group>"; };
+		F9A2EBCF2B2088DC0014A91C /* UserModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UserModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9A2EBD12B2088DC0014A91C /* UserModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelTests.swift; sourceTree = "<group>"; };
 		F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCodeConverter.swift; sourceTree = "<group>"; };
+		F9CE8A752B208E0600312090 /* NotificationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		F9CE8A7F2B209C0200312090 /* GoalModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModelTests.swift; sourceTree = "<group>"; };
+		F9CE8A812B209CC600312090 /* SubgoalModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubgoalModelTests.swift; sourceTree = "<group>"; };
+		F9CE8A832B209D2000312090 /* PostModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModelTests.swift; sourceTree = "<group>"; };
+		F9CE8A852B209D9300312090 /* CommentModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModelTests.swift; sourceTree = "<group>"; };
+		F9CE8A872B2484CA00312090 /* BusyBeeCoverage.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = BusyBeeCoverage.xctestplan; sourceTree = "<group>"; };
+		F9CE8A882B29AB5D00312090 /* UserControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +162,17 @@
 				59F546452AF591F6002C9079 /* FirebaseStorage in Frameworks */,
 				F10BDA572AF2F31B00C44070 /* FirebaseAuth in Frameworks */,
 				F15DB24C2AE8E3FD0031FD75 /* FirebaseFirestoreSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9A2EBCC2B2088DC0014A91C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9CE8A782B20911F00312090 /* FirebaseFirestore in Frameworks */,
+				F9CE8A7C2B20913500312090 /* FirebaseAuth in Frameworks */,
+				F9CE8A7A2B20912900312090 /* FirebaseStorage in Frameworks */,
+				F9CE8A7E2B20914200312090 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,9 +211,12 @@
 		F15DB2222AE8B7370031FD75 = {
 			isa = PBXGroup;
 			children = (
+				F9CE8A872B2484CA00312090 /* BusyBeeCoverage.xctestplan */,
 				F15DB22D2AE8B7370031FD75 /* BusyBee */,
+				F9A2EBD02B2088DC0014A91C /* UnitTests */,
 				F15DB22C2AE8B7370031FD75 /* Products */,
 				F10BDA552AF2F31B00C44070 /* Frameworks */,
+				F95D52FE2B2AE6430072B137 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				F15DB22B2AE8B7370031FD75 /* BusyBee.app */,
+				F9A2EBCF2B2088DC0014A91C /* UserModelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -265,6 +319,32 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
+		F95D52FE2B2AE6430072B137 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				F9CE8A752B208E0600312090 /* NotificationsView.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		F9A2EBD02B2088DC0014A91C /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				F9A2EBD12B2088DC0014A91C /* UserModelTests.swift */,
+				F9CE8A7F2B209C0200312090 /* GoalModelTests.swift */,
+				F9CE8A812B209CC600312090 /* SubgoalModelTests.swift */,
+				F9CE8A832B209D2000312090 /* PostModelTests.swift */,
+				F9CE8A852B209D9300312090 /* CommentModelTests.swift */,
+				F9CE8A882B29AB5D00312090 /* UserControllerTests.swift */,
+				F95D52F32B29CAD30072B137 /* SearchViewModelTests.swift */,
+				F95D52F52B29CBD30072B137 /* CameraViewModelTests.swift */,
+				F95D52F72B29CCA10072B137 /* AuthViewModelTests.swift */,
+				F95D52F92B29D6E70072B137 /* CameraControllerTests.swift */,
+				F95D52FB2B2A759A0072B137 /* HoneyJarViewControllerTests.swift */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -291,6 +371,30 @@
 			productReference = F15DB22B2AE8B7370031FD75 /* BusyBee.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F9A2EBCE2B2088DC0014A91C /* UserModelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9A2EBD72B2088DC0014A91C /* Build configuration list for PBXNativeTarget "UserModelTests" */;
+			buildPhases = (
+				F9A2EBCB2B2088DC0014A91C /* Sources */,
+				F9A2EBCC2B2088DC0014A91C /* Frameworks */,
+				F9A2EBCD2B2088DC0014A91C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F95D53002B2AEAA10072B137 /* PBXTargetDependency */,
+			);
+			name = UserModelTests;
+			packageProductDependencies = (
+				F9CE8A772B20911F00312090 /* FirebaseFirestore */,
+				F9CE8A792B20912900312090 /* FirebaseStorage */,
+				F9CE8A7B2B20913500312090 /* FirebaseAuth */,
+				F9CE8A7D2B20914200312090 /* FirebaseFirestoreSwift */,
+			);
+			productName = UserModelTests;
+			productReference = F9A2EBCF2B2088DC0014A91C /* UserModelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -303,6 +407,10 @@
 				TargetAttributes = {
 					F15DB22A2AE8B7370031FD75 = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					F9A2EBCE2B2088DC0014A91C = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = F15DB22A2AE8B7370031FD75;
 					};
 				};
 			};
@@ -323,6 +431,7 @@
 			projectRoot = "";
 			targets = (
 				F15DB22A2AE8B7370031FD75 /* BusyBee */,
+				F9A2EBCE2B2088DC0014A91C /* UserModelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -336,6 +445,13 @@
 				F1C7F65A2B15C15200A61DE4 /* GoogleService-Info.plist in Resources */,
 				F15DB2332AE8B73A0031FD75 /* Assets.xcassets in Resources */,
 				F1123C7B2AF7565D005C0588 /* Lato-Regular.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9A2EBCD2B2088DC0014A91C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,7 +509,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F9A2EBCB2B2088DC0014A91C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9CE8A862B209D9300312090 /* CommentModelTests.swift in Sources */,
+				F9CE8A802B209C0200312090 /* GoalModelTests.swift in Sources */,
+				F9CE8A892B29AB5D00312090 /* UserControllerTests.swift in Sources */,
+				F9CE8A842B209D2000312090 /* PostModelTests.swift in Sources */,
+				F95D52FA2B29D6E70072B137 /* CameraControllerTests.swift in Sources */,
+				F9A2EBD22B2088DC0014A91C /* UserModelTests.swift in Sources */,
+				F95D52F82B29CCA10072B137 /* AuthViewModelTests.swift in Sources */,
+				F95D52F62B29CBD30072B137 /* CameraViewModelTests.swift in Sources */,
+				F95D52F42B29CAD30072B137 /* SearchViewModelTests.swift in Sources */,
+				F95D52FC2B2A759A0072B137 /* HoneyJarViewControllerTests.swift in Sources */,
+				F9CE8A822B209CC600312090 /* SubgoalModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F95D53002B2AEAA10072B137 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F15DB22A2AE8B7370031FD75 /* BusyBee */;
+			targetProxy = F95D52FF2B2AEAA10072B137 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F15DB2372AE8B73A0031FD75 /* Debug */ = {
@@ -520,7 +662,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BusyBee/Preview Content\"";
+
 				DEVELOPMENT_TEAM = TZD8338J4G;
+
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BusyBee/Info.plist;
@@ -554,7 +698,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BusyBee/Preview Content\"";
+
 				DEVELOPMENT_TEAM = TZD8338J4G;
+
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BusyBee/Info.plist;
@@ -580,6 +726,44 @@
 			};
 			name = Release;
 		};
+		F9A2EBD52B2088DC0014A91C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SCYH2Z3SVC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.cmuis.UserModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BusyBee.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BusyBee";
+			};
+			name = Debug;
+		};
+		F9A2EBD62B2088DC0014A91C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SCYH2Z3SVC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.cmuis.UserModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BusyBee.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BusyBee";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -597,6 +781,15 @@
 			buildConfigurations = (
 				F15DB23A2AE8B73A0031FD75 /* Debug */,
 				F15DB23B2AE8B73A0031FD75 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F9A2EBD72B2088DC0014A91C /* Build configuration list for PBXNativeTarget "UserModelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9A2EBD52B2088DC0014A91C /* Debug */,
+				F9A2EBD62B2088DC0014A91C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -631,6 +824,26 @@
 			productName = FirebaseFirestore;
 		};
 		F15DB24B2AE8E3FD0031FD75 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F15DB2482AE8E3FD0031FD75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		F9CE8A772B20911F00312090 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F15DB2482AE8E3FD0031FD75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		F9CE8A792B20912900312090 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F15DB2482AE8E3FD0031FD75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		F9CE8A7B2B20913500312090 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F15DB2482AE8E3FD0031FD75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		F9CE8A7D2B20914200312090 /* FirebaseFirestoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F15DB2482AE8E3FD0031FD75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;

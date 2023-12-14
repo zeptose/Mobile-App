@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "690950AD-BF8A-432D-A19B-3763D0522A3A",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:BusyBee.xcodeproj",
+      "identifier" : "F15DB22A2AE8B7370031FD75",
+      "name" : "BusyBee"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BusyBee.xcodeproj",
+        "identifier" : "F9A2EBCE2B2088DC0014A91C",
+        "name" : "UserModelTests"
+      }
+    }
+  ],
+  "version" : 1
+}
