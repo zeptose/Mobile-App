@@ -13,7 +13,7 @@ struct ContentView: View {
     @EnvironmentObject var userController: UserController
     @EnvironmentObject var postController: PostController
     @EnvironmentObject var goalController: GoalController
-//    @EnvironmentObject var cameraController: CameraController
+    @EnvironmentObject var cameraController: CameraController
     
     let customMaroon = Color(UIColor(hex: "#992409"))
   
