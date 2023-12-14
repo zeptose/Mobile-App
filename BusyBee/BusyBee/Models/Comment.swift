@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 import FirebaseFirestoreSwift
 
 struct Comment: Identifiable, Codable, Comparable, Hashable {
