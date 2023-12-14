@@ -39,7 +39,7 @@ struct ProfileView: View {
                               Task {
                                 viewModel.signOut()
                               }
-                            }.padding()
+                            }.padding().foregroundColor(Color.black)
                           } else{
                             HStack{}.padding(.top, 35)
                           }
@@ -74,7 +74,7 @@ struct ProfileView: View {
 //                        Spacer()
                         VStack {
                           Text(updatedUser!.username)
-                            .font(.system(size: 32))
+                            .font(Font.custom("Quicksand-Regular", size: 32))
                             .bold()
                             .padding(.bottom, 9)
 
@@ -82,8 +82,9 @@ struct ProfileView: View {
                           if let bio = updatedUser?.bio {
                             if bio != "" {
                               Text(bio)
-                                .font(.subheadline)
+                                .font(Font.custom("Quicksand-Bold", size: 16))
                                 .foregroundColor(.gray)
+                                .font(Font.custom("Quicksand-Regular", size: 16))
                             }
                           }
                         }

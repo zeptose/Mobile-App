@@ -39,8 +39,8 @@ struct EditGoalView: View {
       ScrollView {
         VStack(alignment: .leading){
           Group{
-            Text("Goal Name").font(.headline)
-            Text("Change your goal name!").font(.subheadline).foregroundColor(.gray)
+            Text("Goal Name").font(Font.custom("Quicksand-Bold", size: 20))
+            Text("Change your goal name!").font(Font.custom("Quicksand-Regular", size: 16)).foregroundColor(.gray)
             TextField("Enter Goal Name", text: $goalName)
               .padding(10)
               .background(
@@ -48,8 +48,8 @@ struct EditGoalView: View {
 
                   .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
               )
-            Text("Description").font(.headline)
-            Text("Change your description!").font(.subheadline).foregroundColor(.gray)
+            Text("Description").font(Font.custom("Quicksand-Bold", size: 20))
+            Text("Change your description!").font(Font.custom("Quicksand-Regular", size: 16)).foregroundColor(.gray)
             TextField("Enter Description", text: Binding(
               get: { goalDescription ?? "" },
               set: { goalDescription = $0 }
@@ -60,8 +60,8 @@ struct EditGoalView: View {
 
                 .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
             )
-            Text("Due Date").font(.headline)
-            Text("When do you want this goal to be completed?").font(.subheadline).foregroundColor(.gray)
+            Text("Due Date").font(Font.custom("Quicksand-Bold", size: 20))
+            Text("When do you want this goal to be completed?").font(Font.custom("Quicksand-Regular", size: 16)).foregroundColor(.gray)
             DatePicker("", selection: $dueDate, displayedComponents: .date)
               .labelsHidden()
               .padding(10)
@@ -73,7 +73,7 @@ struct EditGoalView: View {
               )
 
             Text("Frequency").font(.headline)
-            Text("How many posts do you want to make to reach your goal?").font(.subheadline).foregroundColor(.gray)
+            Text("How many posts do you want to make to reach your goal?").font(Font.custom("Quicksand-Regular", size: 16)).foregroundColor(.gray)
             TextField("Enter Frequency", text: $frequency)
               .keyboardType(.numberPad)
               .padding(10)
@@ -82,8 +82,8 @@ struct EditGoalView: View {
 
                   .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
               )
-            Text("Milestones").font(.headline)
-            Text("Edit your milestones!").font(.subheadline).foregroundColor(.gray)
+            Text("Milestones").font(Font.custom("Quicksand-Bold", size: 20))
+            Text("Edit your milestones!").font(Font.custom("Quicksand-Regular", size: 16)).foregroundColor(.gray)
             VStack {
               ScrollView {
                 ScrollViewReader { scrollView in
@@ -126,7 +126,7 @@ struct EditGoalView: View {
                   Image(systemName: "plus")
                     .foregroundColor(.white)
                   Text("Add Milestone")
-                    .font(.subheadline)
+                    font(Font.custom("Quicksand-Regular", size: 16))
                     .foregroundColor(.white)
                 }
                 .padding(8)

@@ -28,35 +28,35 @@ struct GoalCardView: View {
                     VStack(alignment: .leading) {
                         if goal.progress < goal.frequency {
                             Text(goal.name)
-                                .font(.headline)
+                                .font(Font.custom("Quicksand-Bold", size: 16))
                                 .foregroundColor(Color.black)
                                 .fontWeight(.bold)
                             if let dayDifference = dayDifference {
                                 if dayDifference == 1 {
                                     Text("\(dayDifference) Day Left")
-                                        .font(.subheadline)
+                                        .font(Font.custom("Quicksand-Regular", size: 16))
                                         .foregroundColor(.gray)
                                 } else if dayDifference >= 0 {
                                     Text("\(dayDifference) Days Left")
-                                        .font(.subheadline)
+                                        .font(Font.custom("Quicksand-Regular", size: 16))
                                         .foregroundColor(.gray)
                                 } else if dayDifference == -1 {
                                     Text("\(-1 * dayDifference) Day Overdue")
-                                        .font(.subheadline)
+                                        .font(Font.custom("Quicksand-Regular", size: 16))
                                         .foregroundColor(.gray)
                                 } else {
                                     Text("\(-1 * dayDifference) Days Overdue")
-                                        .font(.subheadline)
+                                        .font(Font.custom("Quicksand-Regular", size: 16))
                                         .foregroundColor(.gray)
                                 }
                             }
                             Text("\(goalController.getCountSubgoals(goal: goal)) Subgoals")
-                                .font(.subheadline)
+                                .font(Font.custom("Quicksand-Regular", size: 16))
                                 .foregroundColor(Color.gray)
                         } else {
                             HStack {
                                 Text(goal.name)
-                                    .font(.headline)
+                                    .font(Font.custom("Quicksand-Bold", size: 16))
                                     .foregroundColor(Color.black)
                                     .fontWeight(.bold)
                                 Spacer()
@@ -68,7 +68,7 @@ struct GoalCardView: View {
                                 let startDateString = dateFormatter.string(from: goal.dateStarted)
                                 let endDateString = dateFormatter.string(from: goal.dateEnded!)
                                 Text("\(startDateString) - \(endDateString)")
-                                    .font(.caption)
+                                .font(Font.custom("Quicksand-Regular", size: 14))
                                     .foregroundColor(.gray)
                             }
                             ScrollView(.horizontal, showsIndicators: false) {
@@ -98,7 +98,7 @@ struct GoalCardView: View {
                                             .foregroundColor(.green)
                                             .frame(width: 10, height: 10)
                                         Text("On Track")
-                                            .font(.subheadline)
+                                            .font(Font.custom("Quicksand-Bold", size: 16))
                                             .foregroundColor(Color.gray)
                                             
                                     }.padding(.trailing, 14)
@@ -108,7 +108,7 @@ struct GoalCardView: View {
                                             .foregroundColor(.red)
                                             .frame(width: 10, height: 10)
                                         Text("Overdue")
-                                            .font(.subheadline)
+                                            .font(Font.custom("Quicksand-Bold", size: 16))
                                             .foregroundColor(Color.gray)
                                             
                                     }.padding(.trailing, 13)

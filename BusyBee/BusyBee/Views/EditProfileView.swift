@@ -17,8 +17,8 @@ struct EditProfileView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                Text("Username").font(.headline)
-                Text("Change your username.").font(.subheadline).foregroundColor(.gray)
+                Text("Username").font(Font.custom("Quicksand-Bold", size: 20))
+                Text("Change your username.").font(Font.custom("Quicksand-Regular", size: 16)).foregroundColor(.gray)
                 TextField("Enter Username", text: $username)
                     .padding(10)
                     .background(
@@ -26,8 +26,8 @@ struct EditProfileView: View {
 
                                   .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
                           )
-                Text("Bio").font(.headline)
-                Text("Change your profile bio.").font(.subheadline).foregroundColor(.gray)
+                Text("Bio").font(Font.custom("Quicksand-Bold", size: 20))
+                Text("Change your profile bio.").font(Font.custom("Quicksand-Regular", size: 16)).foregroundColor(.gray)
                 TextField("Enter Bio", text: $bio)
                     .padding(10)
                     .background(
