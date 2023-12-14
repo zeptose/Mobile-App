@@ -39,7 +39,7 @@ struct IndividualGoalView: View {
                   .overlay(Circle().stroke(customYellow, lineWidth: 3))
                 if let goalUser = userController.getUserFromId(userId: goal.userId) {
                   Text(goalUser.username)
-                      .font(.system(size: 18))
+                      .font(Font.custom("Quicksand-Regular", size: 20))
                       .padding(.leading, 1)
                 }
                 Spacer()
@@ -52,14 +52,13 @@ struct IndividualGoalView: View {
             }.padding(.bottom, 20)
           
             Text(goal.name)
-              .font(.title)
-              .bold()
+              .font(Font.custom("Quicksand-Bold", size: 28))
               .padding(.leading, 10)
               .padding(.bottom, 1)
           
           Text("Started on \(dateFormatter.string(from: goal.dateStarted))")
             .foregroundColor(Color(UIColor(hex: "#4C4C4C")))
-            .font(.system(size: 18))
+            .font(Font.custom("Quicksand-Regular", size: 20))
             .padding(.leading, 10)
 //            .padding(.bottom, 2)
           
@@ -67,7 +66,7 @@ struct IndividualGoalView: View {
               if desc != "" {
                 Text(desc)
                   .foregroundColor(Color(UIColor(hex: "#4C4C4C")))
-                  .font(.system(size: 18))
+                  .font(Font.custom("Quicksand-Regular", size: 20))
                   .padding(.leading, 10)
 //                  .padding(.bottom, 2)
               }
@@ -113,7 +112,7 @@ struct IndividualGoalView: View {
                       .foregroundColor(.gray)
                       .padding(.leading, 20)
                     Text("\(goalController.getCountSubgoals(goal: goal)) subgoals")
-                      .font(.system(size: 13))
+                      .font(Font.custom("Quicksand-Regular", size: 14))
                       .foregroundColor(.gray)
                   }.padding(.bottom, 10)
                 } else {
@@ -125,7 +124,7 @@ struct IndividualGoalView: View {
                       .foregroundColor(.gray)
                       .padding(.leading, 20)
                     Text("\(goalController.getCountSubgoals(goal: goal)) subgoals")
-                      .font(.system(size: 13))
+                      .font(Font.custom("Quicksand-Regular", size: 14))
                       .foregroundColor(.gray)
                   }.padding(.bottom, 10)
                 }
@@ -158,7 +157,7 @@ struct IndividualGoalView: View {
                               .padding(.leading, 10)
 
                           Text(subgoal.name)
-                              .font(.system(size: 15))
+                              .font(Font.custom("Quicksand-Regular", size: 16))
                               .foregroundColor(.white)
                               .padding(.trailing, 10)
                       }
@@ -173,7 +172,7 @@ struct IndividualGoalView: View {
                     } else {
                       HStack(spacing: 10) {
                         Text(subgoal.name)
-                          .font(.system(size: 15))
+                          .font(Font.custom("Quicksand-Regular", size: 16))
                           .foregroundColor(.black)
                           .padding(.trailing, 10)
                           .padding(.leading, 10)
@@ -208,8 +207,7 @@ struct IndividualGoalView: View {
       if pastWeek != [] {
         VStack(alignment: .leading) {
           Text("Past Week")
-            .font(.system(size: 18))
-            .bold()
+            .font(Font.custom("Quicksand-Bold", size: 20))
             .padding(.leading, 20)
           ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 15) {
@@ -234,8 +232,7 @@ struct IndividualGoalView: View {
       if earlier != [] {
         VStack(alignment: .leading) {
           Text("Earlier")
-            .font(.system(size: 18))
-            .bold()
+            .font(Font.custom("Quicksand-Bold", size: 20))
             .padding(.leading, 20)
           ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 15) {
