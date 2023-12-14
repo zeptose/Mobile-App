@@ -133,8 +133,6 @@ struct NotificationRow: View {
                             .font(.callout) // Adjust the font size and style to match Instagram
                             .padding(.leading, 8)
                     }
-                    
-                    // ... (existing code for Follow/Unfollow button)
                 }
             }
         }

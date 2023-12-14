@@ -111,9 +111,14 @@ struct FeedItemView: View {
                 )
             }
           }
+          
+          
+
           // Image and Reactions
           ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
             // Photo
+            
+            
             Image(uiImage: postController.getImageFromURL(url: post.photo))
               .resizable()
               .scaledToFill()

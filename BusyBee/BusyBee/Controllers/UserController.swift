@@ -50,11 +50,11 @@ class UserController: ObservableObject {
         userRepository.update(curr)
         
         var currFollow = follow
-        currFollow.followers.append(curr.id)
+        currFollow.followers.append(currentUser.id)
         userRepository.update(currFollow)
         
-        let postcontroller = PostController()
-        let notifications = postcontroller.getNotificationsForCurrentUser(currentUser: currentUser)
+//        let postcontroller = PostController()
+//        let notifications = postcontroller.getNotificationsForCurrentUser(currentUser: currentUser)
         
       }
   
@@ -73,8 +73,8 @@ class UserController: ObservableObject {
           temp.followers.remove(at: ind2!)
           userRepository.update(temp)
         
-          let postcontroller = PostController()
-          let notifications = postcontroller.getNotificationsForCurrentUser(currentUser: currentUser)
+//          let postcontroller = PostController()
+//          let notifications = postcontroller.getNotificationsForCurrentUser(currentUser: currentUser)
       }
   
       func currentUserIsFollowingFollower(currentUser: User, followerId: String) -> Bool {

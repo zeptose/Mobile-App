@@ -177,10 +177,10 @@ struct GoalWrappedView: View {
                           return
                       }
 
-                      // Save the screenshot to the camera roll
+                     
                       UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
 
-                      // Call the backend saving function
+                      
                       cameraController.savePhotoToBackend(imageData: imageData)
                   }) {
                       Text("Save")
