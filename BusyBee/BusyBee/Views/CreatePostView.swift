@@ -67,8 +67,7 @@ struct CreatePostView: View {
   @State private var isShowingSubgoalList = false
   @State private var selectedGoals: [Goal] = []
   @State private var selectedSubgoals: [Subgoal] = []
-  
-  
+  let fieldPadding = EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15)
   
   var selectedGoal: Goal? {
     guard selectedGoalIndex >= 0 else{
@@ -91,7 +90,7 @@ struct CreatePostView: View {
           camera.capturedImage = nil
         }) {
           Image(systemName: "chevron.backward")
-            .foregroundColor(.black)
+                .foregroundColor(Color(UIColor(hex:"#F08355")))
             .padding()
             .font(.system(size: 30))
         }
@@ -102,8 +101,13 @@ struct CreatePostView: View {
         Spacer()
         
         Text("Share")
-            .foregroundColor(Color(UIColor(hex: "#992409")))
+            
             .font(Font.custom("Quicksand-Bold", size: 16))
+            .foregroundColor(.white)
+            .padding(10)
+            
+            .background(Color(UIColor(hex: "#992409")))
+            .cornerRadius(8)
             .onTapGesture {
                 guard let selectedGoal = selectedGoal else {
                     return
@@ -156,33 +160,37 @@ struct CreatePostView: View {
             .resizable()
             .aspectRatio(contentMode: .fill)
             .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.45)
-            .clipped()
+            .clipShape(RoundedRectangle(cornerRadius: 10))
             .padding(.horizontal, (geometry.size.width * 0.05))
           
-          TextField("Write a caption...🐝", text: $caption)
-            .textFieldStyle(DefaultTextFieldStyle())
-            .background(Color.white) // Set the background color to white
-            .cornerRadius(8)
-            .offset(x: 20)
-            .padding()
-          
+            TextField("Write a caption...🐝", text: $caption)
+                            .padding(10)
+                            .background(
+                                RoundedRectangle(cornerRadius: 15)
+                                
+                                    .strokeBorder(Color(UIColor(hex: "#9DB2CE")), lineWidth: 2)
+                            ).padding(fieldPadding)
         
-          Spacer().frame(height: 200)
+          Spacer().frame(height: 50)
         
       
-              HStack {
+            VStack(alignment: .leading) {
                 Text("Main Goal")
                   .font(Font.custom("Quicksand-Bold", size: 20))
                   .foregroundColor(.black)
-                  .offset(x: 30)
-                
-                Spacer()
-                
+                  .frame(alignment: .leading)
                 if selectedGoals.isEmpty {
-                  Text("Add")
-                    .foregroundColor(Color(UIColor(hex: "#992409")))
-                    .font(.system(size: 16, weight: .bold)) // Adjust size and weight as needed
-                    .padding(.leading, -5) // Negative padding moves the text to the left
+                    HStack {
+                        Text("Tag Goal")
+                            .font(Font.custom("Quicksand-Regular", size: 16))
+                            .foregroundColor(.gray)
+                        Spacer()
+                        Image(systemName: "plus")
+                        .foregroundColor(.gray)
+                    }
+                    .padding(8)
+                    .background(Color(UIColor(hex: "#E0E0E0"))).opacity(1)
+                    .cornerRadius(8)
                     .onTapGesture {
                       isShowingGoalList = true
                     }
@@ -190,51 +198,56 @@ struct CreatePostView: View {
                       GoalListView(selectedGoalIndex: $selectedGoalIndex, goals: goalController.getCurrentGoals(currentUser: viewModel.currentUser!), selectedGoals: $selectedGoals)
                     }
                 }
-              }.padding(.trailing).offset(y: -130)
+              }.padding(10)
               
               
               ForEach(selectedGoals, id: \.self) { goal in
-                ZStack {
-                  RoundedRectangle(cornerRadius: 15)
-                    .fill(Color.yellow)
-                    .frame(height: 30)
-                  
                   HStack {
                     Text(goal.name)
+                      .autocapitalization(.words)
+                      .padding(.leading, 10)
+                      .padding(.vertical, 5)
+                      .lineLimit(1)
+                      .background(
+                        RoundedRectangle(cornerRadius: 8)
+                          .fill(Color(UIColor(hex: "#E0E0E0")))
+                          .frame(width: UIScreen.main.bounds.width * 0.5)
+                          .padding(.leading, 10)
+                      )
+                      
+                      .padding(10)
+                      Spacer()
+                    
                     Button(action: {
                       if let index = selectedGoals.firstIndex(of: goal) {
                         selectedGoals.remove(at: index)
                       }
                     }) {
-                      Image(systemName: "minus.circle")
-                        .foregroundColor(.red)
+                      Image(systemName: "xmark")
+                        .foregroundColor(.black)
                     }
                   }
-                  .padding(.horizontal, 20)
                   
-                  
-                }
-                .frame(height: 30)
-                .padding(.horizontal)
-                .offset(y: -120)
-                
               }
 
-            VStack{
-                HStack {
-                  
-                  Text("Subgoals")
+            VStack(alignment: .leading){
+                  Text("Milestones")
                     .font(Font.custom("Quicksand-Bold", size: 20))
                     .foregroundColor(.black)
-                    .offset(x: 30)
-                  
-                  Spacer()
-                  
+                    .frame(alignment: .leading)
+                 
                   if selectedSubgoals.isEmpty {
-                    Text("Add")
-                        .foregroundColor(Color(UIColor(hex: "#992409")))
-                        .font(.system(size: 16, weight: .bold)) // Adjust size and weight as needed
-                        .padding(.leading, -5) // Negative padding moves the text to the left
+                      HStack {
+                          Text("Tag Milestone")
+                              .font(Font.custom("Quicksand-Regular", size: 16))
+                              .foregroundColor(.gray)
+                          Spacer()
+                          Image(systemName: "plus")
+                          .foregroundColor(.gray)
+                      }
+                      .padding(8)
+                      .background(Color(UIColor(hex: "#E0E0E0"))).opacity(1)
+                      .cornerRadius(8)
                         .onTapGesture {
                           isShowingSubgoalList = true
                         }
@@ -246,36 +259,40 @@ struct CreatePostView: View {
                       }
                     }
                   }
-              }
-            }.padding(.trailing).offset(y: -100)
+              
+            }.padding(10)
             
             
             
             
             ForEach(selectedSubgoals, id: \.self) { subgoal in
               ZStack {
-                RoundedRectangle(cornerRadius: 15)
-                  .fill(Color.yellow)
-                  .frame(height: 30)
+                
                 
                 HStack {
-                  Text(subgoal.name)
+                    Text(subgoal.name)
+                      .autocapitalization(.words)
+                      .padding(.leading, 10)
+                      .padding(.vertical, 5)
+                      .lineLimit(1)
+                      .background(
+                        RoundedRectangle(cornerRadius: 8)
+                          .fill(Color(UIColor(hex: "#E0E0E0")))
+                          .frame(width: UIScreen.main.bounds.width * 0.5)
+                          .padding(.leading, 10)
+                      )
+                      
+                      .padding(10)
                   Button(action: {
                     if let index = selectedSubgoals.firstIndex(of: subgoal) {
                       selectedSubgoals.remove(at: index)
                     }
                   }) {
-                    Image(systemName: "minus.circle")
-                      .foregroundColor(.red)
+                    Image(systemName: "xmark")
+                      .foregroundColor(.black)
                   }
                 }
-                .padding(.horizontal, 10)
-                
-                
               }
-              .frame(height: 30)
-              .padding(.horizontal)
-              .offset(y: -80)
             }
             }
           }
