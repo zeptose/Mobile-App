@@ -11,13 +11,11 @@ struct ReactionsComponent: View {
     var post: Post
     @EnvironmentObject var postController: PostController
     @EnvironmentObject var viewModel: AuthViewModel
-  @Binding var isShowingPopUp: Bool
-
   
   var body: some View {
     if let user = viewModel.currentUser {
       if let updatedPost = postController.getPostFromId(postId: post.id!) {
-        let hexagonSize : CGFloat = 55
+        let hexagonSize : CGFloat = 42
         VStack(alignment: .leading) {
           // reaction 1
           if postController.didUserReact1(userId: user.id, post: updatedPost) {
@@ -54,7 +52,6 @@ struct ReactionsComponent: View {
                   .frame(width: hexagonSize, height: hexagonSize, alignment: .leading)
             }
             .buttonStyle(BorderlessButtonStyle())
-            
           } else {
             Button(action: {
               postController.reactToPost(userId: user.id, reactionNum: 2, post: updatedPost)
@@ -65,7 +62,6 @@ struct ReactionsComponent: View {
                   .frame(width: hexagonSize, height: hexagonSize, alignment: .leading)
             }
             .buttonStyle(BorderlessButtonStyle())
-            
           }
           
           //reaction 3
@@ -78,7 +74,7 @@ struct ReactionsComponent: View {
                   .aspectRatio(contentMode: .fit)
                   .frame(width: hexagonSize, height: hexagonSize, alignment: .leading)
             }
-            
+            .buttonStyle(BorderlessButtonStyle())
           } else {
             Button(action: {
               postController.reactToPost(userId: user.id, reactionNum: 3, post: updatedPost)
@@ -89,7 +85,6 @@ struct ReactionsComponent: View {
                 .frame(width: hexagonSize, height: hexagonSize, alignment: .leading)
             }
             .buttonStyle(BorderlessButtonStyle())
-            
           }
           
           // reaction 4
@@ -104,7 +99,6 @@ struct ReactionsComponent: View {
             }
             .padding(1)
             .buttonStyle(BorderlessButtonStyle())
-            
           } else {
             Button(action: {
               postController.reactToPost(userId: user.id, reactionNum: 4, post: updatedPost)
@@ -116,15 +110,10 @@ struct ReactionsComponent: View {
             }
             .padding(1)
             .buttonStyle(BorderlessButtonStyle())
-            
           }
-
         }
-        
-
       }
     }
-      
   }
 }
 

@@ -18,23 +18,27 @@ struct AppView: View {
       HomeView(user: viewModel.currentUser)
         .tabItem {
           Image(systemName: "house")
+          Text("Home")
         }
         .tag(0)
       CameraView()
         .tabItem {
           Image(systemName: "camera")
+          Text("Camera")
         }
         .tag(1)
       
       NotificationView()
         .tabItem {
           Image(systemName: "heart")
+          Text("Notifications")
         }
         .tag(2)
       
       ProfileView(user: viewModel.currentUser)
         .tabItem {
           Image(systemName: "person")
+          Text("Profile")
             .padding()
         }
         .tag(3)

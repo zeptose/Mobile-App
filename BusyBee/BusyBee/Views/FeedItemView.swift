@@ -124,14 +124,14 @@ struct FeedItemView: View {
             
             VStack(alignment: .leading){
               if isShowingPopUp {
-                ReactionsComponent(post: post, isShowingPopUp: $isShowingPopUp)
+                ReactionsComponent(post: post)
                 Button(action: {
                   isShowingPopUp.toggle()
                 }) {
                   Image("Reaction")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 55, height: 55, alignment: .leading)
+                    .frame(width: 48, height: 48, alignment: .leading)
                 }
               } else {
                 Button(action: {
@@ -140,7 +140,7 @@ struct FeedItemView: View {
                   Image("bwHexagon")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 55, height: 55, alignment: .leading)
+                    .frame(width: 48, height: 48, alignment: .leading)
                 }
               }
             }
@@ -182,9 +182,9 @@ struct FeedItemView: View {
           
           Text("View Comments")
             .foregroundColor(.gray)
-            .font(.system(size: 14))
+            .font(.system(size: 12))
             .padding(.leading, 1.25)
-            .padding(.top, -15)
+            .padding(.top, -20)
             .onTapGesture {
               isSheetPresented.toggle()
             }
@@ -194,7 +194,6 @@ struct FeedItemView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
 
         }
-
       }
       if let post = postController.getPostFromId(postId: currentPost.id!) {
         if let feedUser = userController.getUserFromId(userId: userId){
