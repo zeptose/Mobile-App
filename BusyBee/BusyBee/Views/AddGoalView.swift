@@ -146,93 +146,128 @@ struct AddGoalView: View {
                         Text("Add smaller steps that you want to take to reach your goal!").font(.subheadline).foregroundColor(.gray).padding(textPadding)
                         VStack {
                             ScrollView {
+                              VStack{
                                 ScrollViewReader { scrollView in
-                                    ForEach(subgoals.indices, id: \.self) { index in
-                                        HStack {
-                                            TextField("Enter Milestone", text: $subgoals[index])
-                                                .autocapitalization(.words)
-                                                .padding(.leading, 10)
-                                                .padding(.vertical, 5)
-                                                .lineLimit(1)
-                                                .background(
-                                                    RoundedRectangle(cornerRadius: 15)
-                                                        .fill(Color(UIColor(hex: "#E0E0E0")))
-                                                )
-                                                .padding(10)
-                                            Button(action: {
-                                                subgoals.remove(at: index)
-                                            }) {
-                                                Image(systemName: "minus")
-                                                    .foregroundColor(Color(UIColor(hex: "#992409")))
-                                                    .padding(.trailing, 10)
-                                            }
-                                        }
+                                  ForEach(subgoals.indices, id: \.self) { index in
+                                    HStack {
+                                      TextField("Enter Milestone", text: $subgoals[index])
+                                        .autocapitalization(.words)
+                                        .padding(.leading, 10)
+                                        .padding(.vertical, 5)
+                                        .lineLimit(1)
+                                        .background(
+                                          RoundedRectangle(cornerRadius: 15)
+                                            .fill(Color(UIColor(hex: "#E0E0E0")))
+                                        )
+                                        .padding(10)
+                                      Button(action: {
+                                        subgoals.remove(at: index)
+                                      }) {
+                                        Image(systemName: "xmark")
+                                          .foregroundColor(Color(UIColor(hex: "#000000")))
+                                          .padding(.trailing, 10)
+                                      }
                                     }
-                                    .onChange(of: subgoals.count) { _ in
-                                        if scrollToBottom {
-                                            withAnimation {
-                                                scrollView.scrollTo(subgoals.count - 1, anchor: .bottom)
-                                            }
-                                            scrollToBottom = false
-                                        }
+                                  }
+                                  .onChange(of: subgoals.count) { _ in
+                                    if scrollToBottom {
+                                      withAnimation {
+                                        scrollView.scrollTo(subgoals.count - 1, anchor: .bottom)
+                                      }
+                                      scrollToBottom = false
                                     }
+                                  }
                                 }
+                              }
+                              Button {
+                                  subgoals.append("")
+                                  scrollToBottom = true
+                              } label: {
+                                  HStack {
+                                      Image(systemName: "plus")
+                                      .foregroundColor(.gray)
+                                      Text("Add Milestone")
+                                          .font(.subheadline)
+                                          .foregroundColor(.gray)
+                                  }
+                                  .padding(8)
+                                  .background(Color(UIColor(hex: "#E0E0E0"))).opacity(1)
+                                  .cornerRadius(8)
+                                  .padding(.leading, 10)
+                                  .padding(.vertical, 5)
+
+                              }
                             }
-                            Button {
-                                subgoals.append("")
-                                scrollToBottom = true
-                            } label: {
-                                HStack {
-                                    Image(systemName: "plus")
-                                        .foregroundColor(.white)
-                                    Text("Add Milestone")
-                                        .font(.subheadline)
-                                        .foregroundColor(.white)
-                                }
-                                .padding(8)
-                                .background(Color(UIColor(hex: "#992409"))).opacity(1)
-                                .clipShape(Capsule())
-                            }
+                            
                         }
                     }
                
                 
-                HStack {
-                   
-                    if currentStep > 0 {
-                        Button("Previous") {
-                            withAnimation {
-                                currentStep -= 1
-                            }
-                        }
-                        .padding()
-                        .foregroundColor(Color(UIColor(hex: "#992409")))
-                    }
-                    Spacer()
-                    if currentStep < 5 {
-                        Button("Next") {
-                            withAnimation {
-                                if currentStep < 5 {
-                                    currentStep += 1
-                                }
-                            }
-                        }
-                        .padding()
-                        .foregroundColor(Color(UIColor(hex: "#992409")))
-                    } else {
-                        Button {
-                            Task {
-                                try await goalController.addnewGoal(currentUser: user, name: goalName, desc: goalDescription, dueDate: dueDate, frequency: Int(frequency) ?? 1, subGoalStr: subgoals)
-                                presentationMode.wrappedValue.dismiss()
-                            }
-                        } label: {
-                            Text("Add Goal")
-                                .bold()
-                                .foregroundColor(Color(UIColor(hex: "#992409")))
-                        }.padding()
-                        
-                    }
-                }
+              HStack {
+                  if currentStep > 0 {
+                      Button(action: {
+                          withAnimation {
+                              currentStep -= 1
+                          }
+                      }) {
+                          HStack {
+                              Image(systemName: "chevron.left")
+                              Text("Previous")
+                          }
+                          .padding(.vertical, 10)
+                          .padding(.horizontal, 16)
+                          .foregroundColor(Color(UIColor(hex: "#992409")))
+                      }
+                      .padding(.leading, 32)
+                      .padding(.bottom, 10)
+                  }
+                  
+                  Spacer()
+                  
+                  if currentStep < 5 {
+                      Button(action: {
+                          withAnimation {
+                              if currentStep < 5 {
+                                  currentStep += 1
+                              }
+                          }
+                      }) {
+                          HStack {
+                              Text("Next")
+                              Image(systemName: "chevron.right")
+                          }
+                          .padding(.vertical, 10)
+                          .padding(.horizontal, 16)
+                          .foregroundColor(.white)
+                          .background(Color(UIColor(hex: "#992409")))
+                          .cornerRadius(8)
+                      }
+                      .padding(.leading, 8)
+                      .padding(.trailing, 32)
+                  } else {
+                      Button(action: {
+                          Task {
+                              try await goalController.addnewGoal(currentUser: user, name: goalName, desc: goalDescription, dueDate: dueDate, frequency: Int(frequency) ?? 1, subGoalStr: subgoals)
+                              presentationMode.wrappedValue.dismiss()
+                          }
+                      }) {
+                          HStack {
+                              Text("Confirm")
+                              Image(systemName: "checkmark")
+                          }
+                          .padding(.vertical, 10)
+                          .padding(.horizontal, 16)
+                          .foregroundColor(.white)
+                          .background(Color(UIColor(hex: "#992409")))
+                          .cornerRadius(8)
+                      }
+                      .padding(.leading, 8)
+                      .padding(.trailing, 32)
+                  }
+              }
+
+
+
             }
         }.navigationBarTitle("New Goal")
     }
