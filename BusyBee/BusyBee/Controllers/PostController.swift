@@ -21,6 +21,7 @@ class PostController: ObservableObject {
   @Published var userController: UserController = UserController()
   @Published var goalController: GoalController = GoalController()
   @Published var comments: [Comment] = []
+//  @Published var viewModel: PostViewModel = PostViewModel()
   
   init() {
     self.postRepository.get({ (posts) -> Void in
@@ -47,7 +48,19 @@ class PostController: ObservableObject {
                        reaction3: [],
                        reaction4: [])
     
-    postRepository.create(newPost)
+ 
+    postRepository.create(newPost) {
+        self.postRepository.refreshFirestoreData()
+        // Fetch and append the photo after creating the post
+        let _ = self.postRepository.getPhoto({ image in
+            DispatchQueue.main.async {
+                self.images.append((photo, image))
+                print("Image added to images array:", self.images)
+            }
+        }, photo)
+    }
+    
+   
     
     if subgoalId != "-1"{
       if let sgId = subgoalId {
@@ -87,7 +100,7 @@ class PostController: ObservableObject {
     print(photo)
     let url = "\(UUID().uuidString).jpg"
     let storageRef = Storage.storage().reference().child(url)
-    let data = photo.jpegData(compressionQuality: 0.1)
+    let data = photo.jpegData(compressionQuality: 0.01)
     let metadata = StorageMetadata()
     metadata.contentType = "image/jpg"
     if let data = data {
@@ -105,11 +118,14 @@ class PostController: ObservableObject {
   }
   
   func getImageFromURL(url: String) -> UIImage {
+    
     if let (_, image): (String, UIImage) = (self.images.first { $0.0 == url }) {
       return image
     }
     return UIImage()
   }
+
+
   
   func getFeedPosts(currUser: User) -> [Post] {
     let people: [User] = userController.getUserFriends(currentUser: currUser) + [currUser]
@@ -423,7 +439,7 @@ class PostController: ObservableObject {
       
       
       for followerId in currentUser.followers {
-        if let follower = userController.getUserFromId(userId: followerId) {
+        if let _ = userController.getUserFromId(userId: followerId) {
           let notification = AppNotification(type: .follow, postId: "", commenterId: followerId, timestamp: Date(), info: followerId)
           notifications.append(notification)
         }
@@ -431,6 +447,9 @@ class PostController: ObservableObject {
       
       return notifications
     }
+  
+    
+   
     func numReactions(goal: Goal) -> Int {
         let posts = getPostsForGoal(goalId: goal.id)
         var count = 0

@@ -6,7 +6,7 @@ struct AppView: View {
   @EnvironmentObject var postController : PostController
   @EnvironmentObject var goalController: GoalController
   @EnvironmentObject var viewModel: AuthViewModel
-//  @EnvironmentObject var cameraController : CameraController
+  @EnvironmentObject var cameraController : CameraController
   
   @State private var showAlert = false
   
@@ -18,28 +18,31 @@ struct AppView: View {
       HomeView(user: viewModel.currentUser)
         .tabItem {
           Image(systemName: "house")
+         
         }
         .tag(0)
-//      CameraView()
-//        .tabItem {
-//          Image(systemName: "camera")
-//        }
-//        .tag(1)
+      CameraView()
+        .tabItem {
+          Image(systemName: "camera")
+          
+        }
+        .tag(1)
       
       NotificationView()
         .tabItem {
           Image(systemName: "heart")
+         
         }
         .tag(2)
       
       ProfileView(user: viewModel.currentUser)
         .tabItem {
           Image(systemName: "person")
+         
             .padding()
         }
         .tag(3)
     }
-
     .navigationBarTitleDisplayMode(.inline)
     .navigationBarBackButtonHidden(true)
     .accentColor(Color(UIColor(hex: "F08355")))
