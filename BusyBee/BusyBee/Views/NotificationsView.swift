@@ -56,6 +56,7 @@ struct NotificationView: View {
         .resizable()
         .aspectRatio(contentMode: .fit)
         .frame(width: 120)
+        .padding(.top, 5).padding(.bottom, 5)
       
       List {
         ForEach(notifications, id: \.self) { notification in
@@ -134,7 +135,7 @@ struct NotificationRow: View {
                             .padding(.leading, 8)
                     }
                     
-                    // ... (existing code for Follow/Unfollow button)
+                  
                 }
             }
         }
