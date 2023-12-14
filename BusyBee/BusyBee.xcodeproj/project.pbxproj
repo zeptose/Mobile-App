@@ -78,7 +78,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F9A2EBD32B2088DC0014A91C /* PBXContainerItemProxy */ = {
+		F95D52FF2B2AEAA10072B137 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F15DB2232AE8B7370031FD75 /* Project object */;
 			proxyType = 1;
@@ -217,6 +217,7 @@
 				F9A2EBD02B2088DC0014A91C /* UnitTests */,
 				F15DB22C2AE8B7370031FD75 /* Products */,
 				F10BDA552AF2F31B00C44070 /* Frameworks */,
+				F95D52FE2B2AE6430072B137 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -291,12 +292,8 @@
 				F1C7F65D2B1674D300A61DE4 /* EditGoalView.swift */,
 				2FBB027B2B186D4900044A36 /* GoalCardView.swift */,
 				2FBB027D2B186D6E00044A36 /* HoneyJarView.swift */,
-<<<<<<< HEAD
-				F9CE8A752B208E0600312090 /* NotificationsView.swift */,
-=======
 				F1C6FB362B2247A800DAA147 /* EditPostView.swift */,
 				2FA8153A2B25017700F66B81 /* GoalWrappedView.swift */,
->>>>>>> a926ceba121d3f217805ab00b31ee19d2644d456
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -321,6 +318,14 @@
 				F9908DB52AFB092800415845 /* CameraControlsView.swift */,
 			);
 			path = Camera;
+			sourceTree = "<group>";
+		};
+		F95D52FE2B2AE6430072B137 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				F9CE8A752B208E0600312090 /* NotificationsView.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		F9A2EBD02B2088DC0014A91C /* UnitTests */ = {
@@ -378,7 +383,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				F9A2EBD42B2088DC0014A91C /* PBXTargetDependency */,
+				F95D53002B2AEAA10072B137 /* PBXTargetDependency */,
 			);
 			name = UserModelTests;
 			packageProductDependencies = (
@@ -502,7 +507,6 @@
 				5980FC3D2AF1BF14003053BB /* RegistrationView.swift in Sources */,
 				F1C6FB372B2247A800DAA147 /* EditPostView.swift in Sources */,
 				5995CEC22AF58871004C9158 /* PostController.swift in Sources */,
-				F9CE8A762B208E0600312090 /* NotificationsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,10 +531,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F9A2EBD42B2088DC0014A91C /* PBXTargetDependency */ = {
+		F95D53002B2AEAA10072B137 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F15DB22A2AE8B7370031FD75 /* BusyBee */;
-			targetProxy = F9A2EBD32B2088DC0014A91C /* PBXContainerItemProxy */;
+			targetProxy = F95D52FF2B2AEAA10072B137 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -659,11 +663,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BusyBee/Preview Content\"";
-<<<<<<< HEAD
 				DEVELOPMENT_TEAM = SCYH2Z3SVC;
-=======
-				DEVELOPMENT_TEAM = 83S2CV3ZRK;
->>>>>>> a926ceba121d3f217805ab00b31ee19d2644d456
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BusyBee/Info.plist;
@@ -697,11 +697,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BusyBee/Preview Content\"";
-<<<<<<< HEAD
 				DEVELOPMENT_TEAM = SCYH2Z3SVC;
-=======
-				DEVELOPMENT_TEAM = 83S2CV3ZRK;
->>>>>>> a926ceba121d3f217805ab00b31ee19d2644d456
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BusyBee/Info.plist;
