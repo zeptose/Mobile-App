@@ -140,7 +140,7 @@ struct FeedItemView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 55, height: 55, alignment: .leading)
-                }
+                }.buttonStyle(BorderlessButtonStyle())
               } else {
                 Button(action: {
                   isShowingPopUp.toggle()
@@ -149,7 +149,7 @@ struct FeedItemView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 55, height: 55, alignment: .leading)
-                }
+                }.buttonStyle(BorderlessButtonStyle())
               }
             }
             .padding(.leading, 10)
