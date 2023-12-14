@@ -93,7 +93,7 @@ struct RegistrationFormView: View {
           .foregroundColor(Color.blue)
         //            }
 
-      }
+      }.font(Font.custom("Quicksand-Regular", size: 16))
       .padding()
       
       

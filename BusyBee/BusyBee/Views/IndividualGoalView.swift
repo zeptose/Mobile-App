@@ -78,12 +78,12 @@ struct IndividualGoalView: View {
             let progressBarMax = UIScreen.main.bounds.width * 0.8
             HStack {
               Text("\(goal.progress)/\(goal.frequency) photos")
-                .font(.subheadline)
+                .font(Font.custom("Quicksand-Bold", size: 16))
                 .foregroundColor(.black)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 20)
               Text(postController.daysUntilDate(goal.dueDate))
-                .font(.subheadline)
+                .font(Font.custom("Quicksand-Bold", size: 16))
                 .foregroundColor(.black)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.trailing, 20)

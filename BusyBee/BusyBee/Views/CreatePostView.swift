@@ -54,7 +54,7 @@ struct SubgoalListView: View {
 struct CreatePostView: View {
   var uiImage: UIImage
   @State private var caption: String = ""
-  @EnvironmentObject var camera: CameraController
+//  @EnvironmentObject var camera: CameraController
   @Environment(\.presentationMode) var presentationMode
   @EnvironmentObject var viewModel: AuthViewModel
   @EnvironmentObject var goalController: GoalController
@@ -87,15 +87,15 @@ struct CreatePostView: View {
   var body: some View {
     VStack {
       HStack {
-        Button(action: {
-          camera.capturedImage = nil
-        }) {
-          Image(systemName: "chevron.backward")
-            .foregroundColor(.black)
-            .padding()
-            .font(.system(size: 30))
-        }
-        .padding(.leading, 0)
+//        Button(action: {
+//          camera.capturedImage = nil
+//        }) {
+//          Image(systemName: "chevron.backward")
+//            .foregroundColor(.black)
+//            .padding()
+//            .font(.system(size: 30))
+//        }
+//        .padding(.leading, 0)
         
         Spacer()
         Spacer()
@@ -103,7 +103,7 @@ struct CreatePostView: View {
         
         Text("Share")
             .foregroundColor(Color(UIColor(hex: "#992409")))
-            .font(.system(size: 16, weight: .bold))
+            .font(Font.custom("Quicksand-Bold", size: 16))
             .onTapGesture {
                 guard let selectedGoal = selectedGoal else {
                     return
@@ -145,7 +145,8 @@ struct CreatePostView: View {
           .frame(width: 0, height: 0)
         )
         
-      }.zIndex(1).padding()
+      }.zIndex(1).padding(.horizontal, 20).padding(.vertical, -4)
+
       
   
 
@@ -171,7 +172,7 @@ struct CreatePostView: View {
       
               HStack {
                 Text("Main Goal")
-                  .font(.headline)
+                  .font(Font.custom("Quicksand-Bold", size: 20))
                   .foregroundColor(.black)
                   .offset(x: 30)
                 
@@ -223,7 +224,7 @@ struct CreatePostView: View {
                 HStack {
                   
                   Text("Subgoals")
-                    .font(.headline)
+                    .font(Font.custom("Quicksand-Bold", size: 20))
                     .foregroundColor(.black)
                     .offset(x: 30)
                   

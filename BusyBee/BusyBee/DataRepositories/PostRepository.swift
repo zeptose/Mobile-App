@@ -26,26 +26,48 @@ class PostRepository: ObservableObject {
   }
 
   func getPhoto(_ completionHandler: @escaping (_ image: UIImage) -> Void, _ url: String) -> Void {
+      print("Fetching photo for URL: \(url)")
+      self.refreshFirestoreData()
       let storage = Storage.storage()
       let ref = storage.reference().child(url)
+      
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+          ref.getData(maxSize: 1 * 1024 * 1024) { data, error in
+              if let error = error {
+                  print("Error getting photo \(url): \(error)")
+                  return
+              }
 
-      ref.getData(maxSize: 1 * 1024 * 1024) { data, error in
-          if let error = error {
-              print("Error getting photo \(url): \(error)")
-              return
+              guard let imageData = data,
+                    let image = UIImage(data: imageData),
+                    let compressedImageData = image.jpegData(compressionQuality: 0.01),
+                    let compressedImage = UIImage(data: compressedImageData) else {
+                  print("Error compressing or converting image")
+                  return
+              }
+
+              completionHandler(compressedImage)
           }
-
-          guard let imageData = data,
-                let image = UIImage(data: imageData),
-                let compressedImageData = image.jpegData(compressionQuality: 0.01),
-                let compressedImage = UIImage(data: compressedImageData) else {
-              print("Error compressing or converting image")
-              return
-          }
-
-          completionHandler(compressedImage)
       }
   }
+  
+  func refreshFirestoreData() {
+          store.collection(path).getDocuments { [weak self] snapshot, error in
+              guard let self = self, error == nil else {
+                  print("Error refreshing Firestore data: \(error?.localizedDescription ?? "Unknown error")")
+                  return
+              }
+
+              let refreshedPosts = snapshot?.documents.compactMap { document in
+                  try? document.data(as: Post.self)
+              } ?? []
+
+              // Update the posts array with refreshed data
+              DispatchQueue.main.async {
+                  self.posts = refreshedPosts
+              }
+          }
+      }
 
 
   
@@ -65,12 +87,13 @@ class PostRepository: ObservableObject {
         }
     }
   
-  func create(_ post: Post) {
-    do {
-        let newpost = post
-        _ = try store.collection(path).addDocument(from: newpost)
+  func create(_ post: Post, completion: @escaping () -> Void) {
+      do {
+          let newpost = post
+          _ = try store.collection(path).addDocument(from: newpost)
+          completion()
       } catch {
-        fatalError("Unable to add post: \(error.localizedDescription).")
+          fatalError("Unable to add post: \(error.localizedDescription).")
       }
   }
   

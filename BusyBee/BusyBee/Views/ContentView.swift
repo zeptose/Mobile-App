@@ -13,7 +13,7 @@ struct ContentView: View {
     @EnvironmentObject var userController: UserController
     @EnvironmentObject var postController: PostController
     @EnvironmentObject var goalController: GoalController
-    @EnvironmentObject var cameraController: CameraController
+//    @EnvironmentObject var cameraController: CameraController
     
     let customMaroon = Color(UIColor(hex: "#992409"))
   
@@ -51,7 +51,7 @@ struct ContentView: View {
                         .padding(.top, 150)
                       
                       Text("Set and achieve your goals\nalongside your friends!") // Line break for the caption
-                        .font(.system(size: 18)) // Slightly bigger font
+                        .font(Font.custom("Quicksand-Regular", size: 18))
                         .foregroundColor(Color.gray)
                         .multilineTextAlignment(.center) // Center the text
                         .padding(.bottom, 50)
@@ -61,7 +61,7 @@ struct ContentView: View {
                       NavigationLink(destination: RegistrationFormView(isRegistering: $isRegistering, selectedTab: $selectedTab)
                       ) {
                         Text("Register")
-                          .font(.system(size: 16))
+                          .font(Font.custom("Quicksand-Regular", size: 16))
                           .foregroundColor(.white)
                           .padding()
                           .frame(width: UIScreen.main.bounds.width * 0.5)
@@ -72,7 +72,7 @@ struct ContentView: View {
                       }
                       NavigationLink(destination: LoginFormView(isLoggingIn: $isLoggingIn, selectedTab: $selectedTab)) {
                         Text("Login")
-                          .font(.system(size: 16))
+                          .font(Font.custom("Quicksand-Regular", size: 16))
                           .foregroundColor(.white)
                           .padding()
                           .frame(width: UIScreen.main.bounds.width * 0.5)
@@ -91,7 +91,8 @@ struct ContentView: View {
               .environmentObject(goalController)
               .environmentObject(viewModel)
               .environmentObject(cameraController)
-              .environment(\.font, Font.custom("Lato-Regular", size: 16))
+              .environment(\.font, Font.custom("Quicksand-Regular", size: 16))
+
                   
           }
         }

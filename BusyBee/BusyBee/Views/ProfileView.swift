@@ -17,6 +17,7 @@ struct ProfileView: View {
     @State private var isEditingProfile = false
     var user: User?
     let customMaroon = Color(UIColor(hex: "#992409"))
+    @State private var isWiggling = false
 //   @Environment(\.presentationMode) var presentationMode
     //    @State var curr: User?
     
@@ -38,7 +39,7 @@ struct ProfileView: View {
                               Task {
                                 viewModel.signOut()
                               }
-                            }.padding()
+                            }.padding().foregroundColor(Color.black)
                           } else{
                             HStack{}.padding(.top, 35)
                           }
@@ -51,25 +52,39 @@ struct ProfileView: View {
                             .frame(width: 150, height: 150)
                             .clipShape(Circle())
                             .overlay(Circle().stroke(customYellow, lineWidth: 10))
-                      HStack {
-                        Image("ProfileBee")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 70, height: 70)
-                            .padding(.top, 10)
-                            .padding(.leading, 20)
-                        Spacer()
+                      ZStack {
+                          Image("ProfileBee")
+                                      .resizable()
+                                      .scaledToFit()
+                                      .frame(width: 70, height: 70)
+//                                      .padding(.top, 10)
+                                      .padding(.trailing, 200)
+                                      .rotationEffect(isWiggling ? Angle(degrees: 3) : Angle(degrees: -3))
+                                      .onAppear() {
+                                          withAnimation(Animation.easeInOut(duration: 0.4).repeatForever(autoreverses: true)) {
+                                              self.isWiggling.toggle()
+                                          }
+                                      }
+//                        Image("ProfileBee")
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fit)
+//                            .frame(width: 70, height: 70)
+//                            .padding(.top, 10)
+//                            .padding(.leading, 20)
+//                        Spacer()
                         VStack {
                           Text(updatedUser!.username)
-                            .font(.system(size: 32))
+                            .font(Font.custom("Quicksand-Regular", size: 32))
                             .bold()
                             .padding(.bottom, 9)
+
                           
                           if let bio = updatedUser?.bio {
                             if bio != "" {
                               Text(bio)
-                                .font(.subheadline)
+                                .font(Font.custom("Quicksand-Bold", size: 16))
                                 .foregroundColor(.gray)
+                                .font(Font.custom("Quicksand-Regular", size: 16))
                             }
                           }
                         }

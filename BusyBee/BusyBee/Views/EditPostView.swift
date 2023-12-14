@@ -35,7 +35,7 @@ struct EditPostView: View {
       var body: some View {
         if let currUser = viewModel.currentUser {
           VStack(alignment: .leading){
-            Text("Caption").font(.headline)
+            Text("Caption").font(Font.custom("Quicksand-Bold", size: 20))
             TextField("Change your caption!", text: $postCaption)
                 .padding(10)
                 .background(
@@ -45,7 +45,7 @@ struct EditPostView: View {
                 .padding(.bottom, 20)
             
             HStack {
-              Text("Goal").font(.headline)
+              Text("Goal").font(Font.custom("Quicksand-Bold", size: 20))
               Spacer()
               Menu {
                 ForEach(goalController.getCurrentGoals(currentUser: currUser)) { goal in
@@ -71,7 +71,7 @@ struct EditPostView: View {
             }.padding(.bottom, 20)
             
             HStack {
-              Text("Subgoal").font(.headline)
+              Text("Subgoal").font(Font.custom("Quicksand-Bold", size: 20))
               Spacer()
               Menu {
                 ForEach(goalController.getSubgoalsForGoal(goal: goalController.getGoalFromId(goalId: selectedGoal)!)) { subgoal in

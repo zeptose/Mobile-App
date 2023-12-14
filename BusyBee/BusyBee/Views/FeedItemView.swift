@@ -39,10 +39,12 @@ struct FeedItemView: View {
               VStack {
                 Text(feedUser.username)
                   .frame(maxWidth: .infinity, alignment: .leading)
+                  .font(Font.custom("Quicksand-Bold", size: 16))
                 Text(timeAgo)
                   .foregroundColor(.gray)
-                  .font(.system(size: 12))
                   .frame(maxWidth: .infinity, alignment: .leading)
+                  .font(Font.custom("Quicksand-Regular", size: 16))
+
               }
               Spacer()
               
@@ -72,6 +74,7 @@ struct FeedItemView: View {
               
             }
           }
+
           
           // Goal and Progress
           
@@ -88,11 +91,11 @@ struct FeedItemView: View {
                     Spacer()
                     HStack {
                       Text(feedGoal.name)
-                        .font(.subheadline)
+                        .font(Font.custom("Quicksand-Regular", size: 16))
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity, alignment: .leading)
                       Text("\(feedGoal.progress)/\(feedGoal.frequency)")
-                        .font(.subheadline)
+                        .font(Font.custom("Quicksand-Regular", size: 16))
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(.trailing, 20)
@@ -111,9 +114,14 @@ struct FeedItemView: View {
                 )
             }
           }
+          
+          
+
           // Image and Reactions
           ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
             // Photo
+            
+            
             Image(uiImage: postController.getImageFromURL(url: post.photo))
               .resizable()
               .scaledToFill()
@@ -124,14 +132,14 @@ struct FeedItemView: View {
             
             VStack(alignment: .leading){
               if isShowingPopUp {
-                ReactionsComponent(post: post)
+                ReactionsComponent(post: post, isShowingPopUp: $isShowingPopUp)
                 Button(action: {
                   isShowingPopUp.toggle()
                 }) {
                   Image("Reaction")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 48, height: 48, alignment: .leading)
+                    .frame(width: 55, height: 55, alignment: .leading)
                 }
               } else {
                 Button(action: {
@@ -140,7 +148,7 @@ struct FeedItemView: View {
                   Image("bwHexagon")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 48, height: 48, alignment: .leading)
+                    .frame(width: 55, height: 55, alignment: .leading)
                 }
               }
             }
@@ -159,7 +167,7 @@ struct FeedItemView: View {
                             .padding(.leading, 10)
 
                         Text(subgoal.name)
-                            .font(.system(size: 15))
+                            .font(Font.custom("Quicksand-Regular", size: 16))
                             .foregroundColor(.white)
                             .padding(.trailing, 10)
                     }
@@ -174,6 +182,7 @@ struct FeedItemView: View {
 
                 if !post.caption.isEmpty {
                     Text(post.caption)
+                        .font(Font.custom("Quicksand-Regular", size: 16))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, -1)
                 }
@@ -182,9 +191,9 @@ struct FeedItemView: View {
           
           Text("View Comments")
             .foregroundColor(.gray)
-            .font(.system(size: 12))
+            .font(Font.custom("Quicksand-Regular", size: 14))
             .padding(.leading, 1.25)
-            .padding(.top, -20)
+            .padding(.top, -15)
             .onTapGesture {
               isSheetPresented.toggle()
             }
@@ -194,6 +203,7 @@ struct FeedItemView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
 
         }
+
       }
       if let post = postController.getPostFromId(postId: currentPost.id!) {
         if let feedUser = userController.getUserFromId(userId: userId){
@@ -206,5 +216,5 @@ struct FeedItemView: View {
           .hidden()
         }
       }
-    }
+    } 
 }
