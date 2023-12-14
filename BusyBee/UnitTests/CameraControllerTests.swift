@@ -24,28 +24,22 @@
 //    func testCreateCameraView() {
 //          let cameraView = cameraController.cameraView
 //          XCTAssertNotNil(cameraView)
-//        // Add more assertions if needed
 //    }
 //
 //    func testCheckPermissions() {
 //        cameraController.start()
-//          // Assert that the permissions are correctly handled indirectly
 //          XCTAssertNotNil(cameraController.cameraView)
 //    }
 //
 //    func testSetUp() {
 //        cameraController.setUp()
-//        // Assert that the session is configured properly
 //        XCTAssertTrue(cameraController.session.automaticallyConfiguresCaptureDeviceForWideColor)
-//        // Add more assertions based on your specific implementation
 //    }
 //
 //    func testSetUpInputs() {
 //        cameraController.setUpInputs()
-//        // Assert that the back and front cameras are set up correctly
 //        XCTAssertNotNil(cameraController.backCamera)
 //        XCTAssertNotNil(cameraController.frontCamera)
-//        // Add more assertions based on your specific implementation
 //    }
 //
 //    func testSetUpOutput() {
@@ -68,27 +62,26 @@
 //
 //    func testToggleFlash() {
 //        cameraController.toggleFlash()
-//        // Assert that the flash mode is toggled correctly
-//        // Add more assertions based on your specific implementation
+//
 //    }
 //
 //    func testFlipCamera() {
 //        cameraController.flipCamera()
-//        // Assert that the camera is flipped correctly
-//        // Add more assertions based on your specific implementation
+//
 //    }
 //
 //    func testGetSettings() {
 //        let settings = cameraController.getSettings()
-//        // Assert that the settings are configured correctly
-//        // Add more assertions based on your specific implementation
+//
 //    }
 //
 //    func testTakePhoto() {
 //        cameraController.takePhoto()
-//        // Assert that a photo is captured
-//        // Add more assertions based on your specific implementation
+//
 //    }
 //
 //
+//
 //}
+//
+//

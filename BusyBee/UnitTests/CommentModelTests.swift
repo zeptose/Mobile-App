@@ -27,13 +27,11 @@ class CommentTests: XCTestCase {
      XCTAssertNotNil(commentInstance.body)
      XCTAssertNotNil(commentInstance.timePosted)
 
-     //Assert True Tests
      XCTAssertTrue(commentInstance.userId == "1")
      XCTAssertTrue(commentInstance.body == "yep")
 
 
 
-     //Assert False Tests
      XCTAssertFalse(commentInstance.userId == "3")
      XCTAssertFalse(commentInstance.body == "of course")
 
