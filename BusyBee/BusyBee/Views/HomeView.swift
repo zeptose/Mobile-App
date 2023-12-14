@@ -40,10 +40,10 @@ struct HomeView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 20)
-                        .foregroundColor(customYellow)
+                        .foregroundColor(.gray)
                         .padding(.trailing, 15)
                 }
-            }.padding(.top, 5)
+            }.padding(.top, 5).padding(.bottom, 5)
             
             List {
               ForEach(allPosts) { post in
