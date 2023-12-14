@@ -156,7 +156,7 @@ struct AddGoalView: View {
                                         .padding(.vertical, 5)
                                         .lineLimit(1)
                                         .background(
-                                          RoundedRectangle(cornerRadius: 15)
+                                          RoundedRectangle(cornerRadius: 8)
                                             .fill(Color(UIColor(hex: "#E0E0E0")))
                                         )
                                         .padding(10)
