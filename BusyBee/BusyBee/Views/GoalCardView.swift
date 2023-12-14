@@ -9,11 +9,13 @@ import SwiftUI
 
 struct GoalCardView: View {
     @EnvironmentObject var goalController: GoalController
+    @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var postController: PostController
+ 
     var user: User
     var goal: Goal
     var body: some View {
-        NavigationLink(destination: IndividualGoalView(goal: goal)) {
+//        NavigationLink(destination: IndividualGoalView(goal: goal)) {
             VStack(alignment: .leading) {
                 let goalDueDate = goal.dueDate
                 let currentDate = Date()
@@ -24,31 +26,51 @@ struct GoalCardView: View {
                     HoneyJarView(progress: goal.progress, frequency: goal.frequency)
                         .frame(width: 70, height: 70)
                     VStack(alignment: .leading) {
-                        Text(goal.name)
-                            .font(.headline)
-                            .foregroundColor(Color.black)
-                            .fontWeight(.bold)
                         if goal.progress < goal.frequency {
+                            Text(goal.name)
+                                .font(.headline)
+                                .foregroundColor(Color.black)
+                                .fontWeight(.bold)
                             if let dayDifference = dayDifference {
                                 if dayDifference == 1 {
                                     Text("\(dayDifference) Day Left")
                                         .font(.subheadline)
-                                        .foregroundColor(Color.black)
+                                        .foregroundColor(.gray)
                                 } else if dayDifference >= 0 {
                                     Text("\(dayDifference) Days Left")
                                         .font(.subheadline)
-                                        .foregroundColor(Color.black)
+                                        .foregroundColor(.gray)
+                                } else if dayDifference == -1 {
+                                    Text("\(-1 * dayDifference) Day Overdue")
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
                                 } else {
-                                    
                                     Text("\(-1 * dayDifference) Days Overdue")
                                         .font(.subheadline)
-                                        .foregroundColor(Color.black)
+                                        .foregroundColor(.gray)
                                 }
                             }
-                            Text("Subgoals: \(goalController.getCountSubgoals(goal: goal))")
+                            Text("\(goalController.getCountSubgoals(goal: goal)) Subgoals")
                                 .font(.subheadline)
                                 .foregroundColor(Color.gray)
                         } else {
+                            HStack {
+                                Text(goal.name)
+                                    .font(.headline)
+                                    .foregroundColor(Color.black)
+                                    .fontWeight(.bold)
+                                Spacer()
+                                let dateFormatter: DateFormatter = {
+                                    let formatter = DateFormatter()
+                                    formatter.dateFormat = "MM/dd/yy"
+                                    return formatter
+                                }()
+                                let startDateString = dateFormatter.string(from: goal.dateStarted)
+                                let endDateString = dateFormatter.string(from: goal.dateEnded!)
+                                Text("\(startDateString) - \(endDateString)")
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
+                            }
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 10) {
                                     ForEach(postController.getPostsForGoal(goalId: goal.id)) { post in
@@ -78,8 +100,8 @@ struct GoalCardView: View {
                                         Text("On Track")
                                             .font(.subheadline)
                                             .foregroundColor(Color.gray)
-                                            .padding(.trailing, 10)
-                                    }
+                                            
+                                    }.padding(.trailing, 14)
                                 } else {
                                     HStack {
                                         Circle()
@@ -88,18 +110,32 @@ struct GoalCardView: View {
                                         Text("Overdue")
                                             .font(.subheadline)
                                             .foregroundColor(Color.gray)
-                                            .padding(.trailing, 10)
-                                    }
+                                            
+                                    }.padding(.trailing, 13)
                                 }
                             }
-                            Spacer()
-                            NavigationLink(destination: EditGoalView(goalController: goalController, currentUser: user, goal: goal)) {
+                           Spacer()
+
+                          if user == viewModel.currentUser {
+                            HStack{
+                              NavigationLink(destination: EditGoalView(goalController: goalController, currentUser: user, goal: goal)) {
                                 Image(systemName: "pencil")
-                                    .foregroundColor(.gray)
-                                    .font(.title)
+                                  .foregroundColor(.gray)
+                                  .font(.title)
+                              }
+                              Button(action: {
+                                postController.deleteGoal(goal: goal, currentUser: user)
+                              }) {
+                                  Image(systemName: "trash")
+                                  .foregroundColor(.gray)
+                                  .font(.title)
+                              }
                             }
+                          }
                         }
-                    }
+              
+//                    }
+
                 }
             }
         }

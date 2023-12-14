@@ -17,6 +17,8 @@ struct Goal: Identifiable, Codable, Comparable, Hashable {
   var frequency: Int
   var userId: String
   var progress: Int
+  var dateStarted: Date
+  var dateEnded: Date?
   
   // To conform to Codable protocol
   enum CodingKeys: String, CodingKey {
@@ -27,6 +29,8 @@ struct Goal: Identifiable, Codable, Comparable, Hashable {
     case frequency
     case userId
     case progress
+    case dateStarted
+    case dateEnded
   }
   
   // To conform to Comparable protocol

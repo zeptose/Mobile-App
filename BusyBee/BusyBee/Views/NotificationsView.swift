@@ -12,14 +12,27 @@ struct AppNotification: Hashable, Comparable {
     let postId: String
     let commenterId: String
     let timestamp: Date
+    let info: String
     
     static func < (lhs: AppNotification, rhs: AppNotification) -> Bool {
           return lhs.timestamp < rhs.timestamp
       }
       
-      static func == (lhs: AppNotification, rhs: AppNotification) -> Bool {
-          return lhs.timestamp == rhs.timestamp
-      }
+    func hash(into hasher: inout Hasher) {
+            hasher.combine(type)
+            hasher.combine(postId)
+            hasher.combine(commenterId)
+            hasher.combine(timestamp)
+            hasher.combine(info)
+        }
+        
+        static func == (lhs: AppNotification, rhs: AppNotification) -> Bool {
+            return lhs.type == rhs.type &&
+                lhs.postId == rhs.postId &&
+                lhs.commenterId == rhs.commenterId &&
+                lhs.timestamp == rhs.timestamp &&
+                lhs.info == rhs.info
+        }
   }
 
 enum NotificationType {
@@ -54,123 +67,76 @@ struct NotificationView: View {
       if let currentUser = viewModel.currentUser {
         notifications = postController.getNotificationsForCurrentUser(currentUser: currentUser)
         notifications.sort()
+        
       }
     }
     
   }
+}
   
   
-  struct NotificationRow: View {
+struct NotificationRow: View {
     @EnvironmentObject var viewModel: AuthViewModel
     let notification: AppNotification
     let postController: PostController
     let userController: UserController
     
     var body: some View {
-      VStack {
-        
-        
-        switch notification.type {
-        case .comment:
-            if let commenter = postController.userRepository.getUserWithId(notification.commenterId),
-               let post = postController.getPostFromId(postId: notification.postId) {
+        VStack {
+            switch notification.type {
+            case .comment:
+                if let commenter = postController.userRepository.getUserWithId(notification.commenterId),
+                   let post = postController.getPostFromId(postId: notification.postId) {
+                    
+                    HStack {
+                        Text("\(commenter.username) commented: \"\(notification.info)\"")
+                        Spacer()
+                        
+                        Image(uiImage: postController.getImageFromURL(url: post.photo))
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 50, height: 50)
+                            .clipped()
+                    }
+                } else {
+                    AnyView(EmptyView())
+                }
                 
-                // Filter comments by the commenterId
-                let userComments = post.comments.filter { $0.userId == notification.commenterId }
-                
-                // Get unique comments by their identifier
-                let uniqueComments = Array(Set(userComments.map { $0.id }))
-                
-                // Display each unique comment for the user
-                ForEach(uniqueComments, id: \.self) { commentID in
-                    if let comment = userComments.first(where: { $0.id == commentID }) {
-                        HStack {
-                            Text("\(commenter.username) commented: \"\(comment.body)\"")
-                            Spacer()
-                            
-                            Image(uiImage: postController.getImageFromURL(url: post.photo))
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 50, height: 50)
-                                .clipped()
-                        }
+            case .reaction:
+                if let post = postController.getPostFromId(postId: notification.postId),
+                   let reactingUser = postController.userRepository.getUserWithId(notification.commenterId) {
+                    
+                    HStack {
+                        Text("\(reactingUser.username) reacted with \(notification.info)")
+                        Spacer()
+                        
+                        Image(uiImage: postController.getImageFromURL(url: post.photo))
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 50, height: 50)
+                            .clipped()
                     }
                 }
-            } else {
-                AnyView(EmptyView())
-            }
-
-
-          
-          
-        case .reaction:
-          if let post = postController.getPostFromId(postId: notification.postId),
-             let reactingUser = postController.userRepository.getUserWithId(notification.commenterId) {
-            let reactionText = postController.getReactionText(forPost: post, commenterId: notification.commenterId)
-            
-            
-            HStack {
-              Text("\(reactingUser.username) reacted with \(reactionText)")
-              Spacer()
-              
-              Image(uiImage: postController.getImageFromURL(url: post.photo))
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 50, height: 50)
-                .clipped()
-              
-            }
-          }
-        case .follow:
-          if let follower = postController.userRepository.getUserWithId(notification.commenterId){
-            
-            HStack {
-              Image("profilePic")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 30, height: 30)
-                .clipShape(Circle())
-              
-              
-              Text("\(follower.username) has followed you")
-                .foregroundColor(Color(red: 14/255, green: 118/255, blue: 168/255)) // Instagram blue color
-                .font(.callout) // Adjust the font size and style to match Instagram
-                .padding(.leading, 8)
-            }
-            
-            Spacer()
-            
-            if let currentUser = viewModel.currentUser,
-               userController.currentUserIsFollowingFollower(currentUser: currentUser, followerId: follower.id) {
-              Text("Following")
-                .foregroundColor(.gray)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .overlay(
-                  RoundedRectangle(cornerRadius: 4)
-                    .stroke(Color.gray, lineWidth: 1)
-                )
-            } else {
-              Button(action: {
-                if let currentUser = viewModel.currentUser {
-                  userController.followFriend(currentUser: currentUser, follow: follower)
+                
+            case .follow:
+                if let follower = postController.userRepository.getUserWithId(notification.info){
+                    
+                    HStack {
+                        Image("profilePic")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 30, height: 30)
+                            .clipShape(Circle())
+                        
+                        Text("\(follower.username) has followed you")
+                            .foregroundColor(Color(red: 14/255, green: 118/255, blue: 168/255)) // Instagram blue color
+                            .font(.callout) // Adjust the font size and style to match Instagram
+                            .padding(.leading, 8)
+                    }
+                    
+                    // ... (existing code for Follow/Unfollow button)
                 }
-              }) {
-                Text("Follow")
-                  .foregroundColor(.blue)
-                  .padding(.horizontal, 8)
-                  .padding(.vertical, 4)
-                  .overlay(
-                    RoundedRectangle(cornerRadius: 4)
-                      .stroke(Color.blue, lineWidth: 1)
-                  )
-              }
             }
-            
-            
-          }
         }
-      }
     }
-  }
 }

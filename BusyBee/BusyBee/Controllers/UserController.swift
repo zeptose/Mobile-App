@@ -47,11 +47,17 @@ class UserController: ObservableObject {
       func followFriend(currentUser: User, follow: User) {
         var curr = currentUser
         curr.follows.append(follow.id)
-//        curr.follows = currentFollows + [follow.id]
         userRepository.update(curr)
-        let postController = PostController() // Instantiate your PostController
-        let notifications = postController.getNotificationsForCurrentUser(currentUser: curr)
+        
+        var currFollow = follow
+        currFollow.followers.append(curr.id)
+        userRepository.update(currFollow)
+        
+        let postcontroller = PostController()
+        let notifications = postcontroller.getNotificationsForCurrentUser(currentUser: currentUser)
+        
       }
+  
       func isFollowing(currentUser: User, otherUser: User) -> Bool {
           return currentUser.follows.contains(otherUser.id)
       }
@@ -59,13 +65,23 @@ class UserController: ObservableObject {
       func unfollowFriend(currentUser: User, unfollow: User) {
           var curr = currentUser
           let ind = curr.follows.firstIndex(of: unfollow.id)
-          print("New Following List: \(curr.follows)")
           curr.follows.remove(at: ind!)
           userRepository.update(curr)
+        
+          var temp = unfollow
+          let ind2 = temp.followers.firstIndex(of: currentUser.id)
+          temp.followers.remove(at: ind2!)
+          userRepository.update(temp)
+        
+          let postcontroller = PostController()
+          let notifications = postcontroller.getNotificationsForCurrentUser(currentUser: currentUser)
       }
   
       func currentUserIsFollowingFollower(currentUser: User, followerId: String) -> Bool {
           return currentUser.follows.contains(followerId)
       }
+  
+  
+  
 
 }

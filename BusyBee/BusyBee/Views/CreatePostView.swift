@@ -54,7 +54,7 @@ struct SubgoalListView: View {
 struct CreatePostView: View {
   var uiImage: UIImage
   @State private var caption: String = ""
-//  @EnvironmentObject var camera: CameraController
+  @EnvironmentObject var camera: CameraController
   @Environment(\.presentationMode) var presentationMode
   @EnvironmentObject var viewModel: AuthViewModel
   @EnvironmentObject var goalController: GoalController
@@ -88,7 +88,7 @@ struct CreatePostView: View {
     VStack {
       HStack {
         Button(action: {
-//          camera.capturedImage = nil
+          camera.capturedImage = nil
         }) {
           Image(systemName: "chevron.backward")
             .foregroundColor(.black)
@@ -150,30 +150,25 @@ struct CreatePostView: View {
   
 
       GeometryReader { geometry in
-          VStack {
-              Image(uiImage: uiImage)
-                  .resizable()
-                  .aspectRatio(contentMode: .fill)
-                  .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.50)
-                  .clipped()
-                  .padding(.horizontal, (geometry.size.width * 0.05))
-              
-              TextField("Write a caption...🐝", text: $caption)
-                  .textFieldStyle(DefaultTextFieldStyle())
-                  .background(Color.white) // Set the background color to white
-                  .cornerRadius(8)
-                  .offset(x: 20)
-                  .padding()
-                  
-            
-            Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
-         
-            VStack{
+        VStack {
+          Image(uiImage: uiImage)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.45)
+            .clipped()
+            .padding(.horizontal, (geometry.size.width * 0.05))
+          
+          TextField("Write a caption...🐝", text: $caption)
+            .textFieldStyle(DefaultTextFieldStyle())
+            .background(Color.white) // Set the background color to white
+            .cornerRadius(8)
+            .offset(x: 20)
+            .padding()
+          
+        
+          Spacer().frame(height: 200)
+        
+      
               HStack {
                 Text("Main Goal")
                   .font(.headline)
@@ -214,7 +209,7 @@ struct CreatePostView: View {
                         .foregroundColor(.red)
                     }
                   }
-                  .padding(.horizontal, 10)
+                  .padding(.horizontal, 20)
                   
                   
                 }
@@ -223,10 +218,10 @@ struct CreatePostView: View {
                 .offset(y: -120)
                 
               }
-            } .padding(.top, 20)
 
             VStack{
                 HStack {
+                  
                   Text("Subgoals")
                     .font(.headline)
                     .foregroundColor(.black)
@@ -250,42 +245,40 @@ struct CreatePostView: View {
                       }
                     }
                   }
-                }.padding(.trailing).offset(y: -90)
-              
-                
-                            
-          
-              ForEach(selectedSubgoals, id: \.self) { subgoal in
-                ZStack {
-                  RoundedRectangle(cornerRadius: 15)
-                    .fill(Color.yellow)
-                    .frame(height: 30)
-                  
-                  HStack {
-                    Text(subgoal.name)
-                    Button(action: {
-                      if let index = selectedSubgoals.firstIndex(of: subgoal) {
-                        selectedSubgoals.remove(at: index)
-                      }
-                    }) {
-                      Image(systemName: "minus.circle")
-                        .foregroundColor(.red)
-                    }
-                  }
-                  .padding(.horizontal, 10)
-                  
-                  
-                }
-                .frame(height: 30)
-                .padding(.horizontal)
-                .offset(y: -80)
-              } .padding(.top, 20)
               }
+            }.padding(.trailing).offset(y: -100)
+            
+            
+            
+            
+            ForEach(selectedSubgoals, id: \.self) { subgoal in
+              ZStack {
+                RoundedRectangle(cornerRadius: 15)
+                  .fill(Color.yellow)
+                  .frame(height: 30)
+                
+                HStack {
+                  Text(subgoal.name)
+                  Button(action: {
+                    if let index = selectedSubgoals.firstIndex(of: subgoal) {
+                      selectedSubgoals.remove(at: index)
+                    }
+                  }) {
+                    Image(systemName: "minus.circle")
+                      .foregroundColor(.red)
+                  }
+                }
+                .padding(.horizontal, 10)
+                
+                
+              }
+              .frame(height: 30)
+              .padding(.horizontal)
+              .offset(y: -80)
+            }
+            }
           }
         }
       }
     }
-  }
   
-  
-

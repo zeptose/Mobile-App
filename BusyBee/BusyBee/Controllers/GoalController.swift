@@ -12,7 +12,9 @@ import FirebaseFirestoreSwift
 class GoalController: ObservableObject {
     @Published var goalRepository: GoalRepository = GoalRepository()
     @Published var subgoalRepository: SubgoalRepository = SubgoalRepository()
+    @Published var postRepository: PostRepository = PostRepository()
     @Published var userRepository: UserRepository = UserRepository()
+
     @Published var goals: [Goal] = []
     @Published var subgoals: [Subgoal] = []
   
@@ -35,14 +37,14 @@ class GoalController: ObservableObject {
                            dueDate: dueDate,
                            frequency: frequency,
                            userId: currentUser.id,
-                           progress: 0)
+                           progress: 0,
+                           dateStarted: Date(),
+                           dateEnded: nil)
         try await goalRepository.create(newGoal)
         
-        var user = currentUser
-      print("userId: \(user.id)")
-      print("goal: \(newGoal)")
-        user.goals.append(newGoal)
-        userRepository.update(user)
+//        var user = currentUser
+//        user.goals.append(newGoal)
+//        userRepository.update(user)
         
         for subgoal in subGoalStr {
             if !subgoal.isEmpty {
@@ -83,27 +85,23 @@ class GoalController: ObservableObject {
       
       // Assuming the goal is associated with the current user, update the user's goals
       var user = currentUser
-      if let index = user.goals.firstIndex(where: { $0.id == goal.id }) {
-          user.goals[index] = updatedGoal
-          userRepository.update(user)
-      }
+//      if let index = user.goals.firstIndex(where: { $0.id == goal.id }) {
+//          user.goals[index] = updatedGoal
+//          userRepository.update(user)
+//      }
   }
 
 
   
   func getCurrentGoals(currentUser: User) -> [Goal] {
     let usersGoals = self.goals.filter{ String($0.userId) == String(currentUser.id) }
-    let today = Date()
     let curr = usersGoals.filter { $0.progress < $0.frequency }
-//      print("currentUser: \(currentUser)" )
-//      print("currentGoals: \(curr)")
     return curr.sorted { $0.dueDate >= $1.dueDate}
     
   }
   
   func getPastGoals(currentUser: User) -> [Goal] {
       let usersGoals = self.goals.filter{ String($0.userId) == String(currentUser.id) }
-      let today = Date()
       let past = usersGoals.filter { $0.progress == $0.frequency }
       return past.sorted { $0.dueDate >= $1.dueDate}
   }
@@ -139,5 +137,4 @@ class GoalController: ObservableObject {
         return nil
       }
     }
-
 }
