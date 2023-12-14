@@ -216,7 +216,6 @@ struct CreatePostView: View {
                       )
                       
                       .padding(10)
-                      Spacer()
                     
                     Button(action: {
                       if let index = selectedGoals.firstIndex(of: goal) {
