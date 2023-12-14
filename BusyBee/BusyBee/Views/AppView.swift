@@ -39,6 +39,7 @@ struct AppView: View {
         }
         .tag(3)
     }
+
     .navigationBarTitleDisplayMode(.inline)
     .navigationBarBackButtonHidden(true)
     .accentColor(Color(UIColor(hex: "F08355")))
