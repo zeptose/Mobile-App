@@ -5,32 +5,32 @@
 //  Created by Joshua Yu  on 12/13/23.
 //
 
-//import XCTest
-//@testable import BusyBee // Replace with your actual app name
-//import AVFoundation
-//
-//
-//class CameraControllerTests: XCTestCase {
-//    var cameraController: CameraController!
-//
-//    override func setUpWithError() throws {
-//        cameraController = CameraController()
-//    }
-//
-//    override func tearDownWithError() throws {
-//        cameraController = nil
-//    }
-//
+import XCTest
+@testable import BusyBee // Replace with your actual app name
+import AVFoundation
+
+
+class CameraControllerTests: XCTestCase {
+    var cameraController: CameraController!
+
+    override func setUpWithError() throws {
+        cameraController = CameraController()
+    }
+
+    override func tearDownWithError() throws {
+        cameraController = nil
+    }
+
 //    func testCreateCameraView() {
 //          let cameraView = cameraController.cameraView
 //          XCTAssertNotNil(cameraView)
 //    }
-//
-//    func testCheckPermissions() {
-//        cameraController.start()
-//          XCTAssertNotNil(cameraController.cameraView)
-//    }
-//
+
+    func testCheckPermissions() {
+        cameraController.start()
+          XCTAssertNotNil(cameraController.cameraView)
+    }
+
 //    func testSetUp() {
 //        cameraController.setUp()
 //        XCTAssertTrue(cameraController.session.automaticallyConfiguresCaptureDeviceForWideColor)
@@ -41,7 +41,7 @@
 //        XCTAssertNotNil(cameraController.backCamera)
 //        XCTAssertNotNil(cameraController.frontCamera)
 //    }
-//
+
 //    func testSetUpOutput() {
 //        cameraController.setUpOutput()
 //        // Assert that the output is added to the session
@@ -64,24 +64,24 @@
 //        cameraController.toggleFlash()
 //
 //    }
-//
+
 //    func testFlipCamera() {
 //        cameraController.flipCamera()
 //
 //    }
-//
+
 //    func testGetSettings() {
 //        let settings = cameraController.getSettings()
 //
 //    }
-//
+
 //    func testTakePhoto() {
 //        cameraController.takePhoto()
 //
 //    }
-//
-//
-//
-//}
-//
-//
+
+}
+
+
+
+
