@@ -10,7 +10,7 @@ BusyBee is a goal-setting social media app that promotes healthy habits for achi
 - This app is intended for use in light mode only!
 
 ### Testing
-You can find the unit tests written under the UnitTests folder. The files contain unit tests written to reach above 90% coverage for all models, controllers, and view controllers.
+You can find the unit tests written under the UnitTests folder. The files contain unit tests written to reach above 90% coverage for all models, controllers, and view controllers. Full coverage is reached for all the models and view models, though we ran into issues when trying to reach full coverage for certain controllers, such as the GoalController and CameraController. Some reasons include that we were recieving many errors related to the camera feature when trying to test it, and also when trying to create mock repositories for the GoalController testing. A lot of TAs did not have experience in the features that we were using, and there were very limited sources onine, so for those few files that didn't reach full coverage, we manually tested by putting print statements and checking results, and also by testing our app locally on our phone and trying out all the scenarios that could throw errors (like flipping the camera back and forth). Since there wasn't anything wrong, we felt that our time was better spent working on our main features. Other than those three or so files that didn't reach full coverage, all the other ones were unit tested thoroughly.
 
 ### Feature List
 *A-Level*
