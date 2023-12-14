@@ -64,6 +64,25 @@ class UserRepository: ObservableObject {
       fatalError("Unable to update user: \(error.localizedDescription).")
     }
   }
+  
+  func refreshFirestoreData() {
+          store.collection(path).getDocuments { [weak self] snapshot, error in
+              guard let self = self, error == nil else {
+                  print("Error refreshing Firestore data: \(error?.localizedDescription ?? "Unknown error")")
+                  return
+              }
+
+              let refreshedUsers = snapshot?.documents.compactMap { document in
+                  try? document.data(as: User.self)
+              } ?? []
+
+              // Update the users array with refreshed data
+              DispatchQueue.main.async {
+                  self.users = refreshedUsers
+              }
+          }
+      }
+  
 
   func delete(_ user: User) {
 //    guard let userId = user.id else { return }

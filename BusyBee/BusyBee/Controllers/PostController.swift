@@ -402,7 +402,10 @@ class PostController: ObservableObject {
   }
   
   func getNotificationsForCurrentUser(currentUser: User) -> [AppNotification] {
+    
     var notifications: [AppNotification] = []
+//    postRepository.refreshFirestoreData()
+//    userRepository.refreshFirestoreData()
     
     // Generate notifications for comments
     for post in getPosts(currentUser: currentUser) {
