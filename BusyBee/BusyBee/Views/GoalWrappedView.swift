@@ -19,6 +19,9 @@ struct GoalWrappedView: View {
   
     
     var body: some View {
+        let completedPosts = postController.getPostsForGoal(goalId: goal.id)
+        let pSize: CGFloat = completedPosts.count > 1 ? -40 : -130
+        let pSize2: CGFloat = completedPosts.count > 1 ? 0 : 50
         ZStack {
             Image("GoalWrappedBg")
                 .resizable()
@@ -50,8 +53,8 @@ struct GoalWrappedView: View {
                         .font(Font.custom("Quicksand-Regular", size: 16))
                         .padding(.top, 1)
                 }
-                .padding()
                .frame(height: 60)
+               .padding()
 //                iCarousel(items: postController.getPostsForGoal(goalId: goal.id), id: \.id) { post in
 //                                VStack(spacing: 15) {
 //                                    Image(uiImage: postController.getImageFromURL(url: post.photo))
@@ -94,10 +97,8 @@ struct GoalWrappedView: View {
                             }
                         }
                     }
-//                    .padding(.top, -35)
                 }
-//                
-//                .padding(.top, 50)
+                .padding(.top, pSize2)
                 HStack {
                     Image("HeartBeeRight")
                         .resizable()
@@ -169,8 +170,6 @@ struct GoalWrappedView: View {
                         .padding(.top, 250)
                 }.padding(.top, -20)
                 
-
-              
                   Button(action: {
                       guard let screenshot = cameraController.captureScreen(),
                             let imageData = screenshot.jpegData(compressionQuality: 1.0) else {
@@ -183,6 +182,7 @@ struct GoalWrappedView: View {
                       
                       cameraController.savePhotoToBackend(imageData: imageData)
                   }) {
+                
                       Text("Save")
                           .foregroundColor(.white)
                           .padding()
@@ -190,30 +190,7 @@ struct GoalWrappedView: View {
                           .cornerRadius(8)
                   }
                   .padding()
-
-//              
-//                  Button(action: {
-//                      guard let screenshot = cameraController.captureScreen(),
-//                            let imageData = screenshot.jpegData(compressionQuality: 1.0) else {
-//                          return
-//                      }
-//
-//                      // Save the screenshot to the camera roll
-//                      UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
-//
-//                      // Call the backend saving function
-//                      cameraController.savePhotoToBackend(imageData: imageData)
-//                  }) {
-                
-//                      Text("Save")
-//                          .foregroundColor(.white)
-//                          .padding()
-//                          .background(Color(UIColor(hex: "#992409")))
-//                          .cornerRadius(8)
-//                  }
-//                  .padding()
-
-            }.padding(.top, -85)
+            }.padding(.top, pSize)
               }
             }
             
@@ -246,4 +223,3 @@ struct Hexagon: Shape {
         return path
     }
 }
-

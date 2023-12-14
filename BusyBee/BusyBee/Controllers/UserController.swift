@@ -72,7 +72,7 @@ class UserController: ObservableObject {
           let ind2 = temp.followers.firstIndex(of: currentUser.id)
           temp.followers.remove(at: ind2!)
           userRepository.update(temp)
-        
+
 //          let postcontroller = PostController()
 //          let notifications = postcontroller.getNotificationsForCurrentUser(currentUser: currentUser)
       }
