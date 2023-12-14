@@ -220,6 +220,31 @@ struct GoalWrappedView: View {
                   }
                   .padding()
 
+<<<<<<< Updated upstream
+=======
+              
+                  Button(action: {
+                      guard let screenshot = cameraController.captureScreen(),
+                            let imageData = screenshot.jpegData(compressionQuality: 1.0) else {
+                          return
+                      }
+
+                      // Save the screenshot to the camera roll
+                      UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
+
+                      // Call the backend saving function
+                      cameraController.savePhotoToBackend(imageData: imageData)
+                  }) {
+                
+                      Text("Save")
+                          .foregroundColor(.white)
+                          .padding()
+                          .background(Color(UIColor(hex: "#992409")))
+                          .cornerRadius(8)
+                  }
+                  .padding()
+
+>>>>>>> Stashed changes
             }.padding(.top, -85)
 >>>>>>> Stashed changes
               }

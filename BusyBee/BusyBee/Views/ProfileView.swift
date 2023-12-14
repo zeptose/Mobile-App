@@ -20,6 +20,9 @@ struct ProfileView: View {
     @State private var isWiggling = false
 //   @Environment(\.presentationMode) var presentationMode
     //    @State var curr: User?
+  @State private var gradient = Gradient(colors: [Color.yellow, Color.orange])
+  @State private var startPoint = UnitPoint(x: 0.5, y: 0.0)
+  @State private var endPoint = UnitPoint(x: 0.5, y: 1.0)
     
     var body: some View {
         if let profile = user {
@@ -103,23 +106,32 @@ struct ProfileView: View {
                           HStack{
                               NavigationLink(destination: AddGoalView(goalController: goalController, user: updatedCurrentUser!)) {
                                 Label("Add Goal", systemImage: "plus")
-                                  .font(.system(size: 14))
+                                  .font(Font.custom("Quicksand-Regular", size: 16))
                                   .foregroundColor(.white)
-                                  .padding(5)
-                                  .frame(width: UIScreen.main.bounds.width * 0.3, height: 32)
-                                  .background(customMaroon)
+                                  .padding(8)
+                                  .frame(width: UIScreen.main.bounds.width * 0.45, height: 40)
+                                  .background(LinearGradient(gradient: gradient, startPoint: startPoint, endPoint: endPoint))
                                   .cornerRadius(8)
+                                  .animation(
+                                        Animation.linear(duration: 2.0).repeatForever(autoreverses: true)
+                                                      )
+                                  .onAppear() {
+                                    startPoint = UnitPoint(x: 0.5, y: 1.0)
+                                  endPoint = UnitPoint(x: 0.5, y: 0.0)
+                                }
+
                               }
                             NavigationLink(destination: EditProfileView(user: updatedCurrentUser!, userController: userController)) {
                               
                               Label("Edit Profile", systemImage: "pencil")
                             }
-                            .font(.system(size: 14))
+                            .font(Font.custom("Quicksand-Regular", size: 16))
                             .foregroundColor(customMaroon)
                             .padding(5)
-                            .frame(width: UIScreen.main.bounds.width * 0.3, height: 32)
+                            .frame(width: UIScreen.main.bounds.width * 0.45, height: 40)
                             .background(RoundedRectangle(cornerRadius: 8)
                                 .stroke(customMaroon, lineWidth: 1))
+                            
                             
                           }.padding(.top, 1)
                         } else if userController.isFollowing(currentUser: updatedCurrentUser!, otherUser: updatedUser!) {
@@ -128,12 +140,12 @@ struct ProfileView: View {
                             }) {
                                 Text("Unfollow")
                             }
-                            .font(.system(size: 14))
+                            .font(Font.custom("Quicksand-Regular", size: 16))
                             .foregroundColor(.white)
                             .padding(5)
-                            .frame(width: UIScreen.main.bounds.width * 0.3, height: 32)
+                            .frame(width: UIScreen.main.bounds.width * 0.45, height: 40)
                             .background(customMaroon)
-                            .cornerRadius(70)
+                            .cornerRadius(8)
                             .padding(.top, 1)
                             
                         } else {
@@ -143,12 +155,12 @@ struct ProfileView: View {
                             }) {
                                 Text("Follow")
                             }
-                            .font(.system(size: 14))
+                            .font(Font.custom("Quicksand-Regular", size: 16))
                             .foregroundColor(.white)
                             .padding(5)
-                            .frame(width: UIScreen.main.bounds.width * 0.3, height: 32)
+                            .frame(width: UIScreen.main.bounds.width * 0.45, height: 40)
                             .background(customMaroon)
-                            .cornerRadius(70)
+                            .cornerRadius(8)
                             .padding(.top, 1)
                         }
 
@@ -173,6 +185,7 @@ struct ProfileView: View {
                                 Spacer()
                             }.overlay(Rectangle().frame(width: nil, height: 2, alignment: .bottom)
                             .foregroundColor(Color.gray), alignment: .bottom)
+                            .padding(.top, 15)
 
                             
                             ScrollView {

@@ -663,7 +663,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BusyBee/Preview Content\"";
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				DEVELOPMENT_TEAM = 83S2CV3ZRK;
+=======
+				DEVELOPMENT_TEAM = JMQX63B5WW;
+>>>>>>> Stashed changes
 =======
 				DEVELOPMENT_TEAM = JMQX63B5WW;
 >>>>>>> Stashed changes
@@ -685,7 +689,11 @@
 				);
 				MARKETING_VERSION = 1.0;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				PRODUCT_BUNDLE_IDENTIFIER = mobileapp.BusyBeeeee;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = mobileapp.BusyBeeee;
+>>>>>>> Stashed changes
 =======
 				PRODUCT_BUNDLE_IDENTIFIER = mobileapp.BusyBeeee;
 >>>>>>> Stashed changes
@@ -705,7 +713,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BusyBee/Preview Content\"";
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				DEVELOPMENT_TEAM = 83S2CV3ZRK;
+=======
+				DEVELOPMENT_TEAM = JMQX63B5WW;
+>>>>>>> Stashed changes
 =======
 				DEVELOPMENT_TEAM = JMQX63B5WW;
 >>>>>>> Stashed changes
@@ -727,7 +739,11 @@
 				);
 				MARKETING_VERSION = 1.0;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				PRODUCT_BUNDLE_IDENTIFIER = mobileapp.BusyBeeeee;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = mobileapp.BusyBeeee;
+>>>>>>> Stashed changes
 =======
 				PRODUCT_BUNDLE_IDENTIFIER = mobileapp.BusyBeeee;
 >>>>>>> Stashed changes

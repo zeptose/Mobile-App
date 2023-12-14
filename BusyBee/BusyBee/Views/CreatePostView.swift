@@ -90,11 +90,8 @@ struct CreatePostView: View {
           camera.capturedImage = nil
         }) {
           Image(systemName: "chevron.backward")
-<<<<<<< Updated upstream
-            .foregroundColor(.black)
-=======
+
                 .foregroundColor(Color(UIColor(hex:"#F08355")))
->>>>>>> Stashed changes
             .padding()
             .font(.system(size: 30))
         }
