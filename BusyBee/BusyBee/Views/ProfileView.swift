@@ -29,7 +29,6 @@ struct ProfileView: View {
             let updatedUser = userController.getUserFromId(userId: profile.id)
             if let temp = viewModel.currentUser {
                 let updatedCurrentUser = userController.getUserFromId(userId: temp.id)
-                //            let currentFollows = updatedCurrentUser!.follows
                 ZStack {
                     VStack {
                         HStack {

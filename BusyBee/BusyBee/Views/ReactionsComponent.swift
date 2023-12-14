@@ -128,8 +128,3 @@ struct ReactionsComponent: View {
   }
 }
 
-//struct ReactionsComponent_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ReactionsComponent()
-//    }
-//}

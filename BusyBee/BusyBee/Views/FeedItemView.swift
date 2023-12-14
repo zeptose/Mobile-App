@@ -26,8 +26,7 @@ struct FeedItemView: View {
         if let feedUser = userController.getUserFromId(userId: userId){
           let timeAgo = postController.timeAgoString(from: post.timePosted)
           VStack {
-            // Profile Picture and Username
-            
+
             HStack {
               Image("profilePic")
                 .resizable()

@@ -132,23 +132,9 @@ struct IndividualGoalView: View {
               }
               if isShowingSubgoals {
                 VStack (alignment: .leading) {
-                  //Subgoal
+
                   ForEach(goalController.getSubgoalsForGoal(goal: goal)) { subgoal in
-//                    Capsule()
-//                      .foregroundColor(Color.green)
-//                      .frame(height: 30, alignment: .leading)
-//                      .overlay(
-//                        HStack{
-//                          Image(systemName: "checkmark.circle")
-//                            .frame(width: 20, alignment: .leading)
-//                            .padding(.leading, 8)
-//                          Text(subgoal.name)
-//                            .font(.system(size: 10))
-//                            .frame(maxWidth: .infinity, alignment: .leading)
-//                        }
-//                      )
-//                      .frame(maxWidth: .infinity, alignment: .leading)
-//                      .padding(.horizontal, 25)
+
                     if subgoal.isCompleted {
                       HStack(spacing: 10) {
                           Image("checkmark")

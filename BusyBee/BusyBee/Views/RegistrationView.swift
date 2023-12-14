@@ -88,10 +88,10 @@ struct RegistrationFormView: View {
         
         Spacer()
         
-        //            NavigationLink(destination: LoginView()) {
+        
         Text("Have an account? Login here")
           .foregroundColor(Color.blue)
-        //            }
+       
 
       }.font(Font.custom("Quicksand-Regular", size: 16))
       .padding()

@@ -17,7 +17,6 @@
 		5995CEC02AF56CBD004C9158 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5995CEBF2AF56CBD004C9158 /* CameraViewModel.swift */; };
 		5995CEC22AF58871004C9158 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5995CEC12AF58871004C9158 /* PostController.swift */; };
 		5995CEC42AF58983004C9158 /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5995CEC32AF58983004C9158 /* PostRepository.swift */; };
-		59A8027A2AF402DB00F69178 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A802792AF402DB00F69178 /* CalendarView.swift */; };
 		59A8027C2AF402ED00F69178 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A8027B2AF402ED00F69178 /* HomeView.swift */; };
 		59A802822AF4034100F69178 /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A802812AF4034100F69178 /* ImageController.swift */; };
 		59A802862AF41F0A00F69178 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A802852AF41F0A00F69178 /* CameraController.swift */; };
@@ -98,7 +97,6 @@
 		5995CEBF2AF56CBD004C9158 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		5995CEC12AF58871004C9158 /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
 		5995CEC32AF58983004C9158 /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
-		59A802792AF402DB00F69178 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		59A8027B2AF402ED00F69178 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		59A802812AF4034100F69178 /* ImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
 		59A802852AF41F0A00F69178 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
@@ -281,7 +279,6 @@
 				F13650372AF4202C00950A0F /* SearchView.swift */,
 				5980FC3E2AF1C047003053BB /* AppView.swift */,
 				F9BE50592AF4288900FF1C16 /* HexCodeConverter.swift */,
-				59A802792AF402DB00F69178 /* CalendarView.swift */,
 				59A8027B2AF402ED00F69178 /* HomeView.swift */,
 				5995CEBD2AF56AEC004C9158 /* CreatePostView.swift */,
 				F1C7F65B2B16724D00A61DE4 /* ReactionsComponent.swift */,
@@ -478,7 +475,6 @@
 				2FA8153B2B25017700F66B81 /* GoalWrappedView.swift in Sources */,
 				F9908DB42AFB090300415845 /* CameraView.swift in Sources */,
 				F1C7F65C2B16724D00A61DE4 /* ReactionsComponent.swift in Sources */,
-				59A8027A2AF402DB00F69178 /* CalendarView.swift in Sources */,
 				F13650342AF3487C00950A0F /* LoginView.swift in Sources */,
 				5980FC3F2AF1C047003053BB /* AppView.swift in Sources */,
 				2FBB02802B186E0000044A36 /* HoneyJarViewController.swift in Sources */,
