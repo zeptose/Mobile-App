@@ -55,17 +55,17 @@ struct CommentSheetView: View {
                   .overlay(Circle().stroke(customYellow, lineWidth: 3))
                 VStack(alignment: .leading) {
                   Text(commenter.username)
-                    .font(.system(size: 15))
+                    .font(Font.custom("Quicksand-Regular", size: 16))
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
                   Text(comment.body)
-                    .font(.system(size: 12))
+                    .font(Font.custom("Quicksand-Regular", size: 14))
                     .foregroundColor(.black)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 Text(timeAgo)
                   .foregroundColor(.gray)
-                  .font(.system(size: 12))
+                  .font(Font.custom("Quicksand-Regular", size: 13))
                   .frame(maxWidth: .infinity, alignment: .trailing)
               }
               
