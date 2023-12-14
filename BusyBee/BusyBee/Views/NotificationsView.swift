@@ -64,15 +64,15 @@ struct NotificationView: View {
       }
     }
     .onAppear {
-      if let currentUser = viewModel.currentUser {
-        notifications = postController.getNotificationsForCurrentUser(currentUser: currentUser)
-        notifications.sort()
-        
-      }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    if let currentUser = viewModel.currentUser {
+                        notifications = postController.getNotificationsForCurrentUser(currentUser: currentUser)
+                        notifications.sort()
+                    }
+                }
+            }
+        }
     }
-    
-  }
-}
   
   
 struct NotificationRow: View {
