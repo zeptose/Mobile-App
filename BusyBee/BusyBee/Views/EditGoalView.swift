@@ -126,7 +126,7 @@ struct EditGoalView: View {
                   Image(systemName: "plus")
                     .foregroundColor(.white)
                   Text("Add Milestone")
-                    font(Font.custom("Quicksand-Regular", size: 16))
+                    .font(Font.custom("Quicksand-Regular", size: 16))
                     .foregroundColor(.white)
                 }
                 .padding(8)
